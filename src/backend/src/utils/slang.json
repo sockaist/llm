@@ -1,0 +1,197 @@
+{
+    "instruction": "당신의 역할은 주어진 은어와 줄임말을 정식 언어로 변환하는 것입니다. 사용자로부터 제공된 은어나 줄임말을 정확하게 파악하고, 그에 해당하는 정식 언어 표현으로 변환하십시오. 각 은어와 줄임말에 대해 적합한 정식 언어를 반환하세요.",
+    "output_format": {
+      "slang_or_abbreviation": "사용자가 제공한 은어나 줄임말",
+      "formal_language": "은어 또는 줄임말에 해당하는 정식 언어"
+    },
+    "examples": [
+      {
+          "slang_or_abbreviation": "시프",
+          "formal_language": "시스템 프로그래밍 (전산학부 과목)"
+      },
+      {
+          "slang_or_abbreviation": "이산",
+          "formal_language": "이산 구조 (전산학부 과목)"
+      },
+      {
+        "slang_or_abbreviation": "PL (혹은 피엘)",
+        "formal_language": "프로그래밍 언어 (전산학부 과목)"
+        },
+    {
+        "slang_or_abbreviation": "핀토스 (혹은 Pintos)",
+        "formal_language": "핀토스 (운영체제 및 실습 과목 과제)"
+    },
+    {
+        "slang_or_abbreviation": "플젝",
+        "formal_language": "프로젝트 (줄임말)"
+    },
+    {
+        "slang_or_abbreviation": "OS (혹은 운체실)",
+        "formal_language": "운영체제 및 실습 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "랩",
+        "formal_language": "교수님 연구실험실 (혹은 문맥에 따라 과제를 지칭하는 단어일수도 있음 ex) 시프 비트랩) "
+    },
+    {
+        "slang_or_abbreviation": "집행위 (혹은 학생회)",
+        "formal_language": "전산학부 집행위원회"
+    },
+    {
+        "slang_or_abbreviation": "몰캠",
+        "formal_language": "몰입 캠프 (계절학기 과목)"
+    },
+    {
+        "slang_or_abbreviation": "데구 (혹은 DS, 디에스)",
+        "formal_language": "데이타 구조 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "프밍기",
+        "formal_language": "프로그래밍 기초 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "프밍이",
+        "formal_language": "프로그래밍의 이해 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "딥러개",
+        "formal_language": "딥러닝 개론 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "기계",
+        "formal_language": "기계학습 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "아키",
+        "formal_language": "전산기조직 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "네떡 (혹은 Network)",
+        "formal_language": "전산망개론 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "디비개 (혹은 디비)",
+        "formal_language": "데이타베이스 개론 (전산학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "쏙모임 (혹은 SoC 모임)",
+        "formal_language": "전산학부 집행위원회 사업 중 하나인 SoC 모임 (집행위원회 사업)"
+    },
+    {
+        "slang_or_abbreviation": "학설",
+        "formal_language": "전산학부 학과설명회 (집행위원회 사업)"
+    },
+    {
+        "slang_or_abbreviation": "개총",
+        "formal_language": "전산학부 개강총회 (집행위원회 사업)"
+    },
+    {
+        "slang_or_abbreviation": "워크샵",
+        "formal_language": "전산학부 워크샵(겸 MT) (집행위원회 사업)"
+    },
+    {
+        "slang_or_abbreviation": "주전",
+        "formal_language": "주전공 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "심전",
+        "formal_language": "심화전공 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "복전",
+        "formal_language": "복수전공 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "부전",
+        "formal_language": "부전공 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "융전",
+        "formal_language": "융합전공 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "에타 (혹은 에브리타임)",
+        "formal_language": "에브리타임 (대학생 커뮤니티)"
+    },
+    {
+        "slang_or_abbreviation": "OTL (혹은 오티엘)",
+        "formal_language": "OTL (시간표 작성 앱)"
+    },
+    {
+        "slang_or_abbreviation": "문해기",
+        "formal_language": "문제 해결 기법 (전산과 과목)"
+    },
+    {
+        "slang_or_abbreviation": "국장",
+        "formal_language": "국가장학금 (줄임말)"
+    },
+    {
+        "slang_or_abbreviation": "알고개",
+        "formal_language": "알고리즘 개론 (전산과 과목)"
+    },
+    {
+        "slang_or_abbreviation": "접두사 + 과목이름(과목이름은 줄임말도 가능) (예시: 허아키)",
+        "formal_language": "접두사 교수님이 수업하는 과목 (예시: 허아키의 경우, 허 교수님이 수업하시는 전산기조직)"
+    },
+    {
+        "slang_or_abbreviation": "선대",
+        "formal_language": "선형대수학 (수학과 과목)"
+    },
+    {
+        "slang_or_abbreviation": "선대",
+        "formal_language": "선형대수학개론 (수학과 과목, 전산과 필수이수 과목)"
+    },
+    {
+        "slang_or_abbreviation": "전문연",
+        "formal_language": "전문연구원 (국방의 의무를 석박사 과정을 통해 수행하는 방법)"
+    },
+    {
+        "slang_or_abbreviation": "노베",
+        "formal_language": "노베이스 (줄임말, 경험이 없거나 실력이 없음을 지칭하는 단어)"
+    },
+    {
+        "slang_or_abbreviation": "전프구",
+        "formal_language": "전자공학을 위한 프로그래밍 구조 (전기및전자공학부 과목)"
+    },
+    {
+        "slang_or_abbreviation": "회로",
+        "formal_language": "전자공학을 위한 프로그래밍 구조 (과목)"
+    },
+    {
+        "slang_or_abbreviation": "전전",
+        "formal_language": "전기및전자공학부 (학과)"
+    },
+    {
+        "slang_or_abbreviation": "전필",
+        "formal_language": "전공필수 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "전선",
+        "formal_language": "전공선택 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "자선",
+        "formal_language": "자유선택 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "인선",
+        "formal_language": "인문선택 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "기선",
+        "formal_language": "기초선택 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "기필",
+        "formal_language": "기초필수 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "교필",
+        "formal_language": "교양필수 (대학용어)"
+    },
+    {
+        "slang_or_abbreviation": "교선",
+        "formal_language": "교양선택 (대학용어)"
+    }
+    ]
+  }
