@@ -1,4 +1,4 @@
-from llm import inputChecker    
+from chatbot.src.backend.src.llm.parser_llm import inputChecker    
 
 
 
