@@ -7,6 +7,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def main():
+
     """
     inputChecker, queryMaker, FilterGenerator를 사용하는 메인 함수
     """
@@ -19,6 +20,14 @@ def main():
     maker = QueryMaker(api_key=api_key)
     filter_generator = FilterGenerator(api_key=api_key)
     normalizer = InputNormalizer(api_key=api_key)
+
+
+    #llm 부팅
+    boot_input = "이 메세지는 백엔드 서버 부팅 시 llm의 부팅 및 JSON 파싱을 위해 사용됩니다. 해당 메세지를 무시하세요."
+    normalizer.process_query(boot_input)
+    checker.process_query(boot_input)
+    filter_generator.process_query(boot_input)
+    maker.process_query(boot_input)
 
     while True:
         user_input = input("사용자 질문 (종료하려면 'exit' 입력): ")
