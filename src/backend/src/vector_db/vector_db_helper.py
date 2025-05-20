@@ -4,19 +4,11 @@ from qdrant_client.models import SearchRequest, SearchParams, NamedVector
 from qdrant_client.http.models import ScoredPoint
 import numpy as np 
 from embedding import content_embedder
+from vector_db_main import FORMATS
+import os
+
 
 from typing import List, Dict, Any
-
-
-################## HELPTER CONSTANTS ############################
-
-FORMATS = {"portal.job" : ["title","author","date","link","content"], "portal.startUp" : ["title","author","date","link","content"], 
-           "csweb.news" : ["title","date","link","content"], "csweb.canlender" : ["title","date","link","content","location"], "csweb.research" : ["name","professor","field","web","email","phone","office","intro","etc"], "csweb.edu" : ["title","link","content"], "csweb.ai" : ["title","date","link","content"], "csweb.profs" : ["name","field","major","degree","web","mail","phone","office","etc"], "csweb.admin" : ["name","position","work","mail","phone","office","etc"],"csweb.refer" : ["name","web","etc"], 
-           #TODO : add formats for notion crawling data
-           }
-
-
-#################################################################
 
 
 def create_doc_upsert(client, col_name, data):
@@ -159,11 +151,11 @@ def initialize_col(client, col_name):
 
 def search_doc(client, query, col_name, k):
     """
-    This function finds 
+    This function finds top-k docs by query in collection col_name, with defined DISTANCE
 
     Args: 
         client: Qdrant client for cur DB
-        query: 
+        query: text query, will be embeded
         col_name: collection name to be searched
         k: take top-k results
     
@@ -183,5 +175,36 @@ def search_doc(client, query, col_name, k):
         limit=k,
     )
 
-
     return results  # List[ScoredPoint]
+
+
+def upsert_folder(client, folder_path, col_name, n=0):
+    """
+    This function upserts all data in folder_path in collection col_name
+
+    Args:
+        client:  Qdrant client for cur DB
+        folder_path: folder path
+        col_name : name of collection to add
+        n: number of data to add, set 0 to add all data
+    
+    Return: 
+        none    
+    """
+
+    cnt=0
+    for filename in os.listdir(folder_path):
+        if(n != 0 and cnt > n): break
+        cnt += 1
+        if filename.endswith(".json"):
+            file_path = os.path.join(folder_path, filename)
+
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+
+                print(f"uploading: {filename} → '{col_name}'")
+                create_doc_upsert(client, col_name, data)
+
+            except Exception as e:
+                print(f"Error ({filename}): {e}")
