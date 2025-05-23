@@ -1,0 +1,13 @@
+# Required packages for chatbot backend
+google-generativeai>=0.8.4
+python-dotenv>=1.1.0
+qdrant-client>=1.14.2
+numpy>=2.0.2
+scikit-learn>=1.6.1
+sentence-transformers>=4.1.0
+beautifulsoup4>=4.13.4
+requests>=2.32.3
+kss>=6.0.4
+jamo>=0.4.1
+koparadigm>=0.10.0
+torch>=2.7.0

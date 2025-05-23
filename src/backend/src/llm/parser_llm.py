@@ -5,20 +5,24 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime
 
 # 프로젝트 루트 디렉토리를 파이썬 경로에 추가
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Google Gemini API 임포트
 import google.generativeai as genai
 
 # 프롬프트 템플릿과 출력 파서 임포트
-from ..prompt import InstructionConfig
-from ..output_parsers import JSONOutputParser
-from ..chatbot import ChatBot
+from ..utils.prompt import InstructionConfig
+from ..utils.output_parsers import JSONOutputParser
+from ..utils.chatbot import ChatBot
 
 class InputChecker:
-    def __init__(self, api_key: str, config_file_path: str = "/Users/bagjimin/Desktop/project/chatbot/src/backend/src/llm/utils/inputchecker.json"):
+    """
+    Checks and validates user input using a chatbot powered by the Google Gemini API.
+    This class loads configuration from a JSON file and uses a chatbot to process and validate user queries.
+    """
+    def __init__(self, api_key: str, config_file_path: str = None):
         """
-
+\ㅣ
         Args:
             api_key (str): Google API 키
         """
@@ -27,6 +31,10 @@ class InputChecker:
 
         # JSON 출력 파서 생성
         self.json_parser = JSONOutputParser()
+        
+        # 기본 설정 파일 경로 설정
+        if config_file_path is None:
+            config_file_path = os.path.join(os.path.dirname(__file__), "utils/inputchecker.json")
 
         # 설정 파일 로드
         with open(config_file_path, 'r', encoding='utf-8') as f:
@@ -80,18 +88,22 @@ class InputChecker:
         return response
 
 class InputNormalizer:
-    def __init__(self, api_key: str, config_file_path: str = "/Users/bagjimin/Desktop/project/chatbot/src/backend/src/llm/utils/inputNormalizer.json"):
+    def __init__(self, api_key: str, config_file_path: str = None):
         """
 
         Args:
             api_key (str): Google API 키
-            config_file_path (str): 설정 JSON 파일 경로 (기본값: query_maker_config.json)
+            config_file_path (str): 설정 JSON 파일 경로
         """
         self.api_key = api_key
         genai.configure(api_key=self.api_key)
 
         # JSON 출력 파서 생성
         self.json_parser = JSONOutputParser()
+        
+        # 기본 설정 파일 경로 설정
+        if config_file_path is None:
+            config_file_path = os.path.join(os.path.dirname(__file__), "utils/inputNormalizer.json")
 
         # 설정 파일 로드
         with open(config_file_path, 'r', encoding='utf-8') as f:
@@ -146,7 +158,7 @@ class InputNormalizer:
 
 
 class QueryMaker:
-    def __init__(self, api_key: str, config_file_path: str = "/Users/bagjimin/Desktop/project/chatbot/src/backend/src/llm/utils/queryMaker.json"):
+    def __init__(self, api_key: str, config_file_path: str = None):
         """
 
         Args:
@@ -157,6 +169,10 @@ class QueryMaker:
 
         # JSON 출력 파서 생성
         self.json_parser = JSONOutputParser()
+        
+        # 기본 설정 파일 경로 설정
+        if config_file_path is None:
+            config_file_path = os.path.join(os.path.dirname(__file__), "utils/queryMaker.json")
 
         # 설정 파일 로드
         with open(config_file_path, 'r', encoding='utf-8') as f:
@@ -214,7 +230,7 @@ class QueryMaker:
         return response
     
 class FilterGenerator:
-    def __init__(self, api_key: str, config_file_path: str = "/Users/bagjimin/Desktop/project/chatbot/src/backend/src/llm/utils/filterGenerator.json"):
+    def __init__(self, api_key: str, config_file_path: str = None):
         """
         필터 생성자 챗봇 초기화
 
@@ -229,6 +245,10 @@ class FilterGenerator:
 
         # 오늘 날짜 가져오기
         today = datetime.now().strftime("%Y-%m-%d")
+        
+        # 기본 설정 파일 경로 설정
+        if config_file_path is None:
+            config_file_path = os.path.join(os.path.dirname(__file__), "utils/filterGenerator.json")
 
         # 설정 파일 로드
         with open(config_file_path, 'r', encoding='utf-8') as f:

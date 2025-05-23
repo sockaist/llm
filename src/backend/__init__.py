@@ -2,14 +2,14 @@
 Langchain 커스텀 구현 라이브러리 - 메인 패키지 파일
 """
 
-from src.prompt import (
+from src.utils.prompt import (
     BasePromptTemplate,
     StringPromptTemplate,
     SimplePromptTemplate,
     InstructionConfig
 )
 
-from src.output_parsers import (
+from src.utils.output_parsers import (
     BaseOutputParser,
     JSONOutputParser,
     ListOutputParser,
@@ -32,9 +32,9 @@ from src.llm import(
     FilterGenerator
 )
 
-from src.chatbot import ChatBot
+from src.utils.chatbot import ChatBot
 
-from src.chain import (
+from src.utils.chain import (
     Chain,
     LLMChain,
     SequentialChain,
@@ -42,7 +42,7 @@ from src.chain import (
     TransformChain
 )
 
-from src.memory import (
+from src.utils.memory import (
     Memory,
     BufferMemory,
     ConversationBufferWindowMemory,
@@ -51,19 +51,19 @@ from src.memory import (
 )
 
 try:
-    from src.prompt import Jinja2PromptTemplate
+    from src.utils.prompt import Jinja2PromptTemplate
     JINJA2_AVAILABLE = True
 except ImportError:
     JINJA2_AVAILABLE = False
 
 try:
-    from src.output_parsers import PydanticOutputParser
+    from src.utils.output_parsers import PydanticOutputParser
     PYDANTIC_AVAILABLE = True
 except ImportError:
     PYDANTIC_AVAILABLE = False
 
 try:
-    from src.output_parsers import YAMLOutputParser
+    from src.utils.output_parsers import YAMLOutputParser
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False

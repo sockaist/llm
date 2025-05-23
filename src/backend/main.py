@@ -1,17 +1,18 @@
-from src.llm import QueryMaker, InputChecker, FilterGenerator, InputNormalizer
+from .src.llm import QueryMaker, InputChecker, FilterGenerator, InputNormalizer
 import json
 import sys
 import os
+from dotenv import load_dotenv
 
-# 프로젝트 루트 디렉토리를 파이썬 경로에 추가
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# 환경 변수 로드
+load_dotenv()
 
 def main():
 
     """
     inputChecker, queryMaker, FilterGenerator를 사용하는 메인 함수
     """
-    api_key = "GOOGLE_API_KEY"  # 환경 변수에서 API 키 가져오기
+    api_key = os.getenv("GOOGLE_API_KEY")  # 환경 변수에서 API 키 가져오기
     if not api_key:
         print("GOOGLE_API_KEY 환경 변수가 설정되지 않았습니다.")
         return
