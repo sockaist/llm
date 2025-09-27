@@ -1,0 +1,16 @@
+{
+  "title": "피부과 헬스케어 솔루션 개발에 참여할 팀원을 찾습니다!",
+  "start": "채용",
+  "finish": "2025년 1월 25일",
+  "contents": "피부과 디지털 솔루션 개발에 함께할 열정적인 팀원을 찾습니다!  \n안녕하세요. 저는 피부과 임상을 디지털 기술과 인공지능(AI)으로 혁신하고자 하는 목표를 가진 현직 피부과 의사입니다. 초기 단계의 프로젝트에서 함께 성장하며 미래를 만들어갈 뛰어난 인재를 찾고 있습니다.  \n⏹︎ 프로젝트 내용 \n- 개요: 더마뷰(DermaView) - 피부과 병원용 의료 데이터 관리 AI 솔루션 개발 \n- 배경: 피부과 진료 및 처방을 위해 임상 사진은 핵심적인 데이터입니다. 하지만 기존에는 이를 촬영, 분류, 저장, 조회하는 과정이 비효율적이었으며, 이를 위한 전문 솔루션이 부재한 상황이었습니다. 더마뷰는 이 과정을 효율적으로 개선하고, AI를 활용해 더 나은 의료 환경을 구현하고자 합니다. \n- 현재 진행 상황: 2년 전 1차 MVP(최소 기능 제품)를 단독 개발하여 현재 서울아산병원 피부과에 시험적으로 도입되었습니다. 최근 팀원을 구성하며 2차 MVP를 개발 중입니다. \n- 프로젝트 타임라인: 2025년 예비창업패키지 준비 중이며, 그 전에 프로토타입을 완성하여 병원에 시험 도입할 계획입니다. \n- 현재 팀원 현황: Project Manager (1), Software Engineer(FE) (1), AI Researcher (1)  \n⏹︎ 장기적 비전 \n- 다양한 진료과목에서 임상사진 데이터를 안전하고 효율적으로 관리할 수 있는 시스템 구축 \n- 국내 최고 수준의 피부 질환 AI 솔루션 기업으로 성장 \n- 병원 방문 전후의 진료 과정에 기술과 AI를 도입하여 환자와 의료진의 경험을 개선 \n- 피부 질환의 조기 진단 및 환자-의료진 간 효율적 연결 \n- 원격 진단이 가능한 피부 질환 관리 서비스를 구현 \n ⏹︎ 이런 분을 찾습니다 \n- 모집 포지션: Software Engineer(Backend/Full Stack) \n- 주요 업무:     \n- DB 설계 및 관리: Electron 사진 뷰어 앱과 연동되는 데이터베이스 구조 설계 및 구현     \n- AI 모델 연동: AI 모델과의 데이터 송수신 및 처리 로직 개발     \n- API 설계: 프론트엔드와의 통신을 위한 RESTful API 또는 기타 적합한 프로토콜 설계 및 구축 \n- 우대사항:     \n- Electron 앱 개발 경험이 있으신 분     \n- 헬스케어에 분야에 흥미가 있고, 의료/헬스케어 프로젝트 경험이 있는 분     \n- 단기적으로 프로젝트에 기여하거나 창업까지 함께하실 분  \n⏹︎ 지원 방법 및 연락처 \n관심이 있으신 분은 아래 연락처로 편히 문의 주시기 바랍니다. \n- 연락처: 010-9533-3731 \n- 이메일: gutdoktor@naver.com  \n의료 환경의 혁신을 함께 만들어갈 분들의 많은 지원 바랍니다!",
+  "images": [
+    "https://kaist-cs.notion.site/image/attachment%3A33989ab7-3a8e-486e-be08-148defaeba8c%3Aimage.png?table=block&id=d6a9cbd2-b8ac-4c6a-9590-70f57b9109f6&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2",
+    "https://kaist-cs.notion.site/image/attachment%3Af8e53108-fa89-4659-a3a7-9bd4a4852e44%3Aimage.png?table=block&id=49c2afbb-5b3f-4ec7-ade3-b792bb6b990b&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2",
+    "https://kaist-cs.notion.site/image/attachment%3Aa9c940b3-ecbc-431f-99a0-41c433a35f6e%3Aimage.png?table=block&id=2daac298-a57c-4ebd-b802-24c08348684f&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2",
+    "https://kaist-cs.notion.site/image/attachment%3Ab35a611c-db6c-440b-a06c-2455cd217ec9%3Aimage.png?table=block&id=a77c9bf2-48da-472a-be2c-95840d80e887&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2",
+    "https://kaist-cs.notion.site/image/attachment%3A1bfa4085-c475-491b-b4d2-b79eb7380d5f%3Aimage.png?table=block&id=e2575261-9f8e-4fc0-b101-70b83068961e&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2",
+    "https://kaist-cs.notion.site/image/attachment%3Acbffec0c-a610-488e-9470-657dcc26fd07%3Aimage.png?table=block&id=fff3f9a7-4eb0-4c71-b4ca-490b73b6936e&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2",
+    "https://kaist-cs.notion.site/image/attachment%3A7f8f2058-df6b-47cd-a6d9-9b1df9ea651f%3Aimage.png?table=block&id=b0082f6b-4522-4b1c-9465-3bb11f06d482&spaceId=e849ede4-658a-4cb2-9673-0eeeaff811c3&width=1420&userId=&cache=v2"
+  ],
+  "url": "https://kaist-cs.notion.site/abf3070e69e44c70b95b4f05dfbbf838?pvs=23"
+}

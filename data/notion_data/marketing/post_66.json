@@ -1,0 +1,8 @@
+{
+  "title": "LLM 강의 홍보",
+  "start": "수강",
+  "finish": "2024년 7월 22일",
+  "contents": "https://www.deeplearning.ai/short-courses/pretraining-llms/\nThis is a free, one-hour long course on LLM. You can take classes by simply registering as a member. The lecture contents are as follows:\n- Explore scenarios where pretraining is the optimal choice for model performance. Compare text generation across different versions of the same model to understand the performance differences between base, fine-tuned, and specialized pre-trained models.\n- Learn how to create a high-quality training dataset using web text and existing datasets, which is crucial for effective model pretraining.\n- Prepare your cleaned dataset for training. Learn how to package your training data for use with the Hugging Face library.\n- Explore ways to configure and initialize a model for training and see how these choices impact the speed of pretraining.- Learn how to configure and execute a training run, enabling you to train your own model.\n- Learn how to assess your trained model’s performance and explore common evaluation strategies for LLMs, including important benchmark tasks used to compare different models’ performance.",
+  "images": [],
+  "url": "https://kaist-cs.notion.site/LLM-efd9eab863354144b4ab55436786f13a?pvs=23"
+}
