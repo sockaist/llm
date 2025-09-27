@@ -4,11 +4,11 @@ import nltk
 import numpy as np
 from nltk.tokenize import sent_tokenize
 import kss # 한글 전용 sentence splitter -> initial tokenizer로 사용
+from config import THRESHOLD
 
-THRESHOLD = 1.0 # cluster 만들 때 "유사한 정보"로 판단하여 붙이는 벡터들 distance 기준
-
-model = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
-# model :  https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+# 한국어 특화 모델로 변경 - 한국어 성능이 크게 향상됨
+model = SentenceTransformer('jhgan/ko-sroberta-multitask')
+# model : https://huggingface.co/jhgan/ko-sroberta-multitask (한국어 특화)
 #nltk.download('punkt_tab') # Only once at initial operating
 
 def content_embedder(text):
@@ -22,29 +22,56 @@ def content_embedder(text):
         chunks : list of (t,v) tuples where t = semantically tokenized text and v = embedded vector for v
     
     """
-    #sentences = sent_tokenize(sentence) 
-    sentences = kss.split_sentences(text) # Use kss instead of nltk; nltk has low accuracy at Korean
-
-    vectors = model.encode(sentences)
-    #print(vectors.shape)
-
-    clusters = AgglomerativeClustering(n_clusters=None, distance_threshold=THRESHOLD)
-    labels = clusters.fit_predict(vectors)
-
-
-    semantic_chunks = dict()
-    for i, label in enumerate(labels):
-        if label not in semantic_chunks:
-            semantic_chunks[label] = []
+    try:
+        # 입력 텍스트 검증
+        if not text or not text.strip():
+            print("Warning: Empty or None text provided to content_embedder")
+            return []
         
-        semantic_chunks[label].append(sentences[i])
+        #sentences = sent_tokenize(sentence) 
+        sentences = kss.split_sentences(text) # Use kss instead of nltk; nltk has low accuracy at Korean
+        
+        # 빈 문장들 필터링
+        sentences = [s.strip() for s in sentences if s.strip()]
+        
+        if not sentences:
+            print("Warning: No valid sentences found after tokenization")
+            return []
 
-    chunk_texts = [' '.join(group) for group in semantic_chunks.values()]
-    chunk_vectors = model.encode(chunk_texts)
-    
-    chunks = [(chunk_texts[i],chunk_vectors[i]) for i in range(len(chunk_texts))] 
+        vectors = model.encode(sentences)
+        
+        if len(vectors) == 0:
+            print("Warning: No vectors generated from sentences")
+            return []
+            
+        #print(vectors.shape)
 
-    return chunks
+        clusters = AgglomerativeClustering(n_clusters=None, distance_threshold=THRESHOLD)
+        labels = clusters.fit_predict(vectors)
+
+        semantic_chunks = dict()
+        for i, label in enumerate(labels):
+            if label not in semantic_chunks:
+                semantic_chunks[label] = []
+            
+            semantic_chunks[label].append(sentences[i])
+
+        chunk_texts = [' '.join(group) for group in semantic_chunks.values()]
+        
+        if not chunk_texts:
+            print("Warning: No chunk texts generated")
+            return []
+            
+        chunk_vectors = model.encode(chunk_texts)
+        
+        chunks = [(chunk_texts[i],chunk_vectors[i]) for i in range(len(chunk_texts))] 
+
+        return chunks
+        
+    except Exception as e:
+        print(f"Error in content_embedder: {e}")
+        print(f"Input text length: {len(text) if text else 0}")
+        return []
 
 
 '''w. transformer itself

@@ -6,7 +6,7 @@ from qdrant_client.models import Distance, VectorParams, PointStruct
 from embedding import content_embedder
 from vector_db_helper import create_doc_upsert, read_doc, update_doc, delete_doc, search_doc, initialize_col, upsert_folder
 from init import init_recreate_collections, init_upsertall
-from dotenv import load_dotenv
+from config import QDRANT_API_KEY, QDRANT_URL, FORMATS, VECTOR_SIZE, DISTANCE
 
 import json
 import os
@@ -14,29 +14,19 @@ import os
 
 ################## HELPTER CONSTANTS ############################
 
+# 상수들은 config.py에서 import됨
 
-VECTOR_SIZE = 384 # dimension of embeded vectors, 384 for our embedding model
-DISTANCE = Distance.COSINE # method to calculate distance in Qdrant DB
-
-load_dotenv()
-QDRANT_API_KEY = os.environ.get('QDRANT_API_KEY')
-
-FORMATS = {"portal.job" : ["title","author","date","link","content"], "portal.startUp" : ["title","author","date","link","content"], 
-           "csweb.news" : ["title","date","link","content"], "csweb.canlender" : ["title","date","link","content","location"], "csweb.research" : ["name","professor","field","web","email","phone","office","intro","etc"], "csweb.edu" : ["title","link","content"], "csweb.ai" : ["title","date","link","content"], "csweb.profs" : ["name","field","major","degree","web","mail","phone","office","etc"], "csweb.admin" : ["name","position","work","mail","phone","office","etc"],"csweb.refer" : ["name","web","etc"], 
-           #TODO : add formats for notion crawling data
-           }
-
-INIT = False
+INIT = True # set true to init DB
 
 
 ################### INITIALIZE ##########################
 
-folder_path = "data/"
+folder_path = "../../../../data/"
 col_name = "portal.job"
  
 # deployed Qdrant DB
 client = QdrantClient(
-    url="https://7eb854c4-8645-4c1f-ae73-609313fb8842.us-east4-0.gcp.cloud.qdrant.io", 
+    url=QDRANT_URL, 
     api_key=QDRANT_API_KEY
 )
 

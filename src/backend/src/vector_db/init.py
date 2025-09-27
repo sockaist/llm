@@ -2,7 +2,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from embedding import content_embedder
 from vector_db_helper import upsert_folder
-from vector_db_main import FORMATS, VECTOR_SIZE, DISTANCE
+from config import FORMATS, VECTOR_SIZE, DISTANCE
 
 
 #### functions for initialization, needed only once at first
