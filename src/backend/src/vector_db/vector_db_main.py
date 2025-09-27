@@ -31,6 +31,7 @@ client = QdrantClient(
 )
 
 if(INIT):
+    initialize_col(client, col_name) # 컬렉션(테이블) 생성
     init_recreate_collections(client) # 컬렉션(테이블) 생성
     init_upsertall(client, folder_path) # path 아래 있는 모든 폴더의 json 파일을 DB에 업로드
 
