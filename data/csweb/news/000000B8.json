@@ -1,0 +1,8 @@
+{
+    "title": "학사과정 김도현, 석사과정 김진우 학생 RiTA 2022 Best Student Paper Award 수상",
+    "date": "2022-12-20T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10584&page=5&skey=subject&svalue=&menu=83",
+    "content": "사진상 (왼쪽) 조민우\n학사과정\n/ 김도현 학사과정 / 김진우 석사과정 / 박대형(교수) (오른쪽)\nKAIST 전산학부 학사과정 김도현, 석사과정 김진우, 학사과정 조민우 (지도교수 박대형) 학생이 지난 12월 7일에서 9일 호주 그리피스 대학교 골드코스트 캠퍼스에서 Hybrid로 개최된 The 10th International Conference on Robot Intelligence Technology and Applications (RiTA)에서 'Natural Language-guided Semantic Navigation using Scene Graph'을 제목으로 한 논문으로 'Best Student Paper Award'를 수상하였다.\nRiTA는 주행 및 SLAM (동시적 위치 추정 및 지도 작성), 인간-로봇 상호작용, 기계학습 등 인공지능 로봇 기술의 발전과 학술 교류를 위해 매년 정기적으로 개최되는 로보틱스 분야의 국제 학회로 이번 2022년 RiTA는 카이스트와 그리피스 대학교 주관으로 개최되었다.\n이번 2022 RiTA 학회는 Oral Presentation 트랙으로 진행되었으며 발표논문은 Lecture Notes in Networks and Systems (LNNS) Springer에 게시될 예정이다.\n​본 연구 논문에서는 로봇이 자연어로 주행 명령을 받고 넓은 환경에서 목적지를 찾아 주행하는 프레임워크를 제안하였으며, 이때 장면 그래프를 활용함으로써 물체들의 의미론적 정보와 관계적인 정보를 이해하는 점을 인정받았다.",
+    "tag": "csweb.news",
+    "id": 184
+}

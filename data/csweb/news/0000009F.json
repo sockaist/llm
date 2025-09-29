@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부, ICSE 2023에서 다수의 논문 발표",
+    "date": "2023-05-09T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10720&page=4&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부가\nI\nnternational Conference on Software Engineering (ICSE 2023\n)\n에서 다수의 우수한 연구 결과를 발표하였다.\nPLRG 연구실\n의 홍재민 박사과정 학생(지도교수 류석영)은 C언어로 작성된 프로그램을 Rust로 자동 변환할 때 프로그램의 동시성(concurrency)을 정확하게 해결하는 기술을 제안하여 오래된 레거시 프로그램을 보다 안전한 Rust로 변환하는 문제에 기여하였다.\nCOINSE 연구실\n의 강성민, 윤주연 박사과정 학생(지도교수 유신)은 대규모 언어 모델을 이용해 자연어로 기술된 버그 리포트로부터 이를 재현하는 테스트를 자동으로 합성함으로써 개발자들의 디버깅 효율을 크게 높이는 기술을 발표하였다.\n같은 연구실의 안가빈 박사과정 학생(지도교수 유신)과 김나령 학부생은 SAP Labs와의 공동연구를 통해 프로그램에 결함 코드가 처음으로 작성된 시점을 정확하게 식별함으로써 현업에서 코드 품질을 향상시키는 데 기여할 수 있는 기술을 발표하였다.\nInternational Conference on Software Engineering은 올해로 45회째를 맞는 소프트웨어 공학 분야 최우수 학회로 5월 14일부터 20일까지 호주 멜버른에서 개최된다.",
+    "tag": "csweb.news",
+    "id": 159
+}

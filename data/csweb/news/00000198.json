@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 박사과정 박성준 씨, Google AI Ph.D. Fellowship 수상",
+    "date": "2019-09-06T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8921&page=11&skey=subject&svalue=&menu=83",
+    "content": "https://ai.googleblog.com/2019/09/announcement-of-2019-fellowship.html\nKAIST 전산학부 박성준 학생(지도교수 오혜연)이 2019년 Google Ph.D. Fellowship 중 자연어처리(Natural Language Processing) 부문에 선정되었다. Google Ph.D. Fellowship 프로그램은 2009년부터 매년 컴퓨터 과학의 여러 분야에서 연구 업적이 훌륭하고 미래가 유망한 박사과정 학생들을 뽑아 장학금과 Fellowship Summit 참여, 인턴십 기회, 구글 각 분야의 전문가 멘토의 연구 토의 및 피드백 등을 제공한다.\n올해는 북미, 유럽, 아시아, 아프리카의 대학에서 50여명의 박사과정 학생들이 선발되었으며, 아시아에서는 한국 대학 학생 3명을 포함해서 10명의 학생들이 선발되었다.\n박성준 학생은 기계학습 기반 자연어처리 기법을 활용한 전산심리치료(Computational Psychotherapy) 관련 연구 성과를 인정받아 자연어처리 분야에서 구글 PhD Fellowship에 선정되었다.\n그는 기계학습 기반 자연어 처리에서 널리 사용 되는 어휘의 분산표상 학습 기법을 한국어에 적용하는 방법을 제안하였고, 학습된 분산표상을 해석하는 방법을 2017, 2018년에 각각 자연어처리 분야 최고수준의 국제학술대회인 ACL(Annual Conference of the Association for Computational Linguistics), EMNLP(Conference on Empirical Methods in Natural Language Processing)에 발표하였다.\n최근에는 이를 확장하여, 심리상담 대화록에서 내담자 발화를 내담자 요인에 따라 분류하는 기준 및 기계학습 모델을 제안하여 자연어처리 분야 최고수준의 국제학술대회인 NAACL(Annual Conference of the North American Chapter of the Association for Computational Linguistics)에서 발표하였다.\n또한 인공신경망 기반 대화 생성 모델 개발, 텍스트에서 복합적인 감정 추출 및 예측, 전산심리치료 어플리케이션 개발 연구 또한 현재 활발하게 진행하고 있다.",
+    "tag": "csweb.news",
+    "id": 408
+}

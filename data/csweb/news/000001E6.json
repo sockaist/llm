@@ -1,0 +1,8 @@
+{
+    "title": "김광조 교수 인공지능을 이용한 네트워크 침입 탐지에 관한 영문 저서 출간",
+    "date": "2018-10-01T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8492&page=13&skey=subject&svalue=&menu=83",
+    "content": "KAIST(총장: 신상철) 전산학부 정보보호대학원 김 광조교수는 인도네시아 박사과정 유학생인 Muhamad Erza Aminanto와 Harry Chandra Tanuwidjaja와 함께\n정보통신기술진흥센터(IITP)에서 2013년 4월부터 2018년 2월 까지 카이스트에 지원한 “생체 모방 알고리즘(Bio-Inspired Algorithm)을 활용한 통신 기술 연구“ (연구책임자:박홍식 교수) 과제의 성과물로 “Network Intrusion Detection using Deep Learning: A Feature Learning Approach”(심층 학습을 이용한 네트워크 침입 탐지-특장점 학습 측면에서)라는 영문 서적을 저술하였으며 2018년 9월 독일의 저명 출판사인 Springer에서 사이버 보안 시스템과 네트워크 시리즈 중 한 분야로 발행하였다(첨부 사진)\n이 도서는 컴퓨터 비전, 자연어 처리, 이미지 처리 등의 분야에서 많은 활용이 되고있는 인공지능 기법인 심층 학습을 사용한 각종 침입 탐지 시스템에 관한 구성 방식을 소개하고 침입 트래픽의 특장점 추출 및 학습하여 기존 방식에 비교하여 매우 높은 정탐율(99.918％)과 낮은 오탐율(0.012％)을 갖는 침입탐지 기법을 상세히 기술하였고, 부록에는 악성 코드 탐지를 위한 인공 지능 기법에 관한 기술 동향을 첨부하였다.\n본 도서는 사이버 보안과 인공 지능의 접목에 관하여 학부 및 대학원생, 연구·개발 담당자에게 실질적인 사이버 보안 시스템 구축에 관한 전문 지식을 제공하는 좋은 지침서가 될 것이다.\n참조:\nhttps://www.springer.com/gp/book/9789811314438",
+    "tag": "csweb.news",
+    "id": 486
+}

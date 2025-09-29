@@ -1,0 +1,14 @@
+{
+    "name": "KAIST Visual AI Group",
+    "professor": "성민혁",
+    "field": "비주얼 컴퓨팅, 인공지능·정보서비스",
+    "web": "https://visualai.kaist.ac.kr/",
+    "email": "mhsung@kaist.ac.kr",
+    "phone": "042-350-3587",
+    "office": "N1   607호",
+    "intro": "https://socnas.kaist.ac.kr/drive/d/s/lyLtKMD0t4N5iRB1yJJXZcVUDzxF21ey/pKTE7MqpXXwxthnxQ1_T2YKeiIm75nc8-H7WAetE0Awk",
+    "etc": "전산학부 성민혁 교수가 이끄는 KAIST Visual AI Group 은 3차원 기하학적 데이터 처리 및 분석의 근본적인 문제를 해결하기 위한 새로운 머신 러닝 기술 개발에 주력하고 있다. 3차원 데이터는 현실 세계를 스캔하거나 3차원 모델 콘텐츠 제작을 통해 생성되며, 컴퓨터 비전, 컴퓨터 그래픽스, 로봇 공학의 수많은 실제 문제에 활용되고 있다. 3차원 데이터는 다른 데이터와 구별되는 여러 특성을 지니는데, 희박성, 불규칙성, 3차원 물체를 실제 존재하는 그대로 표현하는 충실성, 그리고 다른 정보가 정의되는 도메인으로서의 역할 등이 있다. 이러한 특성은 기존의 기술 (특히 오디오나 이미지와 같이 규칙적으로 샘플링된 신호 데이터를 처리하기 위한 기술)로는 해결할 수 없는 어려운 연구 문제를 야기한다. 우리의 목표는 그 특성에 대한 깊은 이해를 바탕으로 3차원 데이터에 특화된 새로운 방법론을 개발하는 것이다. 연구실 책임자인 성민혁 교수는 컴퓨터 비전, 컴퓨터 그래픽스, 머신 러닝 분야의 top-tier venue인 CVPR, ICCV, ECCV, SIGGRAPH Asia, NeurIPS와 같은 학회에 꾸준히 논문을 발표했다.",
+    "tag": "csweb.research",
+    "id": 20,
+    "content": "name:KAIST Visual AI Group professor:성민혁 field:비주얼 컴퓨팅, 인공지능·정보서비스 web:https://visualai.kaist.ac.kr/ email:mhsung@kaist.ac.kr phone:042-350-3587 office:N1   607호 intro:https://socnas.kaist.ac.kr/drive/d/s/lyLtKMD0t4N5iRB1yJJXZcVUDzxF21ey/pKTE7MqpXXwxthnxQ1_T2YKeiIm75nc8-H7WAetE0Awk etc:전산학부 성민혁 교수가 이끄는 KAIST Visual AI Group 은 3차원 기하학적 데이터 처리 및 분석의 근본적인 문제를 해결하기 위한 새로운 머신 러닝 기술 개발에 주력하고 있다. 3차원 데이터는 현실 세계를 스캔하거나 3차원 모델 콘텐츠 제작을 통해 생성되며, 컴퓨터 비전, 컴퓨터 그래픽스, 로봇 공학의 수많은 실제 문제에 활용되고 있다. 3차원 데이터는 다른 데이터와 구별되는 여러 특성을 지니는데, 희박성, 불규칙성, 3차원 물체를 실제 존재하는 그대로 표현하는 충실성, 그리고 다른 정보가 정의되는 도메인으로서의 역할 등이 있다. 이러한 특성은 기존의 기술 (특히 오디오나 이미지와 같이 규칙적으로 샘플링된 신호 데이터를 처리하기 위한 기술)로는 해결할 수 없는 어려운 연구 문제를 야기한다. 우리의 목표는 그 특성에 대한 깊은 이해를 바탕으로 3차원 데이터에 특화된 새로운 방법론을 개발하는 것이다. 연구실 책임자인 성민혁 교수는 컴퓨터 비전, 컴퓨터 그래픽스, 머신 러닝 분야의 top-tier venue인 CVPR, ICCV, ECCV, SIGGRAPH Asia, NeurIPS와 같은 학회에 꾸준히 논문을 발표했다. tag:csweb.research content:KAIST Visual AI Group 성민혁 비주얼 컴퓨팅, 인공지능·정보서비스 https://visualai.kaist.ac.kr/ mhsung@kaist.ac.kr 042-350-3587 N1   607호 https://socnas.kaist.ac.kr/drive/d/s/lyLtKMD0t4N5iRB1yJJXZcVUDzxF21ey/pKTE7MqpXXwxthnxQ1_T2YKeiIm75nc8-H7WAetE0Awk 전산학부 성민혁 교수가 이끄는 KAIST Visual AI Group 은 3차원 기하학적 데이터 처리 및 분석의 근본적인 문제를 해결하기 위한 새로운 머신 러닝 기술 개발에 주력하고 있다. 3차원 데이터는 현실 세계를 스캔하거나 3차원 모델 콘텐츠 제작을 통해 생성되며, 컴퓨터 비전, 컴퓨터 그래픽스, 로봇 공학의 수많은 실제 문제에 활용되고 있다. 3차원 데이터는 다른 데이터와 구별되는 여러 특성을 지니는데, 희박성, 불규칙성, 3차원 물체를 실제 존재하는 그대로 표현하는 충실성, 그리고 다른 정보가 정의되는 도메인으로서의 역할 등이 있다. 이러한 특성은 기존의 기술 (특히 오디오나 이미지와 같이 규칙적으로 샘플링된 신호 데이터를 처리하기 위한 기술)로는 해결할 수 없는 어려운 연구 문제를 야기한다. 우리의 목표는 그 특성에 대한 깊은 이해를 바탕으로 3차원 데이터에 특화된 새로운 방법론을 개발하는 것이다. 연구실 책임자인 성민혁 교수는 컴퓨터 비전, 컴퓨터 그래픽스, 머신 러닝 분야의 top-tier venue인 CVPR, ICCV, ECCV, SIGGRAPH Asia, NeurIPS와 같은 학회에 꾸준히 논문을 발표했다. csweb.research"
+}

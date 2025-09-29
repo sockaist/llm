@@ -1,0 +1,8 @@
+{
+    "title": "Test-Of-Time 2006 Award 수상",
+    "date": "2015-09-17T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=6831&page=17&skey=subject&svalue=&menu=83",
+    "content": "윤성의 교수가 참여한 아래 논문이 고성능 그래픽스 국제학회 (High-Performance Graphics)에서 올해\n2015년에 선정한 \"Test-Of-Time 2006 Award\"를 수상하였습니다.\nRT-DEFORM: Interactive Ray Tracing of Dynamic Scenes using BVHs\nChristian Lauterbach, Sung-eui Yoon, David Tuft, Dinesh Manocha IEEE\nSymp. on Interactive Ray Tracing, 2006\n이 연구는 고화질 렌더링에 사용되는 광선추적기술(ray tracing)의 가속화 자료구조로 기존에 많이 쓰이는 kd-tree가\n아닌 bounding volume hierarchies (BVHs)를 제안하였다. 기존의 kd-tree는 정적 모델에 주로\n최적화된 자료구조이나, BVH를 이용하여 게임/영화에 흔히 사용되는 동적 모델도 효과적으로 다룰수 있는 기술적 토대를\n제공하였다. 기술을 개발한지 약 10년이 지난 현재, 제안한 BVH는 광선추적기법에서 흔히 사용하는 가속화 자료구조로 인식이\n되고 있고, CPU 및 GPU 기반 기술에서도 널리 사용되고 있다. 또한 최근에 개발되고 있는 고성능 광선추적엔진\n(Intel의 Embree 및 Nvidia의 Optix)에서도 차용되어 널리 사용되고 있다.\n2015 현재 이 논문은 149회의 인용을 받고 있다.",
+    "tag": "csweb.news",
+    "id": 678
+}

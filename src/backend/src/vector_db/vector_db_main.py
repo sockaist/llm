@@ -18,11 +18,10 @@ import os
 
 INIT = True # set true to init DB
 
-
 ################### INITIALIZE ##########################
 
 folder_path = "../../../../data/"
-col_name = "portal.job"
+#col_name = "portal.job"
  
 # deployed Qdrant DB
 client = QdrantClient(
@@ -31,14 +30,13 @@ client = QdrantClient(
 )
 
 if(INIT):
-    initialize_col(client, col_name) # 컬렉션(테이블) 생성
-    init_recreate_collections(client) # 컬렉션(테이블) 생성
+    #init_recreate_collections(client) # 컬렉션(테이블) 재생성, 실행시 모든 point 삭제됨.
     init_upsertall(client, folder_path) # path 아래 있는 모든 폴더의 json 파일을 DB에 업로드
 
 ###########################################################
 
 
-results = search_doc(client, "한국연구재단 연구직 원서 접수 기간","portal.job",2)
+results = search_doc(client, "몰입캠프","notion.marketing",2)
 
 print(results)
 

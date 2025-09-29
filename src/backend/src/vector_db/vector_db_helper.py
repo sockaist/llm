@@ -1,4 +1,4 @@
-from qdrant_client import QdrantClient
+from qdrant_client import QdrantClient, models
 from qdrant_client.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue, PointIdsList, FilterSelector
 from qdrant_client.models import SearchRequest, SearchParams, NamedVector
 from qdrant_client.http.models import ScoredPoint
@@ -30,8 +30,30 @@ def create_doc_upsert(client, col_name, data):
         if not data:
             print("Warning: Empty data provided to create_doc_upsert")
             return
-            
-        raw_text = data.get("content", "")
+        
+        if "content" in data:
+            raw_text = data["content"]
+        elif "contents" in data:
+            raw_text = data["contents"]
+        else:
+            raw_text = ""
+        
+        id = data["id"]
+        exist = client.count(
+            collection_name=col_name,
+            count_filter=models.Filter(
+                must=[models.FieldCondition(
+                    key="id",  # payload에 저장한 키 이름
+                    match=models.MatchValue(value=id),
+                )]
+            ),
+            exact=False,  # 대략치면 더 빠름, 정확히 필요하면 True
+        ).count > 0
+        
+        if exist:
+            print(f"Info: Document with id {id} already exists in {col_name}, skipping upsert.")
+            return
+
         
         if not raw_text or not raw_text.strip():
             print(f"Warning: Empty content in data for collection {col_name}")
@@ -273,8 +295,13 @@ def upsert_folder(client, folder_path, col_name, n=0):
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-
                 print(f"Uploading {cnt}/{len(json_files) if n == 0 else min(n, len(json_files))}: {filename} → '{col_name}'")
+                client.create_payload_index(
+                    collection_name=col_name,
+                    field_name="id",                   # payload의 키 이름
+                    field_schema=models.PayloadSchemaType.INTEGER,  # 또는 "integer"
+                    wait=True,                         # 인덱스 빌드 완료까지 대기
+                )
                 create_doc_upsert(client, col_name, data)
                 successful_uploads += 1
 

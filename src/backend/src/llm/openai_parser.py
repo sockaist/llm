@@ -11,38 +11,74 @@ from typing import Dict, Any
 class OpenAIInputChecker:
     """OpenAI API를 사용한 입력 검증 클래스"""
     
-    def __init__(self, api_key: str, model: str = "gpt-4o-mini"):
+    def __init__(self, api_key: str, model: str = "gpt-4o-mini", config_path: str = "/Users/youngseocho/Desktop/socChatbot/llm/src/backend/src/llm/utils_json/inputchecker.json"):
         """
         OpenAI 입력 검증기 초기화
         
         Args:
             api_key (str): OpenAI API 키
             model (str): 사용할 모델
+            config_path (str): inputchecker.json 파일 경로
         """
         self.client = openai.OpenAI(api_key=api_key)
         self.model = model
         
+        # 기본 config 파일 경로 설정
+        if config_path is None:
+            config_path = os.path.join(os.path.dirname(__file__), "utils_json", "inputchecker.json")
+        
+        # JSON 설정 파일 로드
+        self.config = self._load_config(config_path)
+        
+        # examples를 먼저 설정
+        self.examples = self.config.get('examples', [])
+        
         # 시스템 프롬프트 설정
-        self.system_prompt = """
-당신은 KAIST(한국과학기술원)의 전산학부 집행위원회에서 개발한, 학생들을 위해 정보를 제공하는 챗봇을 구성하는 파이프라인중 하나입니다.
-
-당신의 역할은 파이프라인에서, 사용자의 입력이 전산학부 집행위원회에서 개발한 챗봇의 목적에 부합하는지를 확인하는 것입니다. 챗봇의 주요 목적은 다음과 같습니다.
-
-• 전산학부 학사 과정 및 교과 과정 정보 제공
-• 전산학부 행사 및 프로그램 안내
-• 전산학부 내 학생 지원 시스템 정보 제공
-• 전산학부 관련 자주 묻는 질문 답변
-• 챗봇(사용자는 챗봇을 '너' 혹은 유사 단어로 지칭할 수 있음) 사용법과 관련한 질문
-• 학교와 관련한 질문(학교와 관련한 질문의 경우 전산과와 상관없어도 됨)
-
-입력이 부적절한 경우:
-사용자의 입력이 챗봇의 목적과 명백히 관련이 없는 경우 (예: 개인적인 질문, 일반적인 잡담, 학부 외 다른 분야 문의 등)에는 "false"를 반환하고, 추가적인 답변이나 처리를 중단합니다.
-
-입력 및 챗봇의 대답 수준에 부합하는 경우:
-사용자의 입력이 챗봇의 목적에 부합하는 질문 또는 요청이라고 판단되는 경우에는 "true"를 반환하고, 사용자의 입력을 다음 파이프라인 단계로 전달합니다.
-
-반드시 JSON 형식으로 응답하세요: {"is_valid": "true" 또는 "false"}
-"""
+        self.system_prompt = self._build_system_prompt()
+    
+    def _load_config(self, config_path: str) -> Dict[str, Any]:
+        """
+        JSON 설정 파일 로드
+        
+        Args:
+            config_path (str): 설정 파일 경로
+            
+        Returns:
+            Dict[str, Any]: 설정 데이터
+        """
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"설정 파일 로드 실패: {e}")
+            # 기본 설정 반환
+            return {
+                "instruction": "입력의 유효성을 검사하고 JSON 형식으로 응답하세요.",
+                "output_format": {"is_valid": "true 또는 false"},
+                "examples": []
+            }
+    
+    def _build_system_prompt(self) -> str:
+        """
+        JSON 설정을 기반으로 시스템 프롬프트 구성
+        
+        Returns:
+            str: 구성된 시스템 프롬프트
+        """
+        instruction = self.config.get('instruction', '')
+        output_format = self.config.get('output_format', {})
+        
+        prompt = f"{instruction}\n\n"
+        prompt += f"출력 형식:\n{json.dumps(output_format, ensure_ascii=False, indent=2)}\n\n"
+        
+        # 예시가 있다면 추가
+        if self.examples:
+            prompt += "예시:\n"
+            for example in self.examples:
+                prompt += f"입력: {example['input']}\n"
+                prompt += f"출력: {json.dumps(example['output'], ensure_ascii=False)}\n\n"
+        
+        return prompt
 
     def process_query(self, user_message: str) -> Dict[str, Any]:
         """
@@ -55,12 +91,20 @@ class OpenAIInputChecker:
             Dict[str, Any]: 검증 결과
         """
         try:
+            # 메시지 구성 - few-shot learning을 위한 예시 포함
+            messages = [{"role": "system", "content": self.system_prompt}]
+            
+            # 예시를 few-shot learning으로 추가 (더 나은 성능을 위해)
+            for example in self.examples[:3]:  # 최대 3개 예시만 사용
+                messages.append({"role": "user", "content": example['input']})
+                messages.append({"role": "assistant", "content": json.dumps(example['output'], ensure_ascii=False)})
+            
+            # 실제 사용자 메시지 추가
+            messages.append({"role": "user", "content": user_message})
+            
             response = self.client.chat.completions.create(
                 model=self.model,
-                messages=[
-                    {"role": "system", "content": self.system_prompt},
-                    {"role": "user", "content": user_message}
-                ],
+                messages=messages,
                 temperature=0.3,
                 max_tokens=100
             )
@@ -101,37 +145,74 @@ class OpenAIInputChecker:
 class OpenAIInputNormalizer:
     """OpenAI API를 사용한 입력 정규화 클래스"""
     
-    def __init__(self, api_key: str, model: str = "gpt-4o-mini"):
+    def __init__(self, api_key: str, model: str = "gpt-4o-mini", config_path: str = "/Users/youngseocho/Desktop/socChatbot/llm/src/backend/src/llm/utils_json/inputNormalizer.json"):
         """
         OpenAI 입력 정규화기 초기화
         
         Args:
             api_key (str): OpenAI API 키
             model (str): 사용할 모델
+            config_path (str): inputNormalizer.json 파일 경로
         """
         self.client = openai.OpenAI(api_key=api_key)
         self.model = model
         
+        # 기본 config 파일 경로 설정
+        if config_path is None:
+            config_path = os.path.join(os.path.dirname(__file__), "utils_json", "inputNormalizer.json")
+        
+        # JSON 설정 파일 로드
+        self.config = self._load_config(config_path)
+        
+        # examples를 먼저 설정
+        self.examples = self.config.get('examples', [])
+        
         # 시스템 프롬프트 설정
-        self.system_prompt = """
-당신은 KAIST 전산학부 챗봇의 입력 정규화 모듈입니다.
-
-역할: 사용자의 질문을 더 명확하고 검색하기 좋은 형태로 변환합니다.
-
-정규화 규칙:
-1. 줄임말을 풀어서 쓰기 (예: "컴구"는 "컴퓨터구조"으로, "알고"는 "알고리즘"으로)
-2. 문법적으로 완전한 문장으로 만들기
-3. 검색 키워드를 명확하게 하기
-4. 전산학부 관련 용어를 표준화하기
-5. 질문의 의도를 명확하게 하기
-
-예시:
-"컴구 뭐야?"는 "컴퓨터구조 수업에 대한 정보를 알려주세요"
-"교수님들 누가 있어?"는 "전산학부 교수진 명단을 알려주세요"
-"AI 관련 소식 있어?"는 "인공지능 관련 최신 뉴스나 소식을 알려주세요"
-
-반드시 JSON 형식으로 응답하세요: {"output": "정규화된 질문"}
-"""
+        self.system_prompt = self._build_system_prompt()
+    
+    def _load_config(self, config_path: str) -> Dict[str, Any]:
+        """
+        JSON 설정 파일 로드
+        
+        Args:
+            config_path (str): 설정 파일 경로
+            
+        Returns:
+            Dict[str, Any]: 설정 데이터
+        """
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"설정 파일 로드 실패: {e}")
+            # 기본 설정 반환
+            return {
+                "instruction": "입력을 정규화하고 JSON 형식으로 응답하세요.",
+                "output_format": {"output": "정규화된 입력"},
+                "examples": []
+            }
+    
+    def _build_system_prompt(self) -> str:
+        """
+        JSON 설정을 기반으로 시스템 프롬프트 구성
+        
+        Returns:
+            str: 구성된 시스템 프롬프트
+        """
+        instruction = self.config.get('instruction', '')
+        output_format = self.config.get('output_format', {})
+        
+        prompt = f"{instruction}\n\n"
+        prompt += f"출력 형식:\n{json.dumps(output_format, ensure_ascii=False, indent=2)}\n\n"
+        
+        # 예시가 있다면 추가
+        if self.examples:
+            prompt += "예시:\n"
+            for example in self.examples:
+                prompt += f"입력: {example['input']}\n"
+                prompt += f"출력: {json.dumps({'output': example['output']}, ensure_ascii=False)}\n\n"
+        
+        return prompt
 
     def process_query(self, user_message: str) -> Dict[str, Any]:
         """
@@ -144,12 +225,20 @@ class OpenAIInputNormalizer:
             Dict[str, Any]: 정규화 결과
         """
         try:
+            # 메시지 구성 - few-shot learning을 위한 예시 포함
+            messages = [{"role": "system", "content": self.system_prompt}]
+            
+            # 예시를 few-shot learning으로 추가 (더 나은 성능을 위해)
+            for example in self.examples:  # 최대 5개 예시만 사용
+                messages.append({"role": "user", "content": example['input']})
+                messages.append({"role": "assistant", "content": json.dumps({'output': example['output']}, ensure_ascii=False)})
+            
+            # 실제 사용자 메시지 추가
+            messages.append({"role": "user", "content": user_message})
+            
             response = self.client.chat.completions.create(
                 model=self.model,
-                messages=[
-                    {"role": "system", "content": self.system_prompt},
-                    {"role": "user", "content": user_message}
-                ],
+                messages=messages,
                 temperature=0.3,
                 max_tokens=200
             )

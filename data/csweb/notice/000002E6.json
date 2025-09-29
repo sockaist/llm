@@ -1,0 +1,8 @@
+{
+    "title": "김문주박사 세미나 개최 안내 (7월10일(월) 오후4시， 교수회의실)",
+    "date": "2006-07-07T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=3915&page=25&skey=subject&svalue=&menu=151",
+    "content": "* 이벤트에 공지가 되지를 않아 이곳에 올립니다. (죄송~~~)\r\n\r\n세미나 제목  :   High Reliability of SW by Practical Application of        \r\n                      Formal  Methods\r\n \r\n세미나 시간 :     7월 10일(월) 16:00 -17:00\r\n\r\n세미나 장소 :  교수회의실\r\n\r\n세미나 연사 :  김문주 박사\r\n\r\n\r\nAbstract:\r\nThis presentation consists of three parts. The first part shows personal\r\nresearch background.\r\nThe second part, which is a main theme of the presentation, proposes a\r\nMonitoring and Checking (MaC) based \r\ndebugger framework for model checkers, called McBugger.\r\nModel checking is an effective means to detect design flaws \r\nof target systems by analyzing counter examples. A traditional way of \r\ndetecting bugs of a target model is based on “catch one and fix one” \r\niternations; once a bug is identified, to detect another bug, we must fix \r\nthe bug and verifiy the model again until no more bugs are found. In \r\nreality, however, to fix a bug is a much more complex task than to detect \r\na bug and even infeasible in many situations. \r\nMcBugger identifies multiple bugs without \r\nmodifying/fixing a target model by analyzing counter examples. We \r\ndemonstrate the effectiveness of the McBugger framework through a case \r\nstudy of high-availability protocol used by network security appliances. \r\nThe third part concludes the presentation with future works.",
+    "tag": "csweb.notice",
+    "id": 742
+}

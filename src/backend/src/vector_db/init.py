@@ -28,6 +28,5 @@ def init_upsertall(client, path):
     
     for col_name in FORMATS.keys():
         folder_name = col_name.split(".")[0] + "/" + col_name.split(".")[1]
-
         upsert_folder(client,path + folder_name, col_name) # put limit number of datas if needed
     

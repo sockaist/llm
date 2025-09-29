@@ -1,0 +1,8 @@
+{
+    "title": "주창희 박사 세미나 안내(2／17， 4시)",
+    "date": "2009-02-16T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=4072&page=20&skey=subject&svalue=&menu=151",
+    "content": "주창희 박사의 세미나를 아래와 같이 안내 하오니 많은 참석을 부탁 드립니다. ㅇ 일시 : 2009. 2. 17(화), 16:00-17:30 ㅇ 장소 : 안영경 세미나실(#4420) Title : Understanding the Capacity Region of the Greedy Maximal Scheduling Algorithm in Multi-hop Wireless Networks Abstract : In this talk, we characterize the performance of an important class of scheduling schemes, called Greedy Maximal Scheduling (GMS), for multi-hop wireless networks. a lower bound on the throughput performance of GMS has been well known, empirical observations suggest that it is quite loose, and that the performance of GMS is often close to optimal. In this talk, we provide a number of new analytic results characterizing the performance limits of GMS. We first provide an equivalent characterization of the efficiency ratio of GMS through a topological property called the local-pooling factor of the network graph. then develop an iterative procedure to estimate the local-pooling factor under a large class of network topologies and interference models. We use these results to study the worst-case efficiency ratio of GMS on two classes of network topologies. We show how these results can be applied to tree networks to prove that GMS achieves the full capacity region in tree networks under the K-hop interference model. Then, we show that the worst-case efficiency ratio of GMS in geometric unit-disc graphs is between 1/6 and 1/3 학과사무실 드림",
+    "tag": "csweb.notice",
+    "id": 586
+}

@@ -1,0 +1,8 @@
+{
+    "title": "전산학부 클라우드 작업안내",
+    "date": "2021-01-12T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=9544&page=3&skey=subject&svalue=&menu=151",
+    "content": "전산학부 클라우드시스템 성능 향상을 위하여 인프라 변경 및 증설 작업을 진행합니다. 좀 더 안정적인 서비스를 위한 인프라 성능 향상 조치입니다. ※ 작업 내용 - KCLOUD 보안시스템 적용(SSL VPN, IPSEC VPN) ※ 작업 일시 - 2021년 1월 18일(수) 21시 ~ 22시 작업기간동안 클라우드 시스템 접속이 원활하지 않을 수 있습니다. 문의 : 전산학부행정팀 김대종(x3507, stim＠kaist.ac.kr )",
+    "tag": "csweb.notice",
+    "id": 81
+}

@@ -1,0 +1,14 @@
+{
+    "name": "소프트웨어 보안 연구실",
+    "professor": "차상길",
+    "field": "시스템·네트워크, 소프트웨어 디자인, 시큐어 컴퓨팅",
+    "web": "http://softsec.kaist.ac.kr",
+    "email": "sangkilc@kaist.ac.kr",
+    "phone": "042-350-3569",
+    "office": "N5   2310호",
+    "intro": "https://socnas.kaist.ac.kr/drive/d/s/lyLtGMyOYVynJNlZORGWuvjkktLdCIlK/AM0olOeZKrmqLR_AnkJ2Cc72aeVvHO7T-LLhARv41Awk",
+    "etc": "소프트웨어 보안 연구실에서는 프로그램 바이너리에 대한 이해를 바탕으로 다양한 형태의 보안취약점을 탐지하고 방어하는 방법을 연구한다. 주로 소프트웨어의 취약점 탐지, 악성코드의 분석 및 분류, 공격 검증, 역공학(reverse engineering) 등의 바이너리 분석에 기반을 둔 연구를 진행한다. 우리의 비전은 이 세상의 프로그램들을 자동으로 검사하여 안전한 컴퓨팅 환경을 만드는 것이다.",
+    "tag": "csweb.research",
+    "id": 39,
+    "content": "name:소프트웨어 보안 연구실 professor:차상길 field:시스템·네트워크, 소프트웨어 디자인, 시큐어 컴퓨팅 web:http://softsec.kaist.ac.kr email:sangkilc@kaist.ac.kr phone:042-350-3569 office:N5   2310호 intro:https://socnas.kaist.ac.kr/drive/d/s/lyLtGMyOYVynJNlZORGWuvjkktLdCIlK/AM0olOeZKrmqLR_AnkJ2Cc72aeVvHO7T-LLhARv41Awk etc:소프트웨어 보안 연구실에서는 프로그램 바이너리에 대한 이해를 바탕으로 다양한 형태의 보안취약점을 탐지하고 방어하는 방법을 연구한다. 주로 소프트웨어의 취약점 탐지, 악성코드의 분석 및 분류, 공격 검증, 역공학(reverse engineering) 등의 바이너리 분석에 기반을 둔 연구를 진행한다. 우리의 비전은 이 세상의 프로그램들을 자동으로 검사하여 안전한 컴퓨팅 환경을 만드는 것이다. tag:csweb.research content:소프트웨어 보안 연구실 차상길 시스템·네트워크, 소프트웨어 디자인, 시큐어 컴퓨팅 http://softsec.kaist.ac.kr sangkilc@kaist.ac.kr 042-350-3569 N5   2310호 https://socnas.kaist.ac.kr/drive/d/s/lyLtGMyOYVynJNlZORGWuvjkktLdCIlK/AM0olOeZKrmqLR_AnkJ2Cc72aeVvHO7T-LLhARv41Awk 소프트웨어 보안 연구실에서는 프로그램 바이너리에 대한 이해를 바탕으로 다양한 형태의 보안취약점을 탐지하고 방어하는 방법을 연구한다. 주로 소프트웨어의 취약점 탐지, 악성코드의 분석 및 분류, 공격 검증, 역공학(reverse engineering) 등의 바이너리 분석에 기반을 둔 연구를 진행한다. 우리의 비전은 이 세상의 프로그램들을 자동으로 검사하여 안전한 컴퓨팅 환경을 만드는 것이다. csweb.research"
+}

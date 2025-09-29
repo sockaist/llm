@@ -1,0 +1,8 @@
+{
+    "title": "황규영 특훈교수， ACM CIKM 2009에서 기조연설",
+    "date": "2009-11-18T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=3789&page=23&skey=subject&svalue=&menu=83",
+    "content": "황규영 특훈교수가 지난 11월3일 홍콩 Asia World-Expo에서 열린 The 18th ACM Conference on Information and Knowledge Management (ACM CIKM 2009)에서 “DB-IR 통합과 대형 병렬 검색엔진에의 응용(DB-IR Integration and Its Application to a Massively-Parallel Search Engine)”이라는 제목으로 기조연설(keynote)을 해 청중으로부터 커다란 호응을 받았다.\nACM CIKM\n은 데이터베이스(DB), 정보검색(IR), 지식관리(KM) 분야의 2-5위의 세계적으로 권위 있는 학술대회다. 이번 학술대회에는 미국, 유럽을 비롯한 세계 각국의 연구자 650여명이 참여해 최근 각광 받고 있는 DB, IR, KM의 협력분야에 대해 열띤 토론을 벌였다.\n황 교수는 오디세우스 DBMS/검색엔진의 DB-IR 밀결합(tight coupling)에 대해 소개하고 이를 이용한 Google-scale(300억건의 웹 페이지를 인덱스하고 하루 10억건의 질의를 처리)의 검색엔진인 ODYS의 설계와 모델, 그리고 5-node 프로토타입의 성능을 제시하였다. 이는 DBMS에 기반한 대형 병렬 검색엔진의 효시로서, Google이나 Yahoo！와 달리 SQL, 스키마, 인덱스, 갱신, 제한적인 트랜잭션 등 여러 기능을 지원함으로써, 최근 MapReduce, Hadoop과 같은 대용량 병렬 응용 프로그래밍 프레임워크에 대비되는 새로운 방향을 제시했다는데 의의가 있다.\n또한 황 교수는 향후 10-20년의 발전 방향으로 현재 Google의 한계를 넘어서는 exabyte computing(beyond petabytes, beyond Google)의 비전을 제시했다.\n황규영 특훈교수\nIEEE 석학회원 (IEEE Fellow)\nhttp://dblab.kaist.ac.kr/Prof/main_eng.html",
+    "tag": "csweb.news",
+    "id": 902
+}

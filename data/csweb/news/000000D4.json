@@ -1,0 +1,8 @@
+{
+    "title": "전산학부 김민혁 교수 연구팀, ACM SIGGRAPH 2022 학회 Technical Paper Award 수상​",
+    "date": "2022-08-22T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10385&page=6&skey=subject&svalue=&menu=83",
+    "content": "(그림1) SIGGRAPH 2022에 Technical Paper Award Honorable Mention, (좌) 황인승 박사과정(제1저자), (우) 김민혁 교수(교신저자)\nKAIST 전산학부 김민혁 교수 연구팀은 2022년 8월 8-11일 캐나다 밴쿠버에서 열린 ACM SIGGRAPH (the 49th ACM SIGGRAPH Conference and Exhibition on Computer Graphics and Interactive Techniques) 2022 국제학회에서 “Sparse Ellipsometry: Portable Acquisition of Polarimetric SVBRDF and Shape with Unstructured Flash Photography” 논문으로 ‘Technical Paper Award Honorable Mention’을 수상했다. ACM SIGGRAPH 국제학회는 컴퓨터 그래픽스 분야에서 세계 최고의 학회이며, 이 학회의 49년 역사상 최초이자 유일하게 한국 주관연구팀이 Technical Paper Award를 수상했다.\n빛의 물리적인 편광 성분은 극사실적인 가상 인간, 물체 및 메타버스 환경 공간을 물리적으로 더 정확하게 컴퓨터로 재현하기 위해, 컴퓨터 그래픽스 및 비전 분야에서 최근 활발하게 활용되고 있다. 이러한 편광 성분은 타원계측기법을 통해서 정보를 측정하게 되는데, 현존하는 지금까지의 기술은 초정밀 광학 기구를 통해 2-5일 간의 긴 스캐닝 시간을 거쳐야만 획득이 가능했으며, 측정할 수 있는 물체의 모양 또한 구형으로 만들어진 균일한 소재로 제한되어 왔다. 본 연구팀은 이러한 기술적인 한계를 극복하고, 고가의 전문 촬영 장비 없이, 다양한 형태의 물체를 온전한 3차원 편광 반사계 및 형상으로 수분 안에 측정할 수 있는 3차원 영상 기술을 개발하였다.\n프로젝트 페이지:\nhttp://vclab.kaist.ac.kr/siggraph2022p1/\n스페인 Zaragoza대학교와 중국 Microsoft Research Asia의 공동 연구로 진행된 이 연구는 2022년 8월 8일부터 11일까지 캐나다 밴쿠버에서 열린 ACM SIGGRAPH 2022 국제 학회에서 구두 발표되고, 그래픽스 분야 최우수 저널인 ACM Transactions of Graphics에 게재되었으며, 8월 11일에 Technical Paper Award Honorable Mention을 수상했다.\n이 논문의 교신저자인 김민혁 교수는 \"제안하는 편광기반 3차원 스캐닝 기술은 기존의 눈으로 보기 좋은 컴퓨터 그래픽스 렌더링 기술을 물리적으로 더욱 더 정확한 렌더링 기술로 진화하는 것을 가속화할 것으로 기대하며, 극사실적인 메타버스 재현을 위한 물리기반 렌더링 패러다임의 전환은 지금껏 생각할 수 없었던 새로운 형태의 그래픽스 기술의 활용을 가능케 할 것이다\"고 밝혔다.\n(그림2) SIGGRAPH 2022에 선보인 편광 반사계 측정용 휴대용 3D 이미징 장치와 캡쳐 결과",
+    "tag": "csweb.news",
+    "id": 212
+}

@@ -1,0 +1,9 @@
+{
+    "title": "[KAIST SoC Colloquium] - 3／10(Mon) 4：00 pm, Gyuyeong Kim (Offline)",
+    "date": "2025-03-10T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=11393&page=1&skey=&svalue=&menu=86",
+    "content": "title:[KAIST SoC Colloquium] - 3／10(Mon) 4：00 pm, Gyuyeong Kim (Offline) date:2025-03-10T00:00:00Z link:https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=11393&page=1&skey=&svalue=&menu=86 content:Speaker: Gyuyeong Kim (김규영) Title: Towards Network-Accelerated Computing Systems in the Era of Network Programmability Location: E3-1, 1501 (Offline) Language: English Abstract: Modern planet-scale online services require high-performance computing infrastructures, but the end of Dennard scaling and excessive coordination overhead make it challenging to augment computing resources efficiently. In this talk, I will introduce the concept of network programmability that provides new opportunities to transform the network into a computation-facilitating infrastructure. To show its potential impacts on the performance of computing systems, I will present examples of switch-based in-network acceleration, including in-network caching and in-network request cloning. Finally, I will briefly discuss the future directions of in-network acceleration, which include next-generation SmartNICs and eBPF/XDP. Bio: Gyuyeong Kim is an Assistant Professor in the Department of Computer Engineering at Sungshin Women's University. He received his Ph.D. and B.S. in Computer Science from Korea University in 2020 and 2012, respectively. Before joining Sungshin Women's University, he was a Research Professor at Korea University. He works on broad topics in computer networking and systems. During undergraduate, he developed KLUE, a lecture evaluation service for Korea University. location: E3-1, 1501 (Offline) tag:csweb.calendar",
+    "location": " E3-1, 1501 (Offline)",
+    "tag": "csweb.calendar",
+    "id": 293
+}

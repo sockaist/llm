@@ -1,0 +1,14 @@
+{
+    "name": "지능형 서비스 통합 연구실",
+    "professor": "한동수",
+    "field": "인공지능·정보서비스",
+    "web": "https://sites.google.com/view/isilab",
+    "email": "dshan@cs.kaist.ac.kr",
+    "phone": "042-350-3562",
+    "office": "N1   704호",
+    "intro": "https://socnas.kaist.ac.kr/drive/d/s/lyLtKDh2z6AO5QTQSn73cp1WpmKIGYz3/DkSBpUoW3guqAYhfjJHCkov3EUDqz3g6-rLYAf3g1Awk",
+    "etc": "지능형 서비스 통합 연구실GPS와 WiFi, Bluetooth 등 여러 장치들로 구성된 스마트폰이 널리 퍼지면서, 오늘날 위치기반서비스(LBS)는 스마트폰제조사, 서비스제공업체, 사용자들에게 가장 중요한 서비스 중 하나로 자리 잡았습니다. GPS를 포함해 WiFi, Bluetooth 신호를 이용한 실시간 위치인식기법은 위치기반서비스에게는 없어서는 안될 필수 선행과정 입니다. 이전의 위치 인식 기법들은 Zigbee, RFID, UWB를 사용 했는데, 이 방법은 스마트폰에서 추가로 장치를 부착해야하는 단점이 있었습니다. 기존의 위치 인식 기술의 한계로 인해, 우리 연구실에서는 최근 몇 년 동안 별도의 인프라가 필요 없는 WiFi 기반의 실시간 위치 인식시스템을 연구하고 개발했습니다.그 결과, 연구실에서는 WiFi기반의 네비게이션 시스템을 개발하고, 그 시스템을 myCoex에 적용하였습니다. 이는 COEX와 같이 대규모의 실내 공간에 실내 네비게이션을 적용한 첫 사례로 알려져 있습니다.카이로스우리 연구실에서는 KAILOS 실내 위치 시스템을 개발하였습니다. 이 시스템은 실내 지도 구축 도구와, 데이터 수집 도구, 데이터 서버와, 실내 위치 인식 서버와 지도서버로 이루어져 있습니다. 이 융합 시스템은 위치기반 서비스들에게 편리한 개발 환경을 제공 하고 있습니다.",
+    "tag": "csweb.research",
+    "id": 42,
+    "content": "name:지능형 서비스 통합 연구실 professor:한동수 field:인공지능·정보서비스 web:https://sites.google.com/view/isilab email:dshan@cs.kaist.ac.kr phone:042-350-3562 office:N1   704호 intro:https://socnas.kaist.ac.kr/drive/d/s/lyLtKDh2z6AO5QTQSn73cp1WpmKIGYz3/DkSBpUoW3guqAYhfjJHCkov3EUDqz3g6-rLYAf3g1Awk etc:지능형 서비스 통합 연구실GPS와 WiFi, Bluetooth 등 여러 장치들로 구성된 스마트폰이 널리 퍼지면서, 오늘날 위치기반서비스(LBS)는 스마트폰제조사, 서비스제공업체, 사용자들에게 가장 중요한 서비스 중 하나로 자리 잡았습니다. GPS를 포함해 WiFi, Bluetooth 신호를 이용한 실시간 위치인식기법은 위치기반서비스에게는 없어서는 안될 필수 선행과정 입니다. 이전의 위치 인식 기법들은 Zigbee, RFID, UWB를 사용 했는데, 이 방법은 스마트폰에서 추가로 장치를 부착해야하는 단점이 있었습니다. 기존의 위치 인식 기술의 한계로 인해, 우리 연구실에서는 최근 몇 년 동안 별도의 인프라가 필요 없는 WiFi 기반의 실시간 위치 인식시스템을 연구하고 개발했습니다.그 결과, 연구실에서는 WiFi기반의 네비게이션 시스템을 개발하고, 그 시스템을 myCoex에 적용하였습니다. 이는 COEX와 같이 대규모의 실내 공간에 실내 네비게이션을 적용한 첫 사례로 알려져 있습니다.카이로스우리 연구실에서는 KAILOS 실내 위치 시스템을 개발하였습니다. 이 시스템은 실내 지도 구축 도구와, 데이터 수집 도구, 데이터 서버와, 실내 위치 인식 서버와 지도서버로 이루어져 있습니다. 이 융합 시스템은 위치기반 서비스들에게 편리한 개발 환경을 제공 하고 있습니다. tag:csweb.research content:지능형 서비스 통합 연구실 한동수 인공지능·정보서비스 https://sites.google.com/view/isilab dshan@cs.kaist.ac.kr 042-350-3562 N1   704호 https://socnas.kaist.ac.kr/drive/d/s/lyLtKDh2z6AO5QTQSn73cp1WpmKIGYz3/DkSBpUoW3guqAYhfjJHCkov3EUDqz3g6-rLYAf3g1Awk 지능형 서비스 통합 연구실GPS와 WiFi, Bluetooth 등 여러 장치들로 구성된 스마트폰이 널리 퍼지면서, 오늘날 위치기반서비스(LBS)는 스마트폰제조사, 서비스제공업체, 사용자들에게 가장 중요한 서비스 중 하나로 자리 잡았습니다. GPS를 포함해 WiFi, Bluetooth 신호를 이용한 실시간 위치인식기법은 위치기반서비스에게는 없어서는 안될 필수 선행과정 입니다. 이전의 위치 인식 기법들은 Zigbee, RFID, UWB를 사용 했는데, 이 방법은 스마트폰에서 추가로 장치를 부착해야하는 단점이 있었습니다. 기존의 위치 인식 기술의 한계로 인해, 우리 연구실에서는 최근 몇 년 동안 별도의 인프라가 필요 없는 WiFi 기반의 실시간 위치 인식시스템을 연구하고 개발했습니다.그 결과, 연구실에서는 WiFi기반의 네비게이션 시스템을 개발하고, 그 시스템을 myCoex에 적용하였습니다. 이는 COEX와 같이 대규모의 실내 공간에 실내 네비게이션을 적용한 첫 사례로 알려져 있습니다.카이로스우리 연구실에서는 KAILOS 실내 위치 시스템을 개발하였습니다. 이 시스템은 실내 지도 구축 도구와, 데이터 수집 도구, 데이터 서버와, 실내 위치 인식 서버와 지도서버로 이루어져 있습니다. 이 융합 시스템은 위치기반 서비스들에게 편리한 개발 환경을 제공 하고 있습니다. csweb.research"
+}

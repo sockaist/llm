@@ -1,0 +1,8 @@
+{
+    "title": "프로그래밍 언어 분야 세계 최고 학회인 ACM POPL 2020에 KAIST 전산학부 소속 논문 세 편 채택",
+    "date": "2019-11-13T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9016&page=10&skey=subject&svalue=&menu=83",
+    "content": "프로그래밍 언어 분야 세계 최고 학회인 ACM POPL 2020에 KAIST 전산학부 소속 논문이 세 편 채택되었다.\nPOPL은 ACM SIGPLAN에서 주관하는 프로그래밍 언어 분야 플래그십 학회이며, 한국정보과학회가 지정한 최우수 학술대회이다. 보다 상세한 정보는 다음 웹사이트를 통해 확인할 수 있다:\nhttp://sigplan.org/Conferences/POPL/\nKAIST 전산학부 이원열 연구원, 석사과정 유한결 학생, 양홍석 교수가 INRIA Xavier Rival 교수와 작성한 논문은 \"Towards Verified Stochastic Variational Inference for Probabilistic Programs” 이고,\nKAIST 전산학부 강지훈 교수가 서울대학교 송용주, 조민기, 김동주, 김용현 학생, 허충길 교수와 작성한 논문은 \"CompCertM: CompCert with C-Assembly Linking and Lightweight Modular Verification” 이며,\n강지훈 교수가 독일 막스플랑크 연구소 Ralf Jung, Hoang-Hai Dang 학생, Derek Dreyer 박사와 작성한 논문은 \"Stacked Borrows: An Aliasing Model for Rust” 이다.\nThree papers from the KAIST School of Computing got accepted to ACM POPL 2020, a top international conference on programming languages.\nList of the papers:\n“Towards Verified Stochastic Variational Inference for Probabilistic Programs”\nWonyeol Lee, Hangyeol Yu, Xavier Rival, and Hongseok Yang\n“CompCertM: CompCert with C-Assembly Linking and Lightweight Modular Verification”\nYoungju Song, Minki Cho, Dongjoo Kim, Yonghyun Kim, Jeehoon Kang, and Chung-Kil Hur\n“Stacked Borrows: An Aliasing Model for Rust”\nRalf Jung, Hoang-Hai Dang, Jeehoon Kang, and Derek Dreyer",
+    "tag": "csweb.news",
+    "id": 394
+}

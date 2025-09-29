@@ -1,0 +1,9 @@
+{
+    "title": "[KAIST SoC Colloquium] 4／27, 4pm, 오혜연 (Alice Oh) (KAIST／Professor)",
+    "date": "2020-04-27T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=9130&page=1&skey=&svalue=&menu=86",
+    "content": "title:[KAIST SoC Colloquium] 4／27, 4pm, 오혜연 (Alice Oh) (KAIST／Professor) date:2020-04-27T00:00:00Z link:https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=9130&page=1&skey=&svalue=&menu=86 content:Title Open domain dialogue response generation: models and evaluation metrics Abstract Dialogue response generation is an important AI research topic. My doctoral student JinYeong Bak and I are investigating this topic with the open domain perspective, meaning the topics of the dialogues are not pre-specified. I describe the new model Variable Hierarchical User-based Conversation Model which considers the previous dialogues among users, as well as their social network connections. I then describe a new evaluation metric called Speaker Sensitive Response Evaluation Model which correlates better with human judgments. These are described in our recent EMNLP 2019 and ACL 2020 papers. Bio Alice Oh is an Associate Professor in the School of Computing at KAIST and directs the Users and Information Lab. She also directs the NRF funded MARS ERC center, as well as the KAIST Institute for Artificial Intelligence. Language English Notice https://kaist.zoom.us/j/98737864335?pwd=iKQcR9uYVV9njiLm1Hmr2Kk_Sxh-bg location:Notice tag:csweb.calendar",
+    "location": "Notice",
+    "tag": "csweb.calendar",
+    "id": 15
+}

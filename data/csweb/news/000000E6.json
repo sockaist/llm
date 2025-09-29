@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 박대형 교수, Google Research Scholar Award 수상",
+    "date": "2022-05-23T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10260&page=6&skey=subject&svalue=&menu=83",
+    "content": "우리 전산학부 박대형 교수가 2022년 Google Research Scholar award의 수상자로 선정되었다.\nGoogle의 Research Scholar Program은 세계 최고수준의 연구를 진행하는 신임교수들을 지원하기위한 국제 프로그램으로, Google은 박대형 교수 연구팀의 \"Physics-Informed Interactive Skill Learning Toward In-hand Manipulation of Deformable Objects\" 연구를 지원한다.\n본 연구는 비정형 물체를 조작하기위한 로봇 핸드의 물리지식기반 상호작용 스킬 학습 방법론을 제안하였으며, 1) 물리지식기반 강화학습, 2) 상호작용 기반 강화학습, 3) Sim2Real 전이학습 등을 통해 실 생활에 적용가능한 조작 기술을 보일 예정이다.\n연구계획은 아래 URL에 업데이트 예정입니다.(\nhttps://rirolab.kaist.ac.kr/research/\n)",
+    "tag": "csweb.news",
+    "id": 230
+}

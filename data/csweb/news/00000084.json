@@ -1,0 +1,8 @@
+{
+    "title": "CUDA 기반 GPU 병렬 처리 프로그래밍 저서 발간",
+    "date": "2023-09-20T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10859&page=4&skey=subject&svalue=&menu=83",
+    "content": "우리 전산학부 졸업생 김덕수 교수(2014, 박사 졸업생, 지도교수 윤성의 교수)가 저술한 \"CUDA 기반 GPU 병렬 처리 프로그래밍\" 저서가 발간되었다.\n김덕수 교수는 현재 한국기술교육대학교 컴퓨터공학부에 재직중이며 현재 딥러닝 기반 홀로그램 해상도 연구, 초고해상도 홀로그램 생성을 위한 고성능 CGH기술 개발 등 다양한 연구를 진행하고 있다.\n\"CUDA 기반 GPU 병렬 처리 프로그래밍\" 저서는 GPGPU 기술경험, 병렬처리 프로그래밍에 대한 이해, 알고리즘&연산처리학습, CUDA 기반 병렬처리 최적화를 배우고자 하는 구독자들에게 적극 추천하는 저서이다.\n저서 설명:\nhttps://product.kyobobook.co.kr/detail/S000202185653\n저자 홈페이지:\nhttps://sites.google.com/view/duksukim/",
+    "tag": "csweb.news",
+    "id": 132
+}

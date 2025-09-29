@@ -1,0 +1,8 @@
+{
+    "title": "김문주 교수, ICSE 2019 SE in Practice (SEiP) 논문 채택",
+    "date": "2019-01-09T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8617&page=12&skey=subject&svalue=&menu=83",
+    "content": "소프트웨어 공학 분야에서 세계 최고 학회인 ACM/IEEE ICSE Software Engineering in Practice (SEiP) 트랙에 우리 전산학부 김문주 교수 연구실의 논문이 채택되었다.\n본 논문 \"Automated Test Generation to Achieve High Test Coverage with Reduced Human Effort in the Automotive Industry\"은 전산학부 김윤호 연구 교수와 김문주 교수가 현대 모비스와 함께 작성한 연구논문으로, 차량용 SW 자동 테스팅 도구인 MAIST를 개발/적용하여, 현대 모비스 차량용 SW (Integrated Body Unit) 를 자동으로 테스팅 하여, 분기 커버리지 90％를 달성하면서 SW 테스팅 시간 및 비용을 절반 이하로 줄였다.\n본 연구 성과는 조선일보, 매일경제, 연합뉴스 등 주요 언론 매체에 게재 되었다.\nhttps://m.yna.co.kr/view/AKR20180720158800003\nhttp://biz.chosun.com/site/data/html_dir/2018/07/22/2018072200441.html\nhttp://news.mk.co.kr/newsRead.php?year=2018&no=460304",
+    "tag": "csweb.news",
+    "id": 460
+}

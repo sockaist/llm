@@ -21,15 +21,16 @@ VECTOR_SIZE = 768  # ko-sroberta-multitask의 기본 차원
 
 # 컬렉션 형식 정의
 FORMATS = {
-    "portal.job": ["title","author","date","link","content"], 
-    "portal.startUp": ["title","author","date","link","content"], 
-    "csweb.news": ["title","date","link","content"], 
-    "csweb.canlender": ["title","date","link","content","location"], 
-    "csweb.research": ["name","professor","field","web","email","phone","office","intro","etc"], 
-    "csweb.edu": ["title","link","content"], 
-    "csweb.ai": ["title","date","link","content"], 
-    "csweb.profs": ["name","field","major","degree","web","mail","phone","office","etc"], 
-    "csweb.admin": ["name","position","work","mail","phone","office","etc"],
-    "csweb.refer": ["name","web","etc"], 
-    # TODO: add formats for notion crawling data
+    "portal.job": ["title","author","date","link","content","id"], 
+    "portal.startUp": ["title","author","date","link","content","id"],
+    "csweb.news": ["title","date","link","content","id"],
+    "csweb.calendar": ["title","date","link","content","location","id"],
+    "csweb.research": ["name","professor","field","web","email","phone","office","intro","etc","id"], 
+    "csweb.edu": ["title","link","content","id"], 
+    "csweb.ai": ["title","date","link","content","id"], 
+    "csweb.profs": ["name","field","major","degree","web","mail","phone","office","etc","id"], 
+    "csweb.admin": ["name","position","work","mail","phone","office","etc","id"],
+    "csweb.refer": ["name","web","etc","id"], 
+    "notion.marketing" : ["title","date","start","finish","contents","images","url","id"],
+    "notion.notice" : ["title","date","start","finish","contents","images","url","id"]
 }

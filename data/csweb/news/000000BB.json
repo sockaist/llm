@@ -1,0 +1,8 @@
+{
+    "title": "International Conference on Medical Imaging and Computer-Aided Diagnosis (MICAD) Best Paper 수상",
+    "date": "2022-12-12T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10577&page=5&skey=subject&svalue=&menu=83",
+    "content": "지난 11월 20~21일 영국 University of Leicester 에서 Hybrid로 개최된 The 3rd International Conference on Medical Imaging and Computer-Aided Diagnosis (MICAD)에서 박사과정 조지훈 학생 (지도교수: 박진아)의 논문 Hybrid-Fusion Transformer for Multisequence MRI, Jihoon Cho, Jinah Park (KAIST) 이 'Best Paper Award' 를 받았다.\nMICAD 국제학술대회는 컴퓨터 사이언스 분야와 메디컬 분야를 연결하는 의료 영상, 전자 공학, 컴퓨터 보조 진단, 물리학, 기계 학습 등의 여러 분야를 다루는 학술대회로 올해 2022년 학술대회의 경우 세계최고의 의료영상 컴퓨팅 및 컴퓨터보조의료개입 협회인 MICCAI society의 승인을 받아 이루어졌다.\n비침습적으로 신체 내부를 촬영하고 인체의 내부를 3차원영상으로 재구성하는 MRI는 촬영부위 및 목적에 따라 다양한 프로토콜을 통해 촬영된다.\n이렇게 촬영되는 MRI는 여러개의 MRI 시퀸스(sequecne)로 구성되며 각 시퀸스마다 보여주는 특징이 다르기에 이러한 특징들을 잘 통합하는 것이 의학적 분석에서의 핵심이라고 할 수 있다.\n이번 연구에서는 여러 MRI 시퀸스 사이의 특징을 통합하는 Hybrid-Fusion 방법을 제안하고 이를 활용하여 학습모델을 구축함과 함께 정량적,정성적 평가를 통하여 연구의 우수성을 입증하였다.\n본 연구성과는 MRI가 다양한 질병분석에 있어서 주요하게 활용되는만큼 보다 고도화된 의학적 분석방법의 발전에 기여했다는 점에서 그 우수성을 입증받았다.",
+    "tag": "csweb.news",
+    "id": 187
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Users and Information Lab",
+    "professor": "오혜연",
+    "field": "인공지능·정보서비스, 소셜 컴퓨팅, 인터랙티브 컴퓨팅",
+    "web": "https://uilab.kr/",
+    "email": "alice.oh@cs.kaist.ac.kr",
+    "phone": "042-350-3549",
+    "office": "E3-1   4404호",
+    "intro": "https://socnas.kaist.ac.kr/drive/d/s/lyLtHuUPqC5khlKWTF3R3HI1NXejHt4x/q63IQxo0kpZB634aQzBZvOeBe-MhRDR1-dbgAlho2Awk",
+    "etc": "Users & Information LabKAIST Users & Information 연구실에서는 대용량 데이터를 통해 전산학적으로 해결가능한 사회과학에서의 중요한 문제를 찾아내고, 이러한 문제를 해결할 수 있는 새로운 기계학습（machine learning） 알고리즘을 개발한다. 특히, 기계학습과 텍스트 마이닝 기법을 도구로 온라인 소셜 네트워크의 대용량, 불규칙한 텍스트/메타데이터에서 의미있는 패턴을 찾아내는 연구를 수행한다. 최근 연구로 기계학습 분야에서는 비모수적 베이지안 토픽 모델（nonparametric Bayesian topic models）을 개발하여, ICML, IJCAI, AAAI, CIKM에 게재하였다. 전산사회과학 분야에서는 감정 순환（emotion cycles）, 자기노출행동（self-disclosure behavior）, 다언어사용（multilingualism）을 분석하여, ACL, AAAI ICWSM, ACM Hypertext에 연구 결과를 게재하였다.",
+    "tag": "csweb.research",
+    "id": 28,
+    "content": "name:Users and Information Lab professor:오혜연 field:인공지능·정보서비스, 소셜 컴퓨팅, 인터랙티브 컴퓨팅 web:https://uilab.kr/ email:alice.oh@cs.kaist.ac.kr phone:042-350-3549 office:E3-1   4404호 intro:https://socnas.kaist.ac.kr/drive/d/s/lyLtHuUPqC5khlKWTF3R3HI1NXejHt4x/q63IQxo0kpZB634aQzBZvOeBe-MhRDR1-dbgAlho2Awk etc:Users & Information LabKAIST Users & Information 연구실에서는 대용량 데이터를 통해 전산학적으로 해결가능한 사회과학에서의 중요한 문제를 찾아내고, 이러한 문제를 해결할 수 있는 새로운 기계학습（machine learning） 알고리즘을 개발한다. 특히, 기계학습과 텍스트 마이닝 기법을 도구로 온라인 소셜 네트워크의 대용량, 불규칙한 텍스트/메타데이터에서 의미있는 패턴을 찾아내는 연구를 수행한다. 최근 연구로 기계학습 분야에서는 비모수적 베이지안 토픽 모델（nonparametric Bayesian topic models）을 개발하여, ICML, IJCAI, AAAI, CIKM에 게재하였다. 전산사회과학 분야에서는 감정 순환（emotion cycles）, 자기노출행동（self-disclosure behavior）, 다언어사용（multilingualism）을 분석하여, ACL, AAAI ICWSM, ACM Hypertext에 연구 결과를 게재하였다. tag:csweb.research content:Users and Information Lab 오혜연 인공지능·정보서비스, 소셜 컴퓨팅, 인터랙티브 컴퓨팅 https://uilab.kr/ alice.oh@cs.kaist.ac.kr 042-350-3549 E3-1   4404호 https://socnas.kaist.ac.kr/drive/d/s/lyLtHuUPqC5khlKWTF3R3HI1NXejHt4x/q63IQxo0kpZB634aQzBZvOeBe-MhRDR1-dbgAlho2Awk Users & Information LabKAIST Users & Information 연구실에서는 대용량 데이터를 통해 전산학적으로 해결가능한 사회과학에서의 중요한 문제를 찾아내고, 이러한 문제를 해결할 수 있는 새로운 기계학습（machine learning） 알고리즘을 개발한다. 특히, 기계학습과 텍스트 마이닝 기법을 도구로 온라인 소셜 네트워크의 대용량, 불규칙한 텍스트/메타데이터에서 의미있는 패턴을 찾아내는 연구를 수행한다. 최근 연구로 기계학습 분야에서는 비모수적 베이지안 토픽 모델（nonparametric Bayesian topic models）을 개발하여, ICML, IJCAI, AAAI, CIKM에 게재하였다. 전산사회과학 분야에서는 감정 순환（emotion cycles）, 자기노출행동（self-disclosure behavior）, 다언어사용（multilingualism）을 분석하여, ACL, AAAI ICWSM, ACM Hypertext에 연구 결과를 게재하였다. csweb.research"
+}

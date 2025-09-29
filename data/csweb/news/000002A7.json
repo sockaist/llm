@@ -1,0 +1,8 @@
+{
+    "title": "MLSS 2015, Spotlight Presenter 선정",
+    "date": "2015-09-14T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=6828&page=17&skey=subject&svalue=&menu=83",
+    "content": "[사진상 중간이 임우상 박사과정생]\n우리 전산학부 임우상 박사과정 학생 (지도교수: 배두환)이 지난 8/23-9/6에 일본 교토에서 열린 MLSS 2015에서 스포트라이트 발표자(Spotlight Presenter)로 선정되어 본인의 연구 결과를 발표 했다.\nMLSS (Machine Learning Summer School)는 2002년부터 시작되었으며, 매년마다 기계학습의 각 분야를 주도하는 전문가들이 모여서 자신의 연구 영역에 대해 강의 하는 여름 학교이다. 올해는 세계 각국에서 60명의 교수진, 60명의 업계 종사자, 150명의 박사과정 학생, 100명의 석사과정 학생, 50명의 학부과정 학생, 총 420명이 최종 선발되어 참여하였다. 이번 MLSS에서 포스터 발표로 선택된 180명의 연구 중에 ICML, NIPS, ICCV, ICDM 등등의 CS 분야에서의 S급 국제 학회에서 이미 발표 되었거나 공개 될 연구들이 다수 있었으며, 그 중에서 추가로 20명의 연구만이 스포트라이트로 선정되어 해당 발표자들이 14명의 초청 강연자와 함께 구두 발표할 기회를 가졌다.\n임우상 학생은 기계학습 분야에서 가장 권위 있는 S급 국제 학회 중 하나인 ICML (International Conference on Machine Learning) 2015에서 본인이 주 저자로 발표한 “Double Nyström Method: An Efficient and Accurate Nyström Scheme for Large-Scale Data Sets”를 스포트라이트 세션에서 소개 하였다. 해당 논문은 기계 학습에서 자주 수반되는 PSD (Positive Semi-Definite) 행렬 분해의 새로운 이론적인 성질 및 에러 보장을 수학적으로 분석 및 제시하고, 이에 기반하여 대규모 데이터 크기의 PSD 행렬 고유분해 (Eigen-Decomposition)를 정확하고 최대 10배 효율적으로 수행하는 알고리즘을 제안하였다. 제의된 이론적 분석은 해당 주제의 10년간 막혔던 문제 “데이터 구조를 고려한 효율적 샘플링과 그의 행렬 분해 적용시 최적 에러 값의 이론적 보장”을 해결하는 독창적인 방법을 제안했다는 평가이며, 임우상 학생은 Intel의 후원을 통해 IMLS (International Machine Learning Society)로 부터 장학금을 수여 받았다.\n참조:\nhttp://www.mlss.cc\nhttp://www.i.kyoto-u.ac.jp/mlss15/",
+    "tag": "csweb.news",
+    "id": 679
+}

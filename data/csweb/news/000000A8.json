@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 오혜연 교수 ACM WSDM 학회 Test of Time Honorable Mention 수상",
+    "date": "2023-03-10T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10648&page=5&skey=subject&svalue=&menu=83",
+    "content": "전산학부 졸업생 조요한 박사(KAIST 석사, CMU 박사)와 지도교수 오혜연 교수가 2011년에 게재한 논문 \"Aspect and Sentiment Unification Model\"이 2023년 ACM Web Search and Data Mining (WSDM) 학회에서 Test of Time Honorable Mention 상을 받았다.\nACM WSDM은 데이터마이닝 분야의 탑티어 국제학회로 2023년 2월 27일부터 3월 3일까지 싱가포르에서 개최되었다.\n조요한 박사의 논문은 웹에 올라오는 다양한 리뷰 데이터를 기계학습 모델로 감정분석을 해서 해당 리뷰의 내용이 서비스나 제품의 특징별로 긍정인지 부정인지를 파악하는 연구로, 2011년 게재된 이후로 꾸준히 인용되어 현재 구글스칼라 기준 995회 인용되었다. 논문의 가장 큰 기여는 특징별 감정 분석을 하나의 통합 모델로 하는 것이고 이 모델을 기준으로 삼아 다양한 후속 연구가 진행되었다는 것이다.\nhttps://dl.acm.org/doi/10.1145/1935826.1935932",
+    "tag": "csweb.news",
+    "id": 168
+}

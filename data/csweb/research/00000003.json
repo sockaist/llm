@@ -1,0 +1,14 @@
+{
+    "name": "웹 공학 및 서비스 컴퓨팅 연구실",
+    "professor": "고인영",
+    "field": "소프트웨어 디자인, 인공지능·정보서비스",
+    "web": "https://webeng.kaist.ac.kr/",
+    "email": "webeng@kaist.ac.kr",
+    "phone": "042-350-7747",
+    "office": "N1   522호",
+    "intro": "https://socnas.kaist.ac.kr/drive/d/s/lyLtJ3JKnzHQv32I2aE2thvVwU8FAbTz/KJhUpqEZGMFTICKS8ULtuPPBSaGXudyI-tbigvi42Awk",
+    "etc": "웹 공학 및 서비스 컴퓨팅 연구실은 웹, 클라우드, 사물인터넷(IoT), 사이버-물리 시스템(CPS) 등의 최신 컴퓨팅 환경을 위한 소프트웨어를 개발할 때 발생하는 소프트웨어 공학적 이슈에 대해 다루고 있다. 특히, 요구사항과 환경적 조건이 자주 변하는 동적인 환경에서 변화에 유연하게 대응하는 소프트웨어 설계 및 테스팅, 그리고 소프트웨어 진화에 최종사용자가 참여하는 소프트웨어 체계가 주 연구대상이다.동적 환경을 위한 소프트웨어 공학- 적응적이고 진화 가능한 소프트웨어 설계- DevOps와 Continuous Integration을 위한 소프트웨어 설계 및 테스팅- 지식기반 소프트웨어 공학- 최종 사용자 소프트웨어 공학서비스 컴퓨팅- IoT와 CPS를 위한 태스크기반 서비스 제공 방법- 서비스 조합 및 메쉬업- 서비스 기반 아키텍처 (SOA)웹 어플리케이션- 웹 어플리케이션 테스팅- 시맨틱 및 모마일 웹 어플리케이션- 웹기반 정보 모델링 및 관리",
+    "tag": "csweb.research",
+    "id": 3,
+    "content": "name:웹 공학 및 서비스 컴퓨팅 연구실 professor:고인영 field:소프트웨어 디자인, 인공지능·정보서비스 web:https://webeng.kaist.ac.kr/ email:webeng@kaist.ac.kr phone:042-350-7747 office:N1   522호 intro:https://socnas.kaist.ac.kr/drive/d/s/lyLtJ3JKnzHQv32I2aE2thvVwU8FAbTz/KJhUpqEZGMFTICKS8ULtuPPBSaGXudyI-tbigvi42Awk etc:웹 공학 및 서비스 컴퓨팅 연구실은 웹, 클라우드, 사물인터넷(IoT), 사이버-물리 시스템(CPS) 등의 최신 컴퓨팅 환경을 위한 소프트웨어를 개발할 때 발생하는 소프트웨어 공학적 이슈에 대해 다루고 있다. 특히, 요구사항과 환경적 조건이 자주 변하는 동적인 환경에서 변화에 유연하게 대응하는 소프트웨어 설계 및 테스팅, 그리고 소프트웨어 진화에 최종사용자가 참여하는 소프트웨어 체계가 주 연구대상이다.동적 환경을 위한 소프트웨어 공학- 적응적이고 진화 가능한 소프트웨어 설계- DevOps와 Continuous Integration을 위한 소프트웨어 설계 및 테스팅- 지식기반 소프트웨어 공학- 최종 사용자 소프트웨어 공학서비스 컴퓨팅- IoT와 CPS를 위한 태스크기반 서비스 제공 방법- 서비스 조합 및 메쉬업- 서비스 기반 아키텍처 (SOA)웹 어플리케이션- 웹 어플리케이션 테스팅- 시맨틱 및 모마일 웹 어플리케이션- 웹기반 정보 모델링 및 관리 tag:csweb.research content:웹 공학 및 서비스 컴퓨팅 연구실 고인영 소프트웨어 디자인, 인공지능·정보서비스 https://webeng.kaist.ac.kr/ webeng@kaist.ac.kr 042-350-7747 N1   522호 https://socnas.kaist.ac.kr/drive/d/s/lyLtJ3JKnzHQv32I2aE2thvVwU8FAbTz/KJhUpqEZGMFTICKS8ULtuPPBSaGXudyI-tbigvi42Awk 웹 공학 및 서비스 컴퓨팅 연구실은 웹, 클라우드, 사물인터넷(IoT), 사이버-물리 시스템(CPS) 등의 최신 컴퓨팅 환경을 위한 소프트웨어를 개발할 때 발생하는 소프트웨어 공학적 이슈에 대해 다루고 있다. 특히, 요구사항과 환경적 조건이 자주 변하는 동적인 환경에서 변화에 유연하게 대응하는 소프트웨어 설계 및 테스팅, 그리고 소프트웨어 진화에 최종사용자가 참여하는 소프트웨어 체계가 주 연구대상이다.동적 환경을 위한 소프트웨어 공학- 적응적이고 진화 가능한 소프트웨어 설계- DevOps와 Continuous Integration을 위한 소프트웨어 설계 및 테스팅- 지식기반 소프트웨어 공학- 최종 사용자 소프트웨어 공학서비스 컴퓨팅- IoT와 CPS를 위한 태스크기반 서비스 제공 방법- 서비스 조합 및 메쉬업- 서비스 기반 아키텍처 (SOA)웹 어플리케이션- 웹 어플리케이션 테스팅- 시맨틱 및 모마일 웹 어플리케이션- 웹기반 정보 모델링 및 관리 csweb.research"
+}

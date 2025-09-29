@@ -1,0 +1,8 @@
+{
+    "title": "ICSE 2018 논문 채택",
+    "date": "2017-12-18T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8034&page=14&skey=subject&svalue=&menu=83",
+    "content": "소프트웨어 공학 분야 세계 최고 학회인 ACM/IEEE ICSE (Intl. Conf. on Software\nEngineering)에 우리 전산학부\n김문주\n교수 연구실의 논문이 채택되었습니다.\n본 논문 \"Precise Concolic\nUnit Testing of C Programs with Alarm Filtering Using Symbolic Calling\nContexts\" 은 전산학부\n김문주\n교수와 박사후연구원 김윤호 박사가 경북대 최윤자 교수와 같이 작성한 연구논문으로,\nC\n프로그램의 오류를 자동으로 찾으며 거짓 경보를 최소화하는 새로운 유닛 테스트 기술을 연구한 연구논문입니다.",
+    "tag": "csweb.news",
+    "id": 543
+}

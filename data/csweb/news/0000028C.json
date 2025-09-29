@@ -1,0 +1,8 @@
+{
+    "title": "GPU기반 Accelerated Computing 및 Deep Learning 특강실습 개최",
+    "date": "2016-06-02T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=7107&page=17&skey=subject&svalue=&menu=83",
+    "content": "CS380(컴퓨터그래픽스개론) 수강생들과 전산학부 학생들을 위하여 N1 건물 102호에서는 아래와 같이 GPU기반 Accelerated Computing 및 Deep Learning 특강실습이 진행되었다.\n- 제목: GPU기반 Accelerated Computing 및 Deep Learning\n- 강사: NVIDIA 코리아 유현곤 부장 (Solution Architect)\n- 내용: 1) CUDA 및 OpenACC 프로그래밍 소개\n2) GPU 기반 Deep Learning 툴인 DIGITS을 이용한 딥러닝 모델링 실습\n- 일시: 2016년 6월 1일 저녁 7시~9시\n- 장소: N1 102호",
+    "tag": "csweb.news",
+    "id": 652
+}

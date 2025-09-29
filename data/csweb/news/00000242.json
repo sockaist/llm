@@ -1,0 +1,8 @@
+{
+    "title": "국제고등로봇학회(ICAR) 2017, Robotic planning 분야 Best paper 수상",
+    "date": "2017-08-04T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=7750&page=15&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 박사 졸업생 이정환, 석사과정 신희찬(지도교수 윤성의) 학생이 지난 7/10~12일 홍콩에서 열린 ‘국제 고등로봇 학회 2017 (International Conference on Advanced Robotics 2017’ 에서 ‘데이터 기반 Kinodynamic RRT(Data-driven Kinodynamic RRT)’에 관한 논문으로 ‘로봇 경로 계획(Robotic planning)’ 분야 Best paper를 수상하였다.\n이번 연구는 Kinodynamic 성질을 가지는 로봇의 움직임을 계획할 때, 로봇이 가질 수 있는 상태와 입력값들을 데이터베이스로 만들어 둔 후, 필요 시에 검색하여 사용하는 것에 관한 연구이다. 이를 통해 실시간으로 연산해야 하는 계산량을 현저하게 줄임으로써 움직임 계획의 연산 속도를 크게 향상시켰다.\n이정환 박사는 박사 기간 동안 IEEE Transaction on Robotics(TRO), International Conference on Robotics and Automation(ICRA), International Conference on Intelligent Robotics and Systems(IROS) 등 우수 국제 저널 및 학회에 다수의 논문을 게재한 바 있다.\n[지도 교수 : 윤성의 교수, 제 1저자 : 이정환), 제 2저자 : 신희찬]\nICAR 2017 홈페이지 :\nhttp://www.ee.cuhk.edu.hk/~qhmeng/icar2017/index.htm\n수상을 축하드립니다.",
+    "tag": "csweb.news",
+    "id": 578
+}

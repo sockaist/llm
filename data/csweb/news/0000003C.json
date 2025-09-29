@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 석사과정 고건영 학생 RiTA 2024 Best Student Paper Award 수상",
+    "date": "2024-12-09T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11324&page=2&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 석사과정 고건영 학생과 전기및전자공학부 학사과정 박요한 학생(지도교수 박대형)이 지난 12월 4일부터 7일까지 울산에서 개최된 ＊The 12th International Conference on Robot Intelligence Technology and Applications (RiTA)＊에서 'Reactive Constraint Relaxation for Urban Environment Navigation' 논문으로 'Best Student Paper Award'를 수상했다.\nRiTA는 인공지능 로봇 기술의 발전과 학술 교류를 위해 매년 열리는 국제 학회로, 자율 주행 및 SLAM(Simultaneous Localization and Mapping, 동시적 위치 추정 및 지도 작성), 인간-로봇 상호작용, 기계학습 등 다양한 주제를 다룬다. 2024년 RiTA는 KAIST와 UNIST의 공동 주관으로 진행되었으며, Oral Presentation 트랙 발표 논문은 Springer 출판사의 ＊Lecture Notes in Networks and Systems (LNNS)＊에 게재될 예정이다.\n이번 연구는 로봇이 새로운 도심 환경에서 안전하게 목적지까지 탐색 및 주행할 수 있는 프레임워크를 제안했다. 특히 공간의 의미론적 정보를 활용하여 주행 제약 조건을 이해하고, 이를 통해 안전성과 효율성을 모두 갖춘 주행 계획을 세우는 점에서 높은 평가를 받았다.",
+    "tag": "csweb.news",
+    "id": 60
+}

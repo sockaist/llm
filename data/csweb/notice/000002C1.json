@@ -1,0 +1,8 @@
+{
+    "title": "Jeffrey Ullman KAIST 전산학과 초청강연",
+    "date": "2006-12-08T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=3952&page=24&skey=subject&svalue=&menu=151",
+    "content": "제목 : Associaltion Rules and Extensions\r\n \r\n   연사 : Jeffrey Ullman\r\n   시간 : 2006년 12월 13일(수), 16:00-\r\n   장소 : 오상수 강의실(#4443호실)\r\n \r\n \r\nabstract :\r\n\r\nThe famous a-priori algorithm for mining association rules, or\r\nfrequent itemsets, can be improved upon by a number of hashing-based\r\ntechniques that increase the size of the data sets that can be\r\nprocessed with a fixed amount of main memory.  There are also\r\nimportant variants of the problem where the goal is to find highly\r\ncorrelated pairs of items (possibly of low frequency), rather than the\r\nmost frequent itemsets.  This problem requires completely different\r\ntechniques for efficient execution on large datasets.  In this talk,\r\nwe survey the main ideas behind all these developments.",
+    "tag": "csweb.notice",
+    "id": 705
+}

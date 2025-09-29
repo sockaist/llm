@@ -1,0 +1,8 @@
+{
+    "title": "전산학부 메일시스템 정지 안내",
+    "date": "2016-01-12T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=6940&page=6&skey=subject&svalue=&menu=151",
+    "content": "전산학부 메일서버( csmail.kaist.ac.kr ) 교체 및 백업 작업으로 아래와 같이 메일서버 시스템이 중지 되오니 참고해 주시기 바랍니다. = 아 래 = 1. 도메인: csmail.kaist.ac.kr 2. 일시: 2016년 1월 18일(월요일) 18시 ~ (예정시간 : 12시간 이내) 3. 주요내용 ★ 메일서버 교체 및 메일 서비스 중단 - 기존 사용자 별 메일백업 - 노후 메일서버 시스템 신규 도입 4. 기타: 2016 1월 17일 이전 백업 메일로 복원 예정 5. 문의: 김대종(3507), stim＠cs.kaist.ac.kr ------------------------------------------------------------------------------------------------------------------- KAIST SoC E-Mail( csmail.kaist.ac.kr ) server replacement and backup plan. 1. domain: csmail.kaist.ac.kr 2. schedule: Monday, January 18th, 2016 06:00 PM ~ (Estimated duration : within 12 hours) 3. Major Issues ★ E-Mail service will be suspended for mail server replacement - Mail backup per user account - Install new mail server system 4. etc: The E-Mail data will be replaced by the data on January 17th, 2016. 5. contact: Daejong Kim(3507), stim＠cs.kaist.ac.kr -------------------------------------------------------------------------------------------------------------------",
+    "tag": "csweb.notice",
+    "id": 170
+}

@@ -1,0 +1,8 @@
+{
+    "title": "신인식 교수 연구진 NDSS 2020에 논문 게재 및 발표",
+    "date": "2020-02-26T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9095&page=10&skey=subject&svalue=&menu=83",
+    "content": "신인식 교수의 연구진은 Purdue university, NEC laboratories America, Oregon university, 서울대학교와 공동연구를 진행하여 운영체제에서 자동으로 버그를 찾기 위한 새로운 기술인 HFL을 이번 2020년 2월 24∼27일 미국 San Diego에서 개최된 보안 분야 최우수학회 중 하나인 Network and Distributed System Security (NDSS) 에 발표하여 효율성을 입증하였다(Acceptance Rate : 17.4％).\n운영체제의 특유의 성질인 함수 포인터에 의한 indirect control flow, 시스템 콜 사이의 종속성, 시스템 콜 인자의 중첩 구조를 파악하는 기법을 개발하고, 이를 fuzzing 툴인 Syzkaller, symbolic execution 툴인 S2E와 결합하여 HFL이라는 새로운 hybrid fuzzing 툴을 개발했다. 이를 통해 기존의 hybrid fuzzing의 성능을 저하시키던 문제들을 해결하여 운영체제에서도 Hybrid Fuzzing의 장점을 활용할 수 있는 도구를 개발하였다.\n또한, 공동 연구진은 HFL 툴을 오픈소스 운영체제인 리눅스에 적용하여 기존에 알려지지 않았던 24개의 새로운 보안 취약점을 찾아내었고, 발견한 취약점들을 리눅스 개발 커뮤니티에 보고, 제거하여 리눅스의 안정성 향상에 기여하였다.\n본 연구 결과는 컴퓨터 보안 분야의 최고 학회인 NDSS 2020에 논문으로 발표되었고, HFL 툴 또한 github에 공개될 예정이다.",
+    "tag": "csweb.news",
+    "id": 376
+}

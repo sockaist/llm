@@ -1,0 +1,8 @@
+{
+    "title": "박사과정 김수지, ICWE 2019 Distinguished Paper Award 수상",
+    "date": "2019-07-02T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8841&page=11&skey=subject&svalue=&menu=83",
+    "content": "우리 전산학부 박사과정 김수지(지도교수: 최성희) 학생이 지난 6월 11~14일 대전컨벤션센터(DCC)에서 열린 19th International Conference on Web Engineering (ICWE 2019) 국제학회에서 ‘DotCHA: A 3D Text-based Scatter-type CAPTCHA’ 논문으로 Distinguished Paper Award를 수상했다.\n본 논문은 기존 2D 텍스트로 구현되었던 CAPTCHA를 3차원 모델 형태로 변환해 CAPTCHA 시스템에서 중요한 usability와 security를 동시에 보완하는 방안을 제안한 논문이다.",
+    "tag": "csweb.news",
+    "id": 428
+}

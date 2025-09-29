@@ -1,0 +1,8 @@
+{
+    "title": "ESEC／FSE 2019 논문 채택",
+    "date": "2019-06-05T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8824&page=11&skey=subject&svalue=&menu=83",
+    "content": "ESEC/FSE 에 전산학부 김문주 교수 연구실 논문이 채택되었다.\nESEC/FSE 2019 학회는 Acceptace Rate 24.4％ 인 SE 분야 최우수 학회로\nhttps://www.conference-publishing.com/list.php?Event=FSE19\n본 논문 \"Target-driven Compositional Concolic Testing with Function Summary Refinement for Effective Bug Detection\"은 전산학부 김윤호 연구 교수, 김문주 교수, 그리고 한동대 홍신 교수가 함께 작성한 연구논문으로, SW 시스템의 오류를 거짓 경보 없이 세계에서 가장 정확하게, 그리고 효율적으로 검출하는 기술을 개발했다.\n본 논문의 핵심기술인 FOCAL을 적용하여, SIR 벤치마크 대상으로 cutting-edge 오류 검출 기술인 AFL-fast, KATCH 등보다 우월한 71％ 의 대상 오류를 자동으로 검출하였고, 널리 쓰이는 C 파싱 프로그램 12개에서, 13개의 새로운 크래쉬 오류 를 검출하여 보고했다",
+    "tag": "csweb.news",
+    "id": 432
+}

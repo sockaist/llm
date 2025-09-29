@@ -1,0 +1,8 @@
+{
+    "title": "전산학부 석사과정 황지성 학생 KCGS 2025 Best Master＇s Paper Award 수상",
+    "date": "2025-07-15T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11514&page=1&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 석사과정 황지성 학생(지도교수 성민혁)이 지난 7월 8일부터 11일까지 강원도 고성에서 열린 2025 한국컴퓨터그래픽스학회(KCGS) 정기학술대회에서 ‘Occupancy-Based Dual Contouring’ 논문으로\n석사논문상(Best Master’s Paper Award) 을 수상\n했다.\nKCGS는 한국컴퓨터그래픽스학회(Korea Computer Graphics Society)에서 주관하는 국내 대표 컴퓨터 그래픽스 학술 행사로, 렌더링, 시뮬레이션, 모델링 등 다양한 기술을 다룬다. 석사논문상은 석사 과정 연구자가 작성한 논문 중 가장 우수한 연구 성과에 수여되는 상으로, 올해는 총 10명의 후보 중 단 한 명에게만 주어졌다.\n수상 논문 ‘Occupancy-Based Dual Contouring’은 3차원 implicit 필드를 정밀하게 메시로 변환하는 새로운 기법을 제안하며, 고품질 메시 생성에 탁월한 성능을 보여 높은 평가를 받았다. 이 논문은 이미 SIGGRAPH Asia 2024에서 발표되어 국제적으로도 주목받은 바 있다.\n- 연구 소개 페이지:\nhttps://occupancy-based-dual-contouring.github.io/\n- 논문 링크(ACM DL):\nhttps://dl.acm.org/doi/10.1145/3680528.3687581\nKAIST 전산학부는 황지성 학생의 수상을 진심으로 축하합니다！",
+    "tag": "csweb.news",
+    "id": 19
+}

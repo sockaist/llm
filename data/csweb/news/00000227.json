@@ -1,0 +1,8 @@
+{
+    "title": "전산학부 정보보호대학원 장대희학생팀 사이버공격방어대회 2017에서 논문공모전 대상 및 해킹대회 2위 차지",
+    "date": "2017-11-23T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8007&page=14&skey=subject&svalue=&menu=83",
+    "content": "KAIST 정보보호대학원 박사과정 장대희 (지도교수 강병훈) 학생이 지난 11월 22일 서울 양재동 더케이호텔에서 열린 CCE 2017 (Cyber Conflict Exercise & Contest) 의 사이버안보논문 공모전시상식에서 “RUMA: Rethinking Byte Granularity Heap Randomization” 제목의 논문으로 대상을 수상했다\nCCE 2017 은 국가보안연구소와 국가정보원 및 한국정보보호학회의 주관으로 진행되는 행사로서 (http://www.nisa.or.kr/cce2017/page6.html), 사이버공격방어대회와 논문공모전을 병행한다. 논문공모전의 경우 총상금 3300만원의 규모로 진행되며 서울대, 포항공대, 고려대 등에서 총 117편의 논문이 제출되었는데, 이중 최상위작이 대상으로 선정되며 500만원의 상금이 주어진다. 비록 제출된 논문들 중 1등 이어도 내용이 충분히 우수하지 않으면 대상은 수상하지 않는 규칙이다.\n대상논문 외에도 강병훈교수 연구팀에서 2개의 논문 (Various Detection Techniques against System Emulation Environment and its Countermeasures 주저자 장대희, SGX-LEGO: ROP-based Binary Conversion Framework for Side-Channel Attack Mitigation 주저자 김덕진) 이 우수상을 수상하여 총 3개의 논문이 단일 연구실의 논문으로서 입상하여 주목받았다. 또한 정보보호 대학원 교수들이 지도한 논문 Demystifying the Dark Web: Understanding the Underground Online Society 이 최우수상을 받았으며, 신인식 교수의 지도논문 Oblivious execution model design based on ORAM for thwarting memory side channel attacks 이 장려상을 받아서 전체 상금의 많은 부분을 KAIST 가 가져갔다.\nCCE 행사는 논문공모전 외에도, 실무적인 해킹공격 및 방어기술을 평가하는 사이버공격방어대회를 2박 3일의 일정으로 진행하는데, 이 대회에서도 강병훈교수의 연구팀 (장대희, 김종환, 박민준) 주축으로 구성된 5인팀이 600만원의 상금과 함께 2위를 차지하였다. 강병훈 교수 연구팀은 CCE 행사 바로 전에도, 일본에서 열리는 국제해킹대회 TrendMicro CTF 본선전에 진출해서 8위를 달성하기도 하였다.",
+    "tag": "csweb.news",
+    "id": 551
+}

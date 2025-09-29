@@ -1,0 +1,8 @@
+{
+    "title": "박사과정 Ulzhalgas Rakhman 학생 2022 한국로봇종합학술대회 우수논문상 수상",
+    "date": "2022-05-23T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10259&page=6&skey=subject&svalue=&menu=83",
+    "content": "전산학부 박대형 교수가 지도하는 강인지능&로보틱스 연구실 (RIRO Lab)의 박사과정 학생 Ulzhalgas Rakhman이 한국로봇학회가 주최하는 제17회 한국로봇종합학술대회(KRoC 2022)에서 '우수논문상'을 수상했다. KRoC는 국내 최고의 로봇 전문 학술대회로 5월 11일부터 5월 14일까지 3일간 강원도 휘닉스 평창에서 하이브리드(온·오프라인)로 진행됐다. 이번 학술대회에는 총 64편의 논문이 제출되었으며 그 중 6편이 우수논문으로 선정되었다.\nUlzhalgas Rakhman 학생의 \"강인한 조작을 위한 장면 그래프 기반 반응적 작업 계획법\"이라는 제목의 연구 논문[1]이 컨퍼런스에서 우수 논문으로 선정되었다.\n수상한 논문은 로봇 조립 작업에서 외부 개입 문제를 해결하기 위해 장면 그래프 기반의 반응적 작업 계획 및 실행 프레임워크를 제안하였으며 프레임워크 개요는 다음과 같다.\n이 연구는 한국 정부(MSIT)의 지원을 받는 국립 연구 재단(NRF) 보조금(No. 2021RICICI004368 및 2021R1A4A3032834)으로 진행된 연구이다.\n[1] Ulzhalgas Rakhman, Jaehoon Yoo, Yeseung Kim, Deokmin Hwang, Seunghoon Hong, and Daehyung Park＊, “Reactive Task PLanning using Scene Graphs for Robust Robotic Manipulation”, Korea Robotics Society Annual Conference (KRoC), 2022",
+    "tag": "csweb.news",
+    "id": 231
+}

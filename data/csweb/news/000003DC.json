@@ -1,0 +1,8 @@
+{
+    "title": "이진원 학우팀 MDM 최고논문상 수상",
+    "date": "2006-06-07T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=3724&page=25&skey=subject&svalue=&menu=83",
+    "content": "지난 5월 9일 ~ 11일 일본에서 열린 제7회 MDM 국제학술대회 (International Conference on Mobile Data Management 2006)에서 전산학전공 Network Computing Lab(송준화 교수연구실)의 논문이 최고논문상(Best Paper Award)를 수상하였다.\r\n\r\nMDM 학회는 IEEE Computer Society(국제전기전자기술협회 컴퓨터연구회) 및\r\nACM SIGMOBILE와 SIGMOD (미국컴퓨터협회 모바일연구회와 데이터베이스연구회)에서 후원하여 매년 개최되는 국제학술대회이다.\r\n\r\n논문제목은 BMQ-Index: Shared and Incremental Processing of Border Monitoring Queries over Data Streams (BMQ-색인: 데이터 스트림에 대한 경계관찰질의의 공유식 및 점진식 처리)이며 이진원 학우외에 6명이(이영기, 강승우, 이상정, 진현주, 김병집, 송준화) 공동저자이다.\r\n\r\n이 논문에서는 최근 정보통신환경의 핵심 화두인 GPS나 센서등에서 연속적으로 생성되는 대용량 데이터 스트림에 대해 BMQ(Border Monitoring Query)라는 새롭고 유용한 모니터링 개념을 제시한 후, 이를 효율적으로 처리하는 색인기법을 제안하였다.\r\n\r\n기존 학계연구와는 차별화된 데이터 스트림 모니터링 개념을 제시하였고 이를 뒷받침하는 참신하고도 유용한 서비스 시나리오를 제안한 것을 최고 논문 선정사유로 꼽았다.\r\n\r\n참고자료\r\n\r\n1. 올해 MDM 학회에 제출된 논문편수: 117편\r\n2. 이중 채택된 논문편수: 27편(full), 13편(short)\r\n3. 학회사이트(http://www.mdm2006.kddilabs.jp)",
+    "tag": "csweb.news",
+    "id": 988
+}

@@ -1,0 +1,8 @@
+{
+    "title": "김주호 교수 연구팀, ACM CSCW 2019 학회 Best Paper Honorable Mention Award 수상",
+    "date": "2019-11-29T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9029&page=10&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 김주호 교수 연구팀이 지난 11월 9~13일에 미국 오스틴에서 열린ACM CSCW 2019 (The 22nd ACM Conference on Computer-Supported Cooperative Work and Social Computing) 국제학회에서Best Paper Honorable Mention Award를 수상하였다. ACM CSCW 학회는 Human-Computer Interaction 분야의 최고 권위 학회로, Best Paper Honorable Mention Award는 전체 논문 중 상위 5％의 논문에 주어지는 상이다. 본 연구는 국제 협력의 결과로, 김주호 교수 연구실에서 연구원으로 근무하던 정준영(제1저자, 현재 University of Michigan 박사과정) 씨가 KAIST에서 시작한 연구를 확장시켜 University of Michigan 연구팀과의 협력 연구로 발전시켰다.\n논문 제목:\n‘Efficient Elicitation Approaches to Estimate Collective Crowd Answers’\n본 논문에서는 기계학습을 위한 데이터셋을 생성하는 데에 필수적으로 활용되는 크라우드소싱 기법에 대한 연구로, 명확한 정답이 없는 감정인식이나 단어 간 연관관계 파악 등 주관적이고 모호한 작업에 적용 가능한 기술을 소개하였다. 크라우드 작업자에게 제공하는 질문방식을 다르게 하여 실험적으로 비교한 결과 <다른 사람의 입장에서 가능한 모든 답을 고르게 한 경우>가 가장 효과적이었고, 기본적인 방식과 비교해 40％ 적은 인력을 필요로 하면서도 21.4％의 작업시간 감소 효과가 있었다. 대규모의 데이터셋을 필요로 하는 다양한 기계학습 기반 인공지능 어플리케이션 구축에 실질적인 비용절감을 가능케 하는 기법을 소개하였다는 면에서 의의가 있다.\n논문 요약 블로그 포스트:\nhttps://medium.com/acm-cscw/efficient-elicitation-approaches-to-estimate-collective-crowd-answers-bd4c9adddb18\n논문 링크:\nhttps://dl.acm.org/citation.cfm?id=3359164\n논문 정보: John Joon Young Chung, Jean Y. Song, Sindhu Kutty, Sungsoo (Ray) Hong, Juho Kim, and Walter S. Lasecki. 2019. Efficient Elicitation Approaches to Estimate Collective Crowd Answers. Proc. ACM Hum.-Comput. Interact. 3, CSCW, Article 62 (November 2019), 25 pages. DOI: https://doi.org/10.1145/3359164",
+    "tag": "csweb.news",
+    "id": 390
+}

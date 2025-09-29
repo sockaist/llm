@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 학사과정 김우재 학생 URP 수상",
+    "date": "2021-03-18T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9610&page=8&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 학사과정 김우재 학생이 2월 23일(화), 온라인으로 개최된 2020 여름/가을학기 URP(학부연구프로그램) 프로그램 워크샵 제 2 발표장(전자 및 전기공학부, 전산학부, 기계공학과, 산업디자인학과, 건설 및 환경공학과) 최우수상을 수상했다. (지도교수: 윤성의, 조교: 조윤기 박사과정).\nTitle: Generative Adversarial Perturbations on Attention Space for Better Transferability\n제목: 공격 전이를 위한 이미지 어텐션 기반의 적대적 잡음 생성 모델\nAbstract:\nAdversarial attacks have exposed the vulnerability of deep neural networks by fooling them in various computer vision related applications. However, these attacks often suffer from low success rates against unknown black-box models, diminishing their viability in real-world usages.\nIn this paper, we propose a novel method to boost the attack transferability from a white-box surrogate model to black-box target models. We perturb images on their attention space, attacking universal characteristics shared by different models and thus boosting transferability. Different from previous gradient-based methods that easily overfit to most vulnerable features unique to the surrogate model, we apply diversity regularization that guides our attack to explore more diverse features to perturb, decreasing the overfitting issue of the attack. We optimize these objectives using a generator. Extensive experiments on the existing benchmarks show that our attack outperforms the prior transfer-based black-box attacks in terms of transferability, thanks to the attention guidance and diversity regularization.\n수상을 축하드립니다.",
+    "tag": "csweb.news",
+    "id": 316
+}

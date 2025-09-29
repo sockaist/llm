@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 한준 교수 연구팀, ACM MobiSys’24 Best Paper Award 수상",
+    "date": "2024-08-05T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11165&page=3&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 사이버-물리시스템 및 보안(CyPhy) 연구실 한준 교수팀이 스마트폰을 이용해 분말 형태의 식품 진위 여부를 판별하는 기술을 개발, 그 성과를 인정받아 모바일 컴퓨팅 분야 최고 권위 학회인 ACM MobiSys에서 Best Paper Award를 수상했다.\n한준 교수팀의 논문 ＊＊\"PowDew: Detecting Counterfeit Powdered Food Products using a Commodity Smartphone\"＊＊은 스마트폰 카메라와 센서를 활용해 분말 식품의 미세 구조를 분석하고, 이를 기반으로 진품과 가품을 구별하는 혁신적인 방법을 제시했다. 이 기술은 복잡한 장비 없이 누구나 손쉽게 사용할 수 있어 '가짜 분유'와 같은 식품 안전 문제에 대한 소비자의 불안감을 해소하는 데 크게 기여할 것으로 기대된다.\nACM MobiSys는 모바일 시스템 분야에서 가장 권위 있는 학회 중 하나로, 올해 263편의 논문이 제출되는 등 치열한 경쟁 속에서 한준 교수팀의 논문이 최우수 논문으로 선정된 것은 그 의미가 매우 크다고 할 수 있다. 특히, 이번 연구는 POSTECH, 연세대, 싱가포르국립대와의 공동 연구를 통해 이루어졌다는 점에서 더욱 주목받고 있다.\n한준 교수와 윤종혁 연구원은 \"이번 연구는 스마트폰이라는 일상적인 도구를 활용하여 식품 안전 문제 해결에 기여할 수 있다는 가능성을 보여주었다\"며, \"앞으로도 스마트폰을 기반으로 한 다양한 사회 문제 해결 연구를 지속적으로 수행할 계획\"이라고 밝혔다.\n[관련 기사]\n-\nhttps://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=38770\n-\nhttps://www.yna.co.kr/view/AKR20240802037500063\n-\nhttps://www.sedaily.com/NewsView/2DCUYKINTT",
+    "tag": "csweb.news",
+    "id": 85
+}

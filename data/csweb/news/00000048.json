@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 연구팀, 뇌 MR 영상 합성 챌린지 세계 1위！",
+    "date": "2024-10-16T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11232&page=2&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 박진아 교수 연구팀의 조지훈 박사와 박승혁 석사과정 학생이 최근 모로코에서 열린 세계적인 의료 영상 처리 학회인 ‘의료영상처리 2024 (Medical Image Computing and Computer Assisted Intervention 2024, MICCAI)’에서 뇌 MR 영상 합성 챌린지인 Brasyn(ASNR-MICCAI BraTS MRI Synthesis Challenge)에서 1위를 차지했다.\nBrasyn 챌린지는 뇌 MR 영상의 네 가지 모달리티(T1, T2, FLAIR, T1ce) 중 한 가지 모달리티가 손실되거나 심각하게 손상된 경우, 누락된 모달리티를 복원하는 기술을 겨루는 대회이다. 이 대회는 의료 영상에서 발생할 수 있는 정보 손실 문제를 해결하고, 보다 신뢰할 수 있는 진단 영상을 생성하는 데 중점을 둔다.\n연구팀은 이 챌린지에서 2단계 접근 방식을 사용했다. 2차원(2D) 영상과 3차원(3D) 영상 처리 기법의 장점을 결합하여 보다 정확하고 자연스러운 MR 영상을 생성하는 혁신적인 방법을 도입했다. 이 방법을 통해 우수한 성능을 발휘하며 최종 1위를 차지했다.\n이번 연구 결과는 뇌 질환 진단의 정확도를 크게 향상시키고, 보다 효과적인 치료법 개발에 기여할 것으로 기대된다. 연구팀은 앞으로도 인공지능 기술을 활용하여 의료 영상 분석 분야에서 선도적인 역할을 지속해 나갈 계획이다.\n자세한 내용은 아래 링크를 통해 확인할 수 있다.\nBrasyn 챌린지 홈페이지:\nhttps://www.synapse.org/Synapse/wiki/627507",
+    "tag": "csweb.news",
+    "id": 72
+}

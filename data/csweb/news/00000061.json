@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 김문주 교수와 유신 교수, 정보과학회 Top A급 우수국제학회인 IEEE ICST ＇24에서 Most Influential Paper Award 수상",
+    "date": "2024-05-21T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11101&page=3&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 김문주 교수와 유신 교수가 정보과학회 Top A급 우수 국제학술대회인 2014년 IEEE Intl. Conf. on Software Testing, Verification and Validation (ICST) 에서 발표한 논문 \"MUSE (MUtation-baSEd fault Localization)\"가 IEEE ICST 2024에서 지난 10년간 가장 영향력 있는 논문에 수여되는 Most Influential Paper Award를 수상했다.\n출처: ICST 2024 Most Influential Papers\n김문주 교수와 유신 교수 연구팀은 소프트웨어 개발 과정에서 많은 개발자의 시간이 오류 위치를 찾고 수정하는 데 소요되는 문제를 해결하기 위해, 새로운 자동 오류 위치 검출 기술인 MUSE를 개발했다.\nMUSE는 테스트 대상 소프트웨어를 다양한 방식으로 변이시킨 후, 각 변이 버전에 대한 테스트 통과/실패 결과의 변화를 통계적으로 분석하여 소프트웨어 오류의 위치를 정확히 검출하는 혁신적인 기술을 도입했다.\n이 연구는 소프트웨어 오류 위치 자동 검출 분야의 새로운 장을 열었으며, 많은 후속 연구가 이를 기반으로 진행되어 소프트웨어 품질 향상에 큰 기여를 했다.",
+    "tag": "csweb.news",
+    "id": 97
+}

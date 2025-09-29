@@ -1,0 +1,8 @@
+{
+    "title": "전산학부 강민석 교수팀, GSMA(세계이동통신사업자협회)의 모바일 보안 명예의 전당에 이름 올려​",
+    "date": "2020-11-23T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9488&page=9&skey=subject&svalue=&menu=83",
+    "content": "우리 대학 전산학부 강민석 교수팀이 발견한 4G/5G 이동통신시스템의 보안 취약점이 GSMA(세계이동통신사업자협회)의 취약점 공개 프로그램(CVD)에 의해 공식적으로 인증받고 (CVD-2020-0040) 모바일 보안 명예의 전당(Mobile Security Hall of Fame)에 이름을 올렸다. (GSMA 홈페이지:\nhttps://www.gsma.com/security/gsma-mobile-security-hall-of-fame/\n)\nGSMA(세계이동통신사업자협회)는 1987년 결성된 전세계 이동통신사업자 및 핸드폰 제조 공급업체들의 모임으로 700여 이동통신사업자와 200여 장비 및 핸드폰 제조업체들이 참여하고 있는 이동통신사업자 협회다.\nGSMA 보안 취약점 공개 프로그램에 의한 인증은 우리나라 연구 기관으로는 최초의 성과다.\n이번에 공개된 보안 취약점은 4G/5G 사용자의 실시간 모바일 데이터 사용 관련 정보를 의도치 않게 공격자에게 노출시키는 시스템 부채널(side channel) 결점으로, 강 교수 연구팀에 의해 최초로 발견됐다. 해당 취약점은 모바일 데이터를 사용중인 이용자의 실내외 이동경로를 높은 정확도로 추정하는 공격을 가능케 해 주의가 요구된다.\n관련 보안 취약점을 이용한 모바일 이용자 이동경로 추적 공격은 컴퓨터 보안 최고 권위 학회중 하나인 Usenix Security 2021에서 내년 8월에 발표될 예정이며 논문 본문은 다음의 학회 홈페이지에서 확인 가능하다(\nhttps://www.usenix.org/conference/usenixsecurity21/presentation/lakshmanan\n). 연구는 강민석 교수의 박사지도학생 Nitya Lakshmanan (National University of Singapore 재학 박사과정 4년차)과 Mun Choon Chan, Jun Han 교수 (National University of Singapore) 등과의 협업으로 수행됐다.",
+    "tag": "csweb.news",
+    "id": 325
+}

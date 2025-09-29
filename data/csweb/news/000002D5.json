@@ -1,0 +1,8 @@
+{
+    "title": "초분광 3차원 영상 측정 시스템 및 소프트웨어 개발",
+    "date": "2014-08-29T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=6349&page=19&skey=subject&svalue=&menu=83",
+    "content": "[\n김민혁 교수\n]\n3차원 영상시스템은 제조업에서 기본적으로 필요한 제품 검사부터, 영화, 광고, 그리고 게임 등의 엔터테인먼트 산업에서까지 다양한 분야에서 폭넓게 활용되고 있다. 하지만 지금까지의 3차원 영상 시스템은 삼원색의 색상(빨강, 녹색, 파랑)을 3차원으로 재현하는 것에 제한되었기 때문에, 용도와 성능의 한계가 있는 것이 실정이다. 이러한 한계를 극복하고자, 본 연구에서는 3차원 영상처리기술을 분광 축 영역으로 확장하려고 한다. 삼원색 3차원 영상기술을 고해상도의 초분광 3차원 영상기술로 확장하는 최초의 연구로서, 연구의 범위에는 이를 위한 핵심원천기술 개발 뿐 만 아니라 하드웨어 시스템 설계 및 초분광 3차원 영상 분석/가시화 소프트웨어 개발도 포함된다. 본 연구를 통해 지금까지 삼원색 가시영역에 제한되어 있던 3차원 영상기술의 활용 범위가 물체의 물리적 특성을 연구하는데 기본 측정 방법으로 활용될 것으로 기대된다.\n3차원 영상 분광측정 시스템의 흐름도 (ACM Trans. on Graphics, 31(4), 38:1-11, SIGGRAPH 2012)\n[우수성과 및 기대효과]\nㆍ한국연구재단의 지원으로 사업이 현재 수행되고 있으며 (2013R1A1A1010165, 2013M3A6A6073718), 또한 삼성전자와 마이크로소프트 리서치 아시아의 지원을 추가로 받았다.\nㆍ본 연구 내용 영상시스템 하드웨어는 컴퓨터 그래픽스 분야의 최고 저널인 ACM Transactions on Graphics, 2012에 게재되었고, 소프트웨어 시스템은 International Symposium on Virtual Reality, Archaeology and Cultural Heritage (VAST 2012)에서 최우수 논문상을 수상하고 ACM Journal on Computing and Cultural Heritage, 2014에 추가로 게재되었다.\n[참고자료]\nㆍ M. H. Kim, T. A. Harvey ,D. S. Kittle, H. Rushmeier, J. Dorsey, R. O. Prum, D. J. Brady (2012)\n, \"3D Imaging Spectroscopy for Measuring Hyperspectral Patterns on Solid Objects,\" ACM Transactions on Graphics (Proc. SIGGRAPH 2012), 31(\n4)\n, July 2012, pp. 38:1-11 (\nIF=3.361)\nㆍ M. H. Kim, H. Rushmeier, J. ffrench, I. Passeri, D. Tidmarsh (2014)\n, \"Hyper3D: 3D Graphics Software for Examining Cultural Artifacts,\" ACM Journal on Computing and Cultural Heritage, 7(3), February, pp. 1:1-19",
+    "tag": "csweb.news",
+    "id": 725
+}

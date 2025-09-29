@@ -1,0 +1,8 @@
+{
+    "title": "2013 Best Paper Award 수상",
+    "date": "2013-03-27T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=5987&page=20&skey=subject&svalue=&menu=83",
+    "content": "[김순태 교수]\n김순태 교수와 홍석인 박사과정 학생이 카이스트 전산학과 단독으로\nDesign, Automation and Test in Europe conference(DATE) 2013 학회에\n서 Best Paper Award를 수상하였습니다. DATE는 DAC(Design Automation Conference)과 쌍벽을 이루는 설계자동화 및 임베디드 시스템 분야의 세계적인 학회로 프랑스의 Grenoble에서 개최되었습니다.총 829편의 논문이 제출 및 평가되었고 이 중 206편이 선정되어 24.8％의 채택율을 기록하였습니다. Design, Application, Test and Reliability, Embedded Software 4개의 트랙에서 각각 한편씩 best paper가 선정이 되었고, 김순태 교수와 홍석인 학생은 Design 트랙에서 Best Paper Award를 수상하였습니다. Design 트랙은 전체 논문의 절반이상을 차지하는 가장 큰 트랙으로 500 여편의 제출논문 중에서 수상한 것입니다. 발표 논문제목은 \"AVICA: An Access-time Variation Insensitive L1 Cache Architecture\"로 technology scaling에 의해 발생하는 process variation(공정변이)을 fault rate (에러율)에 무관하게 효과적으로 방지하는 AVICA라는 이름의 L1 cache architecture를 제안해 심사위원들의 매우 좋은 평가를 받았습니다. 기존의 다른 기법들이 에러율이 높아짐에 따라 오버헤드가 매우 증가하는데 반해 AVICA는 동일 오버헤드를 유지할 수 있어서 근 미래에 사용될 프로세서에 내장되는 L1 cache에 적용될 수 있는 우수한 기술로 평가받고 있습니다. 국내에서도 DATE에 꾸준히 매년 논문이 제출되고 있고 이번 수상은 아시아권 대학으로써는 최초로 카이스트와 대한민국의 우수성을 알리는 기회가 되었습니다.",
+    "tag": "csweb.news",
+    "id": 797
+}

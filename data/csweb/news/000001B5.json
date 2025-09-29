@@ -1,0 +1,8 @@
+{
+    "title": "네트워크 분야 세계 최고 학회 IEEE INFOCOM 2019에 논문 발표",
+    "date": "2019-05-08T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8761&page=11&skey=subject&svalue=&menu=83",
+    "content": "지난 2019년 4월 29일~5월 2일 프랑스 파리에서 개최되는 네트워크 분야의 최우수 학회(Top Tier)인 IEEE International Conference on Computer Communications (INFOCOM:\nhttps://infocom2019.ieee-infocom.org/\n)에서 KAIST 전산학부 석사 졸업생 박경준(지도교수 김명철)이 제출한 논문이 발표되었다.\n본 논문은 비디오의 각 부분마다 움직임 정도가 상이함을 인지하였고, 비디오의 각 부분에 맞는 적응적 프레임률을 적용하여 모바일 장치의 전력 소모를 최적화하는 방안을 제안한 논문이다.\nEVSO: Environment-aware Video Streaming Optimization of Power Consumption.\nKyoungjun Park and Myungchul Kim.\nhttps://infocom2019.ieee-infocom.org/accepted-paper-list-main-conference",
+    "tag": "csweb.news",
+    "id": 437
+}

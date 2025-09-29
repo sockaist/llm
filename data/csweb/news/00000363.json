@@ -1,0 +1,8 @@
+{
+    "title": "Prof. Soontae Kim and Ph.D. student Seokin Hong won ICCD 2010 Best Paper Award",
+    "date": "2010-10-14T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=5932&page=22&skey=subject&svalue=&menu=83",
+    "content": "전산학과 김순태 교수와 박사과정 홍석인 학생이\n2010\n년\n10\n월\n3\n일부터\n6\n일까지 네덜란드 암스테르담에서 개최된\n2010 IEEE International Conference on Computer Design\n에서\nbest paper\n상을 수상하였습니다\n.\n전체\n79\n편의 발표논문 중에서\n5\n편이\nbest paper\n상을 수상하였습니다\n.\n제목은\n\"Lizard: Energy-efficient Hard Fault Detection, Diagnosis, and Isolation in the ALU\"\n입니다\n.\n기존\nALU\n를 모듈라 방식으로 설계하여\nALU\n의 일부분이 고장이 나도 이를 감지하고 고장난 부분을 제거하여 중단없이 기능을 수행하는\n\"\n도마뱀\n\"\n같은\nALU\n를 설계하였습니다\n.\nProfessor Soontae Kim and Ph.D. student Seokin Hong won a best paper award in 2010 IEEE International Conference on Computer Design held in Amsterdam, Nethelands. Only five best papers were awarded out of 79 papers presented in the conference. Its title is \"Lizard: Energy-efficient Hard Fault Detection, Diagnosis, and Isolation in the ALU\". The ALU is designed in a modular fashion so that it can detect and isolate a faulty portion of the ALU, and continue its operation without a stop as lizards regenerate lost tails.",
+    "tag": "csweb.news",
+    "id": 867
+}

@@ -1,0 +1,8 @@
+{
+    "title": "정보보호대학원 손수엘 교수 연구진 NDSS 2020에 논문 게재 및 발표",
+    "date": "2020-02-26T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9092&page=10&skey=subject&svalue=&menu=83",
+    "content": "손수엘 교수 연구진은 이번 2020년 2월 24~27일 미국 San Diego에서 개최된 보안 분야 최우수학회 중 하나인 Network and Distributed System Security (NDSS) 에\n논문 FUSE: Finding File Upload Bugs via Penetration Testing\n을 게재 및 발표 하였다. (Acceptance Rate: 17.4％)\n현대 웹 애플리케이션의 파일업로드 기능은 사용자가 만든 콘텐츠를 공유한다는 관점에서, 중요한 특징 중 하나이다. 하지만, 파일업로드 기능은 공격자가 생성한 임의의 파일을 대상 서버에 업로드하여, 대상 시스템을 장악하는 디딤돌로 사용할 수 있는 잠재적 보안 위협이 존재한다. 본 연구에서 Web Security & Privacy 연구실에서는 모의 공격 테스팅 (Penetration testing) 도구 FUSE를 제작하여 WordPress, Joomla등 널리 쓰이는 33개의 실제 웹 애플리케이션에서 30개의 새로운 파일업로드 취약점을 발견하였고, 총 15개의 CVE를 부여 받았다. 또한 해당 기술을 구현한 모의 공격 테스팅 도구 FUSE를\nGitHub에 공개\n하였다.",
+    "tag": "csweb.news",
+    "id": 377
+}

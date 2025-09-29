@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 권영진·신인식 교수팀, 세계 최고 컴퓨터학회 ‘최우수 논문상’",
+    "date": "2024-12-02T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11317&page=2&skey=subject&svalue=&menu=83",
+    "content": "우리 KAIST 전산학부 권영진·신인식 교수 연구팀이 서울대학교 이병영 교수와 함께 컴퓨터 운영체제 분야 최고 권위 학회인 'ACM SOSP'에서 최우수 논문상을 수상했다. 이는 권 교수가 2021년에 이어 두 번째로 수상한 것으로, 아시아 최초의 사례이다.\n연구팀은 고성능 CPU 없이도 비순차적 실행으로 발생하는 '동시성 버그'를 탐지할 수 있는 기술을 개발했다. 이 기술은 소프트웨어 에뮬레이션을 통해 리눅스 운영체제를 구동하고, 퍼징 기법을 활용하여 리눅스 커널에서 11개의 새로운 버그를 발견하고 보고했다. 발견된 버그들은 보안 패치를 통해 해결되었다.\n권 교수는 이 기술이 리눅스뿐만 아니라 안드로이드 운영체제나 윈도우 등에도 적용 가능하며, 연구 결과물은 오픈소스로 공개되었다고 밝혔다.\n관련기사\n연합뉴스:\nhttps://www.yna.co.kr/view/AKR20241129034400063\n데일리비즈온:\nhttps://www.dailybizon.com/news/articleView.html?idxno=40663\n이뉴스투데이:\nhttps://www.enewstoday.co.kr/news/articleView.html?idxno=2206771\n대학저널:\nhttps://www.dhnews.co.kr/news/view/1065576786010656\n머니투데이:\nhttps://news.mt.co.kr/mtview.php?no=2024112908143927610",
+    "tag": "csweb.news",
+    "id": 61
+}

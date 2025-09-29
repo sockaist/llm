@@ -1,0 +1,8 @@
+{
+    "title": "Cluster Server 사용 안내",
+    "date": "2012-04-02T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=4342&page=11&skey=subject&svalue=&menu=151",
+    "content": "안녕하세요. IBM Cluster Computing Center 담당자 전남균입니다. 저희 Center에서는 빠른 Data 처리를 위해 Cluster Server를 운영하고 있으며, service를 위해 노력하고 있습니다. IBM Cluster는 각종 LAB과 개인 모두 이용 가능하며 이용을 원하시는 분들께서는 hpc.kaist.ac.kr 로 접속 하시어 안내 규정대로 신청서를 작성하시면 Data 처리의 service를 위해 최선을 다 하도록 하겠습니다. IBM Cluster의 장비 는 CPU : 232 Core RAM : 720 GB HDD : 4.3 TB 8Core, 32GB, 146GB Disk 가 16개, 8Core, 32GB, 300GB Disk 가 7개로 총 23개의 Node들로 구성되어 있습니다. 많은 이용 부탁드리며 궁금한 사항이 있으시면 hpc@kaist.ac.kr 로 문의 주시거나 직접방문(전산학과 1422호) 또는 내선 8711번으로 연락주시기 바랍니다. 감사합니다.",
+    "tag": "csweb.notice",
+    "id": 315
+}

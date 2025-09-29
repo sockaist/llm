@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 박대영 학생, BigComp 2022 국제학술대회 ‘최우수논문상(Best Paper Award – 1st Place)’ 수상",
+    "date": "2022-02-17T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10063&page=7&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 석사과정 박대영(지도교수: 고인영) 학생이 지난 2022년 1월 17-20일 대한민국 대구에서 온-오프라인 병행 개최한 2022 IEEE International Conference on Big Data and Smart Computing (BigComp 2022)에서 “Urban Event Detection from Spatio-temporal IoT Sensor Data Using Graph-Based Machine Learning”이라는 제목으로 발표한 논문이 ‘최우수논문상(Best Paper Award – 1st Place)’을 수상하였다.\n이 논문에서는 스마트시티 환경에서 수집된 센서 데이터를 분석하여 이벤트를 탐지할 때 지역을 더 세분화 할수록 데이터가 부족하게 되어 그 정확도가 떨어지는 문제를 해결하기 위해 지리적인 특성을 반영하는 그래프 기반의 기계학습 방법을 제안하고, 실제 스마트시티 데이터를 활용한 실험을 통해 제안한 그래프 기반의 방법이 널리 사용되고 있는 다른 기계학습 방법보다 더 효과가 있음을 증명하였다.",
+    "tag": "csweb.news",
+    "id": 251
+}

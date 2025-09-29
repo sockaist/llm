@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 김문주 교수 연구실 ICST 2018에서 우수논문상 수상",
+    "date": "2018-04-16T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=8182&page=14&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학부 김문주 교수 연구실에서 발표한 \"Invasive Software Testing: Mutating a Target Program to Diversify Test Exploration for High Test Coverage\" 논문이 CORE Rank A급 우수학회인 IEEE International Conference on Software Testing, Verification and Validation (ICST) 2018 (acceptance rate:25％) 에서 Distinguished Paper Award 를 수상했습니다.\n해당 논문은, 기존의 SW 테스팅 패러다임을 뛰어넘는 새로운 기술인 Invasive Software Testing을 제안한 논문이다.\nInvasive Software Testing은 대상 SW 프로그램을 변형한 수많은 변이체들로부터 다양한 정보를 추출하여, 기존의 SW 테스팅이 분석하지 못하는 영역의 오류를 효과적으로 검출한다.\n본 논문은 Invasive Software Testing 패러다임을 구현한 DeMiner (guiDEed test generation using MutatIoN ExploRation) 프레임워크를 통해, 최신 테스팅 기술대비 SW 분석 효과가 비약적으로 상승함을 실험적으로 입증하였다.\n수상을 축하드립니다.",
+    "tag": "csweb.news",
+    "id": 522
+}

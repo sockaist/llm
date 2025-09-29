@@ -1,0 +1,8 @@
+{
+    "title": "KAIST DEAL Vision Team＇s Innovative Win at ACM MMSport 2023",
+    "date": "2023-11-15T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10927&page=4&skey=subject&svalue=&menu=83",
+    "content": "The DEAL Vision team from the Auto-ID lab of Professor Daeyoung Kim achieved an outstanding result in the Basketball player instance segmentation challenge. The work was done by Son Nguyen, Mikel Lainsa, and Hung Dao, with guidance and mentorship provided by Professor Daeyoung Kim from KAIST and Giang Nguyen from Auburn University.\nThe challenge was held as a part of the 2023 ACM MMSport workshop (the workshop's home page:\nhttp://mmsports.multimedia-computing.de/mmsports2023/index.html\n). The competition, carefully designed to address the occlusion problems in the Instance Segmentation task, has introduced a new, more restrictive metric to better discern instances in occlusion cases. Furthermore, participants also faced data efficiency problems within a limited dataset.\nIn response to these challenges, the KAIST DEAL Vision team proposed a novel data augmentation pipeline paired with a robust model. This innovative approach not only addressed the challenges effectively but also contributed to the team's success in securing the top position. Indeed, the team won prizes for the first place of the challenge and the most innovative approach (jury prize).",
+    "tag": "csweb.news",
+    "id": 123
+}

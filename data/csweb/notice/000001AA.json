@@ -1,0 +1,8 @@
+{
+    "title": "CS메일 개편 안내",
+    "date": "2011-01-31T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=4231&page=15&skey=subject&svalue=&menu=151",
+    "content": "전산학과 신규 메일 서비스 OPEN을 위한 메일서비스 테스트를 아래와 같이 진행합니다. 1. 신규 메일서비스 테스트 기간 : 2011년 2월 1일 ~ 2월 13일 (※2011년 2월 14일 오후, 정식 OPEN예정) 2.신규메일서버 개편 내용 : 1) 스마트 폰에서 접속이 가능합니다. 2) IMAP/POP3 등 다양한 프로토콜을 지원합니다. 3) 편리한 웹 인터페이스를 제공합니다. 4) 학생메일서버(Adam)이 CS메일로 통합됩니다. 3.서비스 접속하기 : -테스트 서비스 기간 : ㅁ웹메일 : http://csmail.kaist.ac.kr ㅁ모바일 : http://mtcs.kaist.ac.kr -정식 OPEN : ㅁ웹메일 : http://mail.cs.kaist.ac.kr ㅁ모바일 : http://mcs.cs.kaist.ac.kr 4.가입 및 로그인하기 : ㅁ교원 및 직원 : - ID : 기존ID - PW : 기존ID+사번 ㅁ전산학과 학생 신규 가입 후 사용하시면 됩니다. ㅁ 기타 : (교원 및 직원이 아님에도 CS메일 서버를 이용하였던 사용자) - ID : 기존 ID - PW : 기존ID",
+    "tag": "csweb.notice",
+    "id": 426
+}

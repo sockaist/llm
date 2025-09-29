@@ -1,0 +1,8 @@
+{
+    "title": "차상길 교수 IEEE TSE Best Paper Award 수상",
+    "date": "2022-12-23T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10587&page=5&skey=subject&svalue=&menu=83",
+    "content": "KAIST(총장 이광형) 전산학부 정보보호대학원 차상길 교수 연구팀이 IEEE 컴퓨터 소사이어티(IEEE Computer Society)에서 주관하는 2021 Best Paper Award를 수상했다.\n본 상은 소프트웨어 공학 최우수 저널인 IEEE Transactions on Software Engineering에서 2021년에 출판된 논문 가운데 1편만을 선정하여 주는 매우 영예로운 상이다.\n\"\nThe Art, Science, and Engineering of Fuzzing: A Survey\n\" 논문은 KAIST 사이버보안연구센터 겸직연구원인 Valentin Manes가 1 저자로, 그리고 차상길 교수가 교신저자로 참여하였으며, 소프트웨어 공학에서 주목받고 있는 다양한 퍼징 논문을 조사하여 하나의 통일된 이론을 정립한 것으로 큰 주목을 받은 바 있다.\n논문의 결과물인 퍼징 도구 혈통관계도는 온라인(https://fuzzing-survey.org)으로 서비스되고 있으며 현재 KAIST 소프트웨어보안 연구실과 사이버보안연구센터에서 관리, 운영 중에 있다.",
+    "tag": "csweb.news",
+    "id": 183
+}

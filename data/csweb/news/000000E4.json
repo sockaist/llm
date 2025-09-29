@@ -1,0 +1,8 @@
+{
+    "title": "ICRA 2022 졸업생 유형열(지도교수 윤성의) 석사논문 발표",
+    "date": "2022-06-02T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10291&page=6&skey=subject&svalue=&menu=83",
+    "content": "지난 5월 23일~27일 미국 필라델피아에서 진행된 로봇틱스 분야 최대 컨퍼런스인 ICRA 2022(IEEE International Conference on Robotics and Automation)에서 우리 전산학부 석사졸업생인 유형열(지도교수 윤성의)씨의 석사논문이 발표되었다.\n본 연구논문은 ICRA 컨퍼런스에서 Outstanding Navigation Award Finalist 에 선정되었으며 컨퍼런스 전체 1500 편의 발표 논문 중 전체 Category 에서 40편의 논문만 선정된다.\nConfidence-Based Robot Navigation Under Sensor Occlusion with Deep Reinforcement Learning\nHyeongyeol Ryu, Minsung Yoon, Daehyung Park, and Sung-Eui Yoon\nIEEE International Conference on Robotics and Automation (ICRA), 2022\nhttp://sglab.kaist.ac.kr/CBN-DRL/\n본 논문은 로봇 센서에 이물질이 묻었을 때도 로봇 주행이 잘 되도록 하는 기술로 작성되었으며 강화학습 전문가인 전산학부 박대형 교수와 공동연구를 진행하였다.\n해당연구는 다년간의 KAIST 로봇 분야 교수 및 연구진들과 정부 과제 협력을 하면서 쌓은 역량에 바탕으로 진행하게 되었으며\n- 2012년부터 심현철 교수(전기및전자공학부)와의 무인차 연구 -조성호(전산학부)/오준호 명예교수(기계공학부)와의 휴머노이드 과제, 명현 교수(전기및전자공학부)와의 드론 과제 - 박해원 교수(기계공학부)와의 사족 로봇 과제에서도 다양한 로봇 경로 생성 연구를 하고 있다.",
+    "tag": "csweb.news",
+    "id": 228
+}

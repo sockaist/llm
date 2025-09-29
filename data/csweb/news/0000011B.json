@@ -1,0 +1,8 @@
+{
+    "title": "˝Privacy-Preserving Deep Learning： A Comprehensive Survey˝ 출판",
+    "date": "2021-09-16T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9864&page=8&skey=subject&svalue=&menu=83",
+    "content": "KAIST(총장: 이광형) 전산학부 정보보호대학원 김광조 명예교수는 박사학위 졸업생인 Harry Chandra Tanuwidjaja와 함께 카이스트와 신시내티 대학간 한미 공동 연구로 2017년 6월부터 2020년 5월까지 추진한 정보통신기획평가원(IITP)이 후원한 “양자컴퓨터 환경에서 래티스문제를 이용한 다자간 인증키 교환 프로토콜 연구 (연구책임자:김광조 명예교수) 과제와 2019년부터 6년 동안 진행되는 융합보안대학원 사업(연구책임자: 이주영 교수)의 연구 성과로“Privacy-Preserving Deep Learning: A Comprehensive Survey”(심층 학습을 이용한 프라이버시 보호)라는 영문 서적을 2021년 9월 독일의 저명 출판사인 Springer에서 사이버 보안 시스템과 네트워크 시리즈 중 기존에 저술한 “Network Intrusion Detection Using Deep Learning”에 이어 2번째 도서로 발행하였다.\n이 도서는 최근 크게 주목을 받고 있는 심층학습과 각종 암호학적 프라이버시 보호 프로토콜을 결합한 MLaaS(Machine Learning as a Service)의 도구로 PPDL(Privacy-Preserving Deep Learning)에 관한 최신 연구 결과를 비교 분석 및 장∙단점을 평가하고, 향후 과제로 연합학습(Federated Learning)을 이용한 프라이버시 보호 기법도 소개하였다.\n본 도서는 AI ＋ Privacy 에 관한 다양한 결합 기법을 이해하기 위한 입문서로 학부 및 대학원생, 연구∙개발 담당자에게 실용적인 좋은 지침서가 될 것이며, 사이버 공간상 비대면 거래의 증대로 심각한 개인정보 누출 문제를 인공 지능적인 접근으로 개인의 프라이버시 정보를 노출하지 아니하고 각종 통계 결과를 수집하여 주요 질병 관리, 기술 정책 결정, 경제 활동 예측 등으로 본 도서는 활용할 수 있다.\n참조 :\nhttps://www.springer.com/gp/book/9789811637636",
+    "tag": "csweb.news",
+    "id": 283
+}

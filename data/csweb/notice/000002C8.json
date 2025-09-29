@@ -1,0 +1,8 @@
+{
+    "title": "세미나(Computational Model of Perspective for  Generating Baseball Summaries)",
+    "date": "2006-11-22T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=3945&page=24&skey=subject&svalue=&menu=151",
+    "content": "현재 MIT에서 박사과정에 공부중인 오해윤씨가 전산학전공에서 세미나를\r\n하오니 관심있는 학생들은 참석하시기 바랍니다.\r\n\r\n세미나제목 : \r\n          Computational Model of Perspective for Generating Baseball    \r\n          Summaries\r\n          \r\n연  사 :   오해윤 (MIT 박사과정)\r\n시  간 :   11월 23일 (목) 오후 4시\r\n장  소 :   전산학과 4층 안영경 강의실\r\n\r\nABSTRACT:\r\nI will describe building and evaluating a system for generating text summaries of baseball games from multiple perspectives. For many sports games, there are at least two summary newspaper articles, at least one from each team's perspective. I will first present an analysis of how different newspaper articles written about the same game differ, depending on the perspective. Then I will describe a computational model of perspective. Finally, I will present my system for generating summaries from multiple\r\nperspectives and a preliminary evaluation result.",
+    "tag": "csweb.notice",
+    "id": 712
+}

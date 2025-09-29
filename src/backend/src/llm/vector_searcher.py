@@ -89,7 +89,7 @@ class VectorSearcher:
             
             # 여러 컬렉션에서 검색
             collections = [
-                "csweb.news", "csweb.ai", "csweb.admin", "csweb.profs", 
+                "csweb.news", "csweb.ai", "csweb.admin", "csweb.profs", "notion.notice", "notion.marketing",
                 "portal.job", "portal.startUp"
             ]
             

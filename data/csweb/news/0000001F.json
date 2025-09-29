@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 김민수 교수팀, 세계 최고 수준 GPU 그래프 연산 프레임워크 개발",
+    "date": "2025-05-28T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11462&page=1&skey=subject&svalue=&menu=83",
+    "content": "<(왼쪽부터) 윤희용 박사과정, 한동형 박사과정, 오세연 박사과정, 김민수 교수>\nKAIST 전산학부 김민수 교수 연구팀이 고속 그래프 연산이 가능한 GPU 기반 연산 프레임워크 '지플럭스(GFlux)'를 개발했다. 지플럭스는 1조 간선 규모의 그래프도 단일 GPU 컴퓨터에서 효율적으로 처리할 수 있도록 설계됐으며, GPU 메모리 최적화 기술과 독자적 저장 포맷(HGF), 새로운 주소 체계 등을 통해 기존보다 25배 이상 높은 성능을 달성했다. 특히 엔비디아 CUDA 통합 메모리에 의존하지 않고 독립적인 메모리 관리 기술을 구현했다는 점에서 주목받고 있다.\n이번 성과는 과학기술정보통신부와 한국연구재단의 지원을 받아 수행됐으며, 세계 최대 규모 단일 GPU 기반 삼각형 개수 세기 연산에 성공하는 등 기술적 완성도와 확장성을 입증했다.\n연합뉴스 :\nhttps://www.yna.co.kr/view/AKR20250527059500063?input=1195m\n동아사이언스 :\nhttps://www.dongascience.com/news.php?idx=71901\n디지털타임즈 :\nhttps://www.dt.co.kr/contents.html?article_no=2025052702109902731005&ref=naver",
+    "tag": "csweb.news",
+    "id": 31
+}

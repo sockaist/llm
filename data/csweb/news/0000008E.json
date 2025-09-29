@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 차상길 교수 연구팀 USENIX Security Distinguished Paper Award 수상",
+    "date": "2023-08-11T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10819&page=4&skey=subject&svalue=&menu=83",
+    "content": "KAIST 차상길 교수 연구팀 USENIX Security Distinguished Paper Award 수상\n- FPS 컴퓨터게임 해킹프로그램(에임봇:Aimbots)의 획기적 탐지 방법 발표-\n▲ S2W 최민엽(KAIST 정보보호대학원 석사졸) 선임연구원 논문 발표 모습\n한국과학기술원(KAIST, 총장 이광형) 전산학부 / 정보보호대학원 차상길 교수 연구팀이 보안 분야 최우수 학술대회인 USENIX Security 2023에서 Distinguished Paper Award를 수상하였다.\n이번 수상은 정보보호대학원 석사과정을 마치고 S2W에 재직중인 최민엽 선임연구원과 사이버보안연구센터 고기혁 연구원이 함께한 연구논문 “BotScreen: Trust Everybody, but Cut the Aimbots Yourself”를 통해 이루어졌다.\n에임봇(Aimbots)은 컴퓨터 게임에서 사용되는 프로그램 또는 스크립트로, FPS 게임 내의 적 또는 대상을 자동으로 감지하고, 플레이어의 무기를 향해 자동으로 조준한 후 발사하는 기능을 가지고 있다.\n연구팀은 FPS게임에서의 에임봇 사용을 높은 정확도와 성능 저하없이 탐지할 수 있는 원천기술을 발표하였고 이를 위한 시스템을 대중에 공개하기도 하였다.\n해당 논문은 다음 URL에서 확인할 수 있다:\nhttps://softsec.kaist.ac.kr/~sangkilc/papers/choi-usenix23.pdf",
+    "tag": "csweb.news",
+    "id": 142
+}

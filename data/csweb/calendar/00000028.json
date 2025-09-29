@@ -1,0 +1,9 @@
+{
+    "title": "ERC AI Seminar ＃9, Yoon Kim(Research Scientist at MIT-IBM Watson AI Lab), Deep Unsupervised Learning of Language Structure)",
+    "date": "2020-08-18T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=9281&page=1&skey=&svalue=&menu=86",
+    "content": "title:ERC AI Seminar ＃9, Yoon Kim(Research Scientist at MIT-IBM Watson AI Lab), Deep Unsupervised Learning of Language Structure) date:2020-08-18T00:00:00Z link:https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=9281&page=1&skey=&svalue=&menu=86 content:E3-1 전산학부 안영경세미나실(4420호) Link: https://kaist.zoom.us/j/93144467487 Meeting ID: 931 4446 7487 Title: Deep Unsupervised Learning of Language Structure Abstract : Natural language has inherent structure. Words compose with one another to form hierarchical structures to convey meaning. While these compositional structures (such as parse trees) are crucial for mediating human language understanding, they are unobserved during human language acquisition. Yet, human learners have little trouble acquiring the syntax of their native language without explicit supervision. This has motivated the classical task of grammar induction, (i.e., data-driven discovery of syntactic structure from raw text), which has proven to be empirically difficult for artificial language learners. In this talk, I show how recent advances in model parameterization and inference can lead to improved computational tools for discovering syntactic structure from raw text. Bio : Yoon Kim is a research scientist at MIT-IBM Watson AI, working on machine learning and natural language processing. He obtained his PhD in Computer Science from Harvard University in 2020, advised by Alexander Rush. He will join MIT as an assistant professor in 2021. location: Zoom tag:csweb.calendar",
+    "location": " Zoom",
+    "tag": "csweb.calendar",
+    "id": 40
+}

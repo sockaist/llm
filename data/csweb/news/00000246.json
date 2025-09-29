@@ -1,0 +1,8 @@
+{
+    "title": "ACM GECCO HUMIES 은메달 수상",
+    "date": "2017-07-21T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=7734&page=15&skey=subject&svalue=&menu=83",
+    "content": "카이스트 전산학부 유신 교수가 이끄는 연구팀이 ACM SIGEVO가 주최하는 Genetic and Evolutionary Computation Conference (GECCO) 학회에서 진화연산을 이용해 인간과 대등한 성취를 이룬 연구 결과에 수여하는 Human Competitiveness Award (HUMIES) 은메달을 수상했다. 유신 교수의 수상은 본인이 연구한 기계학습 기반의 결함 위치 식별 기술(소프트웨어 테스팅 중 발견된 결함의 코드 내 위치를 자동으로 알려주는 기술)의 정확도가 기존에 인간이 연구한 기법과 동일할 뿐 아니라, 현재까지 기계학습을 통해 밝혀진 것보다 더 정확한 기술은 존재할 수 없음을 증명한 공로를 인정받은 결과이다.\n유 교수는 이번 수상의 핵심 요소인 이론적 증명의 뼈대를 제공함은 물론, 이론과 실험 양면에 걸친 결과가 ACM Transactions on Software Engineering and Methodology에 게재되기까지 중국의 우한 대학(Wuhan University), 호주의 스윈번 대학 (Swinburne University of Technology), 그리고 영국의 유니버시티 컬리지 런던 (University College London) 소속 연구자들로 구성된 국제 연구팀을 이끈 뒤 해당 논문을 HUMIES 경쟁 트랙에 제출하여 금번 성과를 이루었다. 이번 HUMIES 경쟁 트랙에는 14팀이 참가했으며, 그 중 아홉 팀이 본선에서 발표를 통해 심사위원들의 평가를 받았다. 금메달은 최근 양자 얽힘에 대한 실험 결과를 인과모델로 설명하는 데에 유전 알고리즘 기반의 최적화를 사용한 시드니 대학 연구팀에게 돌아갔으며, 건축물의 트러스(truss) 구조 최적화 기술과 웹페이지 방문객 충성도를 높이기 위한 A/B 테스팅 최적화 기술이 동메달을 공동 수상하였다.\nACM GECCO는 20여년의 역사를 자랑하는 유전 및 진화 연산 연구 분야 최대 규모의 학회이다. 13개 트랙에 걸쳐 유전 및 진화 연산, 인공 생명, 인공 면역 시스템 등의 이론과 응용을 모두 다룬다. HUMIES Award는 올해로 14회째를 맞는 경쟁 트랙으로, 유전 프로그래밍 연구에 큰 공헌을 한 전 스탠포드대학 교수 존 코자(John Koza)에 의해 만들어졌다. 참가자는 어떤 분야에서건 진화 연산 기법이 인간과 동등한 성능을 보였다는 증거를 논문을 통해 제출해야 한다. 유 교수는 진화 연산 기법을 소프트웨어 공학 문제에 접목하는 이른바 검색 기반 소프트웨어 공학(Search Based Software Engineering) 분야에서 세계적인 전문가로 인정받고 있다.",
+    "tag": "csweb.news",
+    "id": 582
+}

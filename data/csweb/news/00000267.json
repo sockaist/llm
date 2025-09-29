@@ -1,0 +1,8 @@
+{
+    "title": "ACM CSCW 2017 KAIST 전산학부 3편 논문 발표",
+    "date": "2017-03-06T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=7458&page=16&skey=subject&svalue=&menu=83",
+    "content": "지난 2월 25일부터 3월 1일까지 열린, HCI (Human Computer Interaction)와 Social Computing 분야 최우수 학회의 하나인, The 20th ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW 2017)에서 KAIST 전산학부 박사과정 박정국(지도교수 오혜연), 석사졸업생 박천종(지도교수 이성주), 박사과정 강범수(지도교수 송준화) 학생이 총 세편의 논문을 발표했다.\n올해 20주년을 맞이하는 CSCW 학회는 집단과 공동체를 위한 기술을 디자인하고 활용하는 연구 분야에 초점을 맞추고 있으며, HCI와 Social Computing 분야의 최우수 학회중 하나로 오래동안 각광받고 있다. 올해 KAIST 전산학부에서 세편의 논문을 발표하며 이분야의 세계적 선도 연구를 이끌어가고 있다.\n오혜연 교수 연구실의 박정국 학생은 전산학 수업에서 peer assessment를 할 때 평가자가 다른 학생의 코드를 이해하는 것을 어려워하는 문제를 해결하고자 해당 코드가 작성된 과정을 처음부터 마지막까지 글자 하나하나의 수정 단위로 보여주는 시스템을 발표하였다. 이 논문은 Honorable Mention Award를 수상하였다.\n박천종 졸업생은 스마트폰 notification이 사람들간의 사교활동을 방해하는 문제를 해결하기 위해 스마트폰의 다양한 센서들을 이용해 사교활동에 방해되지 않는 순간을 감지하고, 그 순간까지 스마트폰의 notification을 지연하여 전달하는 기술을 발표하였다. 이 논문은 이성주 교수, 이동만 교수, 김주호 교수 연구실의 협업으로 이루어졌다.\n강범수 학생은 어린 아가를 가진 부모가 직장에서 자주 일어나는 자투리 시간을 활용하는 방법으로 아가에게 본인의 목소리로 책을 읽어주는 모바일 애플리케이션을 발표하였다. 이 논문은 송준과 교수, 이성주 교수 연구실과 미국 IBM 연구소의 협업으로 이루어졌다.\nEliph: Effective Visualization of Code History for Peer Assessment in Programming Education\nJungkook Park, Yeong Hoon Park, Suin Kim, and Alice Oh\n“Don’t Bother Me. I’m Socializing！”: A Breakpoint-Based Smartphone Notification System\nChunjong Park, Junsung Lim, Juho Kim, Sung-Ju Lee, and Dongman Lee\nZaturi: We Put Together the 25th Hour for You. Create a Book for Your Baby\nBumsoo Kang, Chulhong Min, Wonjung Kim, Inseok Hwang, Chunjong Park, Seungchul Lee, Sung-Ju Lee, and Junehwa Song",
+    "tag": "csweb.news",
+    "id": 615
+}

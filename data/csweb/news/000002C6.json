@@ -1,0 +1,8 @@
+{
+    "title": "대용량 그래프에서의 삼각형 검색 연구",
+    "date": "2015-01-12T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=6602&page=18&skey=subject&svalue=&menu=83",
+    "content": "[강 유 교수]\n그래프는 정점과 간선의 집합으로 구성되며 소셜 네트워크, 웹 페이지 연결 네트워크, 전화망 네트워크 등 다양한 네트워크를 표현한다. 그래프에서 삼각형이란 서로 연결된 세 정점 집합을 의미한다. 삼각형 검색 문제는 그래프에 존재하는 모든 삼각형을 찾아내는 것으로, 소셜 네트워크의 가짜 사용자를 찾아내거나 단백질 네트워크에서 모티프를 탐지하는 등 그래프에 존재하는 특이점(anomaly)을 찾는데 널리 활용되어왔다. 하지만 지금까지의 삼각형 검색 시스템 및 알고리즘들은 한 대의 연산장치만을 이용하거나 여러 장치를 이용하더라도 중간 데이터 증폭 문제가 발생하기 때문에, 최근 등장하는 월드와이드웹, 소셜 네트워크와 같은 그래프의 방대한 규모를 감당하지 못한다. 본 연구에서는 기존의 분산 알고리즘을 발전시켜, 전체 문제를 독립적인 작은 문제들로 나누어 처리하는 다단계 접근법(Multi-round approach)을 적용하여 중간 데이터 증폭 문제를 해결한다. 결과적으로, 48억 개의 정점과 79억 개의 간선으로 이뤄진 웹 그래프 데이터(Clueweb09)에서 모든 삼각형을 정확하게 열거해내는데 최초로 성공하였다. 본 연구를 통해 최근 급속히 크기가 증가하는 다양한 네트워크들을 분석함으로써 그 특성을 이해하고, 특이점 검출을 통한 데이터 마이닝의 활성화를 기대한다.\n다단계 접근법에 의한 삼각형 열거 흐름도. 큰 그래프는 k개의 독립적인 서브 그래프로 분할되고, 서브 그래프에 존재하는 삼각형은 여러 차례(Multi-round)에 걸쳐 열거된다.\n[연구 과제]\n본 연구는 미래창조과학부의 지원을 받아 수행되었다 [10044970, Symbolic Approach 기반 인간 모사형 자가학습 지능 원천 기술 개발].\n[연구 성과]\n본 연구 내용은 지식 데이터 마이닝 분야의 최상위 학회이자 전산학과 추천 S급 학회인 ACM International Conference on Information Knowledge Management (CIKM 2014) 에서 발표되었다.\n[참고자료]\nHa-Myung Park, Francesco Silvestri, U Kang, Rasmus Pagh (2014), \"MapReduce Triangle Enumeration With Guarentees,\" ACM International Conference on Information and Knowledge Management (CIKM), 2014",
+    "tag": "csweb.news",
+    "id": 710
+}

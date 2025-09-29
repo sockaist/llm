@@ -14,65 +14,73 @@ model = SentenceTransformer('jhgan/ko-sroberta-multitask')
 def content_embedder(text):
     """
     This function gets raw text of data and return semantic-based chunks and corresponding embedded vectors.
-    
-    Args:
-        text: raw text data
-    
-    Returns:
-        chunks : list of (t,v) tuples where t = semantically tokenized text and v = embedded vector for v
-    
+    Returns: list[(chunk_text, chunk_vector)]
     """
     try:
         # 입력 텍스트 검증
         if not text or not text.strip():
             print("Warning: Empty or None text provided to content_embedder")
             return []
-        
-        #sentences = sent_tokenize(sentence) 
-        sentences = kss.split_sentences(text) # Use kss instead of nltk; nltk has low accuracy at Korean
-        
-        # 빈 문장들 필터링
+
+        # 한국어 문장 분리
+        sentences = kss.split_sentences(text)
         sentences = [s.strip() for s in sentences if s.strip()]
-        
         if not sentences:
             print("Warning: No valid sentences found after tokenization")
             return []
 
-        vectors = model.encode(sentences)
-        
-        if len(vectors) == 0:
+        # 문장 임베딩
+        vectors = model.encode(sentences)  # shape: (N, D) or (D,) if 단일 문자열을 넘겼다면
+        # numpy 배열로 보장
+        vectors = np.array(vectors)
+
+        # 벡터 개수 0
+        if vectors.size == 0:
             print("Warning: No vectors generated from sentences")
             return []
-            
-        #print(vectors.shape)
 
+        # 벡터 차원 보정: 단일 벡터일 가능성 처리
+        if vectors.ndim == 1:
+            # vectors: (D,)
+            single_vec = vectors
+            single_text = " ".join(sentences)  # 문장 하나거나 여러 문장이어도 전체를 하나의 청크로
+            return [(single_text, single_vec)]
+
+        # 표본 수 확인
+        n_samples = vectors.shape[0]
+        if n_samples < 2:
+            # 안전망(이 경우는 위 ndim==1에서 대부분 걸림)
+            single_vec = model.encode([" ".join(sentences)])[0]
+            return [(" ".join(sentences), single_vec)]
+
+        # 클러스터링 실행 (표본 2개 이상일 때만)
         clusters = AgglomerativeClustering(n_clusters=None, distance_threshold=THRESHOLD)
         labels = clusters.fit_predict(vectors)
 
-        semantic_chunks = dict()
+        # 레이블별 문장 합치기
+        semantic_chunks = {}
         for i, label in enumerate(labels):
-            if label not in semantic_chunks:
-                semantic_chunks[label] = []
-            
-            semantic_chunks[label].append(sentences[i])
+            semantic_chunks.setdefault(label, []).append(sentences[i])
 
-        chunk_texts = [' '.join(group) for group in semantic_chunks.values()]
-        
+        chunk_texts = [" ".join(group) for group in semantic_chunks.values()]
         if not chunk_texts:
             print("Warning: No chunk texts generated")
             return []
-            
-        chunk_vectors = model.encode(chunk_texts)
-        
-        chunks = [(chunk_texts[i],chunk_vectors[i]) for i in range(len(chunk_texts))] 
 
-        return chunks
-        
+        # 청크 임베딩
+        chunk_vectors = model.encode(chunk_texts)
+        chunk_vectors = np.array(chunk_vectors)
+
+        # 단일 청크일 때 shape 방어
+        if len(chunk_texts) == 1 and chunk_vectors.ndim == 1:
+            return [(chunk_texts[0], chunk_vectors)]
+
+        return [(chunk_texts[i], chunk_vectors[i]) for i in range(len(chunk_texts))]
+
     except Exception as e:
         print(f"Error in content_embedder: {e}")
         print(f"Input text length: {len(text) if text else 0}")
         return []
-
 
 '''w. transformer itself
 from transformers import AutoTokenizer, AutoModel

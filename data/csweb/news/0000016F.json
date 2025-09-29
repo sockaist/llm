@@ -1,0 +1,8 @@
+{
+    "title": "정보보호대학원 이주영 교수 연구팀 Eurocrypt 2020 논문 발표",
+    "date": "2020-05-07T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9149&page=10&skey=subject&svalue=&menu=83",
+    "content": "암호학 분야 최우수 학회 Eurocrypt 2020에 KAIST 전산학부(정보보호대학원) 소속 논문이 채택되었다: “Tight Security Bounds for Double-block Hash-then-Sum MACs” (KAIST 전산학부 정보보호대학원 박사과정 김성광, 이병학, 이주영 교수)\nn-비트 블록암호를 사용하여 2n-비트의 내부상태를 갱신하는 메시지 인증 코드(MAC)는 대부분 2n/3 비트까지 안전성이 증명되었는데, 최근 3n/4 비트 수준의 공격이 제안되면서, 이들의 정확한 안전성이 중요한 open problem으로 여겨지고 있었다. 본 논문은 MAC의 안전성 증명에 사용되는 미러 이론(방정식 및 부등식의 해의 개수를 근사하는 이론)을 한 단계 발전시켜, PolyMAC, SUM-ECBC, PMAC_Plus, 3kf9, LightMAC_Plus 등 다양한 MAC에 적용하고, 이들 MAC의 안전성을 3n/4비트까지 증명하였다. 이 논문은 이번 Eurocrypt의 유일한 국내 논문으로서, 작년 국가암호공모전에서 최우수상을 수상한 바 있다",
+    "tag": "csweb.news",
+    "id": 367
+}

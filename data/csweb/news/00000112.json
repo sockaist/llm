@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 박진아 교수 연구실 박사과정 조지훈, 석사과정 정유진, 석사과정 강인하, 2021 국제의료영상처리학회(MICCAI) MOOD, MIDOG challenge에서 입상",
+    "date": "2021-11-10T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=9946&page=7&skey=subject&svalue=&menu=83",
+    "content": "KAIST 전산학과 박진아 교수님 CGV (Computer Graphics and Visualization) 소속의 조지훈 학생 (27세, 박사과정), 정유진 학생 (26세, 석사과정), 그리고 강인하 학생 (25세, 석사과정)이 지난 9/24-10/1일 프랑스에서 열린 ‘의료영상처리 2021 (Medical Image Computing and Computer Assisted Intervention 2021)’ 국제 학회의 MOOD(Medical Out-of-Distribution) 챌린지와 MIDOG(Mitosis Domain Generalization) 챌린지에서 각각 우수한 성적을 거두었다.\nMOOD 2021은 이상이 없는 정상적인 뇌와 복부 CT 이미지만 주어졌을 때, 병변이 있는지 없는지 구별할 수 있으며 병변의 위치를 찾아야 하는 챌린지이다. 여기서, 조지훈 학생과 강인하 학생은 augmentation을 활용한 pseudo anomaly dataset을 생성한다는 아이디어를 통해 classification task와 segmentation task에서 모두 우수한 성능을 보여 최종 1등을 차지했다. 자세한 내용은 챌린지 홈페이지에서 확인할 수 있다.\nMOOD 챌린지 홈페이지:\nhttp://medicalood.dkfz.de/web/\nMIDOG 2021은 세포 이미지로부터 분열기 세포의 위치를 검출하는 것을 목표로 하는 챌린지이다. 조지훈 학생과 정유진 학생은 Style Transfor 모듈을 활용하여 Scanner 간 이미지 차이로부터 발생하는 성능 변화에 강한 모델 학습 방법을 제안하여 4등을 차지했다. 자세한 내용은 홈페이지에서 확인할 수 있다.\nMIDOG 챌린지 홈페이지:\nhttps://imig.science/midog/",
+    "tag": "csweb.news",
+    "id": 274
+}

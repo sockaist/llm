@@ -1,0 +1,8 @@
+{
+    "title": "CS Mail System 개선작업을 위한 일시 정지 안내",
+    "date": "2012-04-03T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=notice&bbs_sn=4343&page=11&skey=subject&svalue=&menu=151",
+    "content": "안녕하십니까. IBM Cluster Computing Center 담당자 전남균입니다. 그 동안 문제가 많았던 CS Mail Server에 대하여 시스템의 오류 및 기능개선을 위해 다음과 같이 CS Mail service를 일시 종료합니다. ㅁ 내용 : 전산학과 CS Mail 의 잦은 Return Mail과 Error의 문제점을 해결하기 위하여 2주간 2회에 걸쳐 Mail service를 일시적으로 종료하여 작업이 진행됩니다. ㅁ 일시 : 1회 - 4월 7일 (토요일) 08:00 ~ 18:00 - 약 10시간 2회 - 4월 14일 (토요일) 08:00 ~ 16:00 - 약 8시간 ㅁ 조치 : 1회 - 현재 1대의 메일 서버에 Web과 DataBase를 통합하여 쓰고 있으나 일반적으로 사용량이 많은 메일 서버는 Web과 DataBase를 분할하여 사용하여야 과부하로 인한 Return Mail과 Error를 방지 할 수 있다고 합니다. 하여, 다른 Server 2대로 Mail System을 재구성 할 예정입니다. 2회 - 현재 사용하고 있는 1대의 서버(H/W)를 원래대로 사용하기 위해 Web Server 의 이전 작업을 실시할 예정입니다. ㅁ 기타 : 서버의 구성(Windows 및 MS-SQL 설치)이 끝나면 CS Mail Server의 유지보수를 맡고 있는 포이즌 코리아 측이 원격으로 접속하여 메일 서버의 일부 구성을 완료 할 예정입니다. 위와 같이 작업을 실시 할 예정이오니 다소 불편하시더라도 양해 부탁 드립니다. 혹여 다른 문제가 있으신 사용자께서는 hpc@kaist.ac.kr 로 문의하시면 즉시 확인하여 처리토록 하겠습니다. 감사합니다.",
+    "tag": "csweb.notice",
+    "id": 314
+}

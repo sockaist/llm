@@ -1,0 +1,8 @@
+{
+    "title": "차상길 교수, IEEE Test-of-Time Award 수상​",
+    "date": "2022-05-30T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10276&page=6&skey=subject&svalue=&menu=83",
+    "content": "< 정보보호대학원 차상길 교수 >\n우리 대학 전산학부 정보보호대학원 차상길 교수가 올해 5월에 열린 정보보안 최정상 학회인 IEEE Security & Privacy[1]에서 Test-of-Time Award를 수상했다.\nTest-of-Time Award란 지난 10년간 정보보안 분야에서 가장 큰 영향력을 행사했던 논문에 수여하는 것으로, 올해는 총 3개의 논문이 선정되었으며, 한국인으로서는 최초이다.\n선정된 논문은 차상길 교수가 지난 2012년에 발표했던 ‘Unleashing Mayhem on Binary Code’로 바이너리코드에서 버그를 자동으로 찾고, 공격코드로 연계되는 익스플로잇을 생성하는 알고리즘을 세계 최초로 제안했던 것이다 [2].\n당시 개발된 알고리즘은 인공지능 해킹대회인 CGC(Cyber Grand Challenge)[3] 등의 세계적 사이버 보안 해킹 경진대회에서 사용되는 핵심 알고리즘이라 할 수 있다.\n차상길 교수는 이 논문을 계기로 바이너리 분석을 통한 버그 및 취약점을 찾는 기술개발을 하기 위한 다양한 연구를 수행하여 왔으며, 현재는 다양한 바이너리 코드를 분석할 수 있는 토종 플랫폼인 'B2R2'를 개발하고 있다[4].\n< Test-of-Time Award 사진 >\n< 참고사이트 >\n[1] 43rd IEEE Symposium on Security and Privacy :\nhttps://www.ieee-security.org/TC/SP2022/\n[2] 수상관련 논문 'Unleashing Mayhem on Binary Code' :\nhttps://www.computer.org/csdl/proceedings-article/sp/2012/06234425/12OmNzcPAxU\n[3] 사이버그랜드챌린지 홈페이지 :\nhttps://www.darpa.mil/program/cyber-grand-challenge\n[4] B2R2 깃허브 :\nhttps://github.com/B2R2-org/B2R2",
+    "tag": "csweb.news",
+    "id": 229
+}

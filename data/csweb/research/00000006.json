@@ -1,0 +1,14 @@
+{
+    "name": "소프트웨어 테스팅 및 검증 연구실",
+    "professor": "김문주",
+    "field": "소프트웨어 디자인, 시스템·네트워크",
+    "web": "https://swtv.kaist.ac.kr/",
+    "email": "moonzoo@cs.kaist.ac.kr",
+    "phone": "042-350-3543",
+    "office": "E3-­1   2434호",
+    "intro": "https://socnas.kaist.ac.kr/drive/d/s/lyLtHm7FVBNWkXU1WeTVzhOdBn6MaKEW/wiZntrzIANFt9FPAKk1d5eqpoEkIKvYh-SrgAZQw2Awk",
+    "etc": "SWTV 연구실은 복잡한 SW의 오류를 자동으로 검출하고 자동으로 고치는 기술들을 연구한다.SW는 복잡한 자료 구조나 loop 등을 통한 수많은 다양한 수행동작으로 인해 매우 복잡하다. 또한 많은 SW가 multi-thread로 인한 동시성 문제를 갖게 되어 그 복잡도가 한층 더 높아진다. 이러한 SW의 높은 복잡도는 사람이 수작업으로 분석하고 처리할 수 있는 한계를 넘기 때문에, SW의 높은 복잡도로 인한 오류를 해결하기 위해, SW의 본질적인 특성에 대해 연구하고, 과학적인 SW 테스팅/디버깅 기술과 자동화 도구를 연구한다.핵심 연구 분야:- SW 자동 테스팅 기술: 대상 SW 코드를 분석하여 높은 테스트 커버리지를 달성하는 다양한 테스트 케이스를 자동으로 생성하는 기술- SW 자동 디버깅 기술: 오류가 존재하는 SW 코드 위치를 자동으로 파악하고, 위치를 파악한 오류를 자동으로 고치는 기술",
+    "tag": "csweb.research",
+    "id": 6,
+    "content": "name:소프트웨어 테스팅 및 검증 연구실 professor:김문주 field:소프트웨어 디자인, 시스템·네트워크 web:https://swtv.kaist.ac.kr/ email:moonzoo@cs.kaist.ac.kr phone:042-350-3543 office:E3-­1   2434호 intro:https://socnas.kaist.ac.kr/drive/d/s/lyLtHm7FVBNWkXU1WeTVzhOdBn6MaKEW/wiZntrzIANFt9FPAKk1d5eqpoEkIKvYh-SrgAZQw2Awk etc:SWTV 연구실은 복잡한 SW의 오류를 자동으로 검출하고 자동으로 고치는 기술들을 연구한다.SW는 복잡한 자료 구조나 loop 등을 통한 수많은 다양한 수행동작으로 인해 매우 복잡하다. 또한 많은 SW가 multi-thread로 인한 동시성 문제를 갖게 되어 그 복잡도가 한층 더 높아진다. 이러한 SW의 높은 복잡도는 사람이 수작업으로 분석하고 처리할 수 있는 한계를 넘기 때문에, SW의 높은 복잡도로 인한 오류를 해결하기 위해, SW의 본질적인 특성에 대해 연구하고, 과학적인 SW 테스팅/디버깅 기술과 자동화 도구를 연구한다.핵심 연구 분야:- SW 자동 테스팅 기술: 대상 SW 코드를 분석하여 높은 테스트 커버리지를 달성하는 다양한 테스트 케이스를 자동으로 생성하는 기술- SW 자동 디버깅 기술: 오류가 존재하는 SW 코드 위치를 자동으로 파악하고, 위치를 파악한 오류를 자동으로 고치는 기술 tag:csweb.research content:소프트웨어 테스팅 및 검증 연구실 김문주 소프트웨어 디자인, 시스템·네트워크 https://swtv.kaist.ac.kr/ moonzoo@cs.kaist.ac.kr 042-350-3543 E3-­1   2434호 https://socnas.kaist.ac.kr/drive/d/s/lyLtHm7FVBNWkXU1WeTVzhOdBn6MaKEW/wiZntrzIANFt9FPAKk1d5eqpoEkIKvYh-SrgAZQw2Awk SWTV 연구실은 복잡한 SW의 오류를 자동으로 검출하고 자동으로 고치는 기술들을 연구한다.SW는 복잡한 자료 구조나 loop 등을 통한 수많은 다양한 수행동작으로 인해 매우 복잡하다. 또한 많은 SW가 multi-thread로 인한 동시성 문제를 갖게 되어 그 복잡도가 한층 더 높아진다. 이러한 SW의 높은 복잡도는 사람이 수작업으로 분석하고 처리할 수 있는 한계를 넘기 때문에, SW의 높은 복잡도로 인한 오류를 해결하기 위해, SW의 본질적인 특성에 대해 연구하고, 과학적인 SW 테스팅/디버깅 기술과 자동화 도구를 연구한다.핵심 연구 분야:- SW 자동 테스팅 기술: 대상 SW 코드를 분석하여 높은 테스트 커버리지를 달성하는 다양한 테스트 케이스를 자동으로 생성하는 기술- SW 자동 디버깅 기술: 오류가 존재하는 SW 코드 위치를 자동으로 파악하고, 위치를 파악한 오류를 자동으로 고치는 기술 csweb.research"
+}

@@ -1,0 +1,8 @@
+{
+    "title": "KAIST 전산학부 허기홍 교수 연구팀, 소프트웨어 공학 분야 최우수 국제 학술대회 ICSE 2022에서 최우수 연구 기록물상 (Best Artifact Award) 수상",
+    "date": "2022-05-11T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=10240&page=6&skey=subject&svalue=&menu=83",
+    "content": "<사진상 좌측 : 김현수 석사과정, 우측 : 허기홍 교수>\nKAIST 석사 과정 김현수 씨와 University of Southern California 의 연구진으로 구성된 전산학부 프로그래밍 시스템 연구실의 허기홍 교수 연구진이 2022년 5월 소프트웨어 공학 분야 최우수 학술대회인 ICSE 2022 (The 44th ACM/IEEE International Conference on Software Engineering) 에 논문을 게재했으며, 동시에 최우수 연구 기록물상 (Best Artifact Award) 를 수상했다 (논문 제목: Learning Probabilistic Models for Static Analysis Alarms). 연구팀은 논문에서 프로그램 정적 분석을 사용한 SW 오류 탐지 시스템의 사용성을 개선하기 위한 베이지안 알람 랭킹 시스템의 학습 방법에 대한 프레임워크를 제안하고, 체계적인 실험을 통해 그 우수성을 입증하였다. 최우수 연구 기록물상은 뛰어난 연구 성과와 함께, 모든 구현과 데이터를 투명하게 학계에 공개하여 후속 연구의 밑거름을 제공한 기여를 인정받은 연구팀에게 수여된다.\n베이지안 알람 랭킹 시스템은 허기홍 교수 연구팀이 2018년부터 연구하고 있는 차세대 소프트웨어 오류 검출 시스템이다. 지난 5년간 꾸준히 최우수 국제 학술대회에서 그 성과를 인정받아 왔으며, 2019년에도 이 시스템에 관한 연구로 프로그래밍 언어 분야 최우수 학술대회인 PLDI 에서 최우수 논문상을 받아 학문적 우수성을 인정받은 바 있다. 이번 연구에서는 지난 5년간 개발한 시스템의 성능을 획기적으로 개선하는 학습 알고리즘을 제안하였다. 더불어 그동안 실험에 사용했던 모든 데이터와 프로그램을 후속 연구자들이 이용하기 쉽게 공개한 점을 인정받아 본 상을 수상하는 영광을 얻었다.\n이 연구의 책임자인 허기홍 교수는, “우리 과학자들은 뉴턴의 말대로 ‘거인의 어깨 위에 올라서 세상을 멀리 보는’ 사람들” 이라고 강조하며, “우리의 연구가 성공적이었던 것도 기존 연구자들의 기록물이 있었기 때문이기에 이에 감사한다.” 라고 밝혔다. 더불어 “다른 후속 연구자들이 우리의 연구 기록물 위에 올라서 더 멀리 바라 볼 수 있다면 더 없이 기쁘겠다.” 라고 수상 소감을 밝혔다.\n논문 링크:\nhttps://conf.researchr.org/details/icse-2022/icse-2022-papers/62/Learning-Probabilistic-Models-for-Static-Analysis-Alarms\n수상 링크:\nhttps://conf.researchr.org/track/icse-2022/icse-2022-awards?#icse-2022-best-artifact-awards",
+    "tag": "csweb.news",
+    "id": 235
+}

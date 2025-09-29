@@ -1,0 +1,14 @@
+{
+    "name": "사이버 보안 시스템 연구실",
+    "professor": "강병훈",
+    "field": "인공지능·정보서비스, 시큐어 컴퓨팅, 시스템·네트워크",
+    "web": "https://cysec.kr/",
+    "email": "brentkang@kaist.ac.kr",
+    "phone": "042-350-8322",
+    "office": "N5   2315호",
+    "intro": "https://youtu.be/8HzqGqkG8G8",
+    "etc": "사이버 보안 시스템 연구실 소개CySec Lab은 공격 기법과 기존의 시스템 취약점을 분석하여 공격으로부터 안전한 컴퓨터 시스템을 연구한다. 컴퓨터 운영체제, 네트워크에 대한 이해를 바탕으로 현재 문제가 되고 있는 사이버 공격을 근원적으로 방지하거나 탐지하고, 특정 대상에 타겟한 고도화된 은닉 공격으로부터 컴퓨터 시스템을 보호할 수 있는 방법을 연구하고 있다.주요 연구 주제로는 Trusted Execution Environment, TEE-based Applications to IoT Devices, UAV system 등이 있고 현재 커널 무결성 감시(kernel integrity monitoring) 도구인 Vigilare (ACM CCS 2011), KI-Mon (USENIX SECURITY 2012)와 ATRA(ACM CCS 2014), SeCReT(NDSS 2015), Hacking in Darkness(USENIX SECURITY 2017) 가 대표적인 연구 성과물이다. Hardware-based Kernel Integrity Monitoring approach 에 대해서는 아래에 소개되어 있다.http://breakthroughs.kaist.ac.kr/?post_no=163",
+    "tag": "csweb.research",
+    "id": 2,
+    "content": "name:사이버 보안 시스템 연구실 professor:강병훈 field:인공지능·정보서비스, 시큐어 컴퓨팅, 시스템·네트워크 web:https://cysec.kr/ email:brentkang@kaist.ac.kr phone:042-350-8322 office:N5   2315호 intro:https://youtu.be/8HzqGqkG8G8 etc:사이버 보안 시스템 연구실 소개CySec Lab은 공격 기법과 기존의 시스템 취약점을 분석하여 공격으로부터 안전한 컴퓨터 시스템을 연구한다. 컴퓨터 운영체제, 네트워크에 대한 이해를 바탕으로 현재 문제가 되고 있는 사이버 공격을 근원적으로 방지하거나 탐지하고, 특정 대상에 타겟한 고도화된 은닉 공격으로부터 컴퓨터 시스템을 보호할 수 있는 방법을 연구하고 있다.주요 연구 주제로는 Trusted Execution Environment, TEE-based Applications to IoT Devices, UAV system 등이 있고 현재 커널 무결성 감시(kernel integrity monitoring) 도구인 Vigilare (ACM CCS 2011), KI-Mon (USENIX SECURITY 2012)와 ATRA(ACM CCS 2014), SeCReT(NDSS 2015), Hacking in Darkness(USENIX SECURITY 2017) 가 대표적인 연구 성과물이다. Hardware-based Kernel Integrity Monitoring approach 에 대해서는 아래에 소개되어 있다.http://breakthroughs.kaist.ac.kr/?post_no=163 tag:csweb.research content:사이버 보안 시스템 연구실 강병훈 인공지능·정보서비스, 시큐어 컴퓨팅, 시스템·네트워크 https://cysec.kr/ brentkang@kaist.ac.kr 042-350-8322 N5   2315호 https://youtu.be/8HzqGqkG8G8 사이버 보안 시스템 연구실 소개CySec Lab은 공격 기법과 기존의 시스템 취약점을 분석하여 공격으로부터 안전한 컴퓨터 시스템을 연구한다. 컴퓨터 운영체제, 네트워크에 대한 이해를 바탕으로 현재 문제가 되고 있는 사이버 공격을 근원적으로 방지하거나 탐지하고, 특정 대상에 타겟한 고도화된 은닉 공격으로부터 컴퓨터 시스템을 보호할 수 있는 방법을 연구하고 있다.주요 연구 주제로는 Trusted Execution Environment, TEE-based Applications to IoT Devices, UAV system 등이 있고 현재 커널 무결성 감시(kernel integrity monitoring) 도구인 Vigilare (ACM CCS 2011), KI-Mon (USENIX SECURITY 2012)와 ATRA(ACM CCS 2014), SeCReT(NDSS 2015), Hacking in Darkness(USENIX SECURITY 2017) 가 대표적인 연구 성과물이다. Hardware-based Kernel Integrity Monitoring approach 에 대해서는 아래에 소개되어 있다.http://breakthroughs.kaist.ac.kr/?post_no=163 csweb.research"
+}

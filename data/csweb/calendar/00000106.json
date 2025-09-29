@@ -1,0 +1,9 @@
+{
+    "title": "[KAIST SoC Colloquium] Meta-Learning Fine-Tuning Strategies",
+    "date": "2024-06-03T00:00:00Z",
+    "link": "https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=11108&page=1&skey=&svalue=&menu=86",
+    "content": "title:[KAIST SoC Colloquium] Meta-Learning Fine-Tuning Strategies date:2024-06-03T00:00:00Z link:https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=11108&page=1&skey=&svalue=&menu=86 content:Speaker: Timothy Hospedales (University of Edinburgh & Samsung AI Research Centre) Title: Meta-Learning Fine-Tuning Strategies Time: 16:00 , June 3, 2024 Location : Zoom (Link: https://kaist.zoom.us/j/84101178320?pwd=QnRFVURYbTNNbFZ2ejBTRlB0NzNHdz09 ) Language: English Here's an abstract and bio for the speaker. Abstract: The mainstream contemporary workflow for applied AI is based on fine-tuning large general purpose pre-trained models for specific applications. This raises the question of “how to conduct fine-tuning?” as a central practical and research issue in achieving highly performant systems. In this talk I will discuss our work on meta-learning fine-tuning strategies such as adapters, selective-update masks, and optimisers. I will also touch on meta-optimising fine-tuning strategies for different downstream criteria, such fairness, “safety” and calibration. Bio: I am a Professor within IPAB in the School of Informatics at the University of Edinburgh, where I head the Machine Intelligence Research group; ELLIS fellow; and Head of Centre, Samsung AI Research Centre, Cambridge where I also direct the Machine Learning & Data Intelligence Programme. If you want more information about the colloquium, please refer to the colloquium page: https://cs.kaist.ac.kr/colloquium/ . location: 온라인 tag:csweb.calendar",
+    "location": " 온라인",
+    "tag": "csweb.calendar",
+    "id": 262
+}
