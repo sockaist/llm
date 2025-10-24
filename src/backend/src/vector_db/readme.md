@@ -12,8 +12,3 @@ It will do:
 - Read all folders with names in key of FORMATS of config.py
 - Under such folders, parse all json folders
 - put the datas in DB with payload as FORMATS
-
-
-So, you have to keep in mind:
-
-
