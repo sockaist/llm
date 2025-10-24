@@ -17,7 +17,7 @@ date의 형식이 다음과 같은 형식이 아니라면 오류가 발생하며
 또한, qdrantdb의 효과적인 tokenize를 위해 json의 내용을 모두 담고 있는 content field를 추가한다.
 이미 content field가 존재한다면(크롤링 단계에서 content를 생성하는 경우가 있다) 덮어쓰지 않는다.
 """
-
+                            
 
 def time_formatter(str):
     try:

@@ -33,4 +33,5 @@ FORMATS = {
     "csweb.refer": ["name","web","etc","id"], 
     "notion.marketing" : ["title","date","start","finish","contents","images","url","id"],
     "notion.notice" : ["title","date","start","finish","contents","images","url","id"]
+    # "drive" : ["date","link","content","id"] # for pdf, word files uploaded from drive
 }

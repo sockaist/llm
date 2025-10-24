@@ -1,0 +1,143 @@
+"""
+OpenAI 기반 입력 검증 및 정규화 모듈
+"""
+
+import openai
+import json
+import os
+import traceback
+from typing import Dict, Any
+
+class OpenAIInputChecker:
+    """OpenAI API를 사용한 입력 검증 클래스"""
+    
+    def __init__(self, api_key: str, model: str = "gpt-4o-mini", config_path: str = "/Users/youngseocho/Desktop/socChatbot/llm/src/backend/src/llm/utils_json/inputchecker.json"):
+        """
+        OpenAI 입력 검증기 초기화
+        
+        Args:
+            api_key (str): OpenAI API 키
+            model (str): 사용할 모델
+            config_path (str): inputchecker.json 파일 경로
+        """
+        self.client = openai.OpenAI(api_key=api_key)
+        self.model = model
+        
+        # 기본 config 파일 경로 설정
+        if config_path is None:
+            config_path = os.path.join(os.path.dirname(__file__), "utils_json", "inputchecker.json")
+        
+        # JSON 설정 파일 로드
+        self.config = self._load_config(config_path)
+        
+        # examples를 먼저 설정
+        self.examples = self.config.get('examples', [])
+        
+        # 시스템 프롬프트 설정
+        self.system_prompt = self._build_system_prompt()
+    
+    def _load_config(self, config_path: str) -> Dict[str, Any]:
+        """
+        JSON 설정 파일 로드
+        
+        Args:
+            config_path (str): 설정 파일 경로
+            
+        Returns:
+            Dict[str, Any]: 설정 데이터
+        """
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"설정 파일 로드 실패: {e}")
+            # 기본 설정 반환
+            return {
+                "instruction": "입력의 유효성을 검사하고 JSON 형식으로 응답하세요.",
+                "output_format": {"is_valid": "true 또는 false"},
+                "examples": []
+            }
+    
+    def _build_system_prompt(self) -> str:
+        """
+        JSON 설정을 기반으로 시스템 프롬프트 구성
+        
+        Returns:
+            str: 구성된 시스템 프롬프트
+        """
+        instruction = self.config.get('instruction', '')
+        output_format = self.config.get('output_format', {})
+        
+        prompt = f"{instruction}\n\n"
+        prompt += f"출력 형식:\n{json.dumps(output_format, ensure_ascii=False, indent=2)}\n\n"
+        
+        # 예시가 있다면 추가
+        if self.examples:
+            prompt += "예시:\n"
+            for example in self.examples:
+                prompt += f"입력: {example['input']}\n"
+                prompt += f"출력: {json.dumps(example['output'], ensure_ascii=False)}\n\n"
+        
+        return prompt
+
+    def process_query(self, user_message: str) -> Dict[str, Any]:
+        """
+        사용자 쿼리의 유효성 검사
+        
+        Args:
+            user_message (str): 사용자 메시지
+            
+        Returns:
+            Dict[str, Any]: 검증 결과
+        """
+        try:
+            # 메시지 구성 - few-shot learning을 위한 예시 포함
+            messages = [{"role": "system", "content": self.system_prompt}]
+            
+            # 예시를 few-shot learning으로 추가 (더 나은 성능을 위해)
+            for example in self.examples[:3]:  # 최대 3개 예시만 사용
+                messages.append({"role": "user", "content": example['input']})
+                messages.append({"role": "assistant", "content": json.dumps(example['output'], ensure_ascii=False)})
+            
+            # 실제 사용자 메시지 추가
+            messages.append({"role": "user", "content": user_message})
+            
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.3,
+                max_tokens=100
+            )
+            
+            result_text = response.choices[0].message.content.strip()
+            
+            # JSON 파싱 시도
+            try:
+                result = json.loads(result_text)
+                return result
+            except json.JSONDecodeError:
+                # JSON 파싱 실패 시 텍스트에서 true/false 추출
+                if "true" in result_text.lower():
+                    return {"is_valid": "true"}
+                else:
+                    return {"is_valid": "false"}
+                    
+        except Exception as e:
+            print(f"입력 검증 중 오류: {e}")
+            print(f"오류 위치: {traceback.format_exc()}")
+            # 기본적으로 유효한 것으로 처리
+            return {"is_valid": "true"}
+    
+    def check_input(self, user_message: str) -> bool:
+        """
+        main_enhanced.py 호환성을 위한 메소드
+        
+        Args:
+            user_message (str): 사용자 메시지
+            
+        Returns:
+            bool: 유효성 검사 결과
+        """
+        result = self.process_query(user_message)
+        return result.get("is_valid", "true") == "true"
+

@@ -127,31 +127,6 @@ async def chat(
         )
 
 
-@app.get("/info", response_model=Dict[str, Any])
-async def get_info():
-    """
-    API 정보 엔드포인트
-    """
-    return {
-        "name": "KAIST 전산학부 ChatBot API",
-        "version": "1.0.0",
-        "description": "KAIST 전산학부 학생 지원을 위한 지능형 챗봇 API",
-        "features": [
-            "Vector DB 기반 정보 검색",
-            "OpenAI 기반 자연어 처리",
-            "전산학부 특화 정보 제공",
-            "실시간 질의응답"
-        ],
-        "endpoints": {
-            "/": "루트 엔드포인트",
-            "/health": "서비스 상태 확인",
-            "/chat": "채팅 대화",
-            "/info": "API 정보",
-            "/docs": "API 문서 (Swagger UI)"
-        }
-    }
-
-
 # 예외 처리 핸들러
 @app.exception_handler(Exception)
 async def general_exception_handler(request, exc):

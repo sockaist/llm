@@ -35,7 +35,6 @@ if(INIT):
 
 ###########################################################
 
-
 results = search_doc(client, "몰입캠프","notion.marketing",2)
 
 print(results)
