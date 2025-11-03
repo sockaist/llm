@@ -542,6 +542,15 @@ class VectorDBManager:
 
             boosted_merged.sort(key=lambda x: x["final_score"], reverse=True)
             return boosted_merged[:top_k]
+        
+        # --- threshold 적용 ---
+        if threshold is not None:
+            # CrossEncoder 사용 시: 'score' 또는 'final_score'를 기준으로 필터링
+            key_field = "final_score" if use_date_boost else "score"
+            before = len(merged_doclevel)
+            merged_doclevel = [r for r in merged_doclevel if float(r.get(key_field, 0)) >= threshold]
+            after = len(merged_doclevel)
+            print(f"[INFO] Threshold {threshold} applied ({before} → {after} results)")
 
         # 날짜 부스팅 비활성: Cross 결과 그대로
         # 정규화 없이 score 내림차순
