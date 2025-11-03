@@ -7,105 +7,115 @@ import json
 import os
 from embedding import content_embedder
 from config import FORMATS
-
+from splade_module import splade_encode  # SPLADE 모델 함수 (별도 모듈로 정의)
+from sparse_helper import bm25_encode    # BM25 희소 인코더 함수
+from embedding import model as dense_model
+from qdrant_client.models import SparseVector
 
 from typing import List, Dict, Any
 
 
-def create_doc_upsert(client, col_name, data):
+
+def create_doc_upsert(client, col_name, data, dense_model=None):
     """
-    This function embed data and insert it at collection named "col_name".
-
-    Args:
-        client: qdrant client for cur DB
-        col_name: collection name
-        data: json data to upsert
-    
-    Returns:
-        none
-
+    Create and upsert a document into the Qdrant collection with
+    Dense (SentenceTransformer), Sparse (BM25), and SPLADE vectors.
     """
     try:
-        # 데이터 검증
         if not data:
-            print("Warning: Empty data provided to create_doc_upsert")
+            print(f"Empty data skipped for collection {col_name}")
             return
-        
-        if "content" in data:
-            raw_text = data["content"]
-        elif "contents" in data:
-            raw_text = data["contents"]
-        else:
-            raw_text = ""
-        
-        id = data["id"]
+
+        raw_text = data.get("content") or data.get("contents") or ""
+        if not raw_text.strip():
+            print(f"Empty content in data (ID={data.get('id')}) for {col_name}")
+            return
+
+        # 문서 ID 확인
+        doc_id = data.get("id", None)
+        if doc_id is None:
+            print(f"Missing 'id' in document for {col_name}")
+            return
+
+        # 중복 여부 확인
         exist = client.count(
             collection_name=col_name,
             count_filter=models.Filter(
                 must=[models.FieldCondition(
-                    key="id",  # payload에 저장한 키 이름
-                    match=models.MatchValue(value=id),
+                    key="id",
+                    match=models.MatchValue(value=doc_id),
                 )]
             ),
-            exact=False,  # 대략치면 더 빠름, 정확히 필요하면 True
+            exact=False,
         ).count > 0
-        
         if exist:
-            print(f"Info: Document with id {id} already exists in {col_name}, skipping upsert.")
+            print(f"Document ID={doc_id} already exists in {col_name}, skipping.")
             return
 
-        
-        if not raw_text or not raw_text.strip():
-            print(f"Warning: Empty content in data for collection {col_name}")
-            print(f"Data keys: {list(data.keys()) if data else 'None'}")
-            return
-        
-        print(f"Processing text of length: {len(raw_text)}")
-        chunks = content_embedder(raw_text) 
+        # Dense, Sparse, Splade 벡터 생성
+        if dense_model is None:
+            raise ValueError("Dense model is not loaded. Please pass dense_model parameter.")
 
+        dense_vec = dense_model.encode(raw_text)
+        if isinstance(dense_vec, np.ndarray):
+            dense_vec = dense_vec.tolist()
+        elif isinstance(dense_vec, list):
+            dense_vec = [float(x) for x in dense_vec]
+        else:
+            raise TypeError(f"Unexpected dense_vec type: {type(dense_vec)}")
+
+        # Sparse/BM25 및 SPLADE 벡터를 SparseVector로 변환
+        bm25_dict = bm25_encode(raw_text)
+        splade_dict = splade_encode(raw_text)
+
+        sparse_vec = SparseVector(
+            indices=[int(k) for k in bm25_dict.keys()],
+            values=[float(v) for v in bm25_dict.values()]
+        )
+        splade_vec = SparseVector(
+            indices=[int(k) for k in splade_dict.keys()],
+            values=[float(v) for v in splade_dict.values()]
+        )
+
+        # 청킹
+        chunks = content_embedder(raw_text)
         if not chunks:
-            print(f"Warning: No chunks generated for data in collection {col_name}")
+            print(f"No chunks generated for ID={doc_id}")
             return
 
-        id = client.count(
-            collection_name = col_name,
-            exact=True
-        ).count + 1
-
+        # Qdrant 포인트 생성
         points = []
+        base_id = client.count(collection_name=col_name, exact=True).count + 1
 
-        for t,v in chunks:
-            payload = {}
-            payload["text"] = t
-
-            # FORMATS에 정의된 필드들만 추가
+        for i, (chunk_text, _) in enumerate(chunks):
+            payload = {"text": chunk_text, "parent_id": doc_id}
             if col_name in FORMATS:
-                for name in FORMATS[col_name]:
-                    payload[name] = data.get(name, "")
-            else:
-                print(f"Warning: Collection {col_name} not found in FORMATS")
+                for key in FORMATS[col_name]:
+                    payload[key] = data.get(key, "")
 
-            new_p = PointStruct(
-                id= id,
-                vector= {"vector": v},
-                payload= payload
+            # 핵심: SparseVector 타입으로 Qdrant에 전달
+            point = PointStruct(
+                id=base_id + i,
+                vector={
+                    "dense": dense_vec,
+                    "sparse": sparse_vec,
+                    "splade": splade_vec
+                },
+                payload=payload
             )
-            print(f"Created point {id} with vector shape: {v.shape if hasattr(v, 'shape') else len(v)}")
+            points.append(point)
 
-            id += 1 
-            points.append(new_p)
-        
+        # 업서트
         if points:
             client.upsert(collection_name=col_name, points=points)
-            print(f"Successfully upserted {len(points)} points to {col_name}")
+            print(f"Upserted ID={doc_id} ({len(points)} chunks) → {col_name}")
         else:
-            print(f"No points to upsert for collection {col_name}")
-            
+            print(f"No points upserted for ID={doc_id}")
+
     except Exception as e:
         print(f"Error in create_doc_upsert for collection {col_name}: {e}")
-        print(f"Data: {data}")
+        print(f"Document ID: {data.get('id')}")
         raise
-
 
 def read_doc(client, col_name, id):
     """
@@ -228,92 +238,69 @@ def initialize_col(client, col_name):
 
 
 def search_doc(client, query, col_name, k):
-    """
-    This function finds top-k docs by query in collection col_name, with defined DISTANCE
-
-    Args: 
-        client: Qdrant client for cur DB
-        query: text query, will be embeded
-        col_name: collection name to be searched
-        k: take top-k results
-    
-    Returns:
-        searched_points: top-k results in list type
-    """
-    from embedding import model  # content_embedder의 모델 (sentence-transformers 등)
-    query_vector = model.encode(query)
-    print(query_vector.shape)
+    from embedding import model as dense_model
+    query_vector = dense_model.encode(query)
 
     results = client.search(
         collection_name=col_name,
         query_vector=NamedVector(
-            name="vector",
+            name="dense",  # ← 수정됨 (기존: "vector")
             vector=query_vector
         ),
         limit=k,
     )
+    return results
 
-    return results  # List[ScoredPoint]
 
-
-def upsert_folder(client, folder_path, col_name, n=0):
+def upsert_folder(client, folder_path, col_name, n=0, dense_model=None):
     """
-    This function upserts all data in folder_path in collection col_name
-
-    Args:
-        client:  Qdrant client for cur DB
-        folder_path: folder path
-        col_name : name of collection to add
-        n: number of data to add, set 0 to add all data
-    
-    Return: 
-        none    
+    Upsert all JSON documents in a folder into a Qdrant collection.
     """
     try:
         if not os.path.exists(folder_path):
-            print(f"Error: Folder path {folder_path} does not exist")
+            print(f"Folder path not found: {folder_path}")
             return
-            
+
         json_files = [f for f in os.listdir(folder_path) if f.endswith(".json")]
         if not json_files:
-            print(f"Warning: No JSON files found in {folder_path}")
+            print(f"No JSON files found in {folder_path}")
             return
-            
+
         print(f"Found {len(json_files)} JSON files in {folder_path}")
 
-        cnt = 0
-        successful_uploads = 0
-        failed_uploads = 0
-        
-        for filename in json_files:
-            if n != 0 and cnt >= n:
+        success, fail = 0, 0
+        for i, filename in enumerate(json_files):
+            if n and i >= n:
                 break
-            cnt += 1
-            
             file_path = os.path.join(folder_path, filename)
 
             try:
-                with open(file_path, 'r', encoding='utf-8') as f:
+                with open(file_path, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                print(f"Uploading {cnt}/{len(json_files) if n == 0 else min(n, len(json_files))}: {filename} → '{col_name}'")
+
+                doc_id = data.get("id", "?")
+                print(f"Uploading {i+1}/{len(json_files)}: {filename} [ID={doc_id}]")
+
+                # id 인덱스 생성 (없으면)
                 client.create_payload_index(
                     collection_name=col_name,
-                    field_name="id",                   # payload의 키 이름
-                    field_schema=models.PayloadSchemaType.INTEGER,  # 또는 "integer"
-                    wait=True,                         # 인덱스 빌드 완료까지 대기
+                    field_name="id",
+                    field_schema=models.PayloadSchemaType.INTEGER,
+                    wait=True,
                 )
-                create_doc_upsert(client, col_name, data)
-                successful_uploads += 1
+
+                create_doc_upsert(client, col_name, data, dense_model=dense_model)
+                success += 1
 
             except json.JSONDecodeError as e:
                 print(f"JSON decode error in {filename}: {e}")
-                failed_uploads += 1
+                fail += 1
             except Exception as e:
                 print(f"Error processing {filename}: {e}")
-                failed_uploads += 1
-                
-        print(f"Upload summary for {col_name}: {successful_uploads} successful, {failed_uploads} failed")
-        
+                fail += 1
+
+        print(f"Upload summary for {col_name}: {success} succeeded, {fail} failed")
+
     except Exception as e:
         print(f"Error in upsert_folder for {folder_path}: {e}")
         raise
