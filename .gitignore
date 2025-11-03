@@ -76,3 +76,6 @@ qdrant_data/*
 # Logs
 logs/
 *.log
+
+# crawled data
+data/**/*.json
