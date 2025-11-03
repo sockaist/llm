@@ -1,6 +1,7 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, NamedVector
 from sentence_transformers import SentenceTransformer
+from qdrant_client.models import SparseVector
 from reranker_module import combine_scores, print_rerank_summary
 from embedding import content_embedder
 from vector_db_helper import (
@@ -17,13 +18,29 @@ import numpy as np
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning, module="pecab._tokenizer")
 
+def safe_query_points(client, **kwargs):
+    """query_points() 결과를 항상 list[ScoredPoint] 형태로 통일"""
+    res = client.query_points(**kwargs)
 
+    # 최신 버전 (qdrant-client >= 1.10)
+    if hasattr(res, "points"):
+        return res.points
+
+    # 예전 버전 (tuple 반환)
+    if isinstance(res, tuple):
+        return res[0]
+
+    # 더 예전 버전 (list 반환)
+    if isinstance(res, list):
+        return res
+
+    raise TypeError(f"Unexpected return type: {type(res)}")
 # 설정
 INIT = True
 folder_path = "../../../../data/"
 base_path = "../../../../data/"
 col_name = "notion.marketing"
-query = "몰입캠프가 언제 진행하는지 알려줘."
+query = "최신 전산학부 홍보 요청 자료"
 
 # Qdrant 연결
 client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
@@ -73,30 +90,45 @@ dense_query_vec = dense_model.encode(query)
 bm25_query_vec = bm25_encode(query)
 splade_query_vec = splade_encode(query)
 
-# Dense 검색
-dense_results = client.search(
+# SparseVector용 인덱스/값 추출
+bm25_indices = list(bm25_query_vec.keys())
+bm25_values = list(bm25_query_vec.values())
+
+splade_indices = list(splade_query_vec.keys())
+splade_values = list(splade_query_vec.values())
+
+dense_results = safe_query_points(
+    client,
     collection_name=col_name,
-    query_vector=NamedVector(name="dense", vector=dense_query_vec),
+    query=dense_query_vec,
+    using="dense",
     limit=20
 )
 
-# Sparse 검색
-sparse_results = client.search(
+print("==== DEBUG: dense_results type ====")
+print(type(dense_results))
+print("dense_results content:", dense_results)
+print("===============================")
+
+sparse_results = safe_query_points(
+    client,
     collection_name=col_name,
-    query_vector=NamedVector(name="sparse", vector=bm25_query_vec),
+    query=SparseVector(indices=bm25_indices, values=bm25_values),
+    using="sparse",
     limit=20
 )
 
-# SPLADE 검색
-splade_results = client.search(
+splade_results = safe_query_points(
+    client,
     collection_name=col_name,
-    query_vector=NamedVector(name="splade", vector=splade_query_vec),
+    query=SparseVector(indices=splade_indices, values=splade_values),
+    using="splade",
     limit=20
 )
 
-# 점수 병합 (reranker)
+# 점수 병합
 reranked = combine_scores(
-    dense_results,
+    dense_results,     # ← 여기서 이제는 list[ScoredPoint]
     sparse_results,
     splade_results,
     w_dense=0.6,

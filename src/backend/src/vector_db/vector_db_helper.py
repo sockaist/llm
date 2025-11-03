@@ -304,3 +304,55 @@ def upsert_folder(client, folder_path, col_name, n=0, dense_model=None):
     except Exception as e:
         print(f"Error in upsert_folder for {folder_path}: {e}")
         raise
+    
+def query_unique_docs(
+    client: QdrantClient,
+    collection_name: str,
+    query,
+    using: str,
+    top_k: int = 5,
+    step: int = 50,
+    max_limit: int = 1000,
+):
+    """
+    Qdrant에서 중복되지 않는 고유 문서 top_k개를 얻기 위해
+    점진적으로 limit을 늘려가며 검색하는 함수.
+    """
+    seen_docs = set()
+    unique_results = []
+    offset = 0
+    limit = step
+
+    while len(unique_results) < top_k and limit <= max_limit:
+        results = client.query_points(
+            collection_name=collection_name,
+            query=query,
+            using=using,
+            limit=limit,
+            offset=offset
+        )
+
+        points = results.points if hasattr(results, "points") else results
+        if not points:
+            break
+
+        for r in points:
+            if isinstance(r, tuple):
+                point_id, point = r
+            else:
+                point_id, point = r.id, r
+
+            payload = point.payload
+            doc_id = payload.get("doc_id") or payload.get("parent_id") or point_id
+
+            if doc_id not in seen_docs:
+                seen_docs.add(doc_id)
+                unique_results.append(r)
+
+            if len(unique_results) >= top_k:
+                break
+
+        offset += step
+        limit += step
+
+    return unique_results
