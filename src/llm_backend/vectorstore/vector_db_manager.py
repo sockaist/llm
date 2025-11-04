@@ -151,6 +151,72 @@ class VectorDBManager:
                 spec.get("force", False)
             )
         logger.info(f"Initialized {len(config)} collections")
+        
+        # ------------ Snapshot Management ------------
+    def create_snapshot(self, collection: Optional[str] = None, dest_dir: str = "./snapshots"):
+        """
+        지정한 컬렉션의 Qdrant 스냅샷을 생성하고 로컬에 저장.
+        - snapshot 파일은 ZIP 형태로 저장됨.
+        """
+        from datetime import datetime
+        os.makedirs(dest_dir, exist_ok=True)
+        col = collection or self.default_collection
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        try:
+            logger.info(f"[Snapshot] Creating snapshot for '{col}'...")
+            snapshot = self.client.create_snapshot(collection_name=col, wait=True)
+            snap_name = snapshot.name
+            snap_path = os.path.join(dest_dir, f"{col}_{timestamp}.zip")
+
+            # 서버에 생성된 snapshot 다운로드
+            self.client.download_snapshot(collection_name=col, snapshot_name=snap_name, path=snap_path)
+            logger.info(f"[Snapshot] Saved snapshot to: {snap_path}")
+            return {"status": "ok", "collection": col, "snapshot": snap_path}
+
+        except Exception as e:
+            logger.error(f"[Snapshot Error] {e}")
+            return {"status": "error", "detail": str(e)}
+
+    def list_snapshots(self, collection: Optional[str] = None):
+        """
+        Qdrant 서버 상의 컬렉션 스냅샷 목록 조회
+        """
+        col = collection or self.default_collection
+        try:
+            snapshots = self.client.list_snapshots(collection_name=col)
+            result = [{"name": s.name, "created": str(s.creation_time)} for s in snapshots]
+            logger.info(f"[Snapshot] {len(result)} snapshots found for '{col}'")
+            return result
+        except Exception as e:
+            logger.error(f"[Snapshot List Error] {e}")
+            return []
+
+    def restore_snapshot(self, collection: str, snapshot_path: str):
+        """
+        지정한 ZIP 스냅샷 파일로 컬렉션 복원
+        """
+        try:
+            logger.info(f"[Snapshot] Restoring collection '{collection}' from '{snapshot_path}'")
+            self.client.recover_snapshot(collection_name=collection, location=snapshot_path)
+            logger.info(f"[Snapshot] '{collection}' successfully restored.")
+            return {"status": "ok", "collection": collection}
+        except Exception as e:
+            logger.error(f"[Snapshot Restore Error] {e}")
+            return {"status": "error", "detail": str(e)}
+
+    def delete_snapshot(self, collection: str, snapshot_name: str):
+        """
+        Qdrant 서버 상의 특정 스냅샷 삭제
+        """
+        try:
+            logger.info(f"[Snapshot] Deleting snapshot '{snapshot_name}' from '{collection}'")
+            self.client.delete_snapshot(collection_name=collection, snapshot_name=snapshot_name)
+            logger.info(f"[Snapshot] Deleted snapshot '{snapshot_name}'")
+            return {"status": "ok", "deleted": snapshot_name}
+        except Exception as e:
+            logger.error(f"[Snapshot Delete Error] {e}")
+            return {"status": "error", "detail": str(e)}
 
     # ------------ BM25 학습 ------------
     def fit_bm25_from_json_folder(self, base_path: str) -> int:
@@ -630,6 +696,33 @@ class VectorDBManager:
         except Exception as e:
             logger.error(f"[DeleteByFilter] Error deleting docs from {col}: {e}")
             return 0
+        
+    def auto_initialize(self, base_folder="./data", snapshot_dir="./snapshots"):
+        """
+        서버 시작 시 VectorDB 상태를 자동 초기화:
+        1. 최신 스냅샷 존재 → 복원
+        2. 없으면 → 컬렉션 생성 + 데이터 업서트 + BM25 학습
+        """
+        trace("[Init] Auto-initializing VectorDB state...")
+        os.makedirs(snapshot_dir, exist_ok=True)
+
+        # 최신 스냅샷 존재 확인
+        snapshots = sorted(
+            [f for f in os.listdir(snapshot_dir) if f.endswith(".zip")],
+            key=lambda x: os.path.getmtime(os.path.join(snapshot_dir, x)),
+            reverse=True
+        )
+
+        if snapshots:
+            latest = snapshots[0]
+            logger.info(f"[Init] Found snapshot: {latest} — restoring...")
+            self.restore_snapshot(self.default_collection, os.path.join(snapshot_dir, latest))
+        else:
+            logger.warning("[Init] No snapshot found — creating collection from local data")
+            self.create_collection(self.default_collection, vector_size=768)
+            self.init_bm25(base_path=base_folder)
+            self.upsert_folder(os.path.join(base_folder, "notion/marketing"), self.default_collection)
+            self.create_snapshot(self.default_collection, snapshot_dir)
 
     # ------------ 로깅 ------------
     def log_results(self, results: List[Dict[str, Any]], title="Results", top_n=10):
