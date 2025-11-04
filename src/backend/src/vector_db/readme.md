@@ -12,3 +12,12 @@ It will do:
 - Read all folders with names in key of FORMATS of config.py
 - Under such folders, parse all json folders
 - put the datas in DB with payload as FORMATS
+
+
+If you want to upsert pdf contents from Google Drive to Qdrant DB, first add columns in drive_list. 
+Each row must follow the format: 0000-00-00,https://drive.google.com/file/d/~~~
+Then, execute the following line:
+
+```python
+python drive2db.py 
+```
