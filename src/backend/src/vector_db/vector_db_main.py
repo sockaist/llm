@@ -4,6 +4,7 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from embedding import content_embedder
+from drive2db import drive_upsert_all
 from vector_db_helper import create_doc_upsert, read_doc, update_doc, delete_doc, search_doc, initialize_col, upsert_folder
 from init import init_recreate_collections, init_upsertall
 from config import QDRANT_API_KEY, QDRANT_URL, FORMATS, VECTOR_SIZE, DISTANCE
@@ -32,6 +33,7 @@ client = QdrantClient(
 if(INIT):
     #init_recreate_collections(client) # 컬렉션(테이블) 재생성, 실행시 모든 point 삭제됨.
     init_upsertall(client, folder_path) # path 아래 있는 모든 폴더의 json 파일을 DB에 업로드
+    drive_upsert_all(client, "./drive_list")
 
 ###########################################################
 
