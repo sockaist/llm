@@ -2,14 +2,16 @@
 Langchain 커스텀 구현 라이브러리 - 메인 패키지 파일
 """
 
-from src.utils.prompt import (
+# === utils.prompt ===
+from ...src.backend.src.utils.prompt import (
     BasePromptTemplate,
     StringPromptTemplate,
     SimplePromptTemplate,
     InstructionConfig
 )
 
-from src.utils.output_parsers import (
+# === utils.output_parsers ===
+from ...src.backend.src.utils.output_parsers import (
     BaseOutputParser,
     JSONOutputParser,
     ListOutputParser,
@@ -25,16 +27,21 @@ from src.utils.output_parsers import (
     AutoFixOutputParser
 )
 
-from src.llm import(
-    QueryMaker,
-    InputChecker,
-    InputNormalizer,
-    FilterGenerator
+# === llm ===
+"""
+from ...src.backend.src.llm import (
+    # QueryMaker,
+    # Checker,
+    # InputNormalizer,
+    # FilterGenerator
 )
+"""
 
-from src.utils.chatbot import ChatBot
+# === utils.chatbot ===
+from ...src.backend.src.utils.chatbot import ChatBot
 
-from src.utils.chain import (
+# === utils.chain ===
+from ...src.backend.src.utils.chain import (
     Chain,
     LLMChain,
     SequentialChain,
@@ -42,7 +49,8 @@ from src.utils.chain import (
     TransformChain
 )
 
-from src.utils.memory import (
+# === utils.memory ===
+from ...src.backend.src.utils.memory import (
     Memory,
     BufferMemory,
     ConversationBufferWindowMemory,
@@ -50,23 +58,25 @@ from src.utils.memory import (
     ConversationTokenBufferMemory
 )
 
+# === 선택적 모듈 ===
 try:
-    from src.utils.prompt import Jinja2PromptTemplate
+    from ...src.backend.src.utils.prompt import Jinja2PromptTemplate
     JINJA2_AVAILABLE = True
 except ImportError:
     JINJA2_AVAILABLE = False
 
 try:
-    from src.utils.output_parsers import PydanticOutputParser
+    from ...src.backend.src.utils.output_parsers import PydanticOutputParser
     PYDANTIC_AVAILABLE = True
 except ImportError:
     PYDANTIC_AVAILABLE = False
 
 try:
-    from src.utils.output_parsers import YAMLOutputParser
+    from ...src.backend.src.utils.output_parsers import YAMLOutputParser
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False
+
 
 __all__ = [
     # 프롬프트 템플릿
@@ -74,7 +84,7 @@ __all__ = [
     "StringPromptTemplate",
     "SimplePromptTemplate",
     "InstructionConfig",
-    
+
     # 출력 파서
     "BaseOutputParser",
     "JSONOutputParser",
@@ -89,23 +99,23 @@ __all__ = [
     "CustomFunctionOutputParser",
     "CombiningOutputParser",
     "AutoFixOutputParser",
-    
+
     # ChatBot
     "ChatBot",
 
-    # llm
-    "QueryMaker",
-    "FilterGenerator",
-    "InputChecker",
-    "InputNormalizer",
-    
+    # LLM 관련
+    # "QueryMaker",
+    # "FilterGenerator",
+    # "InputChecker",
+    # "InputNormalizer",
+
     # 체인
     "Chain",
     "LLMChain",
     "SequentialChain",
     "RouterChain",
     "TransformChain",
-    
+
     # 메모리
     "Memory",
     "BufferMemory",

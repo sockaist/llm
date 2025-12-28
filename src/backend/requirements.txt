@@ -19,3 +19,7 @@ kss>=4.5.0
 # 기타 유틸리티
 requests>=2.31.0
 typing-extensions>=4.8.0
+
+# pdf 파싱
+pdfplumber>=0.11.7
+nltk>=3.9.2
