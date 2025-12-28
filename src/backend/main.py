@@ -27,6 +27,8 @@ def main():
     try:
         # 구성 요소 초기화
         print("🚀 챗봇 시스템 초기화 중...")
+
+        model_name = os.getenv("MODEL_NAME", "gpt-4o-mini")
         
         # OpenAI 기반 입력 검증 및 정규화
         checker = OpenAIInputChecker(api_key=openai_api_key)
@@ -81,26 +83,27 @@ def main():
                 print("\\n🔍 질문을 분석하고 있습니다...")
                 print(f"👤 사용자 질문: {user_input}")
                 
-                # 1단계: 입력 정규화
-                try:
-                    normalized_query = normalizer.normalize_input(user_input)
-                    print(f"📝 정규화된 질문: {normalized_query}")
-                except Exception as e:
-                    print(f"⚠️ 입력 정규화 중 오류: {e}")
-                    normalized_query = user_input
-
-                # #2단계: 입력 유효성 검사
+                normalized_query = user_input
+                # # 1단계: 입력 정규화
                 # try:
-                #     is_valid = checker.check_input(user_input)
-                    
-                #     if not is_valid:
-                #         print("\\n❌ 죄송합니다. 해당 질문은 KAIST 전산학부 관련 질문이 아닌 것 같습니다.")
-                #         print("💡 전산학부 학사과정, 행사, 교수진, 시설 등에 대해 질문해주세요.")
-                #         continue
-                        
+                #     normalized_query = normalizer.normalize_input(user_input)
+                #     print(f"📝 정규화된 질문: {normalized_query}")
                 # except Exception as e:
-                #     print(f"⚠️ 입력 검증 중 오류: {e}")
-                #     print("🤖 입력 검증을 건너뛰고 답변을 생성합니다.")
+                #     print(f"⚠️ 입력 정규화 중 오류: {e}")
+                #     normalized_query = user_input
+
+                #2단계: 입력 유효성 검사
+                try:
+                    is_valid = checker.check_input(user_input)
+                    
+                    if not is_valid:
+                        print("\\n❌ 죄송합니다. 해당 질문은 KAIST 전산학부 관련 질문이 아닌 것 같습니다.")
+                        print("💡 전산학부 학사과정, 행사, 교수진, 시설 등에 대해 질문해주세요.")
+                        continue
+                        
+                except Exception as e:
+                    print(f"⚠️ 입력 검증 중 오류: {e}")
+                    print("🤖 입력 검증을 건너뛰고 답변을 생성합니다.")
 
 
                 # 최종단계: Vector DB 검색 및 OpenAI 응답 생성

@@ -30,7 +30,7 @@ client = QdrantClient(
 )
 
 if(INIT):
-    #init_recreate_collections(client) # 컬렉션(테이블) 재생성, 실행시 모든 point 삭제됨.
+    init_recreate_collections(client) # 컬렉션(테이블) 재생성, 실행시 모든 point 삭제됨.
     init_upsertall(client, folder_path) # path 아래 있는 모든 폴더의 json 파일을 DB에 업로드
 
 ###########################################################

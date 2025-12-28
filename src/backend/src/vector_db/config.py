@@ -12,8 +12,7 @@ load_dotenv()
 
 # Qdrant 설정
 QDRANT_API_KEY = os.environ.get('QDRANT_API_KEY')
-QDRANT_URL = "https://897a4e03-5fcc-42a2-b3e2-ed5ab54fd160.us-west-1-0.aws.cloud.qdrant.io"
-
+QDRANT_URL = os.environ.get('QDRANT_URL')
 # 벡터 설정
 DISTANCE = Distance.COSINE
 THRESHOLD = 1.0  # clustering threshold

@@ -4,6 +4,7 @@ Vector DB 검색 기능을 위한 모듈
 
 import sys
 import os
+from ..vector_db.config import FORMATS
 
 # vector_db 모듈이 있는 경로를 추가
 vector_db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'vector_db'))
@@ -35,6 +36,7 @@ except ImportError as e:
                 return results
             except Exception:
                 return []
+            
     except ImportError:
         print("qdrant_client도 import 실패. Vector 검색 기능이 제한됩니다.")
         search_doc = None
@@ -88,18 +90,27 @@ class VectorSearcher:
             all_results = []
             
             # 여러 컬렉션에서 검색
-            collections = [
-                "csweb.news", "csweb.ai", "csweb.admin", "csweb.profs", "notion.notice", "notion.marketing",
-                "portal.job", "portal.startUp"
-            ]
+            collections = list(FORMATS.keys())
+            # [
+            #     "csweb.news", "csweb.ai", "csweb.admin", "csweb.profs", "notion.notice", "notion.marketing",
+            #     "portal.job", "portal.startUp"
+            # ]
             
             for collection in collections:
                 try:
                     results = search_doc(self.client, query, collection, top_k // len(collections) + 5)
                     
                     for result in results:
+                        if result.payload.get("content"):
+                            payload_content = result.payload.get("content", "")
+                        elif result.payload.get("contents"):
+                            payload_content = result.payload.get("contents", "")
+                        elif result.payload.get("etc"):
+                            payload_content = result.payload.get("etc", "")
+                        else:
+                            payload_content = ""
                         doc_info = {
-                            "content": result.payload.get("text", ""),
+                            "content": payload_content,
                             "score": result.score,
                             "collection": collection,
                             "metadata": {

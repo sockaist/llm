@@ -7,6 +7,7 @@ import json
 import os
 import traceback
 from typing import Dict, Any
+from .config import soc_words_json
 
 class OpenAIInputChecker:
     """OpenAI API를 사용한 입력 검증 클래스"""
@@ -34,7 +35,6 @@ class OpenAIInputChecker:
         self.examples = self.config.get('examples', [])
         
         # 시스템 프롬프트 설정
-        self.system_prompt = self._build_system_prompt()
     
     def _load_config(self, config_path: str) -> Dict[str, Any]:
         """
@@ -57,8 +57,8 @@ class OpenAIInputChecker:
                 "output_format": {"is_valid": "true 또는 false"},
                 "examples": []
             }
-    
-    def _build_system_prompt(self) -> str:
+
+    def _build_system_prompt(self, words: json) -> str:
         """
         JSON 설정을 기반으로 시스템 프롬프트 구성
         
@@ -68,7 +68,12 @@ class OpenAIInputChecker:
         instruction = self.config.get('instruction', '')
         output_format = self.config.get('output_format', {})
         
-        prompt = f"{instruction}\n\n"
+        word_info = ""
+        if words:
+            word_info = "입력에 포함된 다음 단어들의 뜻을 참고하세요:\n"
+            word_info += words + "\n\n"
+
+        prompt = f"{instruction} {word_info}\n\n"
         prompt += f"출력 형식:\n{json.dumps(output_format, ensure_ascii=False, indent=2)}\n\n"
         
         # 예시가 있다면 추가
@@ -79,6 +84,24 @@ class OpenAIInputChecker:
                 prompt += f"출력: {json.dumps(example['output'], ensure_ascii=False)}\n\n"
         
         return prompt
+    
+    def extract_word(self,user_message: str) -> json:
+        """
+        사용자 메시지에서 normalizer가 감지한 단어 추출(config.py의 soc_words에서 하드코딩),
+        input check를 하기 위해 process_query에 넘겨짐.
+        
+        Args:
+            user_message (str): 사용자 메시지
+            
+        Returns:
+            words (json): 감지된 단어 목록과 의미.
+        """
+        words = []
+        for word in json.loads(soc_words_json):
+            if word['word'] in user_message:
+                words.append(word)
+        
+        return json.dumps(words, ensure_ascii=False, indent=2)
 
     def process_query(self, user_message: str) -> Dict[str, Any]:
         """
@@ -92,10 +115,11 @@ class OpenAIInputChecker:
         """
         try:
             # 메시지 구성 - few-shot learning을 위한 예시 포함
+
             messages = [{"role": "system", "content": self.system_prompt}]
             
             # 예시를 few-shot learning으로 추가 (더 나은 성능을 위해)
-            for example in self.examples[:3]:  # 최대 3개 예시만 사용
+            for example in self.examples:  # 최대 3개 예시만 사용
                 messages.append({"role": "user", "content": example['input']})
                 messages.append({"role": "assistant", "content": json.dumps(example['output'], ensure_ascii=False)})
             
@@ -138,6 +162,8 @@ class OpenAIInputChecker:
         Returns:
             bool: 유효성 검사 결과
         """
+        words = self.extract_word(user_message)
+        self.system_prompt = self._build_system_prompt(words)
         result = self.process_query(user_message)
         return result.get("is_valid", "true") == "true"
 

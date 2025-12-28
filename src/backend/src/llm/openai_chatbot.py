@@ -6,6 +6,7 @@ import openai
 import json
 from typing import Dict, Any, List, Optional
 from .vector_searcher import VectorSearcher
+import time
 
 class OpenAIChatBot:
     """OpenAI API를 사용하는 ChatBot 클래스"""
@@ -71,7 +72,7 @@ class OpenAIChatBot:
 사용자 질문: {user_query}
 
 위의 관련 정보를 바탕으로 사용자의 질문에 정확하고 도움이 되는 답변을 제공해주세요. 
-정보에 링크가 포함되어 있다면 함께 제공해주세요.
+정보에 링크가 포함되어 있다면 반드시 함께 제공해주세요.
 """
                     messages.append({"role": "user", "content": context_message})
                 else:
@@ -125,7 +126,7 @@ class OpenAIChatBot:
 
 사용자 질문: {user_query}
 
-위의 정보를 바탕으로 정확하고 도움이 되는 답변을 제공해주세요.
+위의 정보와 오늘의 날짜가 {time.strftime("%Y-%m-%d")}임을 바탕으로 정확하고 도움이 되는 답변을 제공해주세요.
 """
                 messages.append({"role": "user", "content": context_message})
             else:
