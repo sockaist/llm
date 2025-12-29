@@ -32,6 +32,8 @@ file_handler.setFormatter(formatter)
 
 logger = logging.getLogger("llm_backend")
 logger.setLevel(logging.DEBUG if APP_MODE == "dev" else logging.INFO)
+logger.propagate = False
+
 
 if not logger.handlers:
     logger.addHandler(console_handler)
@@ -39,6 +41,10 @@ if not logger.handlers:
 
 # Secure Logger 추가
 SECURE_LOG_ENABLE = os.environ.get("SECURE_LOG", "false").lower() == "true"
+
+# Suppress KSS Logger
+logging.getLogger("kss").setLevel(logging.WARNING)
+
 
 if SECURE_LOG_ENABLE:
     secure_path = os.path.join(LOG_DIR, f"secure_{datetime.now():%Y%m%d}.jsonl")

@@ -1,0 +1,17 @@
+# Base config for vector services
+# Environment variables override these values at runtime.
+
+qdrant:
+  url: http://localhost:6333
+  api_key: null
+
+paths:
+  bm25_path: ./models/bm25_vectorizer.pkl
+  snapshot_dir: ./snapshots
+
+splade:
+  model_name: yjoonjang/splade-ko-v1
+  max_length: 256
+  threshold: 0.01
+  device: cpu
+  top_k: 2000

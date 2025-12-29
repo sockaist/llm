@@ -1,8 +1,16 @@
-# -*- coding: utf-8 -*-
+import sys
 import os
+
+# Add src to sys.path to allow importing llm_backend
+current_dir = os.path.dirname(os.path.abspath(__file__))
+src_dir = os.path.abspath(os.path.join(current_dir, "../../src"))
+if src_dir not in sys.path:
+    sys.path.append(src_dir)
+
 from llm_backend.vectorstore.vector_db_manager import VectorDBManager
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
+
 
 
 def main():
@@ -33,9 +41,10 @@ def main():
     # --- 3. 문서 업로드 ---
     logger.info("[STEP 3] JSON 문서 업로드 시작")
     mgr.upsert_folder(
-        "/Users/bagjimin/Desktop/1. Projects/sockaist/llm/data/notion/marketing",
+        "/Users/bagjimin/Documents/1. Projects/sockaist/llm/data/notion/marketing",
         "notion.marketing"
     )
+
 
     # --- 4. 기본 검색 ---
     logger.info("[STEP 4] 기본 검색 실행 (Full Pipeline + Reranker 포함)")
@@ -87,7 +96,17 @@ def main():
     mgr.log_results(results_updated, title="Query After Update")
 
     # --- 8. 첫 번째 문서 삭제 ---
-    logger.info("[STEP 8] 첫 번째 문서 삭제")
+    # --- 8. 키워드 기반 필터 검색 (순서 변경: 삭제 전 확인) ---
+    logger.info("[STEP 8] 필터 검색 테스트 (verified=True)")
+    filtered_docs = mgr.filter_search(
+        col="notion.marketing",
+        filters={"verified": True},
+        limit=5
+    )
+    mgr.log_results(filtered_docs, title="FilterSearch: verified=True")
+
+    # --- 9. 첫 번째 문서 삭제 ---
+    logger.info("[STEP 9] 첫 번째 문서 삭제")
 
     # db_id 기반 삭제
     if results_updated:
@@ -96,19 +115,22 @@ def main():
         if db_id:
             mgr.delete_document("notion.marketing", db_id)
         else:
-            logger.warning("[STEP 8] 삭제할 문서의 db_id를 찾지 못했습니다.")
+            logger.warning("[STEP 9] 삭제할 문서의 db_id를 찾지 못했습니다.")
 
-    # --- 9. 키워드 기반 필터 검색 ---
-    logger.info("[STEP 9] 필터 검색 테스트 (verified=True)")
-    filtered_docs = mgr.filter_search(
-        col="notion.marketing",
-        filters={"verified": True},
-        limit=5
+
+    # --- 10. 단순 키워드 검색 (BM25 Only) ---
+    logger.info("[STEP 10] 단순 키워드 검색 (BM25 Only)")
+    keyword_query = "인공지능"
+    keyword_results = mgr.search_keyword(
+        query_text=keyword_query,
+        top_k=3,
+        collections=["notion.marketing"]
     )
-    mgr.log_results(filtered_docs, title="FilterSearch: verified=True")
+    mgr.log_results(keyword_results, title=f"Keyword Search: {keyword_query}")
 
     # --- 완료 ---
-    logger.info("[TEST COMPLETE] VectorDBManager CRUD + Filter + Query 테스트 완료")
+    logger.info("[TEST COMPLETE] VectorDBManager CRUD + Filter + Query + Keyword 테스트 완료")
+
 
 
 if __name__ == "__main__":

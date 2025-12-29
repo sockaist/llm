@@ -47,3 +47,15 @@ python start.py
 - `src/parser/`: 파서 코드
 - `data/`: 데이터 파일
 - `qdrant_data/`: Qdrant 벡터 데이터베이스 파일
+
+## Security: API Key
+
+This server authenticates admin endpoints via `x-api-key`.
+
+- Set a strong key in the environment: `VECTOR_API_KEY=...`
+- We do **NOT** store the plaintext key in memory; only a SHA-256 hash is kept and compared using `hmac.compare_digest`.
+
+> ⚠️ **Development Only**  
+> If `VECTOR_API_KEY` is **not** set, the server falls back to a default key `"dev-key"`.  
+> This is intended **only for local development**.  
+> **Never** run staging/production without setting `VECTOR_API_KEY`.

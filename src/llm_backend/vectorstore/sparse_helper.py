@@ -9,6 +9,7 @@ from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
 import warnings
 from transformers.utils import logging as hf_logging
+from typing import Union, List, Dict
 
 warnings.filterwarnings("ignore", message="BertForMaskedLM has generative capabilities")
 hf_logging.set_verbosity_error()  # huggingface 전용 로거 수준 조정
@@ -17,7 +18,7 @@ hf_logging.set_verbosity_error()  # huggingface 전용 로거 수준 조정
 # BM25 (TF-IDF 기반)
 # ==========================================================
 
-BM25_PATH = "./models/bm25_vectorizer.pkl"
+from llm_backend.vectorstore.config import BM25_PATH
 
 vectorizer = None  # 동적으로 로드됨
 _fitted = False
@@ -71,21 +72,38 @@ def ensure_bm25_loaded():
             raise RuntimeError("[BM25] Vectorizer not fitted or loaded.")
 
 
-def bm25_encode(text: str) -> dict:
+def bm25_encode(text: Union[str, List[str]]) -> Union[Dict[int, float], List[Dict[int, float]]]:
     """
-    단일 텍스트를 BM25 희소 벡터(dict 형태)로 인코딩
+    BM25 희소 벡터 생성
+    - str 입력 시: Dict[int, float] 반환
+    - List[str] 입력 시: List[Dict[int, float]] 반환
     """
     ensure_bm25_loaded()
+    
+    is_batch = isinstance(text, list)
+    texts = text if is_batch else [text]
+    
+    if not texts:
+        return [] if is_batch else {}
+
     try:
-        trace("Encoding single text with BM25")
-        vec = vectorizer.transform([text])
-        coo = vec.tocoo()
-        encoded = {int(i): float(v) for i, v in zip(coo.col, coo.data) if v > 1e-8}
-        logger.debug(f"[BM25] Encoded vector with {len(encoded)} nonzero entries")
-        return encoded
+        trace(f"Encoding text with BM25 (Batch={len(texts)})")
+        vecs = vectorizer.transform(texts)  # (n_samples, n_features)
+        
+        results = []
+        for i in range(vecs.shape[0]):
+            # Extract row i
+            row = vecs.getrow(i)
+            coo = row.tocoo()
+            encoded = {int(idx): float(val) for idx, val in zip(coo.col, coo.data) if val > 1e-8}
+            results.append(encoded)
+            
+        logger.debug(f"[BM25] Encoded batch of {len(results)} texts")
+        return results if is_batch else results[0]
+
     except Exception as e:
         logger.error(f"[BM25] Encoding failed: {e}")
-        return {}
+        return [] if is_batch else {}
 
 
 def bm25_batch_encode(texts):

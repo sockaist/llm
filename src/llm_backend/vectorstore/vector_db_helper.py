@@ -11,7 +11,8 @@ import uuid
 from typing import List, Dict, Any
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
-from llm_backend.utils.id_helper import make_doc_hash_id_from_json
+from llm_backend.utils.id_helper import make_doc_hash_id_from_json, generate_point_id
+
 from .embedding import content_embedder, model as dense_model
 from .config import FORMATS
 from .splade_module import splade_encode
@@ -44,19 +45,9 @@ def create_doc_upsert(client, col_name, data, dense_model=None):
         db_id = make_doc_hash_id_from_json(data)
         data["db_id"] = db_id  # payload에도 포함
 
-        # 중복 방지 체크
-        exist = client.count(
-            collection_name=col_name,
-            count_filter=models.Filter(
-                must=[models.FieldCondition(
-                    key="db_id", match=models.MatchValue(value=db_id)
-                )]
-            ),
-            exact=False,
-        ).count > 0
-        if exist:
-            logger.info(f"[Upsert] db_id={db_id[:10]}... already exists in {col_name}, skipping.")
-            return
+        # 중복 방지 체크 제거 (Upsert 덮어쓰기 허용)
+        # Deterministic ID를 사용하므로 동일 컨텐츠는 동일 ID를 가져 자동 갱신됩니다.
+
 
         if dense_model is None:
             raise ValueError("Dense model not loaded. Please pass dense_model parameter.")
@@ -100,8 +91,9 @@ def create_doc_upsert(client, col_name, data, dense_model=None):
                 for key in FORMATS[col_name]:
                     payload[key] = data.get(key, "")
 
-            # Qdrant에 저장할 Point ID는 UUID 형식으로
-            point_id = str(uuid.uuid4())
+            # Qdrant에 저장할 Point ID는 UUID 형식으로 (Deterministic)
+            point_id = generate_point_id(db_id, i)
+
 
             point = PointStruct(
                 id=point_id,  # 이제 Qdrant가 완전히 허용하는 형식

@@ -5,9 +5,10 @@ from typing import Any, Dict, List, Optional, Tuple
 from tqdm import tqdm
 import uuid
 import json, hashlib
-from qdrant_client import QdrantClient
+from qdrant_client import QdrantClient, models
+from qdrant_client.http.models import Distance, VectorParams, SparseVectorParams, OptimizersConfigDiff
 from qdrant_client.models import (
-    Distance, VectorParams, SparseVectorParams, SparseIndexParams,
+    SparseIndexParams,
     PointStruct, Filter, FieldCondition, MatchValue, NamedVector,
     FilterSelector, SparseVector,
 )
@@ -23,15 +24,34 @@ from llm_backend.utils.id_helper import make_hash_id_from_path, make_doc_hash_id
 warnings.filterwarnings("ignore", message="BertForMaskedLM has generative capabilities")
 
 # ---- 외부 모듈(이미 주어진 코드들) ----
-from .config import QDRANT_URL, QDRANT_API_KEY, DISTANCE, FORMATS
+from .config import QDRANT_URL, QDRANT_API_KEY, DISTANCE, FORMATS, SNAPSHOT_DIR
 from .embedding import model as dense_sbert_model
 from .embedding import content_embedder
 from .sparse_helper import bm25_encode, bm25_fit
 from .splade_module import splade_encode
 from .vector_db_helper import create_doc_upsert, query_unique_docs as qdrant_query_unique_docs
-from .reranker_module import (
-    weighted_fuse, deduplicate_and_average as dedup_avg_by_doc,
-    load_cross_encoder, rerank_with_cross_encoder, apply_date_window_boost
+from .reranker_module import apply_date_window_boost
+from .search_pipeline import run_query_pipeline
+from .collection_manager import (
+    create_collection as create_collection_helper,
+    delete_all_collections as delete_all_collections_helper,
+    delete_collection as delete_collection_helper,
+)
+from .ingest_manager import (
+    delete_by_filter as delete_by_filter_helper,
+    delete_document as delete_document_helper,
+    filter_search as filter_search_helper,
+    update_payload as update_payload_helper,
+    upsert_document as upsert_document_helper,
+    upsert_folder as upsert_folder_helper,
+)
+from .bm25_service import fit_bm25_from_json_folder as bm25_fit_service
+from .bm25_service import init_bm25 as bm25_init_service
+from .snapshot_manager import (
+    create_snapshot as create_snapshot_service,
+    delete_snapshot as delete_snapshot_service,
+    list_snapshots as list_snapshots_service,
+    restore_snapshot as restore_snapshot_service,
 )
 
 def _norm_doc_key(x):
@@ -67,80 +87,109 @@ class VectorDBManager:
         self._cross_model = None
         self._cross_model_name = None
 
-        self.pipeline_config = {
-            "use_dense": True, "use_sparse": True, "use_splade": True,
-            "use_reranker": True, "use_date_boost": True,
-            "dense_weight": 0.6, "sparse_weight": 0.3, "splade_weight": 0.1,
-            "cross_encoder_model": "Dongjin-kr/ko-reranker",
-            "date_decay_rate": 0.03, "date_weight": 0.45,
-            "date_from": None, "date_to": None,
-        }
+        # Load default config from settings
+        from llm_backend.config.settings import PIPELINE_CONFIG
+        self.pipeline_config = PIPELINE_CONFIG.copy()
+
         if pipeline_config:
             self.pipeline_config.update(pipeline_config)
-        from .sparse_helper import bm25_fit, bm25_load, BM25_PATH
-                # ======================================================
-        # (추가) BM25 초기화 로직
-        # ======================================================
-        try:
-            from .sparse_helper import bm25_load, bm25_fit, BM25_PATH
-            if os.path.exists(BM25_PATH):
-                bm25_load()
-                logger.info(f"[BM25] Loaded existing vectorizer from {BM25_PATH}")
-            else:
-                logger.warning(f"[BM25] No saved vectorizer found — will require training later.")
-        except Exception as e:
-            logger.error(f"[BM25] Initialization failed: {e}")
+            
         logger.info(f"VectorDBManager initialized. Default={self.default_collection}")
 
     # ------------ Create / Init ------------
-    # ------------ Create / Init ------------
+    def auto_initialize(self, base_folder="./data", snapshot_dir=SNAPSHOT_DIR):
+        """
+        서버 시작 시 VectorDB 상태를 자동 초기화:
+        1. 최신 스냅샷 존재 → 복원
+        2. 없으면 → 컬렉션 생성 + 데이터 업서트 + BM25 학습
+        """
+        # ... logic ... (unchanged)
+        # Using concise placeholder for brevity if unchanged logic is large? 
+        # Actually I must include original code to match target if I replace.
+        # But I want to INSERT AFTER.
+        # Wait, `replace_file_content` replaces a block.
+        # I can target `def delete_collection` and insert before it?
+        # Or target `def auto_initialize` and append provided code at the end of class?
+        # No, `VectorDBManager` is large.
+        # Let's target `def create_collection` which is usually early.
+        # Step 790 view shows `create_collection` at line 118.
+        # Let's insert BEFORE `create_collection`.
+        pass
+
+    def list_collections_info(self) -> List[Dict[str, Any]]:
+        """
+        모든 컬렉션의 상태(이름, 문서 수 등)를 조회합니다.
+        """
+        trace("list_collections_info()")
+        try:
+            resp = self.client.get_collections()
+            result = []
+            for desc in resp.collections:
+                name = desc.name
+                # 문서 수 조회
+                try:
+                    count_resp = self.client.count(collection_name=name)
+                    count = count_resp.count
+                except:
+                    count = 0
+                
+                # 상세 정보 (Vector Size 등)
+                size = None
+                status = "unknown"
+                try:
+                    info = self.client.get_collection(collection_name=name)
+                    # Qdrant client 1.x structure: info.config.params.vectors
+                    if info and info.config and info.config.params:
+                        vecs = info.config.params.vectors
+                        
+                        # 1. Single Vector
+                        if hasattr(vecs, "size") and vecs.size is not None:
+                            size = vecs.size
+                        
+                        # 2. Named Vectors (e.g. 'dense', 'sparse'...)
+                        # Check dict-like or object with attributes
+                        else:
+                            # Prioritize 'dense'
+                            dense_p = None
+                            if isinstance(vecs, dict):
+                                dense_p = vecs.get("dense")
+                            elif hasattr(vecs, "dense"):
+                                dense_p = vecs.dense
+                            
+                            # If 'dense' found, get size
+                            if dense_p and hasattr(dense_p, "size"):
+                                size = dense_p.size
+                    
+                    if info:
+                        status = str(info.status)
+                except Exception as e:
+                    # logger.warning(f"Failed to get info for {name}: {e}")
+                    pass
+
+                result.append({
+                    "name": name,
+                    "count": count,
+                    "vector_size": size,
+                    "status": str(status)
+                })
+            return result
+        except Exception as e:
+            logger.error(f"[VectorManager] List collections failed: {e}")
+            return []
+
     def create_collection(self, name: str, vector_size: int,
                         distance: str | Distance = "Cosine", force: bool = False,
                         include_sparse: bool = True, include_splade: bool = True):
         trace(f"create_collection({name})")
-        try:
-            if isinstance(distance, str):
-                distance = {
-                    "Cosine": Distance.COSINE,
-                    "Dot": Distance.DOT,
-                    "Euclid": Distance.EUCLID
-                }.get(distance, Distance.COSINE)
-
-            # 기존 컬렉션 삭제 (옵션)
-            if force:
-                self.client.delete_collection(name)
-
-            # --- 벡터 설정 ---
-            vectors_cfg = {"dense": VectorParams(size=vector_size, distance=distance)}
-            sparse_cfg = {}
-            if include_sparse:
-                sparse_cfg["sparse"] = SparseVectorParams(index=SparseIndexParams(on_disk=False))
-            if include_splade:
-                sparse_cfg["splade"] = SparseVectorParams(index=SparseIndexParams(on_disk=False))
-
-            # --- 컬렉션 재생성 ---
-            self.client.recreate_collection(
-                collection_name=name,
-                vectors_config=vectors_cfg,
-                sparse_vectors_config=sparse_cfg if sparse_cfg else None
-            )
-            logger.info(f"Created collection '{name}' ({vector_size}D, {distance})")
-
-            # (신규 추가) db_id 인덱스 자동 생성
-            try:
-                self.client.create_payload_index(
-                    collection_name=name,
-                    field_name="db_id",
-                    field_schema=models.PayloadSchemaType.KEYWORD,
-                    wait=True,
-                )
-                logger.info(f"[create_collection] Created 'db_id' payload index for '{name}'")
-            except Exception as e:
-                logger.warning(f"[create_collection] Failed to create payload index for '{name}': {e}")
-
-        except Exception as e:
-            logger.error(f"[create_collection] Error: {e}")
-            raise
+        create_collection_helper(
+            manager=self,
+            name=name,
+            vector_size=vector_size,
+            distance=distance,
+            force=force,
+            include_sparse=include_sparse,
+            include_splade=include_splade,
+        )
 
     def initialize_collections(self, config: Dict[str, Dict[str, Any]]):
         trace("initialize_collections()")
@@ -154,151 +203,32 @@ class VectorDBManager:
         
         # ------------ Snapshot Management ------------
     def create_snapshot(self, collection: Optional[str] = None, dest_dir: str = "./snapshots"):
-        """
-        지정한 컬렉션의 Qdrant 스냅샷을 생성하고 로컬에 저장.
-        - snapshot 파일은 ZIP 형태로 저장됨.
-        """
-        from datetime import datetime
-        os.makedirs(dest_dir, exist_ok=True)
-        col = collection or self.default_collection
-
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        try:
-            logger.info(f"[Snapshot] Creating snapshot for '{col}'...")
-            snapshot = self.client.create_snapshot(collection_name=col, wait=True)
-            snap_name = snapshot.name
-            snap_path = os.path.join(dest_dir, f"{col}_{timestamp}.zip")
-
-            # 서버에 생성된 snapshot 다운로드
-            self.client.download_snapshot(collection_name=col, snapshot_name=snap_name, path=snap_path)
-            logger.info(f"[Snapshot] Saved snapshot to: {snap_path}")
-            return {"status": "ok", "collection": col, "snapshot": snap_path}
-
-        except Exception as e:
-            logger.error(f"[Snapshot Error] {e}")
-            return {"status": "error", "detail": str(e)}
+        return create_snapshot_service(self, collection=collection, dest_dir=dest_dir)
 
     def list_snapshots(self, collection: Optional[str] = None):
-        """
-        Qdrant 서버 상의 컬렉션 스냅샷 목록 조회
-        """
-        col = collection or self.default_collection
-        try:
-            snapshots = self.client.list_snapshots(collection_name=col)
-            result = [{"name": s.name, "created": str(s.creation_time)} for s in snapshots]
-            logger.info(f"[Snapshot] {len(result)} snapshots found for '{col}'")
-            return result
-        except Exception as e:
-            logger.error(f"[Snapshot List Error] {e}")
-            return []
+        return list_snapshots_service(self, collection=collection)
 
     def restore_snapshot(self, collection: str, snapshot_path: str):
-        """
-        지정한 ZIP 스냅샷 파일로 컬렉션 복원
-        """
-        try:
-            logger.info(f"[Snapshot] Restoring collection '{collection}' from '{snapshot_path}'")
-            self.client.recover_snapshot(collection_name=collection, location=snapshot_path)
-            logger.info(f"[Snapshot] '{collection}' successfully restored.")
-            return {"status": "ok", "collection": collection}
-        except Exception as e:
-            logger.error(f"[Snapshot Restore Error] {e}")
-            return {"status": "error", "detail": str(e)}
+        return restore_snapshot_service(self, collection, snapshot_path)
 
     def delete_snapshot(self, collection: str, snapshot_name: str):
-        """
-        Qdrant 서버 상의 특정 스냅샷 삭제
-        """
-        try:
-            logger.info(f"[Snapshot] Deleting snapshot '{snapshot_name}' from '{collection}'")
-            self.client.delete_snapshot(collection_name=collection, snapshot_name=snapshot_name)
-            logger.info(f"[Snapshot] Deleted snapshot '{snapshot_name}'")
-            return {"status": "ok", "deleted": snapshot_name}
-        except Exception as e:
-            logger.error(f"[Snapshot Delete Error] {e}")
-            return {"status": "error", "detail": str(e)}
+        return delete_snapshot_service(self, collection, snapshot_name)
 
     # ------------ BM25 학습 ------------
     def fit_bm25_from_json_folder(self, base_path: str) -> int:
-        trace(f"fit_bm25_from_json_folder({base_path})")
-        import json
-        all_texts = []
-        for root, _, files in os.walk(base_path):
-            for f in files:
-                if not f.endswith(".json"): continue
-                try:
-                    with open(os.path.join(root, f), "r", encoding="utf-8") as fp:
-                        data = json.load(fp)
-                        txt = data.get("content") or data.get("contents")
-                        if txt: all_texts.append(txt)
-                except Exception: continue
-        if not all_texts:
-            raise RuntimeError("No data for BM25 fitting")
-        bm25_fit(all_texts)
-        logger.info(f"[BM25] Trained on {len(all_texts)} docs.")
-        return len(all_texts)
+        return bm25_fit_service(base_path)
 
         # ------------ BM25 (재)초기화 ------------
     def init_bm25(self, base_path: str = "./data", force_retrain: bool = False):
-        """
-        BM25 벡터라이저를 초기화합니다.
-        - force_retrain=True일 경우 기존 저장된 모델 삭제 후 재학습
-        - 기존 모델이 있으면 자동 로드
-        """
-        from .sparse_helper import bm25_fit, bm25_load, BM25_PATH
-        trace(f"init_bm25(base_path={base_path}, force_retrain={force_retrain})")
-
-        if force_retrain and os.path.exists(BM25_PATH):
-            os.remove(BM25_PATH)
-            logger.warning(f"[BM25] Existing model at {BM25_PATH} removed (force_retrain=True)")
-
-        if os.path.exists(BM25_PATH):
-            bm25_load()
-            logger.info(f"[BM25] Loaded existing model from {BM25_PATH}")
-        else:
-            # 새 학습 실행
-            logger.info("[BM25] No existing model found. Training new BM25 vectorizer...")
-            num_docs = self.fit_bm25_from_json_folder(base_path)
-            logger.info(f"[BM25] Trained on {num_docs} documents and saved to {BM25_PATH}")
+        bm25_init_service(base_path=base_path, force_retrain=force_retrain)
             
     # ------------ Upsert ------------
     def make_doc_hash_id(self, path: str) -> str:
         return make_hash_id_from_path(path)
 
-    def upsert_folder(self, folder: str, collection: str):
-        trace(f"upsert_folder({folder}, {collection})")
-        import json
-
-        if not os.path.exists(folder):
-            logger.warning(f"Folder not found: {folder}")
-            return
-
-        files = [f for f in os.listdir(folder) if f.endswith(".json")]
-        total = len(files)
-        if total == 0:
-            logger.warning(f"No JSON files found in {folder}")
-            return
-
-        logger.info(f"Upserting {total} JSON files into '{collection}'")
-
-        success, fail = 0, 0
-        for idx, f in enumerate(files, 1):
-            try:
-                file_path = os.path.join(folder, f)
-                with open(file_path, "r", encoding="utf-8") as fp:
-                    data = json.load(fp)
-                doc_id = self.make_doc_hash_id(f)
-                self.upsert_document(collection, data, doc_id)
-                success += 1
-            except Exception as e:
-                fail += 1
-                logger.error(f"[Upsert Fail] {f}: {e}")
-
-            # 매 10개마다 혹은 마지막에만 진행률 로그
-            if idx % 10 == 0 or idx == total:
-                logger.info(f"[{collection}] Progress: {idx}/{total} ({success} succeeded, {fail} failed)")
-
-        logger.info(f"Finished upserting '{collection}' — {success} succeeded, {fail} failed.")
+    def upsert_folder(self, folder: str, collection: str, batch_size: int = 50):
+        trace(f"upsert_folder({folder}, {collection}, batch_size={batch_size})")
+        upsert_folder_helper(self, folder, collection, batch_size=batch_size)
 
     def upsert_document(self, col: str, data: dict, doc_id: Optional[str] = None):
         """
@@ -308,53 +238,7 @@ class VectorDBManager:
         - 기존 id / parent_id는 payload에만 유지
         """
         trace(f"upsert_document({col}, id={doc_id})")
-
-        try:
-            # ① content 추출
-            content = data.get("content") or data.get("contents") or ""
-
-            # ② JSON 전체 해시 기반 db_id 생성
-            normalized = json.dumps(data, sort_keys=True, ensure_ascii=False)
-            db_id = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
-            data["db_id"] = db_id  # payload에도 포함
-
-            # ③ 벡터 생성
-            dense_vec = self.dense_model.encode(content)
-            bm25_vec = self.bm25_encode(content)
-            splade_vec = self.splade_encode(content)
-            bm25_sv = SparseVector(indices=list(bm25_vec.keys()), values=list(bm25_vec.values()))
-            splade_sv = SparseVector(indices=list(splade_vec.keys()), values=list(splade_vec.values()))
-
-            # ④ payload 구성
-            payload = {
-                **data,
-                "id": data.get("id", doc_id),
-                "parent_id": data.get("id", doc_id),
-                "db_id": db_id
-            }
-
-            # ⑤ Qdrant에 업서트 (UUID 기반 ID)
-            point_id = str(uuid.uuid4())
-
-            self.client.upsert(
-                collection_name=col,
-                points=[
-                    PointStruct(
-                        id=point_id,  # 유효한 UUID
-                        vector={
-                            "dense": dense_vec,
-                            "sparse": bm25_sv,
-                            "splade": splade_sv
-                        },
-                        payload=payload
-                    )
-                ]
-            )
-
-            logger.info(f"[Upsert] {col}: db_id={db_id[:12]} inserted successfully (UUID={point_id})")
-
-        except Exception as e:
-            logger.error(f"[Upsert Error] db_id={db_id[:12]} in {col}: {e}")
+        upsert_document_helper(self, col, data, doc_id)
 
     # ------------ Query ------------
         # ------------------------------------------------------
@@ -394,153 +278,54 @@ class VectorDBManager:
         
     def query(self, query_text: str, top_k: int = 10,
            collections: Optional[List[str]] = None, **kwargs) -> List[Dict[str, Any]]:
+        """Run hybrid search → fusion → optional rerank.
+
+        Delegates pipeline orchestration to search_pipeline for clarity.
+        """
+
         trace(f"query('{query_text[:20]}...')")
         cfg = self.pipeline_config
         collections = collections or [self.default_collection]
-        merged: List[Dict[str, Any]] = []
 
-        # ==========================================================
-        # (1) 각 컬렉션별 검색 및 통합
-        # ==========================================================
-        for col in collections:
-            dense_res, sparse_res, splade_res = self._search_collection_unique(
-                col, query_text, top_k,
-                cfg["use_dense"], cfg["use_sparse"], cfg["use_splade"]
-            )
-            fused = weighted_fuse(
-                dense_res, sparse_res, splade_res,
-                cfg["dense_weight"], cfg["sparse_weight"], cfg["splade_weight"]
-            )
+        return run_query_pipeline(
+            manager=self,
+            query_text=query_text,
+            top_k=top_k,
+            collections=collections,
+            cfg=cfg,
+        )
 
-            # deduplication 기준을 doc_id → db_id로 변경
-            doclevel = dedup_avg_by_doc(
-                fused, client=self.client, col_name=col, top_k=top_k
-            )
-            for d in doclevel:
-                d["collection"] = col
-            merged.extend(doclevel)
+    def search_keyword(self, query_text: str, top_k: int = 10,
+                       collections: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+        """
+        Perform simple keyword search (BM25 only).
+        Disables Dense and SPLADE vectors for this query.
+        """
+        trace(f"search_keyword('{query_text[:20]}...')")
+        
+        # Create a temporary config overriding weights
+        # We want only sparse (BM25)
+        temp_cfg = self.pipeline_config.copy()
+        temp_cfg["use_dense"] = False
+        temp_cfg["use_splade"] = False
+        temp_cfg["use_sparse"] = True
+        temp_cfg["sparse_weight"] = 1.0
+        
+        # Disable reranker for pure keyword speed/nature? 
+        # Usually keyword search implies simple retrieval. Let's keep reranker optional or disable it.
+        # User asked for "simple keyword search". Let's disable reranker to be specific.
+        temp_cfg["use_reranker"] = False
 
-        merged.sort(key=lambda x: x["avg_score"], reverse=True)
-        merged = merged[:top_k]
-        logger.debug(f"Initial merged={len(merged)}")
+        collections = collections or [self.default_collection]
 
-        # ==========================================================
-        # (2) Cross-Encoder 재정렬 (optional)
-        # ==========================================================
-        if cfg.get("use_reranker", True):
-            logger.info("Applying cross-encoder reranker...")
+        return run_query_pipeline(
+            manager=self,
+            query_text=query_text,
+            top_k=top_k,
+            collections=collections,
+            cfg=temp_cfg,
+        )
 
-            # (2-1) 모델 로드
-            if self._cross_model is None or self._cross_model_name != cfg["cross_encoder_model"]:
-                tok, mod = load_cross_encoder(cfg["cross_encoder_model"])
-                self._cross_tokenizer, self._cross_model = tok, mod
-                self._cross_model_name = cfg["cross_encoder_model"]
-
-            candidates: List[Dict[str, Any]] = []
-            id2meta: Dict[Any, Dict[str, Any]] = {}
-
-            # ==========================================================
-            # (2-2) Qdrant에서 payload 조회 (db_id 기준)
-            # ==========================================================
-            for d in merged:
-                db_id = d.get("db_id") or d.get("id") or d.get("parent_id")
-                col = d["collection"]
-                if not db_id:
-                    logger.debug("[CrossEncoder] skip: missing db_id")
-                    continue
-
-                p = None
-                try:
-                    # ✅ 1차: db_id 기반 직접 조회
-                    fetched = self.client.retrieve(
-                        collection_name=col,
-                        ids=[db_id],
-                        with_payload=True
-                    )
-                    if fetched:
-                        p = fetched[0]
-                    else:
-                        # ✅ 2차 fallback: payload 내 parent_id나 id 검색
-                        hits, _ = self.client.scroll(
-                            collection_name=col,
-                            scroll_filter=Filter(must=[
-                                FieldCondition(key="parent_id", match=MatchValue(value=db_id))
-                            ]),
-                            limit=1,
-                            with_payload=True
-                        )
-                        if hits:
-                            p = hits[0]
-
-                    if not p:
-                        logger.debug(f"[CrossEncoder] No hits for db_id={db_id}")
-                        continue
-
-                    payload = p.payload or {}
-                    text = (
-                        payload.get("contents")
-                        or payload.get("content")
-                        or payload.get("text", "")
-                    )
-                    title = payload.get("title") or d.get("title") or "(no title)"
-
-                    if not text.strip():
-                        logger.debug(f"[CrossEncoder] empty text for db_id={db_id}, skip")
-                        continue
-
-                    candidates.append({
-                        "id": db_id,
-                        "text": text,
-                        "title": title
-                    })
-                    id2meta[db_id] = {
-                        "title": title,
-                        "collection": col,
-                        "avg_score": d.get("avg_score", 0.0),
-                    }
-
-                except Exception as e:
-                    logger.warning(f"[CrossEncoder] fetch payload failed for db_id={db_id}: {e}")
-                    continue
-
-            if not candidates:
-                logger.warning(f"[CrossEncoder] No candidates found for query='{query_text[:30]}...' — skipping reranking.")
-                return merged
-
-            # ==========================================================
-            # (2-3) Rerank 실행
-            # ==========================================================
-            reranked = rerank_with_cross_encoder(
-                query=query_text,
-                docs=candidates,
-                tokenizer=self._cross_tokenizer,
-                model=self._cross_model,
-                top_k=top_k,
-                device="cpu",
-            )
-            logger.info(f"Cross-Encoder reranking done ({len(reranked)} results)")
-
-            # ==========================================================
-            # (2-4) Rerank 결과와 메타데이터 결합
-            # ==========================================================
-            final_after_ce: List[Dict[str, Any]] = []
-            for r in reranked:
-                meta = id2meta.get(r["id"], {})
-                final_after_ce.append(
-                    {
-                        "db_id": r["id"],
-                        "title": meta.get("title"),
-                        "score": r.get("score", 0.0),
-                        "collection": meta.get("collection", self.default_collection),
-                        "avg_score": meta.get("avg_score", 0.0),
-                    }
-                )
-
-            final_after_ce.sort(key=lambda x: x["score"], reverse=True)
-            return final_after_ce[:top_k]
-
-        # reranker 미사용 시
-        return merged
         
         # ------------ Filter Search ------------
     def filter_search(self, col: str, filters: Dict[str, Any], limit: int = 10, with_vectors: bool = False):
@@ -558,43 +343,7 @@ class VectorDBManager:
             List[dict]: 필터 조건에 맞는 문서 payload 리스트
         """
         trace(f"filter_search({col}, filters={filters})")
-        try:
-            # Qdrant 필터 구성
-            must_conditions = []
-            for k, v in filters.items():
-                must_conditions.append(FieldCondition(key=k, match=MatchValue(value=v)))
-            
-            q_filter = Filter(must=must_conditions)
-
-            # scroll 방식으로 안전하게 페이징 조회
-            all_hits = []
-            scroll_id = None
-            while True:
-                hits, scroll_id = self.client.scroll(
-                    collection_name=col,
-                    scroll_filter=q_filter,
-                    limit=min(100, limit - len(all_hits)),
-                    with_payload=True,
-                    with_vectors=with_vectors
-                )
-                all_hits.extend(hits)
-                if not scroll_id or len(all_hits) >= limit:
-                    break
-
-            results = []
-            for h in all_hits[:limit]:
-                results.append({
-                    "id": h.id,
-                    "payload": h.payload,
-                    "score": getattr(h, "score", None)
-                })
-
-            logger.info(f"[FilterSearch] Found {len(results)} results in '{col}' matching {filters}")
-            return results
-
-        except Exception as e:
-            logger.error(f"[FilterSearch] Error searching in {col}: {e}")
-            return []
+        return filter_search_helper(self, col, filters, limit=limit, with_vectors=with_vectors)
         
         # ------------ Update (Payload Only) ------------
     def update_payload(self, col: str, doc_id: str, new_payload: dict, merge: bool = True):
@@ -619,51 +368,112 @@ class VectorDBManager:
                 logger.warning(f"[UpdatePayload] Document not found in {col}: id={doc_id}")
                 return False
 
-            old_payload = result[0].payload or {}
+            return update_payload_helper(self, col, doc_id, new_payload, merge=merge)
 
-            # merge 옵션에 따라 병합 혹은 덮어쓰기
-            updated_payload = {**old_payload, **new_payload} if merge else new_payload
-
-            # 실제 업데이트
-            self.client.set_payload(
-                collection_name=col,
-                payload=updated_payload,
-                points=[doc_id],
-            )
-
-            logger.info(f"[UpdatePayload] Updated payload for doc_id={doc_id} in '{col}'")
-            return True
-
-        except Exception as e:
-            logger.error(f"[UpdatePayload] Error updating payload for id={doc_id}: {e}")
+        except Exception as exc:  # noqa: BLE001
+            logger.error(f"[UpdatePayload] Error updating payload for id={doc_id}: {exc}")
             return False
-        
-        # ------------ Delete ------------
-    from qdrant_client.models import PointIdsList
 
     def delete_document(self, col: str, db_id: str) -> bool:
         """
-        지정한 문서 db_id를 Qdrant 컬렉션에서 삭제.
+        Qdrant에서 단일 문서를 db_id 기준으로 삭제.
 
         Args:
             col (str): 컬렉션 이름
-            db_id (str): 삭제할 문서의 SHA-256 기반 고유 ID
+            db_id (str): SHA-256 기반 고유 문서 ID
         Returns:
             bool: 삭제 성공 여부
         """
         trace(f"delete_document({col}, db_id={db_id[:12]}...)")
+        return delete_document_helper(self, col, db_id)
+
+    def get_document(self, col: str, db_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Retrieve a single document's payload by its db_id.
+        """
+        trace(f"get_document({col}, db_id={db_id[:12]}...)")
         try:
-            # Qdrant에서는 PointIdsList 객체를 명시적으로 전달해야 함
-            self.client.delete(
+            # 1. Try direct retrieval by ID (since we use deterministic IDs, db_id might match point_id logic)
+            # Actually, our point_id is uuid5(NAMESPACE, db_id), so we can theoretically compute point_id if strictly needed.
+            # But simpler to just query by Point ID if we knew it found it, OR use scroll filter by db_id payload.
+            
+            # Since we didn't expose point_id regeneration logic easily here, let's use Scroll by payload 'db_id' 
+            # OR 'id' matches.
+            
+            # BEST EFFORT: 
+            # Try to retrieve using the db_id as point_id (in case they passed the UUID)
+            # If not found, use filter search on 'db_id' payload field.
+            
+            # However, user likely passes the content-hash string 'db_id'.
+            
+            hits, _ = self.client.scroll(
                 collection_name=col,
-                points_selector=PointIdsList(points=[db_id])
+                scroll_filter=models.Filter(
+                    must=[models.FieldCondition(key="db_id", match=models.MatchValue(value=db_id))]
+                ),
+                limit=1,
+                with_payload=True,
+                with_vectors=False
             )
-            logger.info(f"[Delete] Deleted db_id={db_id[:12]}... from '{col}'")
-            return True
+            
+            if hits:
+                return {
+                    "id": hits[0].id, 
+                    "payload": hits[0].payload, 
+                    "score": getattr(hits[0], "score", None)
+                }
+            
+            logger.warning(f"[GetDocument] Not found: {db_id} in {col}")
+            return None
 
         except Exception as e:
-            logger.error(f"[Delete] Error deleting db_id={db_id[:12]}... from '{col}': {e}")
-            return False
+            logger.error(f"[GetDocument] Error retrieving {db_id}: {e}")
+            return None
+
+    def get_documents(self, col: str, db_ids: List[str]) -> List[Dict[str, Any]]:
+        """
+        Retrieve multiple documents by their db_ids (Batch).
+        Returns a list of found documents with their payloads.
+        """
+        trace(f"get_documents({col}, count={len(db_ids)})")
+        if not db_ids:
+            return []
+
+        try:
+            # Use MatchAny to fetch all matching documents in one query
+            # Note: The result order is not guaranteed to match input order.
+            
+            all_hits = []
+            # Qdrant scroll has a limit. If len(db_ids) is large, we might need multiple scrolls or just set a large limit.
+            # Assuming batch size is reasonable (<1000). safely using len(db_ids) + buffer.
+            
+            limit = len(db_ids)
+            hits, _ = self.client.scroll(
+                collection_name=col,
+                scroll_filter=models.Filter(
+                    must=[models.FieldCondition(key="db_id", match=models.MatchAny(any=db_ids))]
+                ),
+                limit=limit,
+                with_payload=True,
+                with_vectors=False
+            )
+            
+            results = []
+            for h in hits:
+                results.append({
+                    "id": h.id,
+                    "payload": h.payload,
+                    "score": getattr(h, "score", None)
+                })
+            
+            logger.info(f"[GetDocuments] Found {len(results)}/{len(db_ids)} docs in {col}")
+            return results
+
+        except Exception as e:
+            logger.error(f"[GetDocuments] Error retrieving batch: {e}")
+            return []
+
+
 
 
     def delete_by_filter(self, col: str, field: str, value: Any) -> int:
@@ -679,25 +489,9 @@ class VectorDBManager:
             int: 삭제된 문서 개수 (성공 시)
         """
         trace(f"delete_by_filter({col}, field={field}, value={value})")
-        try:
-            condition = Filter(
-                must=[FieldCondition(key=field, match=MatchValue(value=value))]
-            )
-
-            result = self.client.delete(
-                collection_name=col,
-                points_selector=condition
-            )
-
-            deleted_count = getattr(result, "result", {}).get("num_points", 0)
-            logger.info(f"[DeleteByFilter] Deleted {deleted_count} docs from '{col}' where {field}={value}")
-            return deleted_count
-
-        except Exception as e:
-            logger.error(f"[DeleteByFilter] Error deleting docs from {col}: {e}")
-            return 0
+        return delete_by_filter_helper(self, col, field, value)
         
-    def auto_initialize(self, base_folder="./data", snapshot_dir="./snapshots"):
+    def auto_initialize(self, base_folder="./data", snapshot_dir=SNAPSHOT_DIR):
         """
         서버 시작 시 VectorDB 상태를 자동 초기화:
         1. 최신 스냅샷 존재 → 복원
@@ -732,7 +526,7 @@ class VectorDBManager:
             return
 
         for i, r in enumerate(results[:top_n], 1):
-            rid = r.get("id") or r.get("doc_id") or "unknown_id"
+            rid = r.get("db_id") or r.get("id") or r.get("doc_id") or "unknown_id"
             scr = r.get("final_score") or r.get("score") or r.get("avg_score") or 0.0
             t = r.get("title") or r.get("text") or r.get("content") or ""
             col = r.get("collection", self.default_collection)

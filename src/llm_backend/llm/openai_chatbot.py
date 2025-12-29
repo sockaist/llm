@@ -1,11 +1,11 @@
-"""
-OpenAI 기반 ChatBot 구현
-"""
+"""OpenAI 기반 ChatBot 구현."""
+
+import json
+from typing import Any, Dict, List, Optional
 
 import openai
-import json
-from typing import Dict, Any, List, Optional
-from ..vectorstore.vector_searcher import VectorSearcher
+
+from .vector_searcher import VectorSearcher
 
 class OpenAIChatBot:
     """OpenAI API를 사용하는 ChatBot 클래스"""

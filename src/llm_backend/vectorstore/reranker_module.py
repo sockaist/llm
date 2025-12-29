@@ -48,7 +48,8 @@ def combine_scores(dense_results, sparse_results, splade_results,
             "dense": d,
             "sparse": s,
             "splade": sp,
-            "final": w_dense * d + w_sparse * s + w_splade * sp
+            "final": w_dense * d + w_sparse * s + w_splade * sp,
+            "score": w_dense * d + w_sparse * s + w_splade * sp,
         }
 
     ranked = sorted(combined.items(), key=lambda x: x[1]["final"], reverse=True)
