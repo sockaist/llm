@@ -1,0 +1,2618 @@
+[
+  {
+    "query": "납부 vs 12.",
+    "expected_doc_ids": [
+      "6d832f9e9fe4867b1c5be037eee902d17530a8b3ea0ff3e8d7956476ca500ccb",
+      "d942abfdcae9b1bbef2f7c419fe5185d7ed9b819305f6061d51c20e732f84c99"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.notice",
+      "portal.job"
+    ]
+  },
+  {
+    "query": "전산학부 마감일 및 신청 방법",
+    "expected_doc_ids": [
+      "97b64f707d4674c579800072d3875b8838186784966e51ebf817fe3eba46a71d"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "of and Token relationship",
+    "expected_doc_ids": [
+      "4b0052e60d2d9227ed26d99d89c9bd0a0c6f080909fd9c8af9e62ac0fe50d21a",
+      "2b70a165a8d614faf5168b5945eeb6c9542caa7935fa214423171139f2c8c0df"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.calendar",
+      "benchmark.real.phase7"
+    ]
+  },
+  {
+    "query": "People팀입니다. ■ 지원기간: 2025",
+    "expected_doc_ids": [
+      "24f9a989010a36f7e5daba2f336c9df7636e97489e3d1c8cf0bbd8e3e05b1236"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "있으며,",
+    "expected_doc_ids": [
+      "5251d580d8c76b4aa15f2979034aaaf9c33e343575648dc1fcc5338ca45f18b2"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "만나는데서 생기는 있습니다 확률론, 분야가 기계학습, 풀고 주로 언어, 관련해서 알려줘",
+    "expected_doc_ids": [
+      "3d555aad93c99c37930b594d8f5b178ed610f5c4bfc324535e073f7c9a5c4273"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "컴퓨팅 and 디지털 relationship",
+    "expected_doc_ids": [
+      "a8374721f93903c64f9f84d12eb081d347a623e2f27932969d9ead068f43eac2",
+      "24c8aefad2a90772516fa01e6366c605d5f2f1543debf91e4cbf351729dba9d0"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.profs",
+      "benchmark.real.phase5"
+    ]
+  },
+  {
+    "query": "지원 KAIST 바랍니다.",
+    "expected_doc_ids": [
+      "9882e3634aba691fe25ea0c4d624929a762db31038aa0a6d588c7e4f324251e4"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "안내",
+    "expected_doc_ids": [
+      "d942abfdcae9b1bbef2f7c419fe5185d7ed9b819305f6061d51c20e732f84c99"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "그리고",
+    "expected_doc_ids": [
+      "0d43e8baab8643191acc0d52f50c47114e69d0a3e306ed1b9c707d4e551821d1"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "CS492 전산학특강(인간-AI 인터랙션): 신현규(박) 관련해서 알려줘",
+    "expected_doc_ids": [
+      "6c8d39891bd64ecaa39c54aa941c80687ab5e61a56b69060b3320fac703428b5"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "KAIST ・Recruit Holdings 기업 소개",
+    "expected_doc_ids": [
+      "70d2fa0eecb2741ce9b5d8c65de678d1943e6dc4f32133810ad063e173fd99b3"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "컴퓨팅 있다. 유비쿼터스",
+    "expected_doc_ids": [
+      "5641d1e5f73326cb292d3d37abc4c4a811ff2a8b7ae5e2386fcddb56e5cab97d"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "모집 제공",
+    "expected_doc_ids": [
+      "2febed7e9356902284217556d63c3b0ca129a67e160cc4110cf0c35b0a062bc4"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "전공 과목에",
+    "expected_doc_ids": [
+      "010ba97efd91e36a02876af7b0203b46fbf8071a6707986e449c2d5716f24df9"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "Robot Spatial",
+    "expected_doc_ids": [
+      "d5da8976267c0001096fb7c14d241cf95a1f563f11b8aec7ea6f6c1e83c75021"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "놓치실 보고, 물어볼 듣고, 관련해서 알려줘",
+    "expected_doc_ids": [
+      "a673982ef1c45c45648f963807dda67fb59123574236df74c879385aea94f5d7"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "경험이 프로젝트명: 인테리어 기술자들을 위한 공사 계약 관리 ",
+    "expected_doc_ids": [
+      "0d7fa5f75be9f03fa895f63e48fed9c59017f55a08e272ce6f880869c05d5bb3"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "TECH 내일!",
+    "expected_doc_ids": [
+      "c3e8dcf92d6976b29982896e2506dbc1754c4f32514da79a3b90bac8a934d7c5"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "AI 카카오의",
+    "expected_doc_ids": [
+      "3fc02a3a0227e86c5f1d54c05676cb9b72def362d6075b0ce56cc5014d6f6df5"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "fuzzing He has served the research com",
+    "expected_doc_ids": [
+      "3efda6ecd689e8031e34d42f5be6aa4cc852e6ea54eceb9def25d252db6b34b7"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "title:10월 Kim",
+    "expected_doc_ids": [
+      "b27b5de5fae65bfae6dbb688bc14a4d45404e98b9538c1cefd2dd4b76a8e0c6d"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "전산학 센서, compare",
+    "expected_doc_ids": [
+      "bf2f286d94a1a4fa377715819b4c3706afa9130586d217bbbe31d3a1ebaf3891",
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.admin",
+      "benchmark.real.phase7"
+    ]
+  },
+  {
+    "query": "시행하는 테스트입니다.",
+    "expected_doc_ids": [
+      "f78c16e089f1525a1b377cdf74e82d5630cfef14f86607b869c2a931cc92ce8c"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "이주영",
+    "expected_doc_ids": [
+      "5b47a23271de2ae0c3486c81c04045def22ec90ff68adf595d9a865af0cc9ee9"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "출처 : 충청일보(https://www 관련해서 알려줘",
+    "expected_doc_ids": [
+      "aa1ca74c5547cc1415ed6232af4f791ae9880301a75a9d98f8c62f84c7f645d0"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "스타일을 and analysis",
+    "expected_doc_ids": [
+      "a9a28a9b860a04b22e5ceba5d862c1af657590129a0d78b28e8da701227575ad",
+      "8f7fe472b64b8f3a44aff5d1c61dac9d7811dee71f2dccc3c39ff4f883a7e629"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.ai",
+      "csweb.calendar"
+    ]
+  },
+  {
+    "query": "박사과정, 기존",
+    "expected_doc_ids": [
+      "5b47a23271de2ae0c3486c81c04045def22ec90ff68adf595d9a865af0cc9ee9"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "활용했다 단계에 과정을 능동 모델을 여러 위해 걸쳐 추가된 관련해서 알려줘",
+    "expected_doc_ids": [
+      "afa1ad1e561b8cfa840871cbacc0bbc71e554bacf05090eb7a3bfc63821ed50e"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "병역의무 제76조에 따른 불이행자 관련해서 알려줘",
+    "expected_doc_ids": [
+      "158aff7bccf96cd1757093decfcb343d6f00f9cdbddbc7976ef1d02fb5935885"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "위치 찾아낸다] ＇이 [카이스트가 무선랜이나 위치정보시스템(GPS) 기지국 신호가 실내서도 치매환자 휴대전화 이용해야 합니다 실내에서는 추적은 기술＇…무선신호 블루투스 GPS나 관련해서 알려줘",
+    "expected_doc_ids": [
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "또는 - 박사채용 : '25",
+    "expected_doc_ids": [
+      "4ac4c94040e0a7eb7bd7db7caa7fa8a015d4a8ff692c574eaeca8b0948987a8c"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "to in and",
+    "expected_doc_ids": [
+      "8e0b7b9c2f803678e2c3b21eca46bc79373a6ef9d08d3a4ba4b4d46858ee37d1"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "모집 vs 전산학부",
+    "expected_doc_ids": [
+      "b31a07e51a6d4fe487ae47fa38c68a1a92956c2c036be4c9b8d2f5e27ec3b5ac",
+      "a6d95b2743b83e30567a3e1a1a48398061898a195a73673b9698893d4488e501"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "notion.notice"
+    ]
+  },
+  {
+    "query": "티그리냐 질문-답변",
+    "expected_doc_ids": [
+      "24c8aefad2a90772516fa01e6366c605d5f2f1543debf91e4cbf351729dba9d0"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "생성 vs ※자세한",
+    "expected_doc_ids": [
+      "5bc9fee8c85339c2bffcc493b06e386b6df626f28acc85f85a99ec8900a276b9",
+      "c65856832f524d167682cc1657ab7a1f26b2526d996df3715c6ad467c79f26bf"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "portal.job"
+    ]
+  },
+  {
+    "query": "and Zoom compare",
+    "expected_doc_ids": [
+      "8e0b7b9c2f803678e2c3b21eca46bc79373a6ef9d08d3a4ba4b4d46858ee37d1",
+      "51c65e6b132ca811e60dafd2e5992e2a7f7aa71dc7ec07ab8380a4f1c5ecae2c"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.research",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "블록체인 소프트웨어 analysis",
+    "expected_doc_ids": [
+      "06a39d1cc71f86178b3beecb4ead82ee1f6e2d19ac27ba4dd97586a3d4424ca6",
+      "78595157839de6f7ca9ebe808036c01748879fead3ceb59c37feb426eda4ae26"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "csweb.profs"
+    ]
+  },
+  {
+    "query": "안재민 and 포스터 relationship",
+    "expected_doc_ids": [
+      "f33f1fe506afe00cc18f958fd3a183f4b3b8e862dac3b4f34da757fa7d9c8b24",
+      "c98bc98a10035a8b988c441056ea77a3b2a9a38b1760d60f6fe3c7dc49612aee"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "인공지능 이의진 가능하다\"며 결과는 교수는 에이전트 기반의 헬스 수 서비스의 헬스 디지털 디지털 유연한 높일 필요가 더욱 개발에 있다”고 공학적 \"앞으로 수용도를 적용하여 코치와 \"인간 디지털 기법을 관련해서 알려줘",
+    "expected_doc_ids": [
+      "049c255231067ec4951c3ce81402528ca72940753409784688c48de95c8faa8e"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "알고리즘 vs 강원국",
+    "expected_doc_ids": [
+      "0a1f7a728171152cb6d43ab95b7ad435c97ccf3524f0dd61ce95ff33e236e793",
+      "d13da7498e963ff4a6ef83d87533e77d6a32f5546f468340c2c5edc76fc608b6"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.job",
+      "csweb.calendar"
+    ]
+  },
+  {
+    "query": "기술 교수와",
+    "expected_doc_ids": [
+      "5474ea19d43e739b5656678d30008e591a13b28a6c2b0e1a9172a39f7d599aa7"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "토스에서 2025-05-15T00:00:00Z 있는 개발자들과 개발환경의 모집 그려가며 25년도 프론트엔드 줄, 채용 보세요! Platform 배울 [토스] 생각하는 이력서의 문제에 대해 있어요 미래를 실력 기술 1학기 전담 관련해서 알려줘",
+    "expected_doc_ids": [
+      "7d67f9b1a64789621a049c6e805ac547268ebe84babac509963a065f952ec84a"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "Transactions IVL",
+    "expected_doc_ids": [
+      "dd035bf50d848bea2dd00b0d3208e35babde99cfe55420daf7c8dc690edaf1c8"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "for Students Science is Nov Presentation Undergraduate Department Computer 관련해서 알려줘",
+    "expected_doc_ids": [
+      "9259b3ed4d05089d8cda868bcd7ab082af8657e594dbd76920079659eee44ca7"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "Bloomberg to our learn excited Hong our be businesses, Session this Recruitment invite Virtual you company more Information Hong Kong in We'd very Seoul and to and our team internship the are We 2025 culture, will 관련해서 알려줘",
+    "expected_doc_ids": [
+      "15dfc864dbeb508957b7db450834a5b8f68264e2cf8ff4fd1e7c2a45e665e6fa"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "일본 https://cafe",
+    "expected_doc_ids": [
+      "e6294ef28ec30b32b011343b3f288225988ce8506ba54559c1004ab4bb6b3029"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "많은 따뜻한 봄날 음료를 드시며 KAIST 창업원에 대한 많",
+    "expected_doc_ids": [
+      "6fcc7440ccda514a17446de2676d6f9a7f22b26e52e5c4a1d1f95f10641b88a5"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "KEP",
+    "expected_doc_ids": [
+      "9a480655c7b2e904fee5cad8d94fe577f131b073c35fa6344474a209f5e095bc"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "in the",
+    "expected_doc_ids": [
+      "8f30f1ce829c8cb2db26e7afff8aaa9dc2acb2ee501cde3e813e7cbcfd4bff47"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "변화 지식을",
+    "expected_doc_ids": [
+      "44d4606ffa06e47e144c73174d961f3ea7161a4bd9ccfc60fa814e1a8df1d874"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "꼭 구매 완료해야 정상적으로 다음 빠짐없이 신청은 관련해서 알려줘",
+    "expected_doc_ids": [
+      "2524f0d1ae46fab36f4a63bcf19d7277f47f2cc002456443f6cc0fd0e4d2fbdc"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "전화: 보안 analysis",
+    "expected_doc_ids": [
+      "14fd8079637e2ee92cca81114b4fa8b87a89905214574a668c45568b7ed456c8",
+      "12aecf2d52423d06e468a8ea3c43b13f7f63c1ee62b3efb0818fa8ba8d55d2f3"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.phase5",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "교과목",
+    "expected_doc_ids": [
+      "164a6cda7d7afc479b99e24d8fab0c655915ed81dd4eea42b7751fd627cc44d7"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "겨울 지원",
+    "expected_doc_ids": [
+      "0e4f6bb40be69823aaf0ac1186dc8f551943872122396505662909ddd4e2be22"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "gle/ShGs1fU53sSsSzym8 location: Online tag:csweb 관련해서 알려줘",
+    "expected_doc_ids": [
+      "e516702bea43a5acc3238287eac46a21ab99ca441a6baceb3cc20e09e4f414bf"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "etc:전공: work:",
+    "expected_doc_ids": [
+      "5b63f743517e2dddc990013c49871255135aa79d5f8c1c23eb282a75dcaf1bd9"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "소셜 네트워크 플랫폼 팀에서는 현재 기존의 소프트웨어 라우터",
+    "expected_doc_ids": [
+      "71087ee5b0918fed1dc90aa0471d9302c7e2d75500cc6c6246e87f6e71ac0a05"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "現 퓨리오사 대표이사 관련해서 알려줘",
+    "expected_doc_ids": [
+      "51c65e6b132ca811e60dafd2e5992e2a7f7aa71dc7ec07ab8380a4f1c5ecae2c"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "있다. [2024KOTRA일본온라인잡페어가을] analysis",
+    "expected_doc_ids": [
+      "afd6e8d6c3a4db3278338589d215a21eba3dcf8d79d82abab5181580bf49979b",
+      "4baf64302f93a7a6b8a6b287b5522cac9571421cf1d65f39b1897e853800d9b4"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.research",
+      "portal.job"
+    ]
+  },
+  {
+    "query": "있다 센터장을 현재는 또한 역임중이며, 소프트웨어 카이스트 카이스트 관련해서 알려줘",
+    "expected_doc_ids": [
+      "78595157839de6f7ca9ebe808036c01748879fead3ceb59c37feb426eda4ae26"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "졸업생 스타벅스 기프티콘 이 제공됩니다",
+    "expected_doc_ids": [
+      "7662f9bbd5470cc1636a59618c0c20ea1ddcf0e2e4a62d8a7d604b882c600d9a"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "하계 참가자를 알고리즘 삼성전자 모집하고 S/W 있습니다 강화 관련해서 알려줘",
+    "expected_doc_ids": [
+      "0a1f7a728171152cb6d43ab95b7ad435c97ccf3524f0dd61ce95ff33e236e793"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "있습니다! 있는",
+    "expected_doc_ids": [
+      "ad03bbe934f5ae00dafbd684b7865faf90a2e8481da7e1953a6bf858bbbbcaa2"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "유비쿼터스 헬스",
+    "expected_doc_ids": [
+      "5641d1e5f73326cb292d3d37abc4c4a811ff2a8b7ae5e2386fcddb56e5cab97d"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "가시화 세부 연구 분야에는 의료 영상 분석(medical im",
+    "expected_doc_ids": [
+      "4a8e50180a5d65338016879cbf597bf4c0550e8c2bbef6db62fdf439b73e69f0"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "IPO IPO & Scale Up Program 커리큘럼 별첨",
+    "expected_doc_ids": [
+      "4a0247acc8522b5e9ae66451f0f9db2c4e09c3dcd8ca5e0e05e21eeb4436af75"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "study four-week",
+    "expected_doc_ids": [
+      "49ff0144cbb3883e3acdae37882ba0641bde4dce765edffc4b5ddd4f67df5317"
+    ],
+    "query_type": "hard",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "특히 언어모델을 구축하고 언어에 티그리냐 중 읽고 언어권으로 본 티그리냐로 알려져 수 개발하였다 저자원 언어 최초로 아프리카 연구팀은 대표적인 있는 대한 관련해서 알려줘",
+    "expected_doc_ids": [
+      "1065d480362f5cdc2ee6b44a4ca5e258a44a897e0072e16cc788ffaad666b3c4"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "모집 vs 전기전자공학",
+    "expected_doc_ids": [
+      "32ad08c7cc2f304dd0b6329be37d76c18006af1bbf1b15cb2dc43643ba44feb7",
+      "cd26080186be2801a36401b035ef6ebc36a24083b4185c1129db924a2dfa1a9d"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.job",
+      "csweb.admin"
+    ]
+  },
+  {
+    "query": "September (School",
+    "expected_doc_ids": [
+      "8f1eff3d4efb5a7583679e82a8054649e618cf588b2c801203ab3231c7dfea0e"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "이상이 세대 2030 관악구 관련해서 알려줘",
+    "expected_doc_ids": [
+      "fa8bcc242e6e36f873b70f18d811d18f63cf568363330c181409257ddb49716d"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "스마트 연구실",
+    "expected_doc_ids": [
+      "e85bbf2f6da8b99a6936eeedb8db5fa0fc8194b5e9633001336c63898bf9908b"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "조지훈",
+    "expected_doc_ids": [
+      "8c5a836560a319e49b2044b03868a248fe61f448153681d3cf1a95b138df6a09"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "and to",
+    "expected_doc_ids": [
+      "8e0b7b9c2f803678e2c3b21eca46bc79373a6ef9d08d3a4ba4b4d46858ee37d1"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "[Mobile-Friendly 제작할 기술을 필요없이 선보였다 영상을 기존 Content 분석해 Design Challenges, Requirements, MOOCs： 자동으로 형태로 모바일에 for 영상을 기존 AI 새로 관련해서 알려줘",
+    "expected_doc_ids": [
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "2024-03-12T00:00:00Z 원티드 : 씨메스 ｜ 원티드 통합검색 (wanted",
+    "expected_doc_ids": [
+      "d4ede96ad357a799b919bfe939861e468e30df5d6bdd8e5a4471b659d006df95"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "행정팀입니다.",
+    "expected_doc_ids": [
+      "d1524d17789959fe74d45bedec042b360112e6b45adf89f202d0a508e95482d5"
+    ],
+    "query_type": "hard",
+    "origin_collection": "test.phase5"
+  },
+  {
+    "query": "폴리페놀팩토리에서 글로벌",
+    "expected_doc_ids": [
+      "f78c16e089f1525a1b377cdf74e82d5630cfef14f86607b869c2a931cc92ce8c"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "가격은 어떻게 되나요? 관련해서 알려줘",
+    "expected_doc_ids": [
+      "2524f0d1ae46fab36f4a63bcf19d7277f47f2cc002456443f6cc0fd0e4d2fbdc"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "title:[PhD kr/board/view?bbs_id=events&bb",
+    "expected_doc_ids": [
+      "66eb34bc03ee5720b0169f7048843fec49d2bde0276a8ef470b11b2dc3174c4b"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "for 전산학부",
+    "expected_doc_ids": [
+      "18b45eaef27bcfee498aafbadcd83fdf12c34179462433c256c4e24e36734826"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "학습 LG 학부생",
+    "expected_doc_ids": [
+      "01f8d1e6c7e2ab1b6acf5aff26ddfd72ec57aea81d6bedfc28c3b9efd04eb5b3"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "주도하는 교수는",
+    "expected_doc_ids": [
+      "64895ce32d28f59478ab6f86019bb746802da09dcd7438fa3fd56aa1e9a662cd"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "기하학적 edu 3534 E3-1, 3404 연구실: 기하 컴퓨",
+    "expected_doc_ids": [
+      "a8374721f93903c64f9f84d12eb081d347a623e2f27932969d9ead068f43eac2"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "※창업 활동 경험자 우대 관련해서 알려줘",
+    "expected_doc_ids": [
+      "4944d98702ac552950df86624ab282dbeff9a755f579cea0336e48d86588cee4"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "data the and",
+    "expected_doc_ids": [
+      "12ae983e2252cb6bff723fb393fb566178e857bb4d18e842fbf4cc76286b01a4"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "맡았다. 교수는",
+    "expected_doc_ids": [
+      "4e2c63175b274bdde10e1c6f588ebc40a5e0e73337f714d864bd49217740aeaa"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "단계에서 섞인",
+    "expected_doc_ids": [
+      "c03e79c1001d0ede4772778515eff9629f832beb1b13df85537a6c375359aebe"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "컴퓨팅, 차상길 analysis",
+    "expected_doc_ids": [
+      "c1a02bfd829078a90afd5406fcc438eab17714b3cb510af9fd7ffe1c056c5467",
+      "414e357c0de986a1dee4e039eb47355ea2e99a62a4418bbe49efd371d83ceed6"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.profs",
+      "csweb.news"
+    ]
+  },
+  {
+    "query": "대표들의 MBA 듣고 사회적기업가 이야기를 KAIST 소셜벤처 나눠볼 관련해서 알려줘",
+    "expected_doc_ids": [
+      "cd7be8a1e7e487fe0ee8ef2cfb6342adfbe5673a2385a2be98e9b77ec4f7b04f"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "지원) 융합",
+    "expected_doc_ids": [
+      "fc47719962002c42edd2c96029973a445d83ff7e566d69ac68d2916ba1f27685"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "기술을 프로그래밍",
+    "expected_doc_ids": [
+      "089a35722d1ed7f83b82b53b126c561f2dbbec63f9d55aa62c6109c3ea157102"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "박사과정생",
+    "expected_doc_ids": [
+      "e8d054b5fde545b129050c6a8e7985e6650f553de479ec05eee78c9b236a0fb6"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "전산 and 김기응 relationship",
+    "expected_doc_ids": [
+      "5008bde61210d5cd1b951271708bccdb3f8abf41cd418bd61475c1ea984395d5",
+      "f459ea72f41b831941e5312b04fd183cfdd647a340fbf209a177ba2ac2d61820"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.notice",
+      "csweb.profs"
+    ]
+  },
+  {
+    "query": "재학생, 신청대상 편입생, 신입생, : 관련해서 알려줘",
+    "expected_doc_ids": [
+      "d4af9f08edc66cca149b370287c978647c4c1e462478ae5e127310d035987acf"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "창업",
+    "expected_doc_ids": [
+      "e8228379236a3f756eaa1bc631ef2d20e00a744bba9887b9aa67e783c27a71c2"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "채용] Ringle",
+    "expected_doc_ids": [
+      "da886b7f3a9237897c258720339f59972df9362c47e34579e63964915e3b6bd7"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "http://sglab 관련해서 알려줘",
+    "expected_doc_ids": [
+      "f74ce125c3a1aa6cf1526f07b9953241dc3b9931401bd3ef973b9d1790490266"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "언어 알고리즘을",
+    "expected_doc_ids": [
+      "3d555aad93c99c37930b594d8f5b178ed610f5c4bfc324535e073f7c9a5c4273"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "총괄 ICFP 학회는 25년 역사의 프로그래밍 언어 분야 최",
+    "expected_doc_ids": [
+      "10f56a78e283bff2d43d13ae4b88b43b0d27d495ba1a6a00e86b861883be6817"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "교육 대전테크노파크 지역산업육성실 (혁신기반기원팀) 최봉림 ",
+    "expected_doc_ids": [
+      "4a0247acc8522b5e9ae66451f0f9db2c4e09c3dcd8ca5e0e05e21eeb4436af75"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "동문 title:KOC",
+    "expected_doc_ids": [
+      "d026e8b5c71e0c9a333441e85f04253ec84071d56dd05171dbe8ad974d2cef7c"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "SW",
+    "expected_doc_ids": [
+      "e2b08be79b0921e80530e7264caa9005f0337b552520f04a90449f41891ca7ae"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "데이터 최근 다양한 분야에서 인공지능 심층 학습(딥러닝) 기술",
+    "expected_doc_ids": [
+      "de6f855b924c5482e4fba5308020708d9052a64c96d4ce68b76843b4fca836b6"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "AI AI 기술에 관심있는 대학생 앰배서더가 모여",
+    "expected_doc_ids": [
+      "e9c294beeb13a238575d5107c67118068aef6db709f98eb4444cac2aea324b7c"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "마이닝 수행하고",
+    "expected_doc_ids": [
+      "5251d580d8c76b4aa15f2979034aaaf9c33e343575648dc1fcc5338ca45f18b2"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "First 선착순 compare",
+    "expected_doc_ids": [
+      "0d8744e9ad1289fa5eae62b9c0605e47a7c54ea3041626ee7e448e04af109e31",
+      "8460d78fcc67f7ff8d8d04fd6f11c77818f16065e2f091301c97901fa3f96b78"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.calendar",
+      "notion.notice"
+    ]
+  },
+  {
+    "query": "정보검색) 회장,",
+    "expected_doc_ids": [
+      "787e4a138bb020dbe9976b342f7fadbc1dac03aea7b3f68bb2deb1fc7d6a1bbb"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "the 소셜벤처 compare",
+    "expected_doc_ids": [
+      "ceebb16caba53f558775e1e29be91db34b2c21dde78240885e01c7246b171225",
+      "cd7be8a1e7e487fe0ee8ef2cfb6342adfbe5673a2385a2be98e9b77ec4f7b04f"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.calendar",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "일자 근무 or 08/21(오늘) 관련해서 알려줘",
+    "expected_doc_ids": [
+      "ded6360667e2c1f9ddc69b079c78da6abc13021a6d18cff65aaf258d3ee23d26"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "공격으로부터 컴퓨터 운영체제, 네트워크에 대한 이해를 바탕으로 현재",
+    "expected_doc_ids": [
+      "60baf2ce95f59e68ef2d6993fce56aff6600e7c9bade47bfa823c96c2cad24b4"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "소프트웨어 입니다. analysis",
+    "expected_doc_ids": [
+      "3af29b79cb6920acc5ddd39fc2e57d2f912426c1e1bffb71591b8066f5a3625c",
+      "f030bf413e3648bcd64a9d951e0e7ee2cd89b321e747046b92b7b5e94154800c"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.profs",
+      "csweb.news"
+    ]
+  },
+  {
+    "query": "of Development",
+    "expected_doc_ids": [
+      "51c65e6b132ca811e60dafd2e5992e2a7f7aa71dc7ec07ab8380a4f1c5ecae2c"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "18시 선착순",
+    "expected_doc_ids": [
+      "242f340116ec019c6bc20d66b75ffb4cc1e2d30b99381c1d1b0bc580b4a935c6"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "참고 [채널톡]",
+    "expected_doc_ids": [
+      "d45f4b0fd5c7304b92e8e905fe04e1ae8937a683a033080d61ace2a190cae583"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "in engineering",
+    "expected_doc_ids": [
+      "f9889f0d2f6391cc67a5a6fb7a1822049782358e369435f72df31b2d21f3f0a6"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "광범위하게 Visual 교수 박사과정, 비전 분야의 박사과정(제1 석사과정과 with KAIST 적은 마이크로소프트 범용적 Matching] 김동균 획기적으로 홍승훈 있는 주제인 수 구성된 Asia)의 리서치 아시아(Microsoft 김진우 Research [Universal Matching) 제안해 토큰 Prediction 총 연구팀은 핵심 전산학부 of Learning 레이블링 매칭(Visual 수의 Token 루오 관련해서 알려줘",
+    "expected_doc_ids": [
+      "2b70a165a8d614faf5168b5945eeb6c9542caa7935fa214423171139f2c8c0df"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "2023-02-01T00:00:00Z",
+    "expected_doc_ids": [
+      "51856f008b55a5a63deb469f6a329285eabafe76cfc5ead78e7899bc5e9ad167"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "2024년 vs 학위:",
+    "expected_doc_ids": [
+      "66987795afe82a04109e32ea1b9a3b8d011b8a813bbe092a7080449404b39d3b",
+      "5b63f743517e2dddc990013c49871255135aa79d5f8c1c23eb282a75dcaf1bd9"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.startUp",
+      "csweb.admin"
+    ]
+  },
+  {
+    "query": "따라 있음.",
+    "expected_doc_ids": [
+      "50a9a99e5b8c47edf639f4854d4a69bc025a651f531adbe9471681375ada799e"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "AI and 교수 relationship",
+    "expected_doc_ids": [
+      "e9c294beeb13a238575d5107c67118068aef6db709f98eb4444cac2aea324b7c",
+      "845ce77e0e689126f30b1041a98ad12946284342ec255fa268518118d3d5ac4c"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.job",
+      "csweb.news"
+    ]
+  },
+  {
+    "query": "2025-02-17T00:00:00Z",
+    "expected_doc_ids": [
+      "0f8bab2edf225fe9a6556bf4185b4a480474e66d03aa031b5abab248b7608da4"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "Development FuriosaAI",
+    "expected_doc_ids": [
+      "51c65e6b132ca811e60dafd2e5992e2a7f7aa71dc7ec07ab8380a4f1c5ecae2c"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "the vs 24년",
+    "expected_doc_ids": [
+      "49ff0144cbb3883e3acdae37882ba0641bde4dce765edffc4b5ddd4f67df5317",
+      "d5658ae6b017f9b94ed31b267936b91e289e4766741154afc8ba85d0a3248863"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "3월 notion-static",
+    "expected_doc_ids": [
+      "8460d78fcc67f7ff8d8d04fd6f11c77818f16065e2f091301c97901fa3f96b78"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "마틴 3412호",
+    "expected_doc_ids": [
+      "8e0b7b9c2f803678e2c3b21eca46bc79373a6ef9d08d3a4ba4b4d46858ee37d1"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "소프트웨어 제공 compare",
+    "expected_doc_ids": [
+      "5ccebe748a924d264ccf69afc650187db9c407abe8fcdf14b54cdb3eaf472476",
+      "53a05b96b6d199e43f5a5a3ab792bd245350c3a6a7be7e554e5ab4c563bebc00"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.research",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "[Mobile-Friendly [Mobile-Friendly Content Desig",
+    "expected_doc_ids": [
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "입니다 본 강연 kr/colloquium/ 관련해서 알려줘",
+    "expected_doc_ids": [
+      "949609f2b17449763fadf9838b7e33550556eb9c45f06ca453dd79749512ca02"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "현대무벡스 모집",
+    "expected_doc_ids": [
+      "87b12f67011e5c1aaa594edf1a7f0c9cd3cac6295d48ce49fdfa443c6559614b"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "교육 일정: 2024 관련해서 알려줘",
+    "expected_doc_ids": [
+      "cb00e09cbf7ce9e479e8ed293d70e2c68818203610b7121cfb5f32fc05e3d2e2"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "1402호 시스템",
+    "expected_doc_ids": [
+      "04ee9ee2caa81202885e32ded90724aee4b948e1611b122678fa849b9f481a6a"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "있는 과비 납부 후 환급받으실 수 없습니다",
+    "expected_doc_ids": [
+      "6d832f9e9fe4867b1c5be037eee902d17530a8b3ea0ff3e8d7956476ca500ccb"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "컴퓨팅",
+    "expected_doc_ids": [
+      "5641d1e5f73326cb292d3d37abc4c4a811ff2a8b7ae5e2386fcddb56e5cab97d"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "카이스트 2024-11-27T00:00:00Z",
+    "expected_doc_ids": [
+      "e2f107c15c08f56748708c379112a0553ccf2c2c2f8ceedfcf4daab49080263a"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "개발한 [카이스트가 개발한 ＇이 기술＇…무선신호 없는 실내서도",
+    "expected_doc_ids": [
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "참여 학교",
+    "expected_doc_ids": [
+      "e2f107c15c08f56748708c379112a0553ccf2c2c2f8ceedfcf4daab49080263a"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "Grenoble, 시스템·네트워크 PhD, 인공지능·정보서비스, 웹서비스 데이타베이스, content:이윤준 미들웨어, INP 관련해서 알려줘",
+    "expected_doc_ids": [
+      "13697ef7ab42948d1f3f90e73abfa55011514841f2ebbdbef145a57106176a25"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "교육청과 소양 및 AI·SW 핵심역량으로서 기대된다 업무협약을 기초 SW교육센터과의 설동호 미래세대 함양 KAIST 관련해서 알려줘",
+    "expected_doc_ids": [
+      "9f6b4dbb9f12fd68838a736ac31187c22d1adc2f5496b6d86dead20d2d81cb31"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "Design [Mobile-Friendly Content Desig",
+    "expected_doc_ids": [
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "이러한 있다. 새로운",
+    "expected_doc_ids": [
+      "465d90c1fc0771e32d8473c6a6fbe5d22f5b973fa00c93b868fea7dd218e753c"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "움직이게 등의 텍스트 맞닿아 변화를 누르거나, 상황에서 가상환경에서 때문에 가상 조절하고, 버튼을 이용된다 손 막대를 큰 내기 움직임에도 손동작)는 다른 많은 핀치 서로 듯한 중 제스처(엄지손가락과 작은 관련해서 알려줘",
+    "expected_doc_ids": [
+      "60cd0694078fd29e19eacbfa6e2c603dca7456aada8551041155027c0c0f7be7"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "안성진 객체의",
+    "expected_doc_ids": [
+      "6958c6647b13637c1b68f0a9f5b21a58692a1d432926b88c83942c21aab1f952"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "강성원 소프트웨어 제품라인 개발은 일 군(群)의 유사한 소프트",
+    "expected_doc_ids": [
+      "cf27076a1441a9058656453ec5f1a447e1d09e6fe63ad54836645876f15562e9"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "컴퓨팅 연구실",
+    "expected_doc_ids": [
+      "4fcbe93a39cef10e263170b18326bdf534998093c84ece4237cb66310c513f1b"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "paths, enrich wealth social your we interest and informative content your await of We've curated academics, to school a 관련해서 알려줘",
+    "expected_doc_ids": [
+      "18b45eaef27bcfee498aafbadcd83fdf12c34179462433c256c4e24e36734826"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "즉, 센서 compare",
+    "expected_doc_ids": [
+      "39663dc10b443dbe8d0e049c84e9c1a089f8590eccfb680e84204ee92b218f3a",
+      "51cc882b7d5617b1ed5476782f30eb033075e66a8f5f48b350ea4226353c831b"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "csweb.ai"
+    ]
+  },
+  {
+    "query": "HUO and 참가 relationship",
+    "expected_doc_ids": [
+      "5dbdacc511934a9e4db790a8969c80509052c08cb0dde64e058e33fc2f8d36ea",
+      "1bfb27aad7c6c77d2a28c8e0f4942f9b9fc638953ccc2e4767544938a4131bc4"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.admin",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "인당 2 까지의 90개 KAIST 분량의 조사 기업 MAP 관련해서 알려줘",
+    "expected_doc_ids": [
+      "9882e3634aba691fe25ea0c4d624929a762db31038aa0a6d588c7e4f324251e4"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "정부출연연구기관 kr/)에서 1:1 서면 상담 진행",
+    "expected_doc_ids": [
+      "0b06805f6b0d73b4df753b6fe51be9844f8557e15b6fabd8350ecc864d5a48b0"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "컴퓨팅 kr phone:3547 office:N1, 505 e",
+    "expected_doc_ids": [
+      "eef8ed68007b24b25c6d804f57bbc40a6b206d6063ab059c71a5104b477fcf70"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "and Bank",
+    "expected_doc_ids": [
+      "8f53b3680608c190cb3e297273937352a33d39178f2ab2a0d03e5b7d94602338"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "스니커 and of relationship",
+    "expected_doc_ids": [
+      "5c2095b8d7babc3e10ea92b3119665f70bbb2aa9da587edc9fbf423306d821cd",
+      "e4ef552f4211a07ce38254a2d78ea5f0409684b48190b7ad29c68f41eaddd876"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.ai",
+      "csweb.calendar"
+    ]
+  },
+  {
+    "query": "of 조합론",
+    "expected_doc_ids": [
+      "0419aa1d99033278760bb03960ac9a97a01c68c92a52f4f1e5b1fc7b729d3f63"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "Opportunity Day",
+    "expected_doc_ids": [
+      "7dd1848c1ca13361a165ec812faa0181c2bfc732db4e11c7f924a4c8e9b8e744"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "Clang, 본 연구는 과기정통부의 SW스타랩 사업의 지원을 받아 ",
+    "expected_doc_ids": [
+      "d37042543bc5eaafae55c242fa34cfc2579abd5905bf1d44bf9bdfbfdd49246b"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "[동기화된 프레임워크에",
+    "expected_doc_ids": [
+      "6cdc500c7a727384dcbc9dc2e49983b3fde277e8b29860ba3d230b1ec0b99c05"
+    ],
+    "query_type": "hard",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "엔지니어",
+    "expected_doc_ids": [
+      "cede6bc510db598e88ae7dbe6be63b8dc7cb1e3d25571bd769d039842d728e0f"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "불편함을 참고 스타일을 어렵기 때문에 직접 사용한다 대부분 디자인의 일반인이 사용자는 관련해서 알려줘",
+    "expected_doc_ids": [
+      "e74aea38de1bdc3e96de54a3c555d6d037e700a122a2f820895a41831caae949"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "게재하였다. 문제를",
+    "expected_doc_ids": [
+      "575b37cdb6ba8ed2e3f7b3a30dc279021cf61235f62fd4e9402e535cab8afd3d"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "교수님의 오혜연",
+    "expected_doc_ids": [
+      "a148a9c65301497f8d1969f352a11e26c909fcb88d17a8420ddefb4b0449a783"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "[인공지능 [인공지능 심층 학습(딥러닝) 서비스 구축 비용 최소화",
+    "expected_doc_ids": [
+      "afa1ad1e561b8cfa840871cbacc0bbc71e554bacf05090eb7a3bfc63821ed50e"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "이미지가 수행합니다 통한 기울기 역전파를 제거된 일관성을 활용하여 아니라 이미지를 이를 잡음이 간의 관련해서 알려줘",
+    "expected_doc_ids": [
+      "6cdc500c7a727384dcbc9dc2e49983b3fde277e8b29860ba3d230b1ec0b99c05"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "※자세한 Design analysis",
+    "expected_doc_ids": [
+      "c65856832f524d167682cc1657ab7a1f26b2526d996df3715c6ad467c79f26bf",
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.job",
+      "benchmark.real.phase7"
+    ]
+  },
+  {
+    "query": "없는 프로그래밍과",
+    "expected_doc_ids": [
+      "e74aea38de1bdc3e96de54a3c555d6d037e700a122a2f820895a41831caae949"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "field: 1974",
+    "expected_doc_ids": [
+      "d9239b7f26ca70ae5e98e4d9d86fc9405d135b590f30235e26f9ed02060b1277"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "학습 연합학습 사용자",
+    "expected_doc_ids": [
+      "01c57b49e6733cd86819041864d66df1b5c8d8f7fb088c74b186f6483ff82cac"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "kr 042-350-3556 N1   502호 https://socnas 관련해서 알려줘",
+    "expected_doc_ids": [
+      "9065c411114cf9f5c6498a1fd08a1dc185854bf6761fbf5dc440730e474e6e79"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "complexity, 채용 analysis",
+    "expected_doc_ids": [
+      "44b1030ab5b3a72dbfa01c64e4acd634eda4da93a4ccce0a42e8352dd0955d8f",
+      "cede6bc510db598e88ae7dbe6be63b8dc7cb1e3d25571bd769d039842d728e0f"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.profs",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "Kee-Eung School Kim Prof 높이기 / of 적용성을 - (Graduate 관련해서 알려줘",
+    "expected_doc_ids": [
+      "0d8744e9ad1289fa5eae62b9c0605e47a7c54ea3041626ee7e448e04af109e31"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "KI빌딩 title:KAIST 동문 Google 엔지니어와의 만",
+    "expected_doc_ids": [
+      "61fbed62edea4a051428732c7afa6234e1b626d6a062adccc35560b8fd6b0acf"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "of The most popular example would",
+    "expected_doc_ids": [
+      "8d1ad1d0658e56847d8e9c89e490247fd8829f481ec73f3f4df93fa9cfd13637"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "빅데이터 name:데이터 공학 및 분석 연구실 professor",
+    "expected_doc_ids": [
+      "cb7f67c456970e4d056aa090790e5a471f3e5f4bea8914ba2e396a9593215043"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "Challenges, Content",
+    "expected_doc_ids": [
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "hard",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "the",
+    "expected_doc_ids": [
+      "6ecae55305e02ed2ac5e2a9114f12ae1056405e0c354c7e1d14da2803e21412f"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "kaist@gmail 관련해서 알려줘",
+    "expected_doc_ids": [
+      "4fcbe93a39cef10e263170b18326bdf534998093c84ece4237cb66310c513f1b"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "참여 vs 암호",
+    "expected_doc_ids": [
+      "7c13bad346e0cd9a0bbc8d5d59927c6315958b15af8495259a6f65745f94ebe3",
+      "0419aa1d99033278760bb03960ac9a97a01c68c92a52f4f1e5b1fc7b729d3f63"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.startUp",
+      "csweb.profs"
+    ]
+  },
+  {
+    "query": "링크: https://fitvid",
+    "expected_doc_ids": [
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "워크샵 봄학기 신청",
+    "expected_doc_ids": [
+      "bdc306f40d8b6136ec226eb558b4a36d4b2775480d46b71c1458967c63c02799"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "3D객체의 자연어만으로 3D객체의 part를 찾아내는 기술 개발",
+    "expected_doc_ids": [
+      "245ec24f51710bbf272cc7042823da4210c8b5a04cded0e850aefbb8801485fd"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "위치 박사과정 analysis",
+    "expected_doc_ids": [
+      "645a6ea054a26851fcb066f1c44cd5021ae994b50520da4d92cf6be35ba863d5",
+      "0dcb534d28762d316ba4f9947d124e8ed628a452b3d18b15e61f54ec8084d48d"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.research",
+      "csweb.admin"
+    ]
+  },
+  {
+    "query": "학부 총학생회 2024년 안내] [제36대 9월 *학부 중앙선거관리위원 요청으로 모집 관련해서 알려줘",
+    "expected_doc_ids": [
+      "598e61bcfe4c69052c40be7aa4df0fea50a84273b59038ebb3af161ff48228bf"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "적분(path 적분을 이 경로 계산되는데, integral)식으로부터 장면 미분한 값들을 계산하는 매개변수로 방법론이다 관련해서 알려줘",
+    "expected_doc_ids": [
+      "ee911b7966245468e7613ee7fa3c37c42f753d388284a2b0793692e0e152a55e"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "행사",
+    "expected_doc_ids": [
+      "1bfb27aad7c6c77d2a28c8e0f4942f9b9fc638953ccc2e4767544938a4131bc4"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "kr 042-350-3134 4207, E2-1 연구실: 관련해서 알려줘",
+    "expected_doc_ids": [
+      "d73240618e7dce536ee23f0b15c580911ccf15374d94286fc27f9ddb4293affb"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "컴파일러에 발견하여 MSVC GCC, 등 Clang, 활용되는 널리 존재하는 특히 그 관련해서 알려줘",
+    "expected_doc_ids": [
+      "d37042543bc5eaafae55c242fa34cfc2579abd5905bf1d44bf9bdfbfdd49246b"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "통해 vs 센서",
+    "expected_doc_ids": [
+      "e6edaa2edca66cd4ec7b1571aca78fbd64474a2eb68f9b12f3fa98d85a558d38",
+      "d77ff967bb33bfb04822e851728ee068248ca0cd0d9cd8d60335e33ccda80ed9"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "benchmark.real.phase7"
+    ]
+  },
+  {
+    "query": "지원 모집",
+    "expected_doc_ids": [
+      "c9b245363d2fab479365dd9d958e695b8c4be90d4121f85c201b48f2932f9af3"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "차상길 and of relationship",
+    "expected_doc_ids": [
+      "414e357c0de986a1dee4e039eb47355ea2e99a62a4418bbe49efd371d83ceed6",
+      "1ab1b9a5d4472e52678253069b1aeea8e4a103f9459d6f16260b6593a3cee51e"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.news",
+      "csweb.calendar"
+    ]
+  },
+  {
+    "query": "영어",
+    "expected_doc_ids": [
+      "80cea830c1ca9f42ca13ba3112c671547118213a72d90fbcf522fa767f73b470"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "근무했다. 있다. 영국",
+    "expected_doc_ids": [
+      "b9f70e53890f6b9909a58b71148e76ece4c5c4f1c2ad7ad759eca5cf03f8d1a2"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "새로운 삼중항 복층",
+    "expected_doc_ids": [
+      "5836786619ad0e2873a65dd3b462c6790480d4c104c69977960d6531d5798d97"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "부착 지원방법:  이메일 지원(startup_kstp@kai",
+    "expected_doc_ids": [
+      "1162564f7f6e739ae6e026b5c2e8edfbd1f18016d645cf5db8996fda8c554039"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "Design [Mobile-Friendly Content Desig",
+    "expected_doc_ids": [
+      "8b44fe74101e4fd6a69ba4878033e65432a0184f7b4fbb4d3246d0eeb2b585f8"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "발표와 2023-03-31T00:00:00Z",
+    "expected_doc_ids": [
+      "f2735682cf8a57f0f2d39595adea8b7502715caecbf8e66c6f1a8d70daf535d2"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "도곡캠퍼스 403-5호",
+    "expected_doc_ids": [
+      "66eb34bc03ee5720b0169f7048843fec49d2bde0276a8ef470b11b2dc3174c4b"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "따라서 vs 연합학습",
+    "expected_doc_ids": [
+      "aa1ca74c5547cc1415ed6232af4f791ae9880301a75a9d98f8c62f84c7f645d0",
+      "01c57b49e6733cd86819041864d66df1b5c8d8f7fb088c74b186f6483ff82cac"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "csweb.ai"
+    ]
+  },
+  {
+    "query": "안성진",
+    "expected_doc_ids": [
+      "d55845ebcae593edec04d00a22dc780fd03e54ef0a5b642c9f1ac28c68c01067"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "버그를 본 연구는 이러한 동시성 버그의 존재를 획기적으로 빠르",
+    "expected_doc_ids": [
+      "e506847468ceebcc8700247a280a1b2d57cffae84139b1eb189df8986b8bcd5b"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "프레임워크에 기존의",
+    "expected_doc_ids": [
+      "6cdc500c7a727384dcbc9dc2e49983b3fde277e8b29860ba3d230b1ec0b99c05"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "연구실 있다.",
+    "expected_doc_ids": [
+      "121ed7967a60ebae744dd71a39f9d6b01aee8952a74f533026f8b868e625a9bb"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "보안 the compare",
+    "expected_doc_ids": [
+      "12aecf2d52423d06e468a8ea3c43b13f7f63c1ee62b3efb0818fa8ba8d55d2f3",
+      "2388314351c7e506275679ae0d163ec84321e9ba968ea7abc445b6b6e02c94ce"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "benchmark.real.phase7"
+    ]
+  },
+  {
+    "query": "빅데이터 빅데이터 엣지 클라우드 서비스 연구센터에서는 5G 등의",
+    "expected_doc_ids": [
+      "89e9d504740e4dcb89d432e5c22c4e4d41d7150117759deebe7d5e549b536226"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "AI/Data, 분야",
+    "expected_doc_ids": [
+      "e2b08be79b0921e80530e7264caa9005f0337b552520f04a90449f41891ca7ae"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "AI and KAIST relationship",
+    "expected_doc_ids": [
+      "3b19daeb3527ac850badf88d22f9d2653b9ef6aba716cc035151874f435a39fc",
+      "9f6b4dbb9f12fd68838a736ac31187c22d1adc2f5496b6d86dead20d2d81cb31"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "csweb.news"
+    ]
+  },
+  {
+    "query": "기술＇…무선신호 [카이스트가 개발한 ＇이 기술＇…무선신호 없는 실내서도",
+    "expected_doc_ids": [
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "position: work:",
+    "expected_doc_ids": [
+      "5b63f743517e2dddc990013c49871255135aa79d5f8c1c23eb282a75dcaf1bd9"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "https://bit.ly/3tCpnN0 FIST",
+    "expected_doc_ids": [
+      "a05d6059a5bec8e32f32df8f8e8b0ada9bf14a6f0ca9b41250cae2a190f8c3c1"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "컴퓨팅 kr eymoon@kaist",
+    "expected_doc_ids": [
+      "878668d9c7671de5bc32daa45973629e52cb32b2b94b8a807fa20edc90d71ed4"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "and 학생 analysis",
+    "expected_doc_ids": [
+      "203ae4fd20d0c8d6515e3bc34adbae5644494ec4a7b1afc540c1c78a45e5c9f2",
+      "70d2fa0eecb2741ce9b5d8c65de678d1943e6dc4f32133810ad063e173fd99b3"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.calendar",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "사이버보안진단의날 1422호",
+    "expected_doc_ids": [
+      "32a712c8402f606cdc7297f54ce80bcd65f8f311888c90db0ba5428e639e4ac8"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "문제에서 vs 전산학부",
+    "expected_doc_ids": [
+      "aa1ca74c5547cc1415ed6232af4f791ae9880301a75a9d98f8c62f84c7f645d0",
+      "a4c1bfef65c4220d02e6022bbcaf5c146262b9ae85ae64cc868826c4fe65102c"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "notion.notice"
+    ]
+  },
+  {
+    "query": "차세대 hankookilbo",
+    "expected_doc_ids": [
+      "845ce77e0e689126f30b1041a98ad12946284342ec255fa268518118d3d5ac4c"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "선택돼 된 레이블링 데이터로 찾기 훈련 새롭게 균형을 즉, 최적 추가될 레이블이 갱신했다 위한 관련해서 알려줘",
+    "expected_doc_ids": [
+      "afa1ad1e561b8cfa840871cbacc0bbc71e554bacf05090eb7a3bfc63821ed50e"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "컴퓨팅, KAIST",
+    "expected_doc_ids": [
+      "c1a02bfd829078a90afd5406fcc438eab17714b3cb510af9fd7ffe1c056c5467"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "[동기화된 기법을 공동",
+    "expected_doc_ids": [
+      "6cdc500c7a727384dcbc9dc2e49983b3fde277e8b29860ba3d230b1ec0b99c05"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "People팀입니다. 2025. 삼성SDI",
+    "expected_doc_ids": [
+      "24f9a989010a36f7e5daba2f336c9df7636e97489e3d1c8cf0bbd8e3e05b1236"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "학습(딥러닝) [인공지능 심층 학습(딥러닝) 서비스 구축 비용 최소화",
+    "expected_doc_ids": [
+      "afa1ad1e561b8cfa840871cbacc0bbc71e554bacf05090eb7a3bfc63821ed50e"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "있다. and 소프트웨어 relationship",
+    "expected_doc_ids": [
+      "28153e2549e8e0ffb6fd10078b09dba4f685b5adfd7c6b86ea9c523553629f07",
+      "2293aae585c43a3e2a78f2a3785028a255da47c0e3491d73029732ac8f9c9fc4"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.research",
+      "csweb.profs"
+    ]
+  },
+  {
+    "query": "of 조합론",
+    "expected_doc_ids": [
+      "0419aa1d99033278760bb03960ac9a97a01c68c92a52f4f1e5b1fc7b729d3f63"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "교육 별첨.",
+    "expected_doc_ids": [
+      "4a0247acc8522b5e9ae66451f0f9db2c4e09c3dcd8ca5e0e05e21eeb4436af75"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "and are and both I infer map, to maintaining robot sensors map the 관련해서 알려줘",
+    "expected_doc_ids": [
+      "f9889f0d2f6391cc67a5a6fb7a1822049782358e369435f72df31b2d21f3f0a6"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "(논문명 Dilemma Purity-Informativeness Meta-Query-Net: Active Resolving Open-set 관련해서 알려줘",
+    "expected_doc_ids": [
+      "afa1ad1e561b8cfa840871cbacc0bbc71e554bacf05090eb7a3bfc63821ed50e"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "채용] 1:1",
+    "expected_doc_ids": [
+      "da886b7f3a9237897c258720339f59972df9362c47e34579e63964915e3b6bd7"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "류중희 Inc.",
+    "expected_doc_ids": [
+      "bd7e9fc3f2d90b6c95efc61bc32b0e6017817e64abd97ad0b1df621057b6223f"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "site/image/https%3A%2F%2Fs3-us-west-2 관련해서 알려줘",
+    "expected_doc_ids": [
+      "2819466a8542865a59ca7a5b44c1a419160c32766798ca360c62ab2c70045a77"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "류석영 https://plrg",
+    "expected_doc_ids": [
+      "3fc02a3a0227e86c5f1d54c05676cb9b72def362d6075b0ce56cc5014d6f6df5"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "PhD, 사이언스 analysis",
+    "expected_doc_ids": [
+      "7ec8c1d72460c7b7dca56d79fa7e8f616caad1f948d7977090bf0a6213fd0877",
+      "781a00b7068e752b526a27fec5ef6453bc341c096f007025066e8e71827d7d00"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.profs",
+      "csweb.research"
+    ]
+  },
+  {
+    "query": "title:KAIST us/j/89102570390?pwd=ajI3ajhjU",
+    "expected_doc_ids": [
+      "e516702bea43a5acc3238287eac46a21ab99ca441a6baceb3cc20e09e4f414bf"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "042-350-2346 전화: 042-350-2346",
+    "expected_doc_ids": [
+      "305970069ed3642b31296b353b3ecfaec9834b2244fe4b5361724db768a8da28"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.phase5"
+  },
+  {
+    "query": "프로그래밍 소프트웨어",
+    "expected_doc_ids": [
+      "d7b618590d82cbf86cf2460d0becbe3ec824ae94adb786f1cb939d71f2405425"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "근무했다.",
+    "expected_doc_ids": [
+      "b9f70e53890f6b9909a58b71148e76ece4c5c4f1c2ad7ad759eca5cf03f8d1a2"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "동문 경영대학",
+    "expected_doc_ids": [
+      "4d7b5007bcaa519a53cd2e954098bc4e950b1012a44399f3e554a80afa71b483"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "보안 vs 위해서는",
+    "expected_doc_ids": [
+      "465d90c1fc0771e32d8473c6a6fbe5d22f5b973fa00c93b868fea7dd218e753c",
+      "aa1ca74c5547cc1415ed6232af4f791ae9880301a75a9d98f8c62f84c7f645d0"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.calendar",
+      "benchmark.real.phase5"
+    ]
+  },
+  {
+    "query": "김태균 and 2024. relationship",
+    "expected_doc_ids": [
+      "548d9147a9dfe5724b2fd8f6ce608dd2439caaed11b633880c62cd4fc7cad731",
+      "197b4df7b78db46a0260d269661e539ff887a5a842cd40da837a93cf9f46cce8"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "특강, 신청",
+    "expected_doc_ids": [
+      "32ad08c7cc2f304dd0b6329be37d76c18006af1bbf1b15cb2dc43643ba44feb7"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "AI 이 교수는 2023년에 카이스트에서 데이터사이언스 박사",
+    "expected_doc_ids": [
+      "c9e8c3ba6dca120ab5f320e575d8853add0111ff818ae141901eea4b79c99abf"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "차상길 and 2023 relationship",
+    "expected_doc_ids": [
+      "d37042543bc5eaafae55c242fa34cfc2579abd5905bf1d44bf9bdfbfdd49246b",
+      "9b56cc2303ec3bae6b953fa5b744165fe16091ec34dc5134df35070dfdf628bc"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.news",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "소프트웨어 and 힐세리온 relationship",
+    "expected_doc_ids": [
+      "3db5f895122b5bdce126bd211c5144d8407b2109a74df4c0b97c4b5602b09cc4",
+      "d19fa088e351f5adca9e2a3489049d2d57f1c19a3a4b92b72ce86d62e56177f1"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.news",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "대학생 DX부문에서",
+    "expected_doc_ids": [
+      "0a1f7a728171152cb6d43ab95b7ad435c97ccf3524f0dd61ce95ff33e236e793"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "부분 있다.",
+    "expected_doc_ids": [
+      "5d6253e5997a90d486afc0bf01d52e1eca3492dba65520ca031e40d02366a897"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "개발 피부과",
+    "expected_doc_ids": [
+      "e8c00c3434bf8c9fa4863c7584bd78a8ba4bf73dea7ac9e3d7571e89ccd6d93a"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "대전 대전 갈마로 교육 - 장소: 관련해서 알려줘",
+    "expected_doc_ids": [
+      "cb00e09cbf7ce9e479e8ed293d70e2c68818203610b7121cfb5f32fc05e3d2e2"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "KAIST 경품이벤트 : 아이패드 에어 (1명) , 에어팟(4명)",
+    "expected_doc_ids": [
+      "6ddca64513e3dc2eca4e62e99b28157109a072cd684253c003ea7c55dacf9f88"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "소프트웨어 and RIRO relationship",
+    "expected_doc_ids": [
+      "2293aae585c43a3e2a78f2a3785028a255da47c0e3491d73029732ac8f9c9fc4",
+      "121ed7967a60ebae744dd71a39f9d6b01aee8952a74f533026f8b868e625a9bb"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.profs",
+      "csweb.research"
+    ]
+  },
+  {
+    "query": "교원인사 및 신임교원 리쿠르트 관련해서 알려줘",
+    "expected_doc_ids": [
+      "a511d4aa31505e78db53bed7d339aeff61c58b328b40b54caad2aa4b1dea5c17"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "민족",
+    "expected_doc_ids": [
+      "f33f1fe506afe00cc18f958fd3a183f4b3b8e862dac3b4f34da757fa7d9c8b24"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "응시원서 따라",
+    "expected_doc_ids": [
+      "00b55cda5757e105959fca8ef0067e9fc9753a9c16612a285055e5728308d9f9"
+    ],
+    "query_type": "hard",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "전산학 KAIST, 학위:",
+    "expected_doc_ids": [
+      "bf2f286d94a1a4fa377715819b4c3706afa9130586d217bbbe31d3a1ebaf3891"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "2023년 신청",
+    "expected_doc_ids": [
+      "554a027f447a1e4f191e5d46312400e58be28db3c4c0cf43364e29044978419d"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "졸업 and 전산학부 relationship",
+    "expected_doc_ids": [
+      "d1524d17789959fe74d45bedec042b360112e6b45adf89f202d0a508e95482d5",
+      "f2101eb1f10ac2e305bbbd006ac079121830feae3731db7e74255fbd6db12812"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "test.phase5",
+      "notion.notice"
+    ]
+  },
+  {
+    "query": "9기 vs of",
+    "expected_doc_ids": [
+      "6da2d5a5f3676740d28247539132ba430719f22f1465b26d5fa905f952402606",
+      "bd7e9fc3f2d90b6c95efc61bc32b0e6017817e64abd97ad0b1df621057b6223f"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.marketing",
+      "portal.startUp"
+    ]
+  },
+  {
+    "query": "기반 https://www",
+    "expected_doc_ids": [
+      "55b126128a890c5a9db75653efd10831e2da48c7fee404a94f6b4eb193696997"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "있는 심지어 한 프로게이머가 토너먼트에서 에임봇을 사용하다 ",
+    "expected_doc_ids": [
+      "03a363723de19cd030611787becdd46ca078b5a4b2303a3ed402b44f5f2c7879"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "KAIST",
+    "expected_doc_ids": [
+      "89e9d504740e4dcb89d432e5c22c4e4d41d7150117759deebe7d5e549b536226"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "입니다. 우리과에 오혜연교수님께서 부임해 오셨습니다",
+    "expected_doc_ids": [
+      "f030bf413e3648bcd64a9d951e0e7ee2cd89b321e747046b92b7b5e94154800c"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "박사과정,",
+    "expected_doc_ids": [
+      "5b47a23271de2ae0c3486c81c04045def22ec90ff68adf595d9a865af0cc9ee9"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "있습니다 경량화 대규모 기술도 언어 관련해서 알려줘",
+    "expected_doc_ids": [
+      "c7b946a75d186f2ccf62601ddcc272df3ecd4cbe426283e31c294f8ae646b37d"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "test.phase5"
+  },
+  {
+    "query": "18시 and First relationship",
+    "expected_doc_ids": [
+      "cbc251bc0007b72df7b6b32f520309a67725f1c3e1db2da083ca66ec9627eb57",
+      "b27b5de5fae65bfae6dbb688bc14a4d45404e98b9538c1cefd2dd4b76a8e0c6d"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.notice",
+      "csweb.calendar"
+    ]
+  },
+  {
+    "query": "적 해본 이런 생각 관련해서 알려줘",
+    "expected_doc_ids": [
+      "a673982ef1c45c45648f963807dda67fb59123574236df74c879385aea94f5d7"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "방법은 향상을 위해 메타학습(meta-learning)의 상위 추가적인 레벨의 사용하였다는 일종이라 신경망을 볼 이러한 관련해서 알려줘",
+    "expected_doc_ids": [
+      "afa1ad1e561b8cfa840871cbacc0bbc71e554bacf05090eb7a3bfc63821ed50e"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "소프트웨어 and 데이터베이스 relationship",
+    "expected_doc_ids": [
+      "cf27076a1441a9058656453ec5f1a447e1d09e6fe63ad54836645876f15562e9",
+      "f63c9ea5d5485ec6b4a2fa5d82def6cb37b58bbc8cf78936d36e74112162e58d"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.news",
+      "csweb.calendar"
+    ]
+  },
+  {
+    "query": "kr/notice/press_View 관련해서 알려줘",
+    "expected_doc_ids": [
+      "414e357c0de986a1dee4e039eb47355ea2e99a62a4418bbe49efd371d83ceed6"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "빅데이터 - 빅데이터 엣지 클라우드 서비스 연구센터 (센터장: ",
+    "expected_doc_ids": [
+      "89e9d504740e4dcb89d432e5c22c4e4d41d7150117759deebe7d5e549b536226"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "18시 의료 analysis",
+    "expected_doc_ids": [
+      "6253779ea722e92232da45d085f000922da4edc9507dfbcf24c49922a060f08f",
+      "54b1638231a3d699c2080a449d64d9c01d50c1c86df2299c9f6f159fd1631e23"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "notion.notice",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "교원 대학원생(재학생)의 많은 바랍니다 및 관련해서 알려줘",
+    "expected_doc_ids": [
+      "9a480655c7b2e904fee5cad8d94fe577f131b073c35fa6344474a209f5e095bc"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "2025 been has the in link below! through The 관련해서 알려줘",
+    "expected_doc_ids": [
+      "2eabde67e0cf7f3a3f7faf4e0da8b862bf4c3936958f826292736ce5b9e4061f"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "학습시 사전 충분한",
+    "expected_doc_ids": [
+      "f33f1fe506afe00cc18f958fd3a183f4b3b8e862dac3b4f34da757fa7d9c8b24"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "인공지능을 모델의 데이터의 범용 힘든 위한 및 처리능력을 시스템인공지능은 규모로 천문학적 기술로는 관련해서 알려줘",
+    "expected_doc_ids": [
+      "103265f5f85352df7bc41c75d026d97cc5958be82f91881ae04cd274cc0c87a3"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "최초로 티그리냐로",
+    "expected_doc_ids": [
+      "24c8aefad2a90772516fa01e6366c605d5f2f1543debf91e4cbf351729dba9d0"
+    ],
+    "query_type": "hard",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "오토바이",
+    "expected_doc_ids": [
+      "70db333d676f2ad55119ac325a3830965bb6e1b127f63959e98a908be78878f8"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "연구팀은 of analysis",
+    "expected_doc_ids": [
+      "24c8aefad2a90772516fa01e6366c605d5f2f1543debf91e4cbf351729dba9d0",
+      "adb6d6cb8508f51c4a9826ff16fd4e08935a99250d3bf7514553fbffd74ca8a4"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "csweb.profs"
+    ]
+  },
+  {
+    "query": "채용일정 및 합격자 처리기준 관련해서 알려줘",
+    "expected_doc_ids": [
+      "f2bf6897c8737aac71828aee0243c1c6818f685e4965253af9fc13f5cd186640"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "KAIST,",
+    "expected_doc_ids": [
+      "787e4a138bb020dbe9976b342f7fadbc1dac03aea7b3f68bb2deb1fc7d6a1bbb"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": ", in interdisciplinary (e but ICWSM) 관련해서 알려줘",
+    "expected_doc_ids": [
+      "a259bc57b33258614f7b7289de394d00c8a2ca003920a97118df54000dfc5d79"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.calendar"
+  },
+  {
+    "query": "황 VLDB 교수는 The 창립 board member로서 편집 공헌하였으며, editorial 2003년∼2009년에는 13년간 Top 위원장(수석 Journal의 관련해서 알려줘",
+    "expected_doc_ids": [
+      "f939cd824440f7666d10d30ea52a2b5fb4aeb0c6d0cb287402f9943e14185120"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.profs"
+  },
+  {
+    "query": "스마트폰을 https://www",
+    "expected_doc_ids": [
+      "77dd62a1ac4d56f0326b3100c760420ddb9bb55b7f5f9e9b496021e83f673071"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "첨부파일을 Youtube (for 2024)",
+    "expected_doc_ids": [
+      "5bb32a50ed220ba57c7f7412eee85f5b13c574b2a14ff17fb5f5e82ae219055f"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.job"
+  },
+  {
+    "query": "하는 상세 내용▶ https://bit",
+    "expected_doc_ids": [
+      "4bf240a86f71314a3cff84d0e433ec673e8a0866016249d3fd1918fd2f6ef787"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "없는 출처 : SBS 뉴스",
+    "expected_doc_ids": [
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "0) 센서를 해당 값을 LiDAR 데이터는 예상치 못한 2D 관련해서 알려줘",
+    "expected_doc_ids": [
+      "d77ff967bb33bfb04822e851728ee068248ca0cd0d9cd8d60335e33ccda80ed9"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "우리 sensor analysis",
+    "expected_doc_ids": [
+      "eee183163e5013c754cf2f15a2e4a54823e6fbe190de8636e652adf524da9163",
+      "49ff0144cbb3883e3acdae37882ba0641bde4dce765edffc4b5ddd4f67df5317"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.news",
+      "benchmark.real.phase5"
+    ]
+  },
+  {
+    "query": "Blended and 장학금 relationship",
+    "expected_doc_ids": [
+      "6cdc500c7a727384dcbc9dc2e49983b3fde277e8b29860ba3d230b1ec0b99c05",
+      "305970069ed3642b31296b353b3ecfaec9834b2244fe4b5361724db768a8da28"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "benchmark.real.phase5",
+      "benchmark.phase5"
+    ]
+  },
+  {
+    "query": "1명 류석영 compare",
+    "expected_doc_ids": [
+      "fb6cc928c1c5bf8df6d01fd3b53c3797ed10444f4a2e41d3d96994b553d9fe0d",
+      "9fc7c3fb43fc9d414001b76826a076754f092e984ceae598f0b9bf7c3b38cb2d"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "portal.job",
+      "csweb.news"
+    ]
+  },
+  {
+    "query": "봄학기 Study analysis",
+    "expected_doc_ids": [
+      "6c8d39891bd64ecaa39c54aa941c80687ab5e61a56b69060b3320fac703428b5",
+      "80cea830c1ca9f42ca13ba3112c671547118213a72d90fbcf522fa767f73b470"
+    ],
+    "query_type": "multi_hop",
+    "origin_collection": [
+      "csweb.news",
+      "notion.marketing"
+    ]
+  },
+  {
+    "query": "11월 11월 8일(수)에 르완다 외무부 IT 담당자가 전산학",
+    "expected_doc_ids": [
+      "9f7e1ae8e507843bc04739c42d08436256803f2bae7a13ea18aa87fa5bf9f468"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "Software AWS Software Engineer new grad",
+    "expected_doc_ids": [
+      "aae12b0439d3e4835d334d4268b562208d9d719160c7662fc5ed5376c396768a"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "연구실을 of",
+    "expected_doc_ids": [
+      "bb14583cc65d5077bf27652d1faddaca89da2bd9a3db8fd9ab53f5890a462ef2"
+    ],
+    "query_type": "hard",
+    "origin_collection": "notion.notice"
+  },
+  {
+    "query": "＇이 [카이스트가 개발한 ＇이 기술＇…무선신호 없는 실내서도",
+    "expected_doc_ids": [
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "2023년 온라인 채용설명회 링크 : https://kaist",
+    "expected_doc_ids": [
+      "cede6bc510db598e88ae7dbe6be63b8dc7cb1e3d25571bd769d039842d728e0f"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "notion.marketing"
+  },
+  {
+    "query": "훈련 데이터",
+    "expected_doc_ids": [
+      "e1b515214aca60c8d7f9886f0a8e03b013c1345df7a876d271a2dd24c5b98f2e"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.ai"
+  },
+  {
+    "query": "학회는 분야 중 ICFP 프로그래밍 역사의 25년 CORE A＊ 관련해서 알려줘",
+    "expected_doc_ids": [
+      "10f56a78e283bff2d43d13ae4b88b43b0d27d495ba1a6a00e86b861883be6817"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.news"
+  },
+  {
+    "query": "손자세 개발]",
+    "expected_doc_ids": [
+      "548d9147a9dfe5724b2fd8f6ce608dd2439caaed11b633880c62cd4fc7cad731"
+    ],
+    "query_type": "hard",
+    "origin_collection": "benchmark.real.phase7"
+  },
+  {
+    "query": "함께 센서,",
+    "expected_doc_ids": [
+      "a8e1b56c1d43ca1b0bd6de956209432491ac7ce9804e1f9e890418c7b85b1f17"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "benchmark.real.phase5"
+  },
+  {
+    "query": "모델링 가시화",
+    "expected_doc_ids": [
+      "4a8e50180a5d65338016879cbf597bf4c0550e8c2bbef6db62fdf439b73e69f0"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "KAIST KAIST 창업지원센터 단기 근로학생을 모집합니다",
+    "expected_doc_ids": [
+      "652bdda2ac376ffe935e10348517118279bac2173d181527a4d2cc8ad221469a"
+    ],
+    "query_type": "hybrid",
+    "origin_collection": "portal.startUp"
+  },
+  {
+    "query": "name:YUCHI HUO position: work: mail:eehyc0@kaist 관련해서 알려줘",
+    "expected_doc_ids": [
+      "5dbdacc511934a9e4db790a8969c80509052c08cb0dde64e058e33fc2f8d36ea"
+    ],
+    "query_type": "semantic",
+    "origin_collection": "csweb.admin"
+  },
+  {
+    "query": "위한 Visual",
+    "expected_doc_ids": [
+      "f07a0a04952bfae31d17eb55821c89aaa699d96e3282cd6f11a92c193244cac8"
+    ],
+    "query_type": "hard",
+    "origin_collection": "csweb.research"
+  },
+  {
+    "query": "Web3 봄학기",
+    "expected_doc_ids": [
+      "2b6ff325c23dc3f12c28648ea156cb077e8b61a2cf6d249c76b6bfaa7a3848ad"
+    ],
+    "query_type": "keyword",
+    "origin_collection": "notion.marketing"
+  }
+]

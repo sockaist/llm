@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any
 
 from qdrant_client import models
 
 from llm_backend.utils.logger import logger
 
+from .quantization_manager import (
+    get_scalar_quantization_config,
+    get_hnsw_config,
+    get_optimization_config,
+)
 
 def create_collection(
     manager,
@@ -18,8 +21,10 @@ def create_collection(
     force: bool = False,
     include_sparse: bool = True,
     include_splade: bool = True,
+    use_quantization: bool = True,
+    extra_vectors: dict[str, models.VectorParams] | None = None,
 ) -> None:
-    """Create or recreate a collection with optional sparse/splade vectors."""
+    """Create or recreate a collection with production-ready optimizations."""
 
     if isinstance(distance, str):
         distance = {
@@ -34,7 +39,12 @@ def create_collection(
         except Exception:
             pass
 
-    vectors_cfg = {"dense": models.VectorParams(size=vector_size, distance=distance)}
+    vectors_cfg = {
+        "dense": models.VectorParams(size=vector_size, distance=distance),
+        "title": models.VectorParams(size=vector_size, distance=distance)
+    }
+    if extra_vectors:
+        vectors_cfg.update(extra_vectors)
     sparse_cfg = {}
     if include_sparse:
         sparse_cfg["sparse"] = models.SparseVectorParams(
@@ -45,12 +55,18 @@ def create_collection(
             index=models.SparseIndexParams(on_disk=False)
         )
 
-    manager.client.recreate_collection(
+    if manager.client.collection_exists(name):
+        manager.client.delete_collection(name)
+
+    manager.client.create_collection(
         collection_name=name,
         vectors_config=vectors_cfg,
         sparse_vectors_config=sparse_cfg if sparse_cfg else None,
+        quantization_config=get_scalar_quantization_config() if use_quantization else None,
+        hnsw_config=get_hnsw_config(),
+        optimizers_config=get_optimization_config(),
     )
-    logger.info(f"Created collection '{name}' ({vector_size}D, {distance})")
+    logger.info(f"Created collection '{name}' with HNSW & Optimizer tuning.")
 
     try:
         manager.client.create_payload_index(

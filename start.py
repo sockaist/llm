@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 project_root = os.path.abspath(os.path.dirname(__file__))
 if project_root not in sys.path:
     sys.path.append(project_root)
+    # Add src to path so 'llm_backend' can be imported directly
+    sys.path.append(os.path.join(project_root, 'src'))
 
 
 def main():

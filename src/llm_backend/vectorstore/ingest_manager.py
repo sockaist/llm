@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import os
-import uuid
 from typing import Any, Dict, List, Optional
 
 from qdrant_client import models
@@ -100,6 +99,16 @@ def upsert_folder(manager, folder: str, collection: str, batch_size: int = 50) -
                     "db_id": db_id,
                 }
 
+                payload = {
+                    **doc,
+                    "id": doc.get("id", db_id),
+                    "parent_id": doc.get("id", db_id),
+                    "db_id": db_id,
+                    # Multi-Tenancy Defaults
+                    "tenant_id": doc.get("tenant_id", "public"),
+                    "access_level": doc.get("access_level", 1)
+                }
+
                 point = models.PointStruct(
                     id=point_id,
                     vector={
@@ -174,7 +183,7 @@ def upsert_document(manager, col: str, data: dict, doc_id: Optional[str] = None)
             logger.warning(f"[Upsert] Skip doc without content in '{col}' (id={doc_id})")
             return
 
-        normalized = json.dumps(data, sort_keys=True, ensure_ascii=False)
+        json.dumps(data, sort_keys=True, ensure_ascii=False)
         db_id = make_doc_hash_id_from_json(data)
         data["db_id"] = db_id
 
@@ -190,11 +199,38 @@ def upsert_document(manager, col: str, data: dict, doc_id: Optional[str] = None)
             logger.warning(f"[Upsert] SPLADE encoding failed; storing dense+BM25 only: {exc}")
             splade_sv = SparseVector(indices=[], values=[])
 
+        # Multi-Tenancy & Encryption
+        tenant_id = data.get("tenant_id", "public")
+        access_level = data.get("access_level", 1)
+        
+        # Determine if encryption is required (Private tenant OR explicit flag)
+        should_encrypt = data.get("encrypt_content", False) or (tenant_id != "public")
+        
+        stored_content = content
+        is_encrypted = False
+        
+        if should_encrypt:
+            try:
+                from llm_backend.security.encryption_manager import EncryptionManager
+                encryptor = EncryptionManager.get_instance()
+                stored_content = encryptor.encrypt_text(tenant_id, content)
+                is_encrypted = True
+            except Exception as e:
+                logger.error(f"[Upsert] Encryption failed for {doc_id} (tenant={tenant_id}): {e}")
+                # Fallback: Do NOT store plaintext if encryption was intended?
+                # For safety, let's fail the upsert or store a placeholder.
+                # Storing plaintext when encryption failed is a security risk.
+                return
+
         payload = {
             **data,
             "id": data.get("id", doc_id),
             "parent_id": data.get("id", doc_id),
             "db_id": db_id,
+            "tenant_id": tenant_id,
+            "access_level": access_level,
+            "content": stored_content,
+            "content_encrypted": is_encrypted
         }
 
         point_id = generate_point_id(db_id)

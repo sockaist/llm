@@ -1,0 +1,402 @@
+[
+  {
+    "query": "KAIST CCC(Computing Convergence Consortium) 회원사가?",
+    "expected_doc_ids": [
+      "5a4bfa59fcd1e839caa0a35065ce4769d8438cdba04661b0ac7db27271762b66"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "우리 대학 전산학부 성민혁 교수가?",
+    "expected_doc_ids": [
+      "f18460ba3ad683a1101fe29a70a8ed492852a5eb2e03ebfbc542d1690458b43c"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "신인식 교수의 연구진은 Purdue university,?",
+    "expected_doc_ids": [
+      "6f83bac37e5d17c013135dc34110bfc0b90276c3d04ca7c8ab6db68c6f36e421"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:계산지능형 소프트웨어 공학 연구실 professor:유신?",
+    "expected_doc_ids": [
+      "5615fbee98b1017183ce0b1a3c2a8c7e199b01e719eb6e270da2e0eb2a04cce2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:컴퓨터구조 및 시스템 연구실 professor:권영진/허재혁/박종세?",
+    "expected_doc_ids": [
+      "5615fbee98b1017183ce0b1a3c2a8c7e199b01e719eb6e270da2e0eb2a04cce2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 전산학부를 졸업한 공태식 박사(지도교수:?",
+    "expected_doc_ids": [
+      "2e1ae9a293649638f86c2ed7597c6daa64a3caae6998108a72bb5565fcd1c054"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 전산학부 학사과정 김연수 학생이?",
+    "expected_doc_ids": [
+      "b6f23e839019ce7f159129b50588bfc12d6c400c8e285f93429020c6271a4af9"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2010년 2월 12일 열린 39주년?",
+    "expected_doc_ids": [
+      "b7b176253eec03ca826f8de7cd16f2ca431d85fc516491fa48c262c96e78eb77"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:NC 연구실 professor:송준화 field:소프트웨어 디자인,?",
+    "expected_doc_ids": [
+      "9065c411114cf9f5c6498a1fd08a1dc185854bf6761fbf5dc440730e474e6e79"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:첨단 네트워킹 연구실 professor:문수복 field:시스템·네트워크,?",
+    "expected_doc_ids": [
+      "71087ee5b0918fed1dc90aa0471d9302c7e2d75500cc6c6246e87f6e71ac0a05"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:컴퓨터 비전 및 머신 러닝?",
+    "expected_doc_ids": [
+      "b199ab1cd578ef6f6e98a0238506095a06390e50b2a355bbd96a040412f1782f"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "<사진상 좌측 : 김현수 석사과정,?",
+    "expected_doc_ids": [
+      "abb61388a52db4049728fa4f3df21c592389616bfd819c91808b4fac7e87c373"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "＊＊사진상 위로부터: 신인식, 이기혁, 김민혁?",
+    "expected_doc_ids": [
+      "d13db8123be53ebe92bb249ad4c61fd371d588c5527602678e11c6b81baf164b"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:비주얼 컴퓨팅 연구실 professor:김민혁 field:비주얼?",
+    "expected_doc_ids": [
+      "75b94635e05f9483d8fa71884f242ae307facbff3dd215e169e9b653293f5577"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:빅데이터 지능 연구실 professor:황지영 field:인공지능·정보서비스,?",
+    "expected_doc_ids": [
+      "28153e2549e8e0ffb6fd10078b09dba4f685b5adfd7c6b86ea9c523553629f07"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "학부사무실을 늘 따뜻하게 해주셨던 이윤정?",
+    "expected_doc_ids": [
+      "53f5977242041548f4fc44941a4ec6853f0819a3a46d930660df56bfadf9ff1f"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:프로그래밍 시스템 연구실 professor:허기홍 field:전산이론,?",
+    "expected_doc_ids": [
+      "5615fbee98b1017183ce0b1a3c2a8c7e199b01e719eb6e270da2e0eb2a04cce2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "우리 전산학부에 2016년 7월 11일부로?",
+    "expected_doc_ids": [
+      "5d27552ab2f9e89a6a24d2b1f2eb596dbd162c52f770f9a1dab951aaa834b580"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "전산학부 졸업생 조요한 박사(KAIST 석사,?",
+    "expected_doc_ids": [
+      "9ff885ba7aaeb60a4f6a738a2b4f135e8420bba6ff2a87ac91b9ef13ff8f41c6"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "김민혁 교수는 2022년 열리는 제43회?",
+    "expected_doc_ids": [
+      "f3f39d55e8c16b8251c8b1a1bcdbc8f1b3bbfc1f17299606562afeff4f885fc0"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "출처 : 전자신문 https://www.etnews.com/20240229000246# 전산학부?",
+    "expected_doc_ids": [
+      "7c1f591164d1f56e23defb2f5b37b807757709a9c6ae8765787afa367984deaf"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:데이터 사이언스 연구실 professor:차미영 field:인공지능·정보서비스,?",
+    "expected_doc_ids": [
+      "781a00b7068e752b526a27fec5ef6453bc341c096f007025066e8e71827d7d00"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "이번 개교41주년 기념 우수교원 포상에?",
+    "expected_doc_ids": [
+      "35f5e372101c30c7c19f7796b20d2e75a555773144e7597abecd6b499e2853d5"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:인포랩 professor:김민수 field:시스템·네트워크, 인공지능·정보서비스, 소셜?",
+    "expected_doc_ids": [
+      "3603b96ee90569fa95adbe54c782fc24a450435987586b1360c144f5aec3a7ac"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:협동 사회 기술 연구실 professor:시어링?",
+    "expected_doc_ids": [
+      "828e8e889602235ff3bc44c7b4ce11bdaf623901f551b26962f53c0e5854526e"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "우리 전산학부 졸업생인 백형부 박사(지도교수:?",
+    "expected_doc_ids": [
+      "79668c51371095c1664e734d4f656abb0d7824aa1c973d253a0c0bc39d5ef3d7"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "우리 학과 배두환 교수가 11월21일?",
+    "expected_doc_ids": [
+      "a6cb0ac2498ff233ba9ffee73c9be2de81ec31abd967d739fa79249131d0b5d5"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "제1회 비트학술상에서 카이스트 김진형 교수와?",
+    "expected_doc_ids": [
+      "366b2843e3a8ab9d6abf89535c658810d1741ccbc89eddc78aa29c11bad6ac0a"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:KAIST Visual AI Group professor:성민혁?",
+    "expected_doc_ids": [
+      "f07a0a04952bfae31d17eb55821c89aaa699d96e3282cd6f11a92c193244cac8"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:사이버 보안 시스템 연구실 professor:강병훈?",
+    "expected_doc_ids": [
+      "60baf2ce95f59e68ef2d6993fce56aff6600e7c9bade47bfa823c96c2cad24b4"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:소프트웨어 프로세스 개선 및 신뢰성?",
+    "expected_doc_ids": [
+      "9065c411114cf9f5c6498a1fd08a1dc185854bf6761fbf5dc440730e474e6e79"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 전산학부 소프트웨어대학원 석사과정 Scamper팀(우준희,?",
+    "expected_doc_ids": [
+      "bdd30f9911686d089d5de8baf0af180088647d4bfcb66ea02ab1be0befe6a080"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:인터랙션 연구실 professor:김주호 field:인공지능·정보서비스, 소셜?",
+    "expected_doc_ids": [
+      "4fcbe93a39cef10e263170b18326bdf534998093c84ece4237cb66310c513f1b"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:웹 보안 및 개인정보 보호?",
+    "expected_doc_ids": [
+      "334f4203af71889c5f37640a5d9caacaadda0e22f2726088132b96d4ec478274"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 교수학습혁신센터에서는 교수들의 ‘교수법 혁신?",
+    "expected_doc_ids": [
+      "03dfca4cc9d881c26c96599a6d5960691082f3605f63f03f298abba943123709"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:컴퓨터 그래픽스 및 가시화 연구실?",
+    "expected_doc_ids": [
+      "4a8e50180a5d65338016879cbf597bf4c0550e8c2bbef6db62fdf439b73e69f0"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "사진상 (좌 : 문수복 교수,?",
+    "expected_doc_ids": [
+      "30be76b1e56d49f650d6f8e586ba2c81745b9e7364aa2a08a9904d45f24a4fda"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:뉴로-기계 증강지능 연구실 professor:조성호 field:소프트웨어?",
+    "expected_doc_ids": [
+      "5615fbee98b1017183ce0b1a3c2a8c7e199b01e719eb6e270da2e0eb2a04cce2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:데이터 마이닝 연구실 professor:이재길 field:인공지능·정보서비스?",
+    "expected_doc_ids": [
+      "28153e2549e8e0ffb6fd10078b09dba4f685b5adfd7c6b86ea9c523553629f07"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "1. 관련: 공학한림원 131(2007. 7.?",
+    "expected_doc_ids": [
+      "e5e26e68d2ddd20a15a18ce3875d840343ba13e6afbf3b878b4e83973e50112c"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "과학기술정보통신부(장관 유영민, 이하 과기정통부)와 정보통신기술진흥센터(센터장?",
+    "expected_doc_ids": [
+      "ac76a3df56dabd48a4b4e35d5972ad5f41ba8f0f0e3b9c6f5cb30f15d023b45a"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:암호론 연구실 professor:이주영 field:전산이론, 시큐어?",
+    "expected_doc_ids": [
+      "79ced771e60d65f64e894da81c48a8e2b311614ebc6b388f019543fadd54e497"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "우리 학교 전산학과 박사과정 서상원(지도교수?",
+    "expected_doc_ids": [
+      "6d7c890e53fc9b050805e1925fbdd1ad3c7c6ae81a5d473d8dde3e2d867af552"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[축하합니다] 송준화 교수님 연구실에서 6월말?",
+    "expected_doc_ids": [
+      "cd9c86296f8582ad351658de263e4580abce4ab9f7bb5432fc570cd392fb26db"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:기계 지능 연구실 professor:오태현 field:비주얼?",
+    "expected_doc_ids": [
+      "0b01138b79069c84e5c9317cc406477e4236978b2960842e43e6bf104b8c39c2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "<사진상 좌측부터 정경원, 황승민 학생,?",
+    "expected_doc_ids": [
+      "2f49ef9cc117df03820e1ef7890439db8ed3434be687c7109e3b1b76a57eefdd"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:빅데이터 분석 및 학습 연구실?",
+    "expected_doc_ids": [
+      "afd6e8d6c3a4db3278338589d215a21eba3dcf8d79d82abab5181580bf49979b"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:임베디드 컴퓨팅 연구실 professor:김순태 field:시스템·네트워크?",
+    "expected_doc_ids": [
+      "60baf2ce95f59e68ef2d6993fce56aff6600e7c9bade47bfa823c96c2cad24b4"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "지난 11월 10일 연합뉴스에 게재된?",
+    "expected_doc_ids": [
+      "882f66abeb43959201b9f248a95253bd8b18684aac6249685f37f615705c2d30"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "name:비전 및 학습 연구실 professor:홍승훈?",
+    "expected_doc_ids": [
+      "b199ab1cd578ef6f6e98a0238506095a06390e50b2a355bbd96a040412f1782f"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  }
+]

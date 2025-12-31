@@ -1,6 +1,5 @@
 # llm_backend/server/vector_server/worker/tasks.py
 import time
-import json
 import sqlite3
 import traceback
 from llm_backend.server.vector_server.worker.celery_app import celery_app

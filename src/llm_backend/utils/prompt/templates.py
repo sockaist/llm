@@ -3,7 +3,7 @@
 """
 import json
 import re
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional
 from .base import StringPromptTemplate
 
 try:

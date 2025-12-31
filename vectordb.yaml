@@ -1,0 +1,38 @@
+environment: production
+security:
+  tier: 1
+  authentication:
+    enabled: true
+    method: api_key
+    api_key:
+      length: 32
+      expiration: 90d
+  authorization:
+    enabled: true
+    method: rbac
+    roles:
+    - admin
+    - developer
+    - viewer
+  rate_limiting:
+    enabled: true
+    strategy: simple
+    limits:
+      rps: 10
+      rpm: 100
+  audit_logging:
+    enabled: true
+    level: standard
+    tiered_storage:
+      tier1:
+        retention: 90d
+  encryption:
+    at_rest: true
+    in_transit: true
+  defense:
+    injection_detection: true
+    anomaly_detection: false
+compliance:
+  gdpr: partial
+  hipaa: false
+  soc2: false

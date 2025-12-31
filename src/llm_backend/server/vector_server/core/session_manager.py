@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import threading
+
 import uuid
 from typing import Dict, Optional
 from llm_backend.utils.logger import logger
-from llm_backend.server.vector_server.core.resource_pool import acquire_manager, _global_pool
+from llm_backend.server.vector_server.core.resource_pool import _global_pool
+from llm_backend.server.vector_server.core.resource_pool import get_vector_manager
 
 # ============================================================
 # Session Manager

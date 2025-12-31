@@ -22,6 +22,8 @@ def test_bm25_service_init_and_fit(monkeypatch):
         import llm_backend.vectorstore.bm25_service as bm25_service
 
         # Reload to pick up env override
+        from llm_backend.vectorstore import config
+        importlib.reload(config)
         importlib.reload(sparse_helper)
         importlib.reload(bm25_service)
 

@@ -17,6 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 echo -e "${GREEN}Dependencies installed.${NC}"
 
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
 
 echo -e "${BLUE}[1/3] Starting Infrastructure (Redis)...${NC}"
 if ! docker info > /dev/null 2>&1; then

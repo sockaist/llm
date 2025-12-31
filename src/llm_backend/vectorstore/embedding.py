@@ -2,13 +2,15 @@ from sentence_transformers import SentenceTransformer
 from sklearn.cluster import AgglomerativeClustering
 import numpy as np
 import kss  # 한국어 문장 분리기
-from .config import THRESHOLD
+from .config import THRESHOLD, VECTOR_MODEL_PATH
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
 
-# 한국어 특화 SentenceTransformer 모델
-model = SentenceTransformer('jhgan/ko-sroberta-multitask')
-# 참고: https://huggingface.co/jhgan/ko-sroberta-multitask
+# 한국어/다국어 SOTA 모델 (BGE-M3)
+# VECTOR_MODEL_PATH from config (default: ./bge-m3-finetuned-academic)
+logger.info(f"Loading embedding model from: {VECTOR_MODEL_PATH}")
+model = SentenceTransformer(VECTOR_MODEL_PATH)
+# 참고: https://huggingface.co/BAAI/bge-m3
 
 
 def content_embedder(text):

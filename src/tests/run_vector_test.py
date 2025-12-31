@@ -7,9 +7,9 @@ src_dir = os.path.abspath(os.path.join(current_dir, "../../src"))
 if src_dir not in sys.path:
     sys.path.append(src_dir)
 
-from llm_backend.vectorstore.vector_db_manager import VectorDBManager
-from llm_backend.utils.logger import logger
-from llm_backend.utils.debug import trace
+from llm_backend.vectorstore.vector_db_manager import VectorDBManager  # noqa: E402
+from llm_backend.utils.logger import logger  # noqa: E402
+from llm_backend.utils.debug import trace  # noqa: E402
 
 
 

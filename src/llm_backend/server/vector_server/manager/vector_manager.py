@@ -3,14 +3,13 @@
 import os
 from llm_backend.vectorstore.vector_db_manager import VectorDBManager
 from llm_backend.utils.logger import logger
-from llm_backend.vectorstore.config import SNAPSHOT_DIR
+from llm_backend.vectorstore.config import SNAPSHOT_DIR, VECTOR_SIZE
 
 def _extend_auto_initialize():
     def auto_initialize(self, base_folder: str = "./data", snapshot_dir: str = SNAPSHOT_DIR):
         from llm_backend.server.vector_server.manager.snapshot_manager import (
             list_snapshots, restore_snapshot, create_snapshot
         )
-        import os
         try:
             os.makedirs(snapshot_dir, exist_ok=True)
             snapshots = sorted(list_snapshots(), key=os.path.getmtime, reverse=True)
@@ -24,7 +23,7 @@ def _extend_auto_initialize():
 
             if not hasattr(self, "default_collection") or not self.default_collection:
                 self.default_collection = "notion.marketing"
-            self.create_collection(self.default_collection, vector_size=768)
+            self.create_collection(self.default_collection, vector_size=VECTOR_SIZE)
 
             data_path = os.path.join(base_folder, self.default_collection)
             if os.path.exists(data_path):

@@ -114,6 +114,21 @@ class CacheManager:
         """현재 캐시 백엔드 정보 반환 (redis/in-memory)."""
         return "redis" if self._use_redis else "in-memory"
 
+    @staticmethod
+    def should_skip_rerank(docs: List[Dict[str, Any]], threshold: float = 0.98) -> bool:
+        """
+        Confidence Triage Logic.
+        If the top document has a very high score (normalized 0-1), skip reranking.
+        Assumes 'score' or 'avg_score' is present and roughly normalized.
+        """
+        if not docs:
+            return False
+        
+        top_score = docs[0].get("avg_score", 0.0)
+        # Assuming avg_score can be > 1.0 (RRF/Fusion), we might need to calibrate.
+        # But if the logic assumes 0-1, we check.
+        return top_score >= threshold
+
 
 # ------------------------------------------------------------
 # 전역 싱글톤 관리

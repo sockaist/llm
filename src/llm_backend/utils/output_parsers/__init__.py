@@ -20,16 +20,17 @@ from .enhanced_parsers import (
 )
 
 try:
-    from .parsers import PydanticOutputParser
+    from .parsers import PydanticOutputParser  # noqa: F401
     PYDANTIC_AVAILABLE = True
 except ImportError:
     PYDANTIC_AVAILABLE = False
 
 try:
-    from .enhanced_parsers import YAMLOutputParser
+    from .enhanced_parsers import YAMLOutputParser  # noqa: F401
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False
+
 
 __all__ = [
     "BaseOutputParser",

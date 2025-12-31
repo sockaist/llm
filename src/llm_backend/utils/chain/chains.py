@@ -1,7 +1,7 @@
 """
 다양한 체인 구현
 """
-from typing import Any, Dict, List, Optional, Union, Callable
+from typing import Any, Dict, List, Optional, Callable
 from .base import Chain
 from ..prompt import InstructionConfig
 from ..chatbot.chatbot import ChatBot

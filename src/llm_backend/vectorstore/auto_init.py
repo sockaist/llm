@@ -1,4 +1,6 @@
 from qdrant_client import QdrantClient
+import os
+import json
 from qdrant_client.models import Distance, VectorParams, SparseVectorParams, SparseIndexParams
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
@@ -6,9 +8,7 @@ from llm_backend.vectorstore.vector_db_manager import VectorDBManager
 from llm_backend.utils.id_helper import make_doc_hash_id_from_json
 from llm_backend.vectorstore.vector_db_helper import create_doc_upsert
 from llm_backend.vectorstore.config import FORMATS
-from .embedding import content_embedder
-from .vector_db_helper import upsert_folder
-from .config import FORMATS
+
 
 
 def auto_recreate_collections(client: QdrantClient):
@@ -29,7 +29,7 @@ def auto_recreate_collections(client: QdrantClient):
         try:
             trace(f"Checking schema for {col_name}")
             info = client.get_collection(col_name)
-            vecs = getattr(info.config.params, "vectors", None)
+            getattr(info.config.params, "vectors", None)
             sparse_vecs = getattr(info.config.params, "sparse_vectors", None)
 
             if not sparse_vecs or "sparse" not in sparse_vecs or "splade" not in sparse_vecs:

@@ -3,8 +3,10 @@ from .qdrant_client.models import SparseVector, Filter, FieldCondition, MatchVal
 from .sentence_transformers import SentenceTransformer
 from .sparse_helper import bm25_encode, bm25_fit
 from .splade_module import splade_encode
-import os, json
-from .reranker_module import weighted_fuse, normalize_scores
+from .reranker_module import weighted_fuse, apply_date_window_boost, load_cross_encoder, rerank_with_cross_encoder
+import os
+import json
+
 
 # 1. BM25 학습용 코퍼스 수집
 base_path = "../../../../data/"
@@ -159,7 +161,6 @@ for i, doc in enumerate(final_docs, 1):
 
 
 # --- 날짜 기반 최신성 점수 보정 ---
-from reranker_module import apply_date_window_boost
 
 boosted_docs = apply_date_window_boost(
     final_docs,
@@ -176,8 +177,6 @@ for i, doc in enumerate(boosted_docs, 1):
     print(f"{i:02d}. DocID={doc['doc_id']}, FinalScore={doc['final_score']:.4f}, "
           f"Freshness={doc['freshness']:.3f}, Date={doc.get('date')}, Title={doc['title']}")
 # --- Cross-Encoder reranking ---
-from reranker_module import load_cross_encoder, rerank_with_cross_encoder, apply_date_window_boost
-from datetime import datetime
 
 tokenizer, cross_model = load_cross_encoder()
 candidate_texts = []

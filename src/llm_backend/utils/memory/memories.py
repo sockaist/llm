@@ -1,9 +1,8 @@
 """
 다양한 메모리 시스템 구현
 """
-from typing import Any, Dict, List, Optional, Union, Deque
+from typing import Any, Dict
 from collections import deque
-import json
 from .base import Memory
 
 class BufferMemory(Memory):

@@ -6,7 +6,6 @@ from datetime import datetime, timezone
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
-from llm_backend.utils.id_helper import make_hash_id
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
 # --------------------------------------------
@@ -25,38 +24,135 @@ def normalize_scores(score_dict):
 
 
 def combine_scores(dense_results, sparse_results, splade_results,
-                   w_dense=0.6, w_sparse=0.25, w_splade=0.15):
-    """Dense, Sparse(BM25), SPLADE 점수를 가중합으로 통합"""
-    trace("Combining scores across dense/sparse/splade results")
+                   w_dense=0.6, w_sparse=0.25, w_splade=0.15,
+                   title_results=None, title_weight=0.0):
+    """Dense, Sparse(BM25), SPLADE, and Title 점수를 가중합으로 통합"""
+    trace("Combining scores across multi-vector results")
 
     dense_dict = {r.id: r.score for r in dense_results}
     sparse_dict = {r.id: r.score for r in sparse_results}
     splade_dict = {r.id: r.score for r in splade_results}
+    title_dict = {r.id: r.score for r in (title_results or [])}
 
     dense_norm = normalize_scores(dense_dict)
     sparse_norm = normalize_scores(sparse_dict)
     splade_norm = normalize_scores(splade_dict)
+    title_norm = normalize_scores(title_dict)
 
-    all_ids = set(dense_norm.keys()) | set(sparse_norm.keys()) | set(splade_norm.keys())
+    all_ids = set(dense_norm.keys()) | set(sparse_norm.keys()) | set(splade_norm.keys()) | set(title_norm.keys())
+    
+    # Create a map for easy payload access
+    id_to_payload = {}
+    for r in list(dense_results) + list(sparse_results) + list(splade_results) + list(title_results or []):
+        if r.id not in id_to_payload and getattr(r, "payload", None):
+            id_to_payload[r.id] = r.payload
+
     combined = {}
 
     for pid in all_ids:
         d = dense_norm.get(pid, 0)
         s = sparse_norm.get(pid, 0)
         sp = splade_norm.get(pid, 0)
+        t = title_norm.get(pid, 0)
+        
+        # Calculate final weighted score
+        final_score = w_dense * d + w_sparse * s + w_splade * sp + title_weight * t
+        
         combined[pid] = {
             "dense": d,
             "sparse": s,
             "splade": sp,
-            "final": w_dense * d + w_sparse * s + w_splade * sp,
-            "score": w_dense * d + w_sparse * s + w_splade * sp,
+            "title": t,
+            "final": final_score,
+            "score": final_score,
+            "payload": id_to_payload.get(pid, {}),
         }
 
     ranked = sorted(combined.items(), key=lambda x: x[1]["final"], reverse=True)
-    logger.debug(f"Combined {len(ranked)} documents after score fusion")
+    logger.debug(f"Combined {len(ranked)} documents (Phase 5: Multi-Vector) after score fusion")
     return ranked
 
 weighted_fuse = combine_scores
+
+def reciprocal_rank_fusion(dense_results, sparse_results, splade_results, k=60, 
+                         title_results=None, weights=None):
+    """
+    RRF (Reciprocal Rank Fusion) algorithm.
+    Score = sum(1 / (k + rank_i)) for each method.
+    Using simple summation by default. weights dict can be used to bias specific methods if needed.
+    """
+    trace(f"Running RRF Fusion (k={k})")
+    
+    # Define method mapping
+    methods = {
+        "dense": dense_results,
+        "sparse": sparse_results,
+        "splade": splade_results,
+        "title": title_results or []
+    }
+    
+    # Weights for weighted RRF (Optional, default 1.0)
+    # If weights provided, multiply final score component by weight? 
+    # Standard RRF doesn't use weights, but we can do Weighted RRF: w * (1/(k+r))
+    w_map = weights or {"dense": 1.0, "sparse": 1.0, "splade": 1.0, "title": 1.0}
+    
+    doc_scores = {}
+    doc_payloads = {}
+    
+    for method_name, results in methods.items():
+        weight = w_map.get(method_name, 1.0)
+        if not results:
+            continue
+        
+        # Sort just in case (though usually they come sorted)
+        # We trust inputs are sorted by their native score
+        
+        for rank, r in enumerate(results):
+            # Create unique key
+            pid = getattr(r, "id", None)
+            if not pid:
+                continue
+            
+            # Cache payload if available
+            if pid not in doc_payloads and getattr(r, 'payload', None):
+                doc_payloads[pid] = r.payload
+                
+            # RRF Formula
+            score = weight * (1.0 / (k + rank + 1))
+            
+            if pid not in doc_scores:
+                doc_scores[pid] = {
+                    "dense": 0.0, "sparse": 0.0, "splade": 0.0, "title": 0.0, "final": 0.0
+                }
+            
+            doc_scores[pid][method_name] = score # Store component score (this is RRF contribution)
+            doc_scores[pid]["final"] += score
+
+    # Format result compatible with existing pipeline
+    ranked_list = []
+    for pid, scores in doc_scores.items():
+        payload = doc_payloads.get(pid, {})
+        ranked_list.append({
+            "id": pid,
+            "score": scores["final"],
+            "final": scores["final"],
+            "payload": payload,
+            "dense": scores["dense"],
+            "sparse": scores["sparse"],
+            "splade": scores["splade"],
+            "title": scores["title"]
+        })
+        
+    ranked_list.sort(key=lambda x: x["final"], reverse=True)
+    logger.debug(f"RRF Fused {len(ranked_list)} docs")
+    
+    # Transform to list of tuple (id, dict) to match combine_scores signature essentially?
+    # No, combine_scores returns list of tuples: (pid, dict_of_scores)
+    # The pipeline expects this format at line 209: `for d in doclevel: ... d['id'] = d.get('db_id')`
+    # Wait, combine_scores returns `ranked = sorted(combined.items(), ...)` which is `[(pid, val_dict), ...]`
+    
+    return [(d['id'], d) for d in ranked_list]
+
 
 
 # --------------------------------------------
@@ -69,7 +165,7 @@ def deduplicate_and_average(results, client, col_name, top_k=10):
     기존 doc_id 대신 JSON 기반 db_id(SHA-256)를 기준으로 그룹화.
     """
     trace(f"Deduplicating results for collection: {col_name}")
-    doc_scores, doc_titles, doc_texts = {}, {}, {}
+    doc_scores, doc_titles, doc_texts, doc_payloads = {}, {}, {}, {}
 
     for r in results:
         # ScoredPoint 또는 dict 모두 허용
@@ -90,17 +186,16 @@ def deduplicate_and_average(results, client, col_name, top_k=10):
 
         # 통일된 db_id 기준으로 그룹핑
         db_id = (
-            payload.get("db_id")       # 최우선: JSON 전체 해시 기반 고유 ID
-            or payload.get("doc_id")   # fallback
-            or payload.get("parent_id")# fallback
-            or payload.get("id")       # fallback
-            or point_id                # fallback
+            payload.get("db_id")
+            or payload.get("id")
+            or point_id
         )
         if db_id is None:
-            logger.debug("[Dedup] Missing db_id, skipping result")
             continue
 
         doc_scores.setdefault(db_id, []).append(score)
+        if db_id not in doc_payloads:
+            doc_payloads[db_id] = payload
         if db_id not in doc_titles:
             doc_titles[db_id] = payload.get("title")
         if db_id not in doc_texts:
@@ -117,7 +212,8 @@ def deduplicate_and_average(results, client, col_name, top_k=10):
             "db_id": db_id,
             "avg_score": sum(scores) / len(scores),
             "title": doc_titles.get(db_id),
-            "text": doc_texts.get(db_id, "")
+            "text": doc_texts.get(db_id, ""),
+            "payload": doc_payloads.get(db_id, {})
         }
         for db_id, scores in doc_scores.items()
     ]

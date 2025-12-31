@@ -76,3 +76,16 @@ qdrant_data/*
 # Logs
 logs/
 *.log
+
+# AI/ML Models & Artifacts
+*.safetensors
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.onnx
+*.gguf
+models/
+bge-m3-finetuned-academic/
+finetune_data.jsonl
+snapshots/

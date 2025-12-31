@@ -2,7 +2,7 @@
 기본 프롬프트 템플릿 시스템 구현
 """
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any, Optional, Union
+from typing import List
 
 
 class BasePromptTemplate(ABC):

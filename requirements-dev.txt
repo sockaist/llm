@@ -1,0 +1,12 @@
+psutil
+pandas
+matplotlib
+pytest
+pytest-asyncio
+line_profiler
+scikit-optimize
+qdrant-client>=1.14.2
+sentence-transformers>=4.1.0
+numpy>=2.0.2
+kss
+

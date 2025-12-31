@@ -1,7 +1,6 @@
 # test_full_pipeline.py
-import os, json
+import os
 from .vector_db_manager import VectorDBManager
-from .config import FORMATS, QDRANT_URL, QDRANT_API_KEY
 
 # ----------------------------------------
 # 1️⃣ 매니저 초기화

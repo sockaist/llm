@@ -48,6 +48,10 @@ def _to_float(val, default: float) -> float:
     except Exception:
         return default
 
+# Use environment variable or default to fine-tuned model if available, else BGE-M3 base
+VECTOR_MODEL_PATH = os.getenv("VECTOR_MODEL_PATH", "./bge-m3-finetuned-academic")
+if not os.path.exists(VECTOR_MODEL_PATH):
+    VECTOR_MODEL_PATH = "BAAI/bge-m3"
 
 CONFIG_PATH = os.environ.get("VECTOR_CONFIG_PATH", "./config/vectorstore.yaml")
 _yaml_cfg = _load_yaml(CONFIG_PATH)
@@ -100,7 +104,22 @@ SPLADE_TOP_K = _to_int(
 # 벡터 설정
 DISTANCE = Distance.COSINE
 THRESHOLD = 1.0  # clustering threshold
-VECTOR_SIZE = 768  # ko-sroberta-multitask의 기본 차원
+VECTOR_SIZE = 1024  # BGE-M3 (1024)
+
+# 기본 파이프라인 설정
+PIPELINE_CONFIG = {
+    "use_dense": True,
+    "use_sparse": True,
+    "use_splade": True,
+    "use_reranker": True,
+    "weights": {
+        "dense": 0.4,
+        "sparse": 0.1,
+        "splade": 0.5
+    },
+    "sparse_weight": 0.3, # Legacy fallback?
+    "limit": 10
+}
 
 # 컬렉션 형식 정의
 FORMATS = {

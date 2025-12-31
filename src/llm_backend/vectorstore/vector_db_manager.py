@@ -1,41 +1,31 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
-import os, math, warnings, hashlib
-from typing import Any, Dict, List, Optional, Tuple
-from tqdm import tqdm
-import uuid
-import json, hashlib
+import os
+import warnings
+from typing import Any, Dict, List, Optional
 from qdrant_client import QdrantClient, models
-from qdrant_client.http.models import Distance, VectorParams, SparseVectorParams, OptimizersConfigDiff
+from qdrant_client.http.models import Distance
 from qdrant_client.models import (
-    SparseIndexParams,
-    PointStruct, Filter, FieldCondition, MatchValue, NamedVector,
-    FilterSelector, SparseVector,
+    SparseVector,
 )
-from qdrant_client.http.models import ScoredPoint
-from qdrant_client.models import Filter, FieldCondition, MatchValue, PointIdsList
 
-# --- 로깅 & 디버깅 유틸 ---
+# --- Logging & Debug Utils ---
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
-from llm_backend.utils.id_helper import make_hash_id_from_path, make_doc_hash_id_from_json
+from llm_backend.utils.id_helper import make_hash_id_from_path
 
 
-warnings.filterwarnings("ignore", message="BertForMaskedLM has generative capabilities")
 
-# ---- 외부 모듈(이미 주어진 코드들) ----
-from .config import QDRANT_URL, QDRANT_API_KEY, DISTANCE, FORMATS, SNAPSHOT_DIR
+
+# ---- External Modules ----
+from .config import QDRANT_URL, QDRANT_API_KEY, SNAPSHOT_DIR, VECTOR_SIZE
 from .embedding import model as dense_sbert_model
-from .embedding import content_embedder
-from .sparse_helper import bm25_encode, bm25_fit
+from .sparse_helper import bm25_encode
 from .splade_module import splade_encode
-from .vector_db_helper import create_doc_upsert, query_unique_docs as qdrant_query_unique_docs
-from .reranker_module import apply_date_window_boost
+from .vector_db_helper import query_unique_docs as qdrant_query_unique_docs
 from .search_pipeline import run_query_pipeline
 from .collection_manager import (
     create_collection as create_collection_helper,
-    delete_all_collections as delete_all_collections_helper,
-    delete_collection as delete_collection_helper,
 )
 from .ingest_manager import (
     delete_by_filter as delete_by_filter_helper,
@@ -54,8 +44,10 @@ from .snapshot_manager import (
     restore_snapshot as restore_snapshot_service,
 )
 
+warnings.filterwarnings("ignore", message="BertForMaskedLM has generative capabilities")
+
 def _norm_doc_key(x):
-    """Qdrant payload의 parent_id/id와 매칭되도록 id를 정규화 (대시 제거, 소문자)."""
+    """Normalize id to match Qdrant payload parent_id/id (remove dash, lowercase)."""
     if x is None:
         return None
     return str(x).replace("-", "").lower()
@@ -66,7 +58,7 @@ def _norm_doc_key(x):
 # -------------------------------------------------------
 class VectorDBManager:
     """
-    Qdrant 기반 멀티 컬렉션 벡터 DB 매니저
+    Qdrant-based multi-collection vector DB manager.
     - Create / Read / Update / Delete / Query
     """
 
@@ -88,7 +80,7 @@ class VectorDBManager:
         self._cross_model_name = None
 
         # Load default config from settings
-        from llm_backend.config.settings import PIPELINE_CONFIG
+        from .config import PIPELINE_CONFIG
         self.pipeline_config = PIPELINE_CONFIG.copy()
 
         if pipeline_config:
@@ -97,28 +89,11 @@ class VectorDBManager:
         logger.info(f"VectorDBManager initialized. Default={self.default_collection}")
 
     # ------------ Create / Init ------------
-    def auto_initialize(self, base_folder="./data", snapshot_dir=SNAPSHOT_DIR):
-        """
-        서버 시작 시 VectorDB 상태를 자동 초기화:
-        1. 최신 스냅샷 존재 → 복원
-        2. 없으면 → 컬렉션 생성 + 데이터 업서트 + BM25 학습
-        """
-        # ... logic ... (unchanged)
-        # Using concise placeholder for brevity if unchanged logic is large? 
-        # Actually I must include original code to match target if I replace.
-        # But I want to INSERT AFTER.
-        # Wait, `replace_file_content` replaces a block.
-        # I can target `def delete_collection` and insert before it?
-        # Or target `def auto_initialize` and append provided code at the end of class?
-        # No, `VectorDBManager` is large.
-        # Let's target `def create_collection` which is usually early.
-        # Step 790 view shows `create_collection` at line 118.
-        # Let's insert BEFORE `create_collection`.
-        pass
+
 
     def list_collections_info(self) -> List[Dict[str, Any]]:
         """
-        모든 컬렉션의 상태(이름, 문서 수 등)를 조회합니다.
+        Retrieve state of all collections (name, doc count, etc).
         """
         trace("list_collections_info()")
         try:
@@ -130,7 +105,7 @@ class VectorDBManager:
                 try:
                     count_resp = self.client.count(collection_name=name)
                     count = count_resp.count
-                except:
+                except Exception:
                     count = 0
                 
                 # 상세 정보 (Vector Size 등)
@@ -162,7 +137,7 @@ class VectorDBManager:
                     
                     if info:
                         status = str(info.status)
-                except Exception as e:
+                except Exception:
                     # logger.warning(f"Failed to get info for {name}: {e}")
                     pass
 
@@ -179,8 +154,9 @@ class VectorDBManager:
 
     def create_collection(self, name: str, vector_size: int,
                         distance: str | Distance = "Cosine", force: bool = False,
-                        include_sparse: bool = True, include_splade: bool = True):
-        trace(f"create_collection({name})")
+                        include_sparse: bool = True, include_splade: bool = True,
+                        use_quantization: bool = True):
+        trace(f"create_collection({name}, quant={use_quantization})")
         create_collection_helper(
             manager=self,
             name=name,
@@ -189,7 +165,25 @@ class VectorDBManager:
             force=force,
             include_sparse=include_sparse,
             include_splade=include_splade,
+            use_quantization=use_quantization,
         )
+        
+        # --- Multi-Tenancy Foundation ---
+        # Create indexes for fast filtering by tenant and access level
+        try:
+            logger.info(f"[MultiTenancy] Creating payload indexes for {name}")
+            self.client.create_payload_index(
+                collection_name=name,
+                field_name="tenant_id",
+                field_schema=models.PayloadSchemaType.KEYWORD
+            )
+            self.client.create_payload_index(
+                collection_name=name,
+                field_name="access_level",
+                field_schema=models.PayloadSchemaType.INTEGER
+            )
+        except Exception as e:
+            logger.warning(f"[MultiTenancy] Failed to create indexes: {e}")
 
     def initialize_collections(self, config: Dict[str, Dict[str, Any]]):
         trace("initialize_collections()")
@@ -232,10 +226,10 @@ class VectorDBManager:
 
     def upsert_document(self, col: str, data: dict, doc_id: Optional[str] = None):
         """
-        단일 문서를 Qdrant 컬렉션에 업서트합니다.
-        - JSON 전체 해시 기반 db_id를 생성하여 중복 방지
-        - Qdrant point ID는 항상 UUID 사용
-        - 기존 id / parent_id는 payload에만 유지
+        Upsert a single document to Qdrant collection.
+        - Generate db_id based on JSON hash to prevent duplicates.
+        - Qdrant point ID always uses UUID.
+        - Original id / parent_id kept in payload only.
         """
         trace(f"upsert_document({col}, id={doc_id})")
         upsert_document_helper(self, col, data, doc_id)
@@ -277,26 +271,35 @@ class VectorDBManager:
         return dense_results, sparse_results, splade_results
         
     def query(self, query_text: str, top_k: int = 10,
-           collections: Optional[List[str]] = None, **kwargs) -> List[Dict[str, Any]]:
-        """Run hybrid search → fusion → optional rerank.
-
-        Delegates pipeline orchestration to search_pipeline for clarity.
+           collections: Optional[List[str]] = None, 
+           user_context: Optional[Dict[str, Any]] = None,
+           **kwargs) -> List[Dict[str, Any]]:
+        """Run hybrid search via DualPathOrchestrator.
+        
+        Phase 8: Enables split Primary/Recommendation logic and preserves original query.
+        Phase 15: Accepts user_context for RBAC.
         """
 
         trace(f"query('{query_text[:20]}...')")
-        cfg = self.pipeline_config
         collections = collections or [self.default_collection]
 
-        return run_query_pipeline(
+        from .dual_path import DualPathOrchestrator
+        # Phase 19: Support pipeline overrides (alpha, etc.)
+        pipeline_overrides = kwargs.get("pipeline_overrides", {})
+
+        orchestration_res = DualPathOrchestrator.process_query(
             manager=self,
             query_text=query_text,
             top_k=top_k,
             collections=collections,
-            cfg=cfg,
+            user_context=user_context,
+            pipeline_overrides=pipeline_overrides
         )
+        return orchestration_res["results"]
 
     def search_keyword(self, query_text: str, top_k: int = 10,
-                       collections: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+                       collections: Optional[List[str]] = None,
+                       user_context: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
         """
         Perform simple keyword search (BM25 only).
         Disables Dense and SPLADE vectors for this query.
@@ -324,23 +327,21 @@ class VectorDBManager:
             top_k=top_k,
             collections=collections,
             cfg=temp_cfg,
+            user_context=user_context
         )
 
         
         # ------------ Filter Search ------------
     def filter_search(self, col: str, filters: Dict[str, Any], limit: int = 10, with_vectors: bool = False):
         """
-        Qdrant Filter 기반 문서 검색 (payload 조건만으로 검색)
-        Dense/Sparse 벡터 계산 없이 메타데이터로만 필터링.
+        Qdrant Filter-based search (payload conditions only).
+        Searches without vector calculation.
 
         Args:
-            col (str): 컬렉션 이름
-            filters (dict): key=value 형태의 조건 예) {"category": "AI", "verified": True}
-            limit (int): 반환할 최대 문서 수
-            with_vectors (bool): True면 벡터 포함, False면 payload만 반환
-
-        Returns:
-            List[dict]: 필터 조건에 맞는 문서 payload 리스트
+            col (str): Collection name
+            filters (dict): key=value conditions, e.g. {"category": "AI", "verified": True}
+            limit (int): Max docs to return
+            with_vectors (bool): If True, include vectors.
         """
         trace(f"filter_search({col}, filters={filters})")
         return filter_search_helper(self, col, filters, limit=limit, with_vectors=with_vectors)
@@ -348,14 +349,13 @@ class VectorDBManager:
         # ------------ Update (Payload Only) ------------
     def update_payload(self, col: str, doc_id: str, new_payload: dict, merge: bool = True):
         """
-        Qdrant 내 문서 payload(메타데이터)만 업데이트.
-        벡터는 재계산하지 않음.
+        Update document payload in Qdrant. No vector recalculation.
 
         Args:
-            col (str): 대상 컬렉션 이름
-            doc_id (str): 문서 ID (hash or original id)
-            new_payload (dict): 새로 추가하거나 수정할 payload 값
-            merge (bool): True면 기존 payload와 병합, False면 덮어씀
+            col (str): Target collection
+            doc_id (str): Document ID
+            new_payload (dict): New payload values
+            merge (bool): If True, merge with existing payload.
         """
         trace(f"update_payload({col}, id={doc_id}, merge={merge})")
         try:
@@ -376,13 +376,11 @@ class VectorDBManager:
 
     def delete_document(self, col: str, db_id: str) -> bool:
         """
-        Qdrant에서 단일 문서를 db_id 기준으로 삭제.
+        Delete single document from Qdrant by db_id.
 
         Args:
-            col (str): 컬렉션 이름
-            db_id (str): SHA-256 기반 고유 문서 ID
-        Returns:
-            bool: 삭제 성공 여부
+            col (str): Collection name
+            db_id (str): Unique document ID (SHA-256)
         """
         trace(f"delete_document({col}, db_id={db_id[:12]}...)")
         return delete_document_helper(self, col, db_id)
@@ -443,7 +441,6 @@ class VectorDBManager:
             # Use MatchAny to fetch all matching documents in one query
             # Note: The result order is not guaranteed to match input order.
             
-            all_hits = []
             # Qdrant scroll has a limit. If len(db_ids) is large, we might need multiple scrolls or just set a large limit.
             # Assuming batch size is reasonable (<1000). safely using len(db_ids) + buffer.
             
@@ -478,15 +475,13 @@ class VectorDBManager:
 
     def delete_by_filter(self, col: str, field: str, value: Any) -> int:
         """
-        특정 필드 값 기준으로 문서 일괄 삭제.
-        예: delete_by_filter("notion.marketing", "category", "AI")
+        Batch delete documents by field value.
+        Example: delete_by_filter("notion.marketing", "category", "AI")
 
         Args:
-            col (str): 컬렉션 이름
-            field (str): 필드명 (예: "category")
-            value (Any): 일치 조건 값
-        Returns:
-            int: 삭제된 문서 개수 (성공 시)
+            col (str): Collection name
+            field (str): Field name
+            value (Any): Match value
         """
         trace(f"delete_by_filter({col}, field={field}, value={value})")
         return delete_by_filter_helper(self, col, field, value)
@@ -509,18 +504,18 @@ class VectorDBManager:
 
         if snapshots:
             latest = snapshots[0]
-            logger.info(f"[Init] Found snapshot: {latest} — restoring...")
+            logger.info(f"[Init] Found snapshot: {latest} - restoring...")
             self.restore_snapshot(self.default_collection, os.path.join(snapshot_dir, latest))
         else:
-            logger.warning("[Init] No snapshot found — creating collection from local data")
-            self.create_collection(self.default_collection, vector_size=768)
+            logger.warning("[Init] No snapshot found - creating collection from local data")
+            self.create_collection(self.default_collection, vector_size=VECTOR_SIZE)
             self.init_bm25(base_path=base_folder)
             self.upsert_folder(os.path.join(base_folder, "notion/marketing"), self.default_collection)
             self.create_snapshot(self.default_collection, snapshot_dir)
 
-    # ------------ 로깅 ------------
+    # ------------ Logging ------------
     def log_results(self, results: List[Dict[str, Any]], title="Results", top_n=10):
-        logger.info(f"=== {title} ===")
+        logger.info(f"--- {title} ---")
         if not results:
             logger.warning("No results to display.")
             return
@@ -531,10 +526,10 @@ class VectorDBManager:
             t = r.get("title") or r.get("text") or r.get("content") or ""
             col = r.get("collection", self.default_collection)
 
-            # 문자열 아닌 값 대비 (예: NoneType 방지)
+            # Fallback for non-string values
             if not isinstance(t, str):
                 t = str(t) if t is not None else ""
 
             logger.info(f"{i:02d}. {col} | {rid} | {t[:30]} | score={scr:.4f}")
 
-        logger.info("===================================\n")
+        logger.info("-----------------------------------\n")

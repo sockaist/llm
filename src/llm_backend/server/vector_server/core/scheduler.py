@@ -10,7 +10,6 @@ from llm_backend.server.vector_server.manager.snapshot_manager import (
     create_snapshot, list_snapshots, delete_snapshot
 )
 from llm_backend.server.vector_server.core.queue_manager import is_job_active
-from llm_backend.vectorstore.config import SNAPSHOT_DIR
 
 # ============================================================
 # Scheduler 설정

@@ -51,3 +51,26 @@ async def verify_api_key(x_api_key: str = Header(...)):
 
     logger.debug("[Auth] API key verified successfully")
     return True
+
+# ------------------------------------------------------------
+# Multi-Tenancy Context Injection
+# ------------------------------------------------------------
+from fastapi import Request
+
+async def get_user_context(request: Request) -> dict:
+    """
+    Retrieves the User Context populated by SecurityMiddleware.
+    """
+    # If middleware didn't run (e.g. tests without middleware), fallback
+    if hasattr(request.state, "user_context"):
+        return request.state.user_context
+    
+    # Fallback for direct testing or if middleware missing
+    return {
+        "user": {
+            "id": request.headers.get("X-User-ID", "anonymous"),
+            "role": request.headers.get("X-Role", "viewer"),
+            "team": "public"
+        },
+        "ip": request.client.host if request.client else "unknown"
+    }

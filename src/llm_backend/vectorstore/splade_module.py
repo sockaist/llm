@@ -1,3 +1,4 @@
+from typing import Optional, Union, List, Dict
 from transformers import AutoModelForMaskedLM, AutoTokenizer
 import torch
 import numpy as np
@@ -43,8 +44,6 @@ def _ensure_model():
 # --------------------------------------------------------
 # SPLADE 인코딩 함수
 # --------------------------------------------------------
-
-from typing import Optional, Union, List, Dict
 
 @torch.no_grad()
 def splade_encode(

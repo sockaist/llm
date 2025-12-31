@@ -3,11 +3,11 @@
 """
 import json
 import re
-from typing import Any, Dict, List, Type, Optional, Union, TypeVar, Generic
+from typing import Any, Dict, List, Type
 from .base import BaseOutputParser
 
 try:
-    from pydantic import BaseModel, create_model, Field
+    from pydantic import BaseModel
     PYDANTIC_AVAILABLE = True
 except ImportError:
     PYDANTIC_AVAILABLE = False

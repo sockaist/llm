@@ -1,0 +1,181 @@
+{
+  "department": {
+    "전산": {
+      "value": "CS",
+      "confidence": 0.95
+    },
+    "컴사": {
+      "value": "CS",
+      "confidence": 0.95
+    },
+    "컴퓨터공학": {
+      "value": "CS",
+      "confidence": 0.95
+    },
+    "컴퓨터과학": {
+      "value": "CS",
+      "confidence": 0.95
+    },
+    "computer science": {
+      "value": "CS",
+      "confidence": 0.95
+    },
+    "전자": {
+      "value": "EE",
+      "confidence": 0.95
+    },
+    "전기": {
+      "value": "EE",
+      "confidence": 0.95
+    },
+    "전기및전자": {
+      "value": "EE",
+      "confidence": 0.95
+    },
+    "electronic": {
+      "value": "EE",
+      "confidence": 0.95
+    },
+    "기계": {
+      "value": "ME",
+      "confidence": 0.95
+    },
+    "기계공학": {
+      "value": "ME",
+      "confidence": 0.95
+    },
+    "mechanical": {
+      "value": "ME",
+      "confidence": 0.95
+    },
+    "산업": {
+      "value": "IE",
+      "confidence": 0.95
+    },
+    "산업디자인": {
+      "value": "IE",
+      "confidence": 0.95
+    },
+    "industrial design": {
+      "value": "IE",
+      "confidence": 0.95
+    },
+    "산공": {
+      "value": "IS",
+      "confidence": 0.95
+    },
+    "산업및시스템": {
+      "value": "IS",
+      "confidence": 0.95
+    },
+    "industrial engineering": {
+      "value": "IS",
+      "confidence": 0.95
+    }
+  },
+  "category": {
+    "졸업": {
+      "value": "graduation",
+      "confidence": 0.95
+    },
+    "학위": {
+      "value": "graduation",
+      "confidence": 0.95
+    },
+    "이수": {
+      "value": "graduation",
+      "confidence": 0.95
+    },
+    "수료": {
+      "value": "graduation",
+      "confidence": 0.95
+    },
+    "장학": {
+      "value": "scholarship",
+      "confidence": 0.95
+    },
+    "지원금": {
+      "value": "scholarship",
+      "confidence": 0.95
+    },
+    "혜택": {
+      "value": "scholarship",
+      "confidence": 0.95
+    },
+    "학사": {
+      "value": "academic",
+      "confidence": 0.95
+    },
+    "행정": {
+      "value": "academic",
+      "confidence": 0.95
+    },
+    "수업": {
+      "value": "academic",
+      "confidence": 0.95
+    },
+    "성적": {
+      "value": "academic",
+      "confidence": 0.95
+    },
+    "연구": {
+      "value": "research",
+      "confidence": 0.95
+    },
+    "논문": {
+      "value": "research",
+      "confidence": 0.95
+    },
+    "랩": {
+      "value": "research",
+      "confidence": 0.95
+    },
+    "프로젝트": {
+      "value": "research",
+      "confidence": 0.95
+    },
+    "알고": {
+      "value": "graduation",
+      "confidence": 0.8374999999999999
+    },
+    "전산": {
+      "value": "graduation",
+      "confidence": 0.98,
+      "last_updated": "2025-12-30T11:54:08.715547"
+    }
+  },
+  "entities": {
+    "김정연": {
+      "related": [
+        "NLP",
+        "김정연교수",
+        "인공지능"
+      ],
+      "confidence": 0.95
+    },
+    "이윤지": {
+      "related": [
+        "Security",
+        "보안",
+        "이윤지박사"
+      ],
+      "confidence": 0.95
+    },
+    "전산학부": {
+      "related": [
+        "CS",
+        "컴퓨터공학",
+        "졸업"
+      ],
+      "confidence": 0.95
+    },
+    "졸업": {
+      "related": [
+        "학점",
+        "이수",
+        "논문"
+      ],
+      "confidence": 0.95
+    }
+  }
+}

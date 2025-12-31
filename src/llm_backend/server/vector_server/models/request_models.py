@@ -10,6 +10,8 @@ class QueryRequest(BaseModel):
     query_text: str
     top_k: int = 5
     collections: Optional[List[str]] = None
+    alpha: Optional[float] = None # 0.0 (Sparse) ~ 1.0 (Dense)
+    tuning_mode: Optional[str] = "manual" # "manual", "auto", "heuristic"
 
 
 # ============================================================

@@ -1,6 +1,10 @@
 # llm_backend/server/vector_server/api/endpoints_admin.py
 # -*- coding: utf-8 -*-
-import os, time, re, hmac, hashlib
+import os
+import time
+import re
+import hmac
+import hashlib
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Header
 from llm_backend.server.vector_server.core.auth import verify_api_key
@@ -11,7 +15,6 @@ from llm_backend.server.vector_server.core.cache_manager import get_cache, bump_
 from llm_backend.server.vector_server.core.queue_manager import (
     list_jobs, enqueue_job, is_job_active, last_completed_at
 )
-from llm_backend.server.vector_server.core.resource_pool import acquire_manager
 from llm_backend.server.vector_server.models.request_models import (
     SnapshotPathRequest, SnapshotDeleteRequest, BM25RetrainRequest,
     CreateCollectionRequest, DeleteCollectionRequest
@@ -134,17 +137,27 @@ async def reset_db_api(x_admin_secret: Optional[str] = Header(None)):
         raise HTTPException(status_code=500, detail=str(e))
     
 @router.post("/snapshot/create", response_model=SnapshotResponse)
-async def create_snapshot_api(collection: str = "notion.marketing"):
+async def create_snapshot_api(
+    collection: str = "notion.marketing", 
+    comment: Optional[str] = None,
+    x_admin_secret: Optional[str] = Header(None)
+):
     try:
+        _check_admin_secret(x_admin_secret)
         path = create_snapshot(collection)
-        return SnapshotResponse(status="success", path=path)
+        
+        # Log Audit Event
+        logger.info(f"[Audit] Snapshot created for {collection}: {path}. Comment: {comment or 'None'}")
+        
+        return SnapshotResponse(status="success", path=path, message=f"Snapshot created. {comment if comment else ''}")
     except Exception as e:
         logger.error(f"[Admin:/snapshot/create] Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/snapshot/list", response_model=SnapshotResponse)
-async def list_snapshot_api():
+async def list_snapshot_api(x_admin_secret: Optional[str] = Header(None)):
     try:
+        _check_admin_secret(x_admin_secret)
         snapshots = list_snapshots()
         return SnapshotResponse(status="success", count=len(snapshots), snapshots=snapshots)
     except Exception as e:

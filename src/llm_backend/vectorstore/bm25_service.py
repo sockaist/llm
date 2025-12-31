@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import os
-from typing import Optional
 
 from llm_backend.utils.debug import trace
 from llm_backend.utils.logger import logger

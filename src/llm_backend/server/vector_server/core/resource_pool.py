@@ -118,7 +118,7 @@ def release_all():
     try:
         released = 0
         while not _global_pool.pool.empty():
-            mgr = _global_pool.pool.get_nowait()
+            _global_pool.pool.get_nowait()
             # 필요 시 mgr.close() 등 정리 로직 호출
             released += 1
         logger.info(f"[ResourcePool] Released {released} instances")
@@ -180,3 +180,8 @@ def acquire_manager(timeout: Optional[float] = None):
         yield mgr
     finally:
         _global_pool.release(mgr)
+
+
+def get_vector_manager():
+    """Factory function to get a new VectorDBManager instance."""
+    return VectorDBManager()

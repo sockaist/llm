@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+from typing import Union, List, Dict
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import torch
 import os
 import joblib
 from transformers import AutoTokenizer, AutoModelForMaskedLM
+from transformers.utils import logging as hf_logging
+import warnings
+
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
-import warnings
-from transformers.utils import logging as hf_logging
-from typing import Union, List, Dict
+from llm_backend.vectorstore.config import BM25_PATH
 
 warnings.filterwarnings("ignore", message="BertForMaskedLM has generative capabilities")
 hf_logging.set_verbosity_error()  # huggingface 전용 로거 수준 조정
@@ -17,8 +19,6 @@ hf_logging.set_verbosity_error()  # huggingface 전용 로거 수준 조정
 # ==========================================================
 # BM25 (TF-IDF 기반)
 # ==========================================================
-
-from llm_backend.vectorstore.config import BM25_PATH
 
 vectorizer = None  # 동적으로 로드됨
 _fitted = False

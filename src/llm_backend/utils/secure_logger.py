@@ -1,7 +1,6 @@
 # src/llm_backend/utils/secure_logger.py
 import os
 import json
-import time
 import hmac
 import hashlib
 import getpass

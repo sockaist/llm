@@ -1,0 +1,2402 @@
+[
+  {
+    "query": "부활하는 컴퓨터학과…대입 합격선 자연계 최상위권 ＇수직상승＇",
+    "expected_doc_ids": [
+      "8d376232d31372f9b266ed92da18cc7ef33d48465e333c8f5af932c753602308"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[신청안내] 2024 KAIST Startup IR Day & 창업동문의 밤",
+    "expected_doc_ids": [
+      "01438b715ac34d56fe509259edaa44e029c35e9a98d9c16fab53125ce6f6bb98"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "Pacific Graphics학회에서 distinguished paper award 수상",
+    "expected_doc_ids": [
+      "f74ce125c3a1aa6cf1526f07b9953241dc3b9931401bd3ef973b9d1790490266"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2024 가을 부트캠프 신청서",
+    "expected_doc_ids": [
+      "7db2eb86d589c9f93a77ef7bcae05d1fa667b3ec01a6d1e516a5fccae521d395"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "네트워크 보안 및 프라이버시 연구실",
+    "expected_doc_ids": [
+      "a5000debb7ae6c8c7857fbbc8ba67b943fea754836c3be1ed5fdf6c54d82a2c0"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "용한 로봇 시각지능 기술 개발 기사 입니다.\nhttp://www.etne...",
+    "expected_doc_ids": [
+      "c7a02dfaca50ec647391d66ef33e279358b49ff98c994a5a8836afada174d583"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "AWS Software Engineer new grad",
+    "expected_doc_ids": [
+      "aae12b0439d3e4835d334d4268b562208d9d719160c7662fc5ed5376c396768a"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "입 제작 지원) 참가자를 아래와 같이 모집하오니, \n많은 관심과 지원 부...",
+    "expected_doc_ids": [
+      "04458b67808dcb0fdfd5cd8933a99c8e62e1f327e038ededb891d342fc344be7"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "것으로, 이를 특성 벡터로 변환하는 지식 그래프 임베딩 기술은 인공지능...",
+    "expected_doc_ids": [
+      "5836786619ad0e2873a65dd3b462c6790480d4c104c69977960d6531d5798d97"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "래픽스 분야에서 뛰어난 리더십과 기여로 이번 Pacific Graphic...",
+    "expected_doc_ids": [
+      "8e059e410093f1026593e65da362a6bb17f6f000e1b5610ddba40d9c5cdc5b49"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "020 KAIST 임팩트 스타트업 IR Day'를 개최하고자 합니다.\n많...",
+    "expected_doc_ids": [
+      "ff6a696324748e744ea52a1e49930872ccf9df72d75785d029fdbc1e34421f91"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "위다레흐트 세버스티언",
+    "expected_doc_ids": [
+      "5a737845393163e036892b42540a6dfa6b1dff2f763ac2e03b9bd6137d716a11"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "keyword"
+  },
+  {
+    "query": "(목) 12:00 - 13:00\n(11:40분부터 온라인 리셉션이 시작됩...",
+    "expected_doc_ids": [
+      "d19fa088e351f5adca9e2a3489049d2d57f1c19a3a4b92b72ce86d62e56177f1"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "를 진행하고 있다. 특히, 데이터를 개체간의 관계성의 관점에서 표현하고...",
+    "expected_doc_ids": [
+      "28153e2549e8e0ffb6fd10078b09dba4f685b5adfd7c6b86ea9c523553629f07"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "etc:전공: 전산학\n\n학위: KAIST, 2017\n\n연구실:  tag:...",
+    "expected_doc_ids": [
+      "7f78d1d38f1e82ce22b35a93736f902841a71b01ef0f02c7ccfd8da2b658e617"
+    ],
+    "origin_collection": "csweb.admin",
+    "query_type": "semantic"
+  },
+  {
+    "query": "nu=86 content:과기부, 대전시, 대전정보문화산업진흥원 등이 함...",
+    "expected_doc_ids": [
+      "9db60792f2b765ee48461fdae664aafbcc61baf1831aa36ccde83c05ac14c4ec"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "링크: https://forms.gle/QfFuK5yQVdVGm76W6...",
+    "expected_doc_ids": [
+      "49832300e998f358455d14604497cfd20690dd11c29af6ace71f49b0b001401d"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "이미지 검색 분야에 대한 전문적인 연구를 수행하고 있다.\n윤성의 교수는...",
+    "expected_doc_ids": [
+      "9c5ed232115161624ce97214b8e95a718bb60de6b4ee2ffbcb75c1f751b61758"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "명 : 2023 하반기 W8 Garage 추가모집 신청_팀명 \n  ※ 법...",
+    "expected_doc_ids": [
+      "89f6f09539c3c41c75e3318fcb8212968775ddcf2e39080a6efea0a4e82c293f"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "뉴로-기계 증강지능 연구실",
+    "expected_doc_ids": [
+      "a5fab88843b28bd5fba41778e325041debd75a56ba60871a940acf9ccd8c3f1e"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2021년도 상반기 Computing 분야 인턴 및 취업(채용) 설명회 안내",
+    "expected_doc_ids": [
+      "aa418fc94fe02a3ef29df0be61fe7d9d30abbeec5be8db51922dbdc98f252fac"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "주어지는 의미 있는 상이다.\n1. 연구배경\n자연언어처리는 최근 초거대 언...",
+    "expected_doc_ids": [
+      "1065d480362f5cdc2ee6b44a4ca5e258a44a897e0072e16cc788ffaad666b3c4"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 5／25, 4pm, 전정현 (Jung-Hyon Jun, 법무법인 광장, 파트너 변호사)",
+    "expected_doc_ids": [
+      "60824e10fb64d58de6a59b366dd7afd06d40357d61e336ad6e011a7b43f38e13"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "(재무팀)\n• 매월 학과 안전간사 교육 참석\n• 1∼6강의실 8개세미나실...",
+    "expected_doc_ids": [
+      "32a712c8402f606cdc7297f54ce80bcd65f8f311888c90db0ba5428e639e4ac8"
+    ],
+    "origin_collection": "csweb.admin",
+    "query_type": "semantic"
+  },
+  {
+    "query": "nderstanding regarding how individuals a...",
+    "expected_doc_ids": [
+      "a259bc57b33258614f7b7289de394d00c8a2ca003920a97118df54000dfc5d79"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "를 이해해야 함.운영체제, 컴파일러: 저수준의 시스템소프트웨어를 이해하여...",
+    "expected_doc_ids": [
+      "e5302a97536182df42c00bb712a9b3186ac3071dea2909d128eee8821892d702"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "프라가 필요 없는 WiFi 기반의 실시간 위치 인식시스템을 연구하고 개발...",
+    "expected_doc_ids": [
+      "645a6ea054a26851fcb066f1c44cd5021ae994b50520da4d92cf6be35ba863d5"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "한국정보과학회 최우수논문상 수상",
+    "expected_doc_ids": [
+      "59bfe61420bed7da9481dd11e1c772d2716916c195437392f621bca959c90771"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[리쿠르팅] 스타트업 및 병역특례지정 기업",
+    "expected_doc_ids": [
+      "4d7b5007bcaa519a53cd2e954098bc4e950b1012a44399f3e554a80afa71b483"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "ng저널의 부편집장으로 활동하고 있습니다. 그는 멀티미디어 분야의 여러...",
+    "expected_doc_ids": [
+      "dd035bf50d848bea2dd00b0d3208e35babde99cfe55420daf7c8dc690edaf1c8"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[KAIST 창업지원센터] 2023 하반기 W8 Garage(공유오피스) 모집 안내/ ~8.20(일)",
+    "expected_doc_ids": [
+      "a380e27d95149006d8cfffa343aa34c70cb746203002fb2db5c6b469e45ba8b9"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "전산학부 김민수 교수팀, AI 환각 줄이는 차세대 데이터 통합 기술 ‘키마이라’ 개발",
+    "expected_doc_ids": [
+      "0a00eaa0ed6111c589508d4b65854961389e76e997b17584d31d509d4aeec93c"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "025년 6월 5일(목)  \n•   본 대회 일정 : 2025년 6월 2...",
+    "expected_doc_ids": [
+      "54b1638231a3d699c2080a449d64d9c01d50c1c86df2299c9f6f159fd1631e23"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "전산 진로콘서트 2025",
+    "expected_doc_ids": [
+      "f8e831381ad3536d6d75a746500cf9e8e983987356ba861ef498a2913b73e5de"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[대한무역투자진흥공사 KOTRA일본무역관] 일본 온라인 취업박람회",
+    "expected_doc_ids": [
+      "4baf64302f93a7a6b8a6b287b5522cac9571421cf1d65f39b1897e853800d9b4"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2025년 3월 5일(수) ~ 3월 21일(금)\n   4. 접수방법 :...",
+    "expected_doc_ids": [
+      "599ef81e0c10b53ddca9402980a438a1f78a26bc2119b08b6986b79b3fb01046"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "떨어뜨리는 것이 주요 문제임을 밝혔다. 또한 조명, 소음, 주변환경의 잦...",
+    "expected_doc_ids": [
+      "9efb459c0b55134760d84498a522af0d5595ad86e29b963f85e894dbd3e5ff9f"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[채용설명회] 링글 X 카이스트,  영어진단모델 (C.A.F) Case Study",
+    "expected_doc_ids": [
+      "80cea830c1ca9f42ca13ba3112c671547118213a72d90fbcf522fa767f73b470"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[(주)BwellKOREA KOREC] 일본 기업 특별 채용 행사 KOREC Meet Up (10월 26일 개최)",
+    "expected_doc_ids": [
+      "e6294ef28ec30b32b011343b3f288225988ce8506ba54559c1004ab4bb6b3029"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2023년도 대전지방법원 통번역인 후보자 모집",
+    "expected_doc_ids": [
+      "0106c1417e0576f999e1e2416e252be8b89f3f424a055ba3625bb71c367f9781"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "지능형 서비스 통합 연구실",
+    "expected_doc_ids": [
+      "645a6ea054a26851fcb066f1c44cd5021ae994b50520da4d92cf6be35ba863d5"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "합니다!\n추가로, 이번에 공개되었던 국/영문 로드맵도 함께 배포하게 되었...",
+    "expected_doc_ids": [
+      "95982b76f2c55f0e3321a48c6fc1b8953f90776edb226b75460f13d92f80d052"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2024 봄학기 전산학부 워크샵 신청 안내",
+    "expected_doc_ids": [
+      "bdc306f40d8b6136ec226eb558b4a36d4b2775480d46b71c1458967c63c02799"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "C) 식별’, ‘오류 유형 기반 클러스터링’, ‘테스트 불충분 상황에서의...",
+    "expected_doc_ids": [
+      "14a5d0620c23b44ecfecbbfb96995ee9fdc96189154b84bea2787aa53955be24"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "유 검증\n (제출대상자) 면접전형 합격자(채용후보자)\n(제출방법) 해당자...",
+    "expected_doc_ids": [
+      "158aff7bccf96cd1757093decfcb343d6f00f9cdbddbc7976ef1d02fb5935885"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "으로 박사 학위를 취득하였다. 박사학위 취득 후, 2016년 3월부터 2...",
+    "expected_doc_ids": [
+      "7f275a9ca4474329215dfe0d2a17d675274a3d2f39453439ccb341c1ebc8d191"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "전산학부 석사과정 류형욱 TOPCIT 최고득점",
+    "expected_doc_ids": [
+      "8d7f919f83921936a01d7d09c2977da04053919df33ace10ee56c31093de9527"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 음악속에 숨겨진 공학이야기",
+    "expected_doc_ids": [
+      "9b3400eb08041777f794003fd29f61ae5cfc0ea87e4cbe42fe28c834a66fe607"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[안내] 2021 셈바(SE MBA) 토크쇼 - 00에 진심인 소셜벤처 창업가들!",
+    "expected_doc_ids": [
+      "cd7be8a1e7e487fe0ee8ef2cfb6342adfbe5673a2385a2be98e9b77ec4f7b04f"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "신성용 교수, Lifetime Achievement Award 수상",
+    "expected_doc_ids": [
+      "8e059e410093f1026593e65da362a6bb17f6f000e1b5610ddba40d9c5cdc5b49"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "‘크래프톤 SoC’ 빌딩 준공…연결과 나눔의 공간, 전산학부 새로운 도약 시작",
+    "expected_doc_ids": [
+      "2a8be33a6be25cfd487a5f06fd314374e19f95a79d2dd8ce49500e1296b27dcf"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "도 안내\n(확인내용) 응시원서 및 자기소개서 기재내용에 대한 진위 확인...",
+    "expected_doc_ids": [
+      "747c572439d486612aa2508e1e5161366e74085da395cfbdfe2191da473c3d2a"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "한 연구를 이끌었다. 그의 현재 관심 연구 분야는 소프트웨어 프로세스 모...",
+    "expected_doc_ids": [
+      "3af29b79cb6920acc5ddd39fc2e57d2f912426c1e1bffb71591b8066f5a3625c"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2020년도까지 조지메이슨대학교(George Mason Universit...",
+    "expected_doc_ids": [
+      "adb6d6cb8508f51c4a9826ff16fd4e08935a99250d3bf7514553fbffd74ca8a4"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "University of South Florida, Medical Engineering 박사학생 모집 합니다.",
+    "expected_doc_ids": [
+      "0f8bab2edf225fe9a6556bf4185b4a480474e66d03aa031b5abab248b7608da4"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "9월 첫수융합포럼개최- 전산학부＆인문사회과학부",
+    "expected_doc_ids": [
+      "4b0052e60d2d9227ed26d99d89c9bd0a0c6f080909fd9c8af9e62ac0fe50d21a"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 전산학부 IoT, 빅데이터 등 2개 ITRC 선정",
+    "expected_doc_ids": [
+      "89e9d504740e4dcb89d432e5c22c4e4d41d7150117759deebe7d5e549b536226"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "사전 신청 또는 현장에서 선착순 수령\n링크 : https://forms....",
+    "expected_doc_ids": [
+      "242f340116ec019c6bc20d66b75ffb4cc1e2d30b99381c1d1b0bc580b4a935c6"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[과학기술정보통신부／한국과학창의재단 주관] 제13회 과학문화 혁신포럼 ＇ChatGPT가 가져올 과학 소통의 미래＇",
+    "expected_doc_ids": [
+      "b2e79d63e3b2aa6d20148546923d7a28c92cddec58a31026f089ef83b8572ab5"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "g anchor and correspondent for CNN, base...",
+    "expected_doc_ids": [
+      "2a2fbc162cebf0a476f20ce8e7af426f7c4a566d82eb8970ddbb2c02505a374a"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "전산학부 시험기간 간식이벤트 공지",
+    "expected_doc_ids": [
+      "da7cc7869c307d57011d9a275c90dc4d9d98c5ce46042b9d1ebef0f73232484f"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "빅데이터 분석 및 학습 연구실",
+    "expected_doc_ids": [
+      "afd6e8d6c3a4db3278338589d215a21eba3dcf8d79d82abab5181580bf49979b"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "18 Distinguished Paper Award를 수상하였으며, 최우...",
+    "expected_doc_ids": [
+      "6a9ad696401a6a2bec6903e7ba05324cdba42c033af34786526ba8a8bc1773f8"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "분야 초월 및 연구 중심 전문 인재 모집",
+    "expected_doc_ids": [
+      "c9b245363d2fab479365dd9d958e695b8c4be90d4121f85c201b48f2932f9af3"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "암호론 연구실",
+    "expected_doc_ids": [
+      "79ced771e60d65f64e894da81c48a8e2b311614ebc6b388f019543fadd54e497"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "협동 사회 기술 연구실",
+    "expected_doc_ids": [
+      "828e8e889602235ff3bc44c7b4ce11bdaf623901f551b26962f53c0e5854526e"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "사례를 공유한다.\n브이플러스랩은 CROWN 2.0의 AI기반 concol...",
+    "expected_doc_ids": [
+      "d986ac8e3dc8e1e4d1805116f26b0b16e6ea32f1cc206702ef73e433b55340eb"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "단체복은 제작 완료후 일정 기간동안 배부가 이루어질 예정이며, 수령장소...",
+    "expected_doc_ids": [
+      "2524f0d1ae46fab36f4a63bcf19d7277f47f2cc002456443f6cc0fd0e4d2fbdc"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "rity, ACM CCS, MobiSys, MobiCom, SenSys,...",
+    "expected_doc_ids": [
+      "a78823247ae439dfff447c4db3234659ad0fc302500876b145fbeaba74d85d58"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "as a CEO for three years. After that, he...",
+    "expected_doc_ids": [
+      "19f17cb831917cc96b95adfd6076f6ea79b14d3d755cd45f4b1246f50f599ffb"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "지식공학 및 인공지능 연구실",
+    "expected_doc_ids": [
+      "35d3d51ce4f766a3defa84be061d0e7a596046f49a35a99b735e3bcb3d182b9c"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "있는 한계를 넘기 때문에, SW의 높은 복잡도로 인한 오류를 해결하기 위...",
+    "expected_doc_ids": [
+      "51bac645a1923e8f3feb2b25c8a02267829428d938d05c1619e88d9453810925"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "는 분기의 80％를 테스팅 도중 실행했다면, 이는 60％만을 실행한 다른...",
+    "expected_doc_ids": [
+      "1b8a03b624cb529017cb93d13c1f6c0360f473a8da4ba07f6a489079512ea65d"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "KAIST 전산학부 김문주 교수와 유신 교수, 정보과학회 Top A급 우수국제학회인 IEEE ICST ＇24에서 Most Influential Paper Award 수상",
+    "expected_doc_ids": [
+      "3db5f895122b5bdce126bd211c5144d8407b2109a74df4c0b97c4b5602b09cc4"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[모집] 2024년 3차 ISK Fast Prototyping(고도화된 프로토타입 제작 지원) 참가자 모집 (~7.19)",
+    "expected_doc_ids": [
+      "04458b67808dcb0fdfd5cd8933a99c8e62e1f327e038ededb891d342fc344be7"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "크놀로지스는 초거대 생성 인공지능, Generative AI가 인간 창의...",
+    "expected_doc_ids": [
+      "5bc9fee8c85339c2bffcc493b06e386b6df626f28acc85f85a99ec8900a276b9"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "st.zoom.us/j/84101178320?pwd=QnRFVURYbTN...",
+    "expected_doc_ids": [
+      "d5da8976267c0001096fb7c14d241cf95a1f563f11b8aec7ea6f6c1e83c75021"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "olloquium/ 본 강연은 오프라인 강연 입니다. 강연 장소는 E3-...",
+    "expected_doc_ids": [
+      "f63c9ea5d5485ec6b4a2fa5d82def6cb37b58bbc8cf78936d36e74112162e58d"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "KAIST 김민수 교수팀, 세계 최고 수준 GPU 그래프 연산 프레임워크 개발",
+    "expected_doc_ids": [
+      "55b126128a890c5a9db75653efd10831e2da48c7fee404a94f6b4eb193696997"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[Startup팅X프로토파이]100여개국 고객사들과 함께 일하는 글로벌 스타트업 ProtoPie 창업기[6/11(목) 오후 2시, 창업원 YouTube 스트리밍] 참가자 모집",
+    "expected_doc_ids": [
+      "7662f9bbd5470cc1636a59618c0c20ea1ddcf0e2e4a62d8a7d604b882c600d9a"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 중앙분석센터 기간제근로자 모집 공고",
+    "expected_doc_ids": [
+      "00b55cda5757e105959fca8ef0067e9fc9753a9c16612a285055e5728308d9f9"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "e sensors are strongly dependent on the...",
+    "expected_doc_ids": [
+      "a9d827fd1ab4f92b09588890223bbdfc2458c81cfdacd802483efd2b9cea82ca"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "자바스크립트 안정성을 책임지다",
+    "expected_doc_ids": [
+      "c68b8b2fb87af0699d9497a841395500c078df791e595f3f2bdab6b25aaf443f"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "전산학부 집행위원회 모집 안내",
+    "expected_doc_ids": [
+      "e24550890388f10c922d3d4b389a1b8e309e3333322af88918f7e342760078fc"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "대전광역시교육청-KAIST, AI·SW 인재양성을 위한 업무협약 체결",
+    "expected_doc_ids": [
+      "9f6b4dbb9f12fd68838a736ac31187c22d1adc2f5496b6d86dead20d2d81cb31"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[현대오토에버] KAIST 채용 상담&런치 설명회 ",
+    "expected_doc_ids": [
+      "6fb17f03ea6bcf607832e441d825d16737c01ee4459cb11ea3741f45127b6d49"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "ure.s3.us-west-2.amazonaws.com%2Fe849ede...",
+    "expected_doc_ids": [
+      "ad03bbe934f5ae00dafbd684b7865faf90a2e8481da7e1953a6bf858bbbbcaa2"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "e: office: etc:전공: \n\n학위: \n\n연구실:  tag:csw...",
+    "expected_doc_ids": [
+      "5dbdacc511934a9e4db790a8969c80509052c08cb0dde64e058e33fc2f8d36ea"
+    ],
+    "origin_collection": "csweb.admin",
+    "query_type": "semantic"
+  },
+  {
+    "query": "봄학기 Web3 앱 개발 수업 안내",
+    "expected_doc_ids": [
+      "2b6ff325c23dc3f12c28648ea156cb077e8b61a2cf6d249c76b6bfaa7a3848ad"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "를 취득하였다. 삼성SDS와 삼성종합기술원을 거쳐 2006년부터 한국과학...",
+    "expected_doc_ids": [
+      "f459ea72f41b831941e5312b04fd183cfdd647a340fbf209a177ba2ac2d61820"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "전산학부 공식 쏙모임 공지",
+    "expected_doc_ids": [
+      "edfa40e6b24acb80b6fcb20fb5cac06fe907be68835c5113260567e5c5550d14"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "사 장소: 서울 강서구 마곡중앙로8 71 LG유플러스 마곡사옥 B1 (5...",
+    "expected_doc_ids": [
+      "e2b08be79b0921e80530e7264caa9005f0337b552520f04a90449f41891ca7ae"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "누적 거래액 을 달성하며, 투자 없이 매출만으로 빠르게 성장 중입니다....",
+    "expected_doc_ids": [
+      "06a39d1cc71f86178b3beecb4ead82ee1f6e2d19ac27ba4dd97586a3d4424ca6"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "사항\n모든 시간에 참여할 필요는 없으며, 원하는 시간에만 참여하시면 됩니...",
+    "expected_doc_ids": [
+      "f8e831381ad3536d6d75a746500cf9e8e983987356ba861ef498a2913b73e5de"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "Privacy Risks and Perceived Benefits in Open Dataset Collection for Emotion AI Research",
+    "expected_doc_ids": [
+      "12ae983e2252cb6bff723fb393fb566178e857bb4d18e842fbf4cc76286b01a4"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "졸업 예정자 또는 기졸업자\n  - 박사장학생 : 박사1학기 또는 석박통...",
+    "expected_doc_ids": [
+      "4ac4c94040e0a7eb7bd7db7caa7fa8a015d4a8ff692c574eaeca8b0948987a8c"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[모집] 2024년 2차 ISK Fast Prototyping(고도화된 프로토타입 제작 지원) 참가자 모집 (~4.22)",
+    "expected_doc_ids": [
+      "66987795afe82a04109e32ea1b9a3b8d011b8a813bbe092a7080449404b39d3b"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "FedBalancer： 이기종 클라이언트 위 효율적 연합학습을 위한 데이터 및 페이스 조절 기법",
+    "expected_doc_ids": [
+      "01c57b49e6733cd86819041864d66df1b5c8d8f7fb088c74b186f6483ff82cac"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "(주)모바휠 Cuop 인턴십 모집 공고",
+    "expected_doc_ids": [
+      "c6aac9296c066ba95672935e8b60dc6fc4f4b52478c99629c9b8566792e7eadd"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[5.20 (12:00) / 참가자 커피쿠폰 지급!] KAIST Lean Startup Camp - 4th Online Matching Day",
+    "expected_doc_ids": [
+      "d7bc96b05a5f1d84e15ae3166769a1b26f20a76778d2c6cf5775313364ab7143"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2025 한국무라타전자 아이디어 공모전(~02.19)",
+    "expected_doc_ids": [
+      "c65856832f524d167682cc1657ab7a1f26b2526d996df3715c6ad467c79f26bf"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "소프트웨어 테스팅 및 검증 연구실",
+    "expected_doc_ids": [
+      "51bac645a1923e8f3feb2b25c8a02267829428d938d05c1619e88d9453810925"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "우리금융그룹 데이터셋, 요구사항 정의서 및 산출물 가이드 제공,\nAWS,...",
+    "expected_doc_ids": [
+      "53a05b96b6d199e43f5a5a3ab792bd245350c3a6a7be7e554e5ab4c563bebc00"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "(내일)11/5 \"2020 KAIST TECH DAY\" 사전등록 및 참관 안내 (사은품 제공 포함)",
+    "expected_doc_ids": [
+      "c3e8dcf92d6976b29982896e2506dbc1754c4f32514da79a3b90bac8a934d7c5"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[KAIST 창업지원실] ★ April Ent. Lunch Talk : 서울로보틱스 이한빈 대표 강연",
+    "expected_doc_ids": [
+      "c980e284664b04e9c24fb30303d69b52508ec40ee8a0d2ec628fb485cb4c732c"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "Adaptive Mobile Audio Coordination） 프레임워...",
+    "expected_doc_ids": [
+      "e85bbf2f6da8b99a6936eeedb8db5fa0fc8194b5e9633001336c63898bf9908b"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "뇌졸중 환자 손 재활 돕는다…KAIST, AI 기반 고정확도 손동작 의도파악 기술 구현",
+    "expected_doc_ids": [
+      "5c31a98a8c8bec28b21ca26c70fcad6a446207298bd1123d610c1fae8d0b3639"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "wing body of research is beginning to ma...",
+    "expected_doc_ids": [
+      "136d51c5f0888108be5c499148702d2ded1a63f82c8a1c91996c01f57d3dd147"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[인턴 모집] IC Lab 이의진 교수님 겨울 인턴 모집 (~10/29)",
+    "expected_doc_ids": [
+      "0e4f6bb40be69823aaf0ac1186dc8f551943872122396505662909ddd4e2be22"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "6월 Entrepreneurship Lunch Talk \"의사가 쏘아올린 창업의 꿈\" - 힐세리온 류정원 대표",
+    "expected_doc_ids": [
+      "d19fa088e351f5adca9e2a3489049d2d57f1c19a3a4b92b72ce86d62e56177f1"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[SoC Colloquium] Monday, Nov 1, 4pm, Kristie Lu Stout (CNN ／ Anchor), ˝Rethinking the Future˝",
+    "expected_doc_ids": [
+      "2a2fbc162cebf0a476f20ce8e7af426f7c4a566d82eb8970ddbb2c02505a374a"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "처리 구조로 전환해, 치환 기반 DRBG의 최대 효율을 구현했다. 여기에...",
+    "expected_doc_ids": [
+      "5b47a23271de2ae0c3486c81c04045def22ec90ff68adf595d9a865af0cc9ee9"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2024 전산학부 부트캠프 안내",
+    "expected_doc_ids": [
+      "123c21dccca41019677b9d7fecb65baab2b2f9cbfccc555c6789d038710d85f1"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "② IEA 자체 전형을 통해 최종 합격자 결...",
+    "expected_doc_ids": [
+      "c8adebbe1a3aefa6d76f7754cbb76bc209f969d3e7d1b8c0cb3e9fb235372169"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "르완다 외무부 IT 담당자 방문",
+    "expected_doc_ids": [
+      "9f7e1ae8e507843bc04739c42d08436256803f2bae7a13ea18aa87fa5bf9f468"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2024 전산학부 <연구실 탐험>",
+    "expected_doc_ids": [
+      "be617e46f528c7febe801d7e0a16400b0d83d85496ee9adf36f20131e656b4f8"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "전산학부 단체복 구매 신청 연장 안내",
+    "expected_doc_ids": [
+      "554a027f447a1e4f191e5d46312400e58be28db3c4c0cf43364e29044978419d"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "제 17회 알테어 최적화 대회 (AOC2024) 안내",
+    "expected_doc_ids": [
+      "5c54cdc558dfe494e3d4265fea52b01a51cac0bbce8a403fba947133f713e770"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "신청자에게만 드리는 혜택 🔥\n\n- 우선 선발 대상자 선정\n- 1:1 프...",
+    "expected_doc_ids": [
+      "4149bb88ece7f1f42afb4382188ffd39c8c54b392ce27b4a6efde24b8f876712"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "이번 연구의 핵심은 인간의 고위인지 능력을 모방하는 ‘시스템2’ AI 기...",
+    "expected_doc_ids": [
+      "5474ea19d43e739b5656678d30008e591a13b28a6c2b0e1a9172a39f7d599aa7"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "초대규모 인공지능 모델 처리하기 위한 세계 최고 성능의 기계학습 시스템 기술 개발​",
+    "expected_doc_ids": [
+      "d04ded8d894bcfe7408f693e4ada896bc11187434d7e28a6ec661d7063788135"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "의 ＇중간 데이터'를 메모리에 저장하거나 네트워크 통신을 통해 다른 컴퓨...",
+    "expected_doc_ids": [
+      "d04ded8d894bcfe7408f693e4ada896bc11187434d7e28a6ec661d7063788135"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "‘AtaTouch： Robust Finger Pinch Detection for a VR Controller Using RF Return Loss’",
+    "expected_doc_ids": [
+      "200a9774fb07fabd7e24a5cdfdca151a4752ee66b883fd26b993510ee474af20"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "T00:00:00Z   https://kaist-cs.notion.sit...",
+    "expected_doc_ids": [
+      "7359295f125775af1ced185bc45122d3bc694d41ab154fce407146f67828bc82"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "소프트웨어 버그 찾기를 시각화할 수 있는 취약 프로그램 합성기술",
+    "expected_doc_ids": [
+      "65f4f87070dfa88ac8d87d9de9fac0f2375ca47e33438e6e57a4abb55f75afbf"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2023 LINE 캘린더 및 굿즈 무료나눔 안내",
+    "expected_doc_ids": [
+      "179a8416d118efaf970a82dfe6bbf969393a2fc84943cc4be57018a84155926b"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "LG AI연구원 학부생 체험형 인턴 채용",
+    "expected_doc_ids": [
+      "01f8d1e6c7e2ab1b6acf5aff26ddfd72ec57aea81d6bedfc28c3b9efd04eb5b3"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "positives (spurious warnings) and false...",
+    "expected_doc_ids": [
+      "46811731ef8f427608036b57c864d8bcb35ecbf53c3dd0f3ca2382d8ea4b787e"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "과기특성화대창업허브, 제 1회 FIST Summer School 참가자 모집 홍보",
+    "expected_doc_ids": [
+      "a05d6059a5bec8e32f32df8f8e8b0ada9bf14a6f0ca9b41250cae2a190f8c3c1"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[Reminder] 상반기 KAIST Startup Empowerment Program (컨설팅 프로그램) 안내 (~1/24, 2PM)",
+    "expected_doc_ids": [
+      "4bf240a86f71314a3cff84d0e433ec673e8a0866016249d3fd1918fd2f6ef787"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "관련 전공생이라면 지원 가능합니다.\n\n알고리즘 역량 강화 및 S/W 개...",
+    "expected_doc_ids": [
+      "0a1f7a728171152cb6d43ab95b7ad435c97ccf3524f0dd61ce95ff33e236e793"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "레쥬메 특강, 온라인 기술특강, 취업/진로 목표설정 및 고민상담, 온라...",
+    "expected_doc_ids": [
+      "32ad08c7cc2f304dd0b6329be37d76c18006af1bbf1b15cb2dc43643ba44feb7"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "카이스트가 개발한 ＇이 기술＇…무선신호 없는 실내서도 치매환자 찾아낸다",
+    "expected_doc_ids": [
+      "1a901343ff53ec46a99e548bf9b4c5bbe7d86f60789a3c92e694e1f3706bb6ed"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[기술창업혁신단] 2024 한국형 아이코어 원데이 클래스(Pre-아이코어) 신청 안내(~10/25)",
+    "expected_doc_ids": [
+      "b35461fd47022a7b8bca8428b2415ed9d6d76f927013f707eacc5d4abc54b69a"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "업\n* 더 자세히 보기(☜클릭!)  : 기업소개, 요구역량 등 자세한 내...",
+    "expected_doc_ids": [
+      "d7bc96b05a5f1d84e15ae3166769a1b26f20a76778d2c6cf5775313364ab7143"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2.amazonaws.com%2Fe849ede4-658a-4cb2-967...",
+    "expected_doc_ids": [
+      "d8cb52ceac95f2626c12d74a237fff1951cc5dc91e4e725ea4849f6f5e081d8b"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[SW중심대학사업]2020년도 오픈소스 SW 발명품 공모전 안내(∼7／31)",
+    "expected_doc_ids": [
+      "2635f3d46e4857de5e54175c01a35a57e70e2f1450b27fffd3fdd352ddc4521d"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "인공지능 심층 학습(딥러닝) 서비스 구축 비용 최소화 가능한 데이터 정제 기술 개발​",
+    "expected_doc_ids": [
+      "de6f855b924c5482e4fba5308020708d9052a64c96d4ce68b76843b4fca836b6"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[상시매칭] 2022 KAIST Lean Startup Camp (서울X대전 협력 프로젝트, 상금 2,000만원)",
+    "expected_doc_ids": [
+      "1bccc3a1b5701eb1d61dd0738d9e34182e6f567707c9b78659323d4db12ade75"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "조교배정 및 평가\n• 국제협력 사업 및 예산\n• 조교주간 업무일지 관리...",
+    "expected_doc_ids": [
+      "e10c7009d7cbbf02c8e1df22c713748569638baf2943ab0877fc370bffee0344"
+    ],
+    "origin_collection": "csweb.admin",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[웨비나] 10배 빠른 개발 속도의 비밀: 개발 프로세스 최적화하기 ",
+    "expected_doc_ids": [
+      "6a412deb6dad76fcc14aa2959c2d7e084d7528915525de3622b09cca5f7f651b"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 생성형 AI와 검색의 진화",
+    "expected_doc_ids": [
+      "949609f2b17449763fadf9838b7e33550556eb9c45f06ca453dd79749512ca02"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "계산지능형 소프트웨어 공학 연구실",
+    "expected_doc_ids": [
+      "5b208c4824feebdcb717dde1d9b71c1a93e87f81c412765ab65d94b3459dfb21"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "발표되었습니다. 본 연구실은 특히 모빌리티 데이터와 스트림 데이터를 위한...",
+    "expected_doc_ids": [
+      "5251d580d8c76b4aa15f2979034aaaf9c33e343575648dc1fcc5338ca45f18b2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "These observations have prompted our wo...",
+    "expected_doc_ids": [
+      "8f30f1ce829c8cb2db26e7afff8aaa9dc2acb2ee501cde3e813e7cbcfd4bff47"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "데이터 사이언스 연구실",
+    "expected_doc_ids": [
+      "781a00b7068e752b526a27fec5ef6453bc341c096f007025066e8e71827d7d00"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "지원프로그램 E*5 KAIST의 성공적인 개최를 위해 커피차에서 무료로...",
+    "expected_doc_ids": [
+      "6fcc7440ccda514a17446de2676d6f9a7f22b26e52e5c4a1d1f95f10641b88a5"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "프트웨어 개발 공정 및 소프트웨어 품질을 유지, 개선하는 소프트웨어 기술...",
+    "expected_doc_ids": [
+      "9065c411114cf9f5c6498a1fd08a1dc185854bf6761fbf5dc440730e474e6e79"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "집인원 : 3명\n4. 근로시급 : 20만원\n5. 근로기간: 11/28 ~...",
+    "expected_doc_ids": [
+      "9882e3634aba691fe25ea0c4d624929a762db31038aa0a6d588c7e4f324251e4"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "임베디드 컴퓨팅 연구실",
+    "expected_doc_ids": [
+      "e5302a97536182df42c00bb712a9b3186ac3071dea2909d128eee8821892d702"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "※ 2/11(화) 9시~6시(점심시간 11시 반부터 1시 제외) 이내...",
+    "expected_doc_ids": [
+      "1162564f7f6e739ae6e026b5c2e8edfbd1f18016d645cf5db8996fda8c554039"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "관심 꼭 부탁드리겠습니다 https://kaist-cs.notion.si...",
+    "expected_doc_ids": [
+      "f2735682cf8a57f0f2d39595adea8b7502715caecbf8e66c6f1a8d70daf535d2"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "web:https://cs.kaist.ac.kr mail:eymoon@k...",
+    "expected_doc_ids": [
+      "878668d9c7671de5bc32daa45973629e52cb32b2b94b8a807fa20edc90d71ed4"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "인터랙티브 컴퓨팅 연구실",
+    "expected_doc_ids": [
+      "fa2515d8ab8104dacd2718e2660b11a7126243e7aabb606305af3fb7ab854916"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "58 블루포인트파트너스 본사 1층 http://naver.me/GY2PM...",
+    "expected_doc_ids": [
+      "1bfb27aad7c6c77d2a28c8e0f4942f9b9fc638953ccc2e4767544938a4131bc4"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": ".samsungcareers.com)\n\n추가로 [ '25. 3. 5(수)...",
+    "expected_doc_ids": [
+      "32666926336eb83557542c5470262b5cc7c9aad359aa7fc29aa8a310f3de0734"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "다.\n1등 : 아이패드 Air\n2등 : 에어팟 3세대\n3등 : Cherr...",
+    "expected_doc_ids": [
+      "8468f25dafff04bc7e905d6358d49507f07576db3658c9781a2d01652a36cb72"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "소량의 데이터로 딥러닝 정확도 높이는 기술",
+    "expected_doc_ids": [
+      "522adb42384ef2956c348615f85ed9b4ee3d98d1517dead3cb32135b8eecad47"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2) Tolerance Dimensional Engineer (IO052...",
+    "expected_doc_ids": [
+      "482883c6ea976c6d03cf5f96a4c9682321cc24187e47d841c8cc11b9f5a94fda"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "기업 채용 연계 서비스 제공!\n팀 회의를 위한 오프라인 공간 제공!\n→...",
+    "expected_doc_ids": [
+      "e32788a704de94ccdcb50ba919027f5ef9fc758dd8705cdff7da8763491c1494"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "내)\n2. 근로 일시 : 2024년 7월 29일 (오늘) (시간은 협의...",
+    "expected_doc_ids": [
+      "1de8506023c8643a6e569d1084c862d4995cff12b902004e03506f8a78a0b2d4"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "외 주요 HCI 학회 및 저널의 프로그램 커미티(한국HCI 학회, ACM...",
+    "expected_doc_ids": [
+      "5641d1e5f73326cb292d3d37abc4c4a811ff2a8b7ae5e2386fcddb56e5cab97d"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "소프트웨어 프로세스 개선 및 신뢰성 검증 연구실",
+    "expected_doc_ids": [
+      "9065c411114cf9f5c6498a1fd08a1dc185854bf6761fbf5dc440730e474e6e79"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[모집] 2023 ISK Fast Prototyping(고도화된 프로토타입 제작 지원) 참가자 모집 (~8.31)",
+    "expected_doc_ids": [
+      "9b56cc2303ec3bae6b953fa5b744165fe16091ec34dc5134df35070dfdf628bc"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "y=&svalue=&menu=86 content:- 일시 : 2021년...",
+    "expected_doc_ids": [
+      "e516702bea43a5acc3238287eac46a21ab99ca441a6baceb3cc20e09e4f414bf"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "뇌, 눈, 입)에 가깝게 위치하고 다양한 생체지표·사용자 활동의 센싱이...",
+    "expected_doc_ids": [
+      "89e9d504740e4dcb89d432e5c22c4e4d41d7150117759deebe7d5e549b536226"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2024 봄학기 전산학부 워크샵 신청 연장 안내",
+    "expected_doc_ids": [
+      "97b64f707d4674c579800072d3875b8838186784966e51ebf817fe3eba46a71d"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "창업지원프로그램 E*5 KAIST `23 상반기 참가팀 모집 (~03.13)",
+    "expected_doc_ids": [
+      "6849b3b1c9864c7523979838e869d0dcc06c2db1fa5668c3676117b4df1050ae"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "인 경우에도 95％ 이상의 수정 정확도 달성\n○ 실세계 이미지 데이터셋(...",
+    "expected_doc_ids": [
+      "e1b515214aca60c8d7f9886f0a8e03b013c1345df7a876d271a2dd24c5b98f2e"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "격자(채용후보자)\n(제출방법) 해당자에게 별도 안내\n(확인내용) 응시원서...",
+    "expected_doc_ids": [
+      "39f25bd1b71da5cf4387ce818a203789755814e678e7e0d23ca03d8cb7535484"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "트명: 인테리어 기술자들을 위한 공사 계약 관리 앱 서비스\n이런 분을 구...",
+    "expected_doc_ids": [
+      "0d7fa5f75be9f03fa895f63e48fed9c59017f55a08e272ce6f880869c05d5bb3"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[Bloomberg] In-Office & Virtual Recruitment Information Sessions",
+    "expected_doc_ids": [
+      "15dfc864dbeb508957b7db450834a5b8f68264e2cf8ff4fd1e7c2a45e665e6fa"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 중앙분석센터 기간제근로자 모집 공고",
+    "expected_doc_ids": [
+      "39f25bd1b71da5cf4387ce818a203789755814e678e7e0d23ca03d8cb7535484"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "은 언어자원 표준화를 위한 위원회인 ISO/TC37/SC4의 창설에 공헌...",
+    "expected_doc_ids": [
+      "4de31b6a2a7ba7be7e35a80d594dd11bf73315a7340261253454eb6576408c88"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2007년 석림학술장학재단 장학생 추천 의뢰(12.18까지)",
+    "expected_doc_ids": [
+      "06960a97aae20066db2e64b361dc8b07dd5602a69e03621378c813382632d772"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "습니다.\n수상을 축하 드립니다.\n• 구분: 국내\n• 수상일: 2013년...",
+    "expected_doc_ids": [
+      "a9ec0bd943574b3751a726ce75c159386e9ea9ca006cb2c726376f45872465e4"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[삼성디스플레이] 2025 상반기 박사 채용/박사장학생 선발",
+    "expected_doc_ids": [
+      "4ac4c94040e0a7eb7bd7db7caa7fa8a015d4a8ff692c574eaeca8b0948987a8c"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[덴마크, 영문안내] Industrial Sustainability 관련 연구 Fellowship 모집안내",
+    "expected_doc_ids": [
+      "282e16aa4fda2d7d58a7e235702954f7c1498f2074a7ad3f6a996fde07c4df3b"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "어보세요!\n\n베이글코드 홈페이지 –  www.bagelcode.com\n제...",
+    "expected_doc_ids": [
+      "901733a289b3eb20fb6eda73d85ebf89f3af76e0c690439ad5f4b90a28b7aa2d"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "최원석 박사, 대구경북과학기술원(DGIST) 조교수 임용",
+    "expected_doc_ids": [
+      "01fdb506f4144e89fb90b305cc4d4bb2c4a8fe81b3e03e86483300363c268b5f"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "GcFNmhA2is\n\nCorporate Site\nhttps://www.y...",
+    "expected_doc_ids": [
+      "5bb32a50ed220ba57c7f7412eee85f5b13c574b2a14ff17fb5f5e82ae219055f"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "데이터 마이닝 연구실",
+    "expected_doc_ids": [
+      "5251d580d8c76b4aa15f2979034aaaf9c33e343575648dc1fcc5338ca45f18b2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2013년 개교 제42주년 기념 우수교원 수상 (국제협력상)",
+    "expected_doc_ids": [
+      "a9ec0bd943574b3751a726ce75c159386e9ea9ca006cb2c726376f45872465e4"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "지속적인 학습 능력을 갖춘 인공지능 기술 개발",
+    "expected_doc_ids": [
+      "44d4606ffa06e47e144c73174d961f3ea7161a4bd9ccfc60fa814e1a8df1d874"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "20 여개팀 ) 활동지원금 ( 착수금 ) 지급절차 추후 공지 활동지원금...",
+    "expected_doc_ids": [
+      "2635f3d46e4857de5e54175c01a35a57e70e2f1450b27fffd3fdd352ddc4521d"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "신 학우분들께만 제공해 드립니다.\n※ 사전신청은 굿즈를 드리기 위함으로,...",
+    "expected_doc_ids": [
+      "f2101eb1f10ac2e305bbbd006ac079121830feae3731db7e74255fbd6db12812"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "last decade. Quantum computing is a tot...",
+    "expected_doc_ids": [
+      "877e6a5fef225723ff8186d2d21b10409aaf5d535356a4186a93c608f7c8a4fb"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "경쟁력을 얻을 수 있을 거예요. \n*세부사항 및 지원 링크 : https...",
+    "expected_doc_ids": [
+      "7d67f9b1a64789621a049c6e805ac547268ebe84babac509963a065f952ec84a"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": ".kaist.ac.kr mail:jo-zo@hanmail.net phon...",
+    "expected_doc_ids": [
+      "7ec8c1d72460c7b7dca56d79fa7e8f616caad1f948d7977090bf0a6213fd0877"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "수)~ 15일(금) 삼일 간 온라인zoom면접을 진행합니다.\n 이력서 접...",
+    "expected_doc_ids": [
+      "4baf64302f93a7a6b8a6b287b5522cac9571421cf1d65f39b1897e853800d9b4"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "이성주교수의 SCAN, 오혜연교수의 Eliph 시스템 KAIST Breakthroughs에 선정 소개",
+    "expected_doc_ids": [
+      "a148a9c65301497f8d1969f352a11e26c909fcb88d17a8420ddefb4b0449a783"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "라. (주최/주관)국토교통부 / 대전(’23년)·세종(’24년)·충북·충...",
+    "expected_doc_ids": [
+      "47dfccd20fed24fe27fc1ab0f38aa00538a94de780cf47ab8acf977111700c24"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "<뇌지컬 서바이벌 : 대학전쟁2> 참가자 공개 모집",
+    "expected_doc_ids": [
+      "d8cb52ceac95f2626c12d74a237fff1951cc5dc91e4e725ea4849f6f5e081d8b"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2023 KAIST Impact Startup IR Day (신청마감: 11/14, 4pm)",
+    "expected_doc_ids": [
+      "e8228379236a3f756eaa1bc631ef2d20e00a744bba9887b9aa67e783c27a71c2"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "3월 26일 21:00부터 구글 설문지로 사전 신청 또는 현장에서 선착순...",
+    "expected_doc_ids": [
+      "da7cc7869c307d57011d9a275c90dc4d9d98c5ce46042b9d1ebef0f73232484f"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "전산학부 시험 기간 간식 이벤트 공지",
+    "expected_doc_ids": [
+      "cbc251bc0007b72df7b6b32f520309a67725f1c3e1db2da083ca66ec9627eb57"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "제공되니 많은 관심 부탁 드립니다.\n 행사는 6월 ~ 9월 총 4차수 진...",
+    "expected_doc_ids": [
+      "e992cff80f69788fd1c60b19e4052adb5228613726b84f3b10b08f1f0278fe7c"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "삼성SDS 23년 상반기 SW직무 연구장학생 채용 상담",
+    "expected_doc_ids": [
+      "c44178fd3c0b02bcf35134c644085d8c06dffc948163a721659af8e70e2cdeb5"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[PhD defense] 곽재헌 12／01 11：00 도곡캠퍼스 403-5호",
+    "expected_doc_ids": [
+      "66eb34bc03ee5720b0169f7048843fec49d2bde0276a8ef470b11b2dc3174c4b"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "Motor Company\n 이한빈 대표(혹은 캡틴)는 자율주행차의 눈으로...",
+    "expected_doc_ids": [
+      "c980e284664b04e9c24fb30303d69b52508ec40ee8a0d2ec628fb485cb4c732c"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "이야기를 나누는 시간을 가지며, 학과 내 정보도 공유해보세요!\n모든 전...",
+    "expected_doc_ids": [
+      "e2f107c15c08f56748708c379112a0553ccf2c2c2f8ceedfcf4daab49080263a"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[한화에어로스페이스] 수제버거와 즐기는 KAIST 런치 채용설명회",
+    "expected_doc_ids": [
+      "d0632b30411a1f23ae41ac611c690a22db4b37b7fc43c220421b94ee01968587"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[Seminar] Prof. Abhik Roychoudhury (National University of Singapore) - ˝Fuzz Testing˝",
+    "expected_doc_ids": [
+      "3efda6ecd689e8031e34d42f5be6aa4cc852e6ea54eceb9def25d252db6b34b7"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST SoC International Workshop for Education and Research Collaboration",
+    "expected_doc_ids": [
+      "db55cb102dd4ded3f7c6250505c5a4b71bf61610f82b5e92c2984e7e7627d9d8"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "전산학부 23년도 쏙모임 모집 안내",
+    "expected_doc_ids": [
+      "bfa634260363d60c5a4042cc1f25a128ff5b016185edf00f98ae02e2dfd841a0"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "연구하고 있다.비밀키 암호 안전성 증명-블록 암호 구조 및 키 확장 방...",
+    "expected_doc_ids": [
+      "79ced771e60d65f64e894da81c48a8e2b311614ebc6b388f019543fadd54e497"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 5／17 4pm, Tapomayukh Bhattacharjee (Cornell University), ˝Building Caregiving Robots that can touch, sense, and feed people˝",
+    "expected_doc_ids": [
+      "8f7fe472b64b8f3a44aff5d1c61dac9d7811dee71f2dccc3c39ff4f883a7e629"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST, 보안성과 효율성 극대화한 차세대 난수발생기 개발",
+    "expected_doc_ids": [
+      "5b47a23271de2ae0c3486c81c04045def22ec90ff68adf595d9a865af0cc9ee9"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "으로 해결하고자 합니다. 데이터 사이언스 연구실에서 현재 다루고 있는 문...",
+    "expected_doc_ids": [
+      "781a00b7068e752b526a27fec5ef6453bc341c096f007025066e8e71827d7d00"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "같은 글로벌 대기업과, 현대카드, 네이버, 카카오, 삼성SDS를 포함해...",
+    "expected_doc_ids": [
+      "7662f9bbd5470cc1636a59618c0c20ea1ddcf0e2e4a62d8a7d604b882c600d9a"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "동기화된 공동 확산 기법을 통한 일관된 몽타주",
+    "expected_doc_ids": [
+      "c03e79c1001d0ede4772778515eff9629f832beb1b13df85537a6c375359aebe"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "age/attachment%3Ad245405b-a144-4f7c-b7d2...",
+    "expected_doc_ids": [
+      "0f8bab2edf225fe9a6556bf4185b4a480474e66d03aa031b5abab248b7608da4"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "s Domain Generalization) 챌린지에서 각각 우수한 성적...",
+    "expected_doc_ids": [
+      "8c5a836560a319e49b2044b03868a248fe61f448153681d3cf1a95b138df6a09"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "vTUh8d3h8\n 설문조사 기간: 5/12 ~ 5/20 23:00\n설문...",
+    "expected_doc_ids": [
+      "ad0c8a5dd30087e6c264aa6a1679060455b5c9734e3794da00717db03cb7dea7"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "3. 활용 기간 및 급여 : 7/1~8/31(2...",
+    "expected_doc_ids": [
+      "c9b245363d2fab479365dd9d958e695b8c4be90d4121f85c201b48f2932f9af3"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "류석영 교수님 전산학과에 부임하셨습니다.",
+    "expected_doc_ids": [
+      "cbd8c396000caa633be22fe5bb1bba91d2aed43f7e0bf2f46a20d06082f698cc"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "정 지원뿐만 아니라 행동 평가 방법에 대한 고려가 필요한 상황이다.\n연구...",
+    "expected_doc_ids": [
+      "049c255231067ec4951c3ce81402528ca72940753409784688c48de95c8faa8e"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "김진형 KAIST 명예교수, 인공지능민간특별위원회 초대 위원장 취임",
+    "expected_doc_ids": [
+      "b528ec364fba0816eadd301eba37e80e18dc2d276856b6dec37301dc02feff9f"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "최기선 교수님 개교 38주년 국제협력상 수상",
+    "expected_doc_ids": [
+      "4de31b6a2a7ba7be7e35a80d594dd11bf73315a7340261253454eb6576408c88"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "이블링 문제'를 획기적으로 적은 수의 데이터로 광범위하게 해결할 수 있는...",
+    "expected_doc_ids": [
+      "87d19902b324096025342cbdb33af364bbcae10a56857d6ef19e3377d5fdeb7f"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "기하 컴퓨팅 연구실",
+    "expected_doc_ids": [
+      "cc0f73ffc6806664fb2e1ef31aebf4632893719737ab320bee4d918718bffb49"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 4／20, 4pm, 김아영 (Ayoung Kim) (KAIST／Professor)",
+    "expected_doc_ids": [
+      "a9d827fd1ab4f92b09588890223bbdfc2458c81cfdacd802483efd2b9cea82ca"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2025년도 한국연구재단 제1차 정규직 채용공고",
+    "expected_doc_ids": [
+      "fb6cc928c1c5bf8df6d01fd3b53c3797ed10444f4a2e41d3d96994b553d9fe0d"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2011 석사 오리엔테이션",
+    "expected_doc_ids": [
+      "7a38f7ae694c434ff735301bc1dbac097bc6bc499126b1b36fe656453f4f1559"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "4dbf80%2FUntitled.png?table=block&id=d5c...",
+    "expected_doc_ids": [
+      "538e5937245738af065afc2107625afd541a00192fc3797d5d672bf416d15e42"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "KAIST 전산학부 안성진 교수팀, 딥러닝 대부 요슈아 벤지오 교수와 국제공동연구센터 설립",
+    "expected_doc_ids": [
+      "5474ea19d43e739b5656678d30008e591a13b28a6c2b0e1a9172a39f7d599aa7"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "동문 중심의 창업가/ 투자자/ 전문가 등 1,100여명으로 구성)의 행사...",
+    "expected_doc_ids": [
+      "d026e8b5c71e0c9a333441e85f04253ec84071d56dd05171dbe8ad974d2cef7c"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 9／7 4pm, Prof. Kihong Heo, ˝Next-generation program analysis with logical and probabilistic reasoning˝",
+    "expected_doc_ids": [
+      "46811731ef8f427608036b57c864d8bcb35ecbf53c3dd0f3ca2382d8ea4b787e"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "Language Models), 생성 모델(Generative model...",
+    "expected_doc_ids": [
+      "50bf666cf2c861ec73a4bf1921295ac1e2890adc9f8c5ab4997fbc5e0af0fc73"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "&spaceId=e849ede4-658a-4cb2-9673-0eeeaff...",
+    "expected_doc_ids": [
+      "e24dfe3f7a44c48d72fea6795833dba5427bcab52ccce592bddd21e29a35a036"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "람 수준의 지능을 갖추기 위해서는 높은 확장성과 해석 가능성을 갖추어야...",
+    "expected_doc_ids": [
+      "b199ab1cd578ef6f6e98a0238506095a06390e50b2a355bbd96a040412f1782f"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "관심과 참여 부탁드립니다.\n\n■ 컨퍼런스 안내\n- 일시 : 2024.9....",
+    "expected_doc_ids": [
+      "5474ffd46068b94b40665c704a8ffaaa8ad5e2966aaec6f77681b269b2a93899"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "ovation Award 를 수상하였다. 이 상은 HP가 상품화한 가장...",
+    "expected_doc_ids": [
+      "04c459c02c8a4158d5d4562683f50288fd7e4f4e9d0fd1c148c5f86e6d356577"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 4／27, 4pm, 오혜연 (Alice Oh) (KAIST／Professor)",
+    "expected_doc_ids": [
+      "6ecae55305e02ed2ac5e2a9114f12ae1056405e0c354c7e1d14da2803e21412f"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "오혜연 박사님께서 부임하셨습니다.",
+    "expected_doc_ids": [
+      "f030bf413e3648bcd64a9d951e0e7ee2cd89b321e747046b92b7b5e94154800c"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 3／21(Mon) 4PM, June-Koo (Kevin) Rhee (KAIST／Professor, Qunova Computing／CEO), ˝Realize the Future of Quantum Computing˝",
+    "expected_doc_ids": [
+      "877e6a5fef225723ff8186d2d21b10409aaf5d535356a4186a93c608f7c8a4fb"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "C17 제너럴 체어, Pattern Recognition Journal,...",
+    "expected_doc_ids": [
+      "b9f70e53890f6b9909a58b71148e76ece4c5c4f1c2ad7ad759eca5cf03f8d1a2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "IPO (코스닥 상장) 및 Scale UP _ 교육 및 자문 프로그램 안내",
+    "expected_doc_ids": [
+      "4a0247acc8522b5e9ae66451f0f9db2c4e09c3dcd8ca5e0e05e21eeb4436af75"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "다. 첫째로, 공짜로 든든한 간식을 얻을 수 있습니다. 둘째로, 간식은...",
+    "expected_doc_ids": [
+      "8460d78fcc67f7ff8d8d04fd6f11c77818f16065e2f091301c97901fa3f96b78"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2023 KAIST Sustainability Startup BOOTCAMP (~4/23, 24:00)",
+    "expected_doc_ids": [
+      "5fb812b15bc9cd8e49c484b07e34a9d0871e32154bf75f6101112dafdfb36023"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "- 기술직(설계)\n- 기술직(시공관리)\n- 안전관리직\n- 경영지원직\n-...",
+    "expected_doc_ids": [
+      "5d06ae27d76683eadc7fcabe11adb792ef7d5b5a72e207d941031809b99b41fc"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "ion Sciences Institute (ISI)의 Distribute...",
+    "expected_doc_ids": [
+      "eef8ed68007b24b25c6d804f57bbc40a6b206d6063ab059c71a5104b477fcf70"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "로젝트를 통해 스타트업 생태계를 경험해보세요.\n- 해당 기업과 매칭 시,...",
+    "expected_doc_ids": [
+      "4d7b5007bcaa519a53cd2e954098bc4e950b1012a44399f3e554a80afa71b483"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "Presentation Day for Freshman Students",
+    "expected_doc_ids": [
+      "9259b3ed4d05089d8cda868bcd7ab082af8657e594dbd76920079659eee44ca7"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[Seminar] Prof. Abhik Roychoudhury (National University of Singapore) - ˝Fuzz Testing˝",
+    "expected_doc_ids": [
+      "8f30f1ce829c8cb2db26e7afff8aaa9dc2acb2ee501cde3e813e7cbcfd4bff47"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "ata-rich (＄T＼ge n＄) and data-poor regime...",
+    "expected_doc_ids": [
+      "41812210731f4eab6c952a273d42f8d0d7c043c46647f69ce00c8f10b790af6f"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2014의 Program Co-Chair, ACL 2014 Worksho...",
+    "expected_doc_ids": [
+      "4e2c63175b274bdde10e1c6f588ebc40a5e0e73337f714d864bd49217740aeaa"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "습니다.\n이성주 교수님 연구실의 모바일 SCAN 시스템 (\nhttp://...",
+    "expected_doc_ids": [
+      "a148a9c65301497f8d1969f352a11e26c909fcb88d17a8420ddefb4b0449a783"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "YUCHI HUO",
+    "expected_doc_ids": [
+      "5dbdacc511934a9e4db790a8969c80509052c08cb0dde64e058e33fc2f8d36ea"
+    ],
+    "origin_collection": "csweb.admin",
+    "query_type": "keyword"
+  },
+  {
+    "query": "Mobile-Friendly Content Design for MOOCs： Challenges, Requirements, and Design Opportunities",
+    "expected_doc_ids": [
+      "9efb459c0b55134760d84498a522af0d5595ad86e29b963f85e894dbd3e5ff9f"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[전원 스타벅스 증정] 5/10(수) 카이스트청년창업투자지주 <스타트업 창업과 투자유치가 궁금하다면?>",
+    "expected_doc_ids": [
+      "f21756380d014b2cc91b1f5436d10c06f4a6ccaa6b70498ece6b3e99bdab5136"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "VSMM( Virtual Systems and Multimedia)학회...",
+    "expected_doc_ids": [
+      "cdf4b20eaf4543ca1792caa652addcd1829e9929e48811932cb4ad0bdef7d643"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[KAIST GSIS Seminar] Benefits and Risks of Sensing for Emerging Internet-of-Things Applications",
+    "expected_doc_ids": [
+      "57f810db61478032d0fe8330ad38d8d6d0388685a1ef25a18c41924b86a79054"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2010년에 Stanford University에서 석사학위를, 2008...",
+    "expected_doc_ids": [
+      "4cd67385618d9166791d51f653abf29eb56213e2533e2f66b056a81dd662c8ed"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "/open.kakao.com/o/sAX16gbg\n인스타그램 계정 및 DM...",
+    "expected_doc_ids": [
+      "7db2eb86d589c9f93a77ef7bcae05d1fa667b3ec01a6d1e516a5fccae521d395"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "내리고 집단행동을 하는 데에 도움을 주는 시스템과 인터랙션 기법을 만든...",
+    "expected_doc_ids": [
+      "4fcbe93a39cef10e263170b18326bdf534998093c84ece4237cb66310c513f1b"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2024년 WISET 글로벌 크로스 멘토링 멘티모집",
+    "expected_doc_ids": [
+      "32ad08c7cc2f304dd0b6329be37d76c18006af1bbf1b15cb2dc43643ba44feb7"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "der, SWE Lead\n(연세대 기계공학과 학·석·박사)\n• 장진영 두...",
+    "expected_doc_ids": [
+      "fa8bcc242e6e36f873b70f18d811d18f63cf568363330c181409257ddb49716d"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "University/College students\nBasic progr...",
+    "expected_doc_ids": [
+      "8e524524811bba263c8100eeaa5430543ed04c8cfb6f265bd8ce8cbceb50ff50"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "포스터 부착 근로학생 모집(창업지원센터 수도권오피스) (마감)",
+    "expected_doc_ids": [
+      "1162564f7f6e739ae6e026b5c2e8edfbd1f18016d645cf5db8996fda8c554039"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": ": https://litt.ly/sba_sesac\n■ 교육혜택 :\n러닝...",
+    "expected_doc_ids": [
+      "fc47719962002c42edd2c96029973a445d83ff7e566d69ac68d2916ba1f27685"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "서의 IP 이슈 개관 Abstract AI 개발자들은 의도치 않게 여러...",
+    "expected_doc_ids": [
+      "427aacacf2bc36d2e2268e557f3a709bb666ca8156d4460bc3bd677f7651f699"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "자연어만으로 3D객체의 part를 찾아내는 기술 개발",
+    "expected_doc_ids": [
+      "5d6253e5997a90d486afc0bf01d52e1eca3492dba65520ca031e40d02366a897"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "취업준비전략 등\n5) 신청기간: 공고일~특강 전일 14:00\n6) 신청...",
+    "expected_doc_ids": [
+      "c67e39d49962b2a5aad83f48ecede9c02ebe885b24269f8407710723e9eef2b4"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "semantic"
+  },
+  {
+    "query": "남았거나 졸업유예, 졸업한 분만 지원이 가능하니 참고 부탁드립니다.\n그...",
+    "expected_doc_ids": [
+      "d45f4b0fd5c7304b92e8e905fe04e1ae8937a683a033080d61ace2a190cae583"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "전산학부 전공 기초 과목에 대한 설문조사",
+    "expected_doc_ids": [
+      "010ba97efd91e36a02876af7b0203b46fbf8071a6707986e449c2d5716f24df9"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "각각 신청 안내를 드리오니, 아래 링크를 통해 확인 부탁드립니다.\n\n[...",
+    "expected_doc_ids": [
+      "01438b715ac34d56fe509259edaa44e029c35e9a98d9c16fab53125ce6f6bb98"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "KAIST 동문 Google 엔지니어와의 만남",
+    "expected_doc_ids": [
+      "61fbed62edea4a051428732c7afa6234e1b626d6a062adccc35560b8fd6b0acf"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[KAIST SoC Colloquium] 생명을 지닌 모든 존재들의 어깨동무",
+    "expected_doc_ids": [
+      "64f34a4b838123aa9a19955fcfff8f49db44c596165d6733ae2dda16a07a7bc2"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "브이플러스랩, 국내 최대 SW 테스팅 컨퍼런스 베스트콘 (BeSTCon) 2023 강연 및 홍보 부스 운영",
+    "expected_doc_ids": [
+      "d986ac8e3dc8e1e4d1805116f26b0b16e6ea32f1cc206702ef73e433b55340eb"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "keyword"
+  },
+  {
+    "query": "현재 GPU뿐만 아니라 NPU(신경망처리장치)와 PIM(지능형메모리반도...",
+    "expected_doc_ids": [
+      "d7aa3fcdaf41ecea9000535821cb475f7580015a0510fead7b515997ad3d0868"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "y=&svalue=&menu=86 content:- 일시 : 2021년...",
+    "expected_doc_ids": [
+      "334db9617946e4269df5770c4eb04dceb59c3869c98c896b7b6124714fc741f7"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "semantic"
+  },
+  {
+    "query": "oT망 등의 보안 및 프라이버시 연구에 집중하고 세계적인 연구 성과를 거...",
+    "expected_doc_ids": [
+      "9b7ee97c605bef1d65c4562390927f2e668e4bb1ec15291ca63f65f2db900907"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "카이스트, 메타버스 시대에 필요한 GPU 대규모 출력 데이터 신속처리 기술 개발",
+    "expected_doc_ids": [
+      "79abcf1b8df79806568f61b37add425c7ee0084a899236c55dab9cf5c08a61de"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "상 상금 2000만 원 전액을 KAIST 전산학부 발전을 위해 기부하며,...",
+    "expected_doc_ids": [
+      "9fc7c3fb43fc9d414001b76826a076754f092e984ceae598f0b9bf7c3b38cb2d"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "CML, NeurIPS, ICLR, AAAI, IJCAI)에서 Progr...",
+    "expected_doc_ids": [
+      "45a124f4bf542ca40de5ce6ba31d4441331ad981b60444b8fd63db7b03467b60"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "감정노동자 정신건강 돕는 AI 개발",
+    "expected_doc_ids": [
+      "ab1571f3475e4e80d720d935a6ae5e4d7701c837a45f30efa60a525c8b4db443"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "더링 문제 중, 다중 반사, 투명한 매질에서의 투과 및 굴절 등 복잡한...",
+    "expected_doc_ids": [
+      "ee911b7966245468e7613ee7fa3c37c42f753d388284a2b0793692e0e152a55e"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[공모전] 2024년 대한민국 혁신창업상 우수 혁신창업기업 공모전 개최 안내 (7. 19.~8. 13)",
+    "expected_doc_ids": [
+      "197b4df7b78db46a0260d269661e539ff887a5a842cd40da837a93cf9f46cce8"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2023 전산학부 개강총회 안내",
+    "expected_doc_ids": [
+      "f2101eb1f10ac2e305bbbd006ac079121830feae3731db7e74255fbd6db12812"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "풀타임)이 만든 Ringle docs 프로덕트가 실제 링글 서비스에 적용...",
+    "expected_doc_ids": [
+      "da886b7f3a9237897c258720339f59972df9362c47e34579e63964915e3b6bd7"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "semantic"
+  },
+  {
+    "query": "Transactions on Automation Science and E...",
+    "expected_doc_ids": [
+      "d73240618e7dce536ee23f0b15c580911ccf15374d94286fc27f9ddb4293affb"
+    ],
+    "origin_collection": "csweb.profs",
+    "query_type": "semantic"
+  },
+  {
+    "query": "2024 전산학부 온라인 개강총회 안내",
+    "expected_doc_ids": [
+      "18b45eaef27bcfee498aafbadcd83fdf12c34179462433c256c4e24e36734826"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "keyword"
+  },
+  {
+    "query": "n.site/image/https%3A%2F%2Fs3-us-west-2....",
+    "expected_doc_ids": [
+      "2061a21209e0aa586a829d39f619bc739c965e452a06c1b3dccc7f389a214c57"
+    ],
+    "origin_collection": "notion.notice",
+    "query_type": "semantic"
+  },
+  {
+    "query": "[Seminar] 8／9 (Tue) 10：30 AM, Prof. Hadi Esmaeilzadeh, ˝Towards Architecting Machine for Empathic Conscious Intelligence˝",
+    "expected_doc_ids": [
+      "e1bdab3e946d95156bba63f6870f80ab30b46f4091d1379ac6baf30b47ef8da7"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "창업기업 조사, 기업 현황 검색, 최신 변동사항 검색 및 업데이트\n 2...",
+    "expected_doc_ids": [
+      "5fb812b15bc9cd8e49c484b07e34a9d0871e32154bf75f6101112dafdfb36023"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "효율적 머신러닝 연구를 수행하고 있다. 현재까지 컴퓨터 비전 및 머신러...",
+    "expected_doc_ids": [
+      "0b01138b79069c84e5c9317cc406477e4236978b2960842e43e6bf104b8c39c2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "연장가능)\n\n5. 근로시급 : 시급 10,000원 / 일정에 따라 근무...",
+    "expected_doc_ids": [
+      "652bdda2ac376ffe935e10348517118279bac2173d181527a4d2cc8ad221469a"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "reneurship Lunch Talk - Zoom meeting\n포스트...",
+    "expected_doc_ids": [
+      "8dd7de90ba1810aaec720fbdb6bd40fa1b3fdc12927079605e57aa2255277d1e"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "semantic"
+  },
+  {
+    "query": "올디너리매직에서 영유아 놀이 경험 개선에 관심 있는 소프트웨어 엔지니어 인턴을 모집 합니다.",
+    "expected_doc_ids": [
+      "08a1a9a1c6b776cef7ad41d389d60ee8a883106790ff44ed1a1f5e500af8f59b"
+    ],
+    "origin_collection": "notion.marketing",
+    "query_type": "keyword"
+  },
+  {
+    "query": "ovel and challenging, they are also high...",
+    "expected_doc_ids": [
+      "0432f6cf12f8418b3c25e40c4d7391a66ec32f27c551d4e5f6a6ccc64b4b66e2"
+    ],
+    "origin_collection": "csweb.research",
+    "query_type": "semantic"
+  },
+  {
+    "query": "ng 기법을 만들 수 있을지 고민해왔다.\n하지만 리눅스 커널과 같은 복잡...",
+    "expected_doc_ids": [
+      "e506847468ceebcc8700247a280a1b2d57cffae84139b1eb189df8986b8bcd5b"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "semantic"
+  },
+  {
+    "query": "★ KAIST 창업원에서 커피차 이벤트를 진행합니다.",
+    "expected_doc_ids": [
+      "6fcc7440ccda514a17446de2676d6f9a7f22b26e52e5c4a1d1f95f10641b88a5"
+    ],
+    "origin_collection": "portal.startUp",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[충남대] 2024년 글로벌 취업전략패키지–현직자 특강 & 멘토링",
+    "expected_doc_ids": [
+      "c67e39d49962b2a5aad83f48ecede9c02ebe885b24269f8407710723e9eef2b4"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "2024학년도 국회 대학(원)생 아카데미(2기) 과정 안내",
+    "expected_doc_ids": [
+      "d942abfdcae9b1bbef2f7c419fe5185d7ed9b819305f6061d51c20e732f84c99"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "강성원 교수는 2017년에 소프트웨어 제품라인 분야의 최초의 우리말 학술...",
+    "expected_doc_ids": [
+      "cf27076a1441a9058656453ec5f1a447e1d09e6fe63ad54836645876f15562e9"
+    ],
+    "origin_collection": "csweb.news",
+    "query_type": "semantic"
+  },
+  {
+    "query": "9월 첫수융합포럼개최- 전산학부＆인문사회과학부",
+    "expected_doc_ids": [
+      "8f1eff3d4efb5a7583679e82a8054649e618cf588b2c801203ab3231c7dfea0e"
+    ],
+    "origin_collection": "csweb.calendar",
+    "query_type": "keyword"
+  },
+  {
+    "query": "KAIST 원자력및양자공학과 원자로 물리 및 핵변환 연구실 위촉행정원[육아휴직 대체인력] 기간제근로자 모집 공고",
+    "expected_doc_ids": [
+      "747c572439d486612aa2508e1e5161366e74085da395cfbdfe2191da473c3d2a"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  },
+  {
+    "query": "비시선 영상 기술을 위한 미분가능한 트렌지언트 광 전달 시뮬레이션 개발",
+    "expected_doc_ids": [
+      "ee911b7966245468e7613ee7fa3c37c42f753d388284a2b0793692e0e152a55e"
+    ],
+    "origin_collection": "csweb.ai",
+    "query_type": "keyword"
+  },
+  {
+    "query": "[Deutsche Bank] Our Class of 2025 Korea Graduate & Summer Internship Opportunity is Open for Applications!",
+    "expected_doc_ids": [
+      "8f53b3680608c190cb3e297273937352a33d39178f2ab2a0d03e5b7d94602338"
+    ],
+    "origin_collection": "portal.job",
+    "query_type": "keyword"
+  }
+]

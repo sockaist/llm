@@ -1,15 +1,22 @@
 """
 확장된 출력 파서 구현
 """
-import json
 import re
 import csv
 import io
-from typing import Any, Dict, List, Type, Optional, Union, TypeVar, Generic, Callable
+from typing import Any, Dict, List, Optional, Callable
 from ..output_parsers.base import BaseOutputParser
+try:
+    from langchain_core.output_parsers import JSONOutputParser, XMLOutputParser
+except ImportError:
+    # Fallback or dummy if not available, but likely needed for isinstance check
+    class JSONOutputParser:
+        pass
+    class XMLOutputParser:
+        pass
 
 try:
-    from pydantic import BaseModel, create_model, Field
+    from pydantic import BaseModel  # noqa: F401
     PYDANTIC_AVAILABLE = True
 except ImportError:
     PYDANTIC_AVAILABLE = False

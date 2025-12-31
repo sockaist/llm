@@ -2,8 +2,7 @@
 ChatBot 클래스 구현 - Google Gemini API 연동
 """
 import json
-from typing import Any, Dict, List, Optional, Union, Callable
-import os
+from typing import Any, Optional
 
 # Google Gemini API 임포트
 import google.generativeai as genai
@@ -67,7 +66,7 @@ class LLMProvider:
             self.start_chat()
         
         try:
-            response = self.convo.send_message(prompt)
+            self.convo.send_message(prompt)
             if self.convo.last:
                 return self.convo.last.text
             else:

@@ -1,14 +1,11 @@
 from qdrant_client import QdrantClient, models
 from qdrant_client.models import (
-    Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue,
-    PointIdsList, FilterSelector, SearchRequest, SearchParams, NamedVector, SparseVector
+    PointStruct, Filter, PointIdsList, FilterSelector, NamedVector, SparseVector
 )
-from qdrant_client.http.models import ScoredPoint
 import numpy as np
 import json
 import os
-import uuid
-from typing import List, Dict, Any
+from typing import Optional
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
 from llm_backend.utils.id_helper import make_doc_hash_id_from_json, generate_point_id
@@ -23,41 +20,70 @@ from .sparse_helper import bm25_encode
 # (1) 개별 문서 업서트
 # ==========================================================
 
+def filter_core_sentences(text: str, top_p: float = 0.2, min_sentences: int = 3) -> str:
+    """
+    ParetoRAG implementation: Selects top P% of sentences based on importance tokens/weights.
+    For simplicity, we use sentence length and keyword density (BM25-like) here.
+    """
+    import re
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+    if len(sentences) <= min_sentences:
+        return text
+    
+    # Calculate simple importance score (sentence length + word diversity)
+    scores = []
+    for s in sentences:
+        words = s.split()
+        if not words:
+            scores.append(0)
+            continue
+        score = len(s) * len(set(words)) / len(words)
+        scores.append(score)
+    
+    # Select top P
+    k = max(min_sentences, int(len(sentences) * top_p))
+    top_indices = np.argsort(scores)[-k:]
+    # Maintain original order
+    top_indices.sort()
+    
+    return " ".join([sentences[i] for i in top_indices])
+
+
 def create_doc_upsert(client, col_name, data, dense_model=None):
     """
-    Create and upsert a document into Qdrant with
-    Dense (SentenceTransformer), Sparse (BM25), and SPLADE vectors.
-    Uses JSON 전체 해시(SHA-256) 기반 db_id for deterministic consistency.
+    Enhanced Phase 5 Upsert:
+    - Multi-Vector: title_dense, body_dense, sparse, splade
+    - ParetoRAG: Filter core sentences for the 'body_dense' vector
     """
     try:
-        trace(f"Upserting document into {col_name}")
+        trace(f"Upserting document into {col_name} (Phase 5)")
 
         if not data:
             logger.warning(f"[Upsert] Empty data skipped for collection {col_name}")
             return
 
         raw_text = data.get("content") or data.get("contents") or ""
+        title = data.get("title", "")
         if not raw_text.strip():
             logger.warning(f"[Upsert] Empty content skipped in {col_name}")
             return
 
-        # JSON 전체를 직렬화 후 SHA-256 해시 생성
         db_id = make_doc_hash_id_from_json(data)
-        data["db_id"] = db_id  # payload에도 포함
-
-        # 중복 방지 체크 제거 (Upsert 덮어쓰기 허용)
-        # Deterministic ID를 사용하므로 동일 컨텐츠는 동일 ID를 가져 자동 갱신됩니다.
-
+        data["db_id"] = db_id
 
         if dense_model is None:
-            raise ValueError("Dense model not loaded. Please pass dense_model parameter.")
+            from .vector_db_manager import VectorDBManager
+            dense_model = VectorDBManager().dense_model
 
-        # 벡터 생성
-        dense_vec = dense_model.encode(raw_text)
-        if isinstance(dense_vec, np.ndarray):
-            dense_vec = dense_vec.tolist()
-        dense_vec = [float(x) for x in dense_vec]
+        # --- Multi-Vector Encoding ---
+        # 1. Title Vector (Specific intent)
+        title_vec = dense_model.encode(title).tolist() if title else [0.0] * 384 # Fallback
+        
+        # 2. Pareto Body Vector (Core essence)
+        core_text = filter_core_sentences(raw_text)
+        body_vec = dense_model.encode(core_text).tolist()
 
+        # 3. Sparse & SPLADE (Full context)
         bm25_dict = bm25_encode(raw_text)
         splade_dict = splade_encode(raw_text)
 
@@ -75,46 +101,81 @@ def create_doc_upsert(client, col_name, data, dense_model=None):
             logger.warning(f"[Upsert] No chunks generated for db_id={db_id}")
             return
 
-        # payload 생성
         points = []
+        
+        # --- (A) Parent Record: Stores full text context ---
+        parent_payload = {
+            "db_id": db_id,
+            "id": data.get("id"),
+            "full_text": raw_text,
+            "title": title,
+            "is_parent": True,
+            "is_child": False
+        }
+        # Parent record uses a unique point ID based on db_id alone (or with -parent suffix)
+        parent_point = PointStruct(
+            id=generate_point_id(db_id, -1), # -1 index for parent
+            vector={
+                "dense": body_vec, # Use Pareto filtered core as parent vector
+                "title": title_vec,
+                "sparse": sparse_vec,
+                "splade": splade_vec
+            },
+            payload=parent_payload
+        )
+        points.append(parent_point)
+
+        # --- (B) Child Records: Semantic chunks ---
         for i, (chunk_text, _) in enumerate(chunks):
+            # Phase 7 Refinement: LGMGC-lite Contextual Anchors
+            # Prepend title to each chunk to ensure semantic boundary preservation
+            anchored_text = f"[{title}] {chunk_text}"
+            
             payload = {
-                "db_id": db_id,                  # SHA-256 해시 기반 고유 ID
-                "id": data.get("id"),            # 원본 id (보존용)
-                "parent_id": data.get("id"),     # legacy 호환
-                "text": chunk_text,
-                "title": data.get("title", "")
+                "db_id": db_id,
+                "id": data.get("id"),
+                "text": anchored_text,
+                "title": title,
+                "is_pareto": True if i==0 else False,
+                "is_parent": False,
+                "is_child": True
             }
 
-            # FORMATS 스키마에 맞는 필드 복사
+            # Unified metadata preservation for Phase 7
+            for key in ["department", "category", "year"]:
+                if key in data and key not in payload:
+                    payload[key] = data[key]
+
             if col_name in FORMATS:
                 for key in FORMATS[col_name]:
-                    payload[key] = data.get(key, "")
+                    if key not in payload:
+                        payload[key] = data.get(key, "")
 
-            # Qdrant에 저장할 Point ID는 UUID 형식으로 (Deterministic)
             point_id = generate_point_id(db_id, i)
 
+            # --- Qdrant Phase 5 Named Vectors ---
+            vectors = {
+                "dense": body_vec if i==0 else dense_model.encode(chunk_text).tolist(),
+                "title": title_vec,
+                "sparse": sparse_vec,
+                "splade": splade_vec
+            }
 
             point = PointStruct(
-                id=point_id,  # 이제 Qdrant가 완전히 허용하는 형식
-                vector={
-                    "dense": dense_vec,
-                    "sparse": sparse_vec,
-                    "splade": splade_vec
-                },
+                id=point_id,
+                vector=vectors,
                 payload=payload
             )
             points.append(point)
 
-        # 업서트 실행
         if points:
             client.upsert(collection_name=col_name, points=points)
-            logger.info(f"[Upsert] {col_name}: db_id={db_id[:12]}... ({len(points)} chunks) inserted successfully.")
+            logger.info(f"[Upsert] {col_name}: db_id={db_id[:12]}... (Phase 7: Parent-Child) inserted.")
         else:
             logger.warning(f"[Upsert] No points created for db_id={db_id}")
 
     except Exception as e:
-        logger.error(f"[Upsert] Error for {col_name}: {e} | db_id={data.get('db_id')}")
+        logger.error(f"[Upsert] Error for {col_name}: {e}")
         raise
 
 
@@ -265,12 +326,6 @@ def search_doc(client, query, col_name, k):
 # ==========================================================
 # (6) 폴더 업서트
 # ==========================================================
-import os
-import json
-from qdrant_client import models
-from llm_backend.utils.logger import logger
-from llm_backend.utils.id_helper import make_doc_hash_id_from_json
-from llm_backend.vectorstore.vector_db_helper import create_doc_upsert
 
 
 def upsert_folder(client, folder_path, col_name, n=0, dense_model=None):
@@ -348,6 +403,7 @@ def query_unique_docs(
     top_k: int = 5,
     step: int = 50,
     max_limit: int = 1000,
+    query_filter: Optional[Filter] = None,
 ):
     """
     Qdrant에서 중복 없는 문서를 검색합니다.
@@ -362,12 +418,37 @@ def query_unique_docs(
 
     try:
         while len(unique_results) < top_k and limit <= max_limit:
+            # Phase 7: Exclude Parent records from main search
+            exclude_parent = models.FieldCondition(key="is_parent", match=models.MatchValue(value=True))
+            
+            # Create a fresh filter to avoid side effects on the passed object
+            final_chk = None
+            if query_filter:
+                 # Clone must/must_not to avoid mutation
+                must_conds = list(query_filter.must) if query_filter.must else []
+                must_not_conds = list(query_filter.must_not) if query_filter.must_not else []
+                should_conds = list(query_filter.should) if query_filter.should else []
+                
+                # Add exclusion if not present
+                if exclude_parent not in must_not_conds:
+                     must_not_conds.append(exclude_parent)
+                
+                final_chk = models.Filter(
+                    must=must_conds,
+                    must_not=must_not_conds,
+                    should=should_conds
+                )
+            else:
+                final_chk = models.Filter(must_not=[exclude_parent])
+
             results = client.query_points(
                 collection_name=collection_name,
                 query=query,
                 using=using,
                 limit=limit,
                 offset=offset,
+                with_payload=True,
+                query_filter=final_chk,
             )
 
             points = results.points if hasattr(results, "points") else results
@@ -405,5 +486,11 @@ def query_unique_docs(
         return unique_results
 
     except Exception as e:
-        logger.error(f"[QueryUnique] Error in {collection_name}: {e}")
+        err_msg = str(e)
+        if "Not existing vector name" in err_msg:
+            logger.warning(f"[QueryUnique] Collection '{collection_name}' does not support vector '{using}'. Skipping.")
+        elif "400" in err_msg and "Wrong input" in err_msg:
+             logger.warning(f"[QueryUnique] Bad Request in '{collection_name}' for '{using}': {err_msg}")
+        else:
+            logger.error(f"[QueryUnique] Error in {collection_name}: {e}")
         return unique_results
