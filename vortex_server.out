@@ -1,0 +1,12 @@
+[96m[1m
+        ____   ____              __                __________  __________   
+        \   \ /   /___________ _/  |_  _______  __ \______   \ \______   \  
+         \   Y   /  _ \_  __ \\   __\/ __ \  \/  /  |    |  _/  |    |  _/  
+          \     (  <_> )  | \/ |  | \  ___/ >    <   |    |   \  |    |   \  
+           \___/ \____/|__|    |__|  \___  >__/\_ \  |______  /  |______  /  
+                                         \/      \/         \/          \/   
+[0m[94m[1m       >>> Unified Vector Database Solution for AI Applications <<<[0m
+
+[34m[2026-01-01 19:09:13][0m [32m[   INFO   ][0m [90m[vectordb][0m (system) → Redis is already running.
+[34m[2026-01-01 19:09:13][0m [32m[   INFO   ][0m [90m[vectordb][0m (system) → Starting Celery worker...
+[34m[2026-01-01 19:09:13][0m [32m[   INFO   ][0m [90m[vectordb][0m (system) → Starting API Server...

@@ -12,7 +12,6 @@ from llm_backend.utils.logger import logger  # noqa: E402
 from llm_backend.utils.debug import trace  # noqa: E402
 
 
-
 def main():
     logger.info("[TEST] VectorDBManager 통합 테스트 시작")
 
@@ -42,27 +41,20 @@ def main():
     logger.info("[STEP 3] JSON 문서 업로드 시작")
     mgr.upsert_folder(
         "/Users/bagjimin/Documents/1. Projects/sockaist/llm/data/notion/marketing",
-        "notion.marketing"
+        "notion.marketing",
     )
-
 
     # --- 4. 기본 검색 ---
     logger.info("[STEP 4] 기본 검색 실행 (Full Pipeline + Reranker 포함)")
     query = "인공지능 인턴 모집"
-    results = mgr.query(
-        query_text=query,
-        top_k=5,
-        collections=["notion.marketing"]
-    )
+    results = mgr.query(query_text=query, top_k=5, collections=["notion.marketing"])
     mgr.log_results(results, title=f"Query: {query}")
 
     # --- 5. Cross-Encoder 비활성화 후 검색 ---
     logger.info("[STEP 5] Cross-Encoder 비활성화 후 검색 실행")
     mgr.pipeline_config["use_reranker"] = False
     results_no_ce = mgr.query(
-        query_text=query,
-        top_k=5,
-        collections=["notion.marketing"]
+        query_text=query, top_k=5, collections=["notion.marketing"]
     )
     mgr.log_results(results_no_ce, title="Query (No Cross-Encoder)")
 
@@ -72,13 +64,15 @@ def main():
     # db_id 기준으로 업데이트
     first_doc = results[0] if results else None
     if first_doc:
-        first_doc_id = first_doc.get("db_id") or first_doc.get("id") or first_doc.get("doc_id")
+        first_doc_id = (
+            first_doc.get("db_id") or first_doc.get("id") or first_doc.get("doc_id")
+        )
         if first_doc_id:
             mgr.update_payload(
                 "notion.marketing",
                 doc_id=first_doc_id,
                 new_payload={"verified": True},
-                merge=True
+                merge=True,
             )
         else:
             logger.warning("[STEP 6] 문서 ID를 찾지 못했습니다 (id=None)")
@@ -89,9 +83,7 @@ def main():
     logger.info("[STEP 7] 업데이트 반영 후 검색 재실행")
     mgr.pipeline_config["use_reranker"] = True  # 다시 활성화
     results_updated = mgr.query(
-        query_text=query,
-        top_k=5,
-        collections=["notion.marketing"]
+        query_text=query, top_k=5, collections=["notion.marketing"]
     )
     mgr.log_results(results_updated, title="Query After Update")
 
@@ -99,9 +91,7 @@ def main():
     # --- 8. 키워드 기반 필터 검색 (순서 변경: 삭제 전 확인) ---
     logger.info("[STEP 8] 필터 검색 테스트 (verified=True)")
     filtered_docs = mgr.filter_search(
-        col="notion.marketing",
-        filters={"verified": True},
-        limit=5
+        col="notion.marketing", filters={"verified": True}, limit=5
     )
     mgr.log_results(filtered_docs, title="FilterSearch: verified=True")
 
@@ -117,20 +107,18 @@ def main():
         else:
             logger.warning("[STEP 9] 삭제할 문서의 db_id를 찾지 못했습니다.")
 
-
     # --- 10. 단순 키워드 검색 (BM25 Only) ---
     logger.info("[STEP 10] 단순 키워드 검색 (BM25 Only)")
     keyword_query = "인공지능"
     keyword_results = mgr.search_keyword(
-        query_text=keyword_query,
-        top_k=3,
-        collections=["notion.marketing"]
+        query_text=keyword_query, top_k=3, collections=["notion.marketing"]
     )
     mgr.log_results(keyword_results, title=f"Keyword Search: {keyword_query}")
 
     # --- 완료 ---
-    logger.info("[TEST COMPLETE] VectorDBManager CRUD + Filter + Query + Keyword 테스트 완료")
-
+    logger.info(
+        "[TEST COMPLETE] VectorDBManager CRUD + Filter + Query + Keyword 테스트 완료"
+    )
 
 
 if __name__ == "__main__":

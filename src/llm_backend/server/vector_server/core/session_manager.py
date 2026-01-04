@@ -11,6 +11,7 @@ from llm_backend.server.vector_server.core.resource_pool import get_vector_manag
 # Session Manager
 # ============================================================
 
+
 class SessionManager:
     """
     세션별 VectorDBManager를 관리.
@@ -60,6 +61,7 @@ class SessionManager:
 # ------------------------------------------------------------
 _global_session_manager: Optional[SessionManager] = None
 _lock = threading.Lock()
+
 
 def get_session_manager() -> SessionManager:
     global _global_session_manager

@@ -1,4 +1,3 @@
-from sentence_transformers import SentenceTransformer
 from sklearn.cluster import AgglomerativeClustering
 import numpy as np
 import kss  # 한국어 문장 분리기
@@ -7,10 +6,21 @@ from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
 
 # 한국어/다국어 SOTA 모델 (BGE-M3)
-# VECTOR_MODEL_PATH from config (default: ./bge-m3-finetuned-academic)
-logger.info(f"Loading embedding model from: {VECTOR_MODEL_PATH}")
-model = SentenceTransformer(VECTOR_MODEL_PATH)
-# 참고: https://huggingface.co/BAAI/bge-m3
+model = None
+
+
+def _ensure_model():
+    global model
+    if model is None:
+        logger.info(f"Loading embedding model from: {VECTOR_MODEL_PATH}")
+        from sentence_transformers import SentenceTransformer
+
+        model = SentenceTransformer(VECTOR_MODEL_PATH)
+    return model
+
+
+def get_model():
+    return _ensure_model()
 
 
 def content_embedder(text):
@@ -19,6 +29,7 @@ def content_embedder(text):
     각 청크의 임베딩 벡터를 반환합니다.
     Returns: list[(chunk_text, chunk_vector)]
     """
+    _ensure_model()
     try:
         if not text or not text.strip():
             logger.warning("Empty or None text provided to content_embedder")
@@ -56,7 +67,9 @@ def content_embedder(text):
 
         # 클러스터링
         trace(f"Running AgglomerativeClustering (threshold={THRESHOLD})")
-        clusters = AgglomerativeClustering(n_clusters=None, distance_threshold=THRESHOLD)
+        clusters = AgglomerativeClustering(
+            n_clusters=None, distance_threshold=THRESHOLD
+        )
         labels = clusters.fit_predict(vectors)
 
         # 레이블별 문장 묶기
@@ -84,7 +97,8 @@ def content_embedder(text):
         logger.debug(f"Input text length: {len(text) if text else 0}")
         return []
 
-'''w. transformer itself
+
+"""w. transformer itself
 from transformers import AutoTokenizer, AutoModel
 import torch
 
@@ -115,4 +129,4 @@ sentence_embeddings = mean_pooling(model_output, encoded_input['attention_mask']
 
 print("Sentence embeddings:")
 print(sentence_embeddings)
-'''
+"""

@@ -35,5 +35,5 @@ torchrun --nproc_per_node 1 \
 --save_steps 500 \
 --logging_steps 10
 
-echo "✅ Fine-tuning complete. Model saved to $OUTPUT_DIR"
+echo "[OK] Fine-tuning complete. Model saved to $OUTPUT_DIR"
 echo "Next: Update VECTOR_MODEL_PATH in config.py to match output dir."

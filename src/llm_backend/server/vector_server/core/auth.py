@@ -2,8 +2,10 @@
 import os
 import hashlib
 import hmac
-from fastapi import Header, HTTPException, status
+from fastapi import Header, HTTPException, status, Request
 from llm_backend.utils.logger import logger
+
+logger.critical("!!! AUTH MODULE LOADED FROM DISK !!!")
 
 # ============================================================
 # API Key 기반 인증 (보안 강화 버전)
@@ -35,7 +37,7 @@ async def verify_api_key(x_api_key: str = Header(...)):
         logger.warning("[Auth] Missing x-api-key header")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Missing API key in header."
+            detail="Missing API key in header.",
         )
 
     # 헤더 입력값도 해시 처리
@@ -46,31 +48,40 @@ async def verify_api_key(x_api_key: str = Header(...)):
         logger.warning(f"[Auth] Invalid API key attempt (hash={hashed_input[:12]}...)")
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Unauthorized: Invalid API key."
+            detail="Unauthorized: Invalid API key.",
         )
 
     logger.debug("[Auth] API key verified successfully")
     return True
 
+
 # ------------------------------------------------------------
 # Multi-Tenancy Context Injection
 # ------------------------------------------------------------
-from fastapi import Request
 
-async def get_user_context(request: Request) -> dict:
+
+async def get_user_context_v2(request: Request) -> dict:
     """
     Retrieves the User Context populated by SecurityMiddleware.
     """
-    # If middleware didn't run (e.g. tests without middleware), fallback
+    # Use middleware context if available
     if hasattr(request.state, "user_context"):
         return request.state.user_context
-    
-    # Fallback for direct testing or if middleware missing
+
+    # Minimal fallback for internal calls or misconfigured middleware
+    # In production, SecurityMiddleware should always run first.
+    logger.debug("[Auth] Middleware context missing, using anonymous fallback")
     return {
+        "type": "user",
         "user": {
-            "id": request.headers.get("X-User-ID", "anonymous"),
-            "role": request.headers.get("X-Role", "viewer"),
-            "team": "public"
+            "id": "anonymous",
+            "role": "viewer",
+            "team": "public",
         },
-        "ip": request.client.host if request.client else "unknown"
+        "auth_type": "none",
+        "ip": request.client.host if request.client else "unknown",
     }
+
+
+# Backward compatibility alias
+get_user_context = get_user_context_v2

@@ -77,3 +77,10 @@ class KeywordSearchRequest(BaseModel):
 class RetrieveRequest(BaseModel):
     collection: str
     db_ids: List[str]
+class AsyncBatchUpsertRequest(BaseModel):
+    collection: str
+    documents: List[Dict[str, Any]]
+
+class AsyncCreateCollectionRequest(BaseModel):
+    name: str
+    vector_size: int = 1024

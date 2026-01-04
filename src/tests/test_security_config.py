@@ -1,11 +1,9 @@
-import pytest
 import os
-import shutil
-import yaml
 from datetime import datetime, timedelta
-from llm_backend.server.vector_server.config.security_config import load_configuration, VectorDBConfig
+from llm_backend.server.vector_server.config.security_config import VectorDBConfig
 from llm_backend.server.vector_server.config.security_profiles import SecurityProfiles
 from llm_backend.server.vector_server.config.security_validator import SecurityValidator
+
 
 class TestSecurityConfig:
     TEST_CONFIG = "vectordb_test.yaml"
@@ -35,10 +33,10 @@ class TestSecurityConfig:
         data = SecurityProfiles.get_profile("production_enhanced")["config"]
         # Disable MFA
         data["security"]["authentication"]["mfa"]["enabled"] = False
-        
+
         config = VectorDBConfig(**data)
         warnings = SecurityValidator.validate_config(config)
-        
+
         # Should have blocking warning
         blocking = [w for w in warnings if w.blocking]
         assert len(blocking) > 0
@@ -49,27 +47,27 @@ class TestSecurityConfig:
         data = SecurityProfiles.get_profile("production_enhanced")["config"]
         # Disable MFA but add override
         data["security"]["authentication"]["mfa"]["enabled"] = False
-        
+
         expires = (datetime.now() + timedelta(days=30)).strftime("%Y-%m-%d")
         data["security"]["overrides"] = {
             "authentication": {
                 "mfa": {
                     "reason": "Test Override",
                     "approved_by": "sec_team",
-                    "expires": expires
+                    "expires": expires,
                 }
             }
         }
-        
+
         config = VectorDBConfig(**data)
         warnings = SecurityValidator.validate_config(config)
-        
+
         # Should NOT have blocking warning about MFA
         # But we haven't implemented logic to suppress warning if override exists in validate_config completely?
         # Let's check `security_validator.py`
-        # Logic: if not (mfa enabled): check override. 
+        # Logic: if not (mfa enabled): check override.
         # In code: if "authentication" in overrides and "mfa" in overrides... pass
-        
+
         blocking = [w for w in warnings if w.blocking]
         assert len(blocking) == 0
 
@@ -77,7 +75,7 @@ class TestSecurityConfig:
         """Expired override should fail validation"""
         data = SecurityProfiles.get_profile("production_enhanced")["config"]
         data["security"]["authentication"]["mfa"]["enabled"] = False
-        
+
         # Expired yesterday
         expires = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
         data["security"]["overrides"] = {
@@ -85,14 +83,14 @@ class TestSecurityConfig:
                 "mfa": {
                     "reason": "Test Override",
                     "approved_by": "sec_team",
-                    "expires": expires # Expired
+                    "expires": expires,  # Expired
                 }
             }
         }
-        
+
         config = VectorDBConfig(**data)
         warnings = SecurityValidator.validate_config(config)
-        
+
         # Check validation warnings
         blocking = [w for w in warnings if w.blocking]
         # Should have "Override ... has EXPIRED"
@@ -110,10 +108,10 @@ class TestSecurityConfig:
                 }
             }
         }
-        
+
         config = VectorDBConfig(**data)
         warnings = SecurityValidator.validate_config(config)
-        
+
         blocking = [w for w in warnings if w.blocking]
         assert len(blocking) > 0
         assert "missing metadata" in blocking[0].message

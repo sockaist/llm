@@ -3,13 +3,23 @@
 import os
 from llm_backend.vectorstore.vector_db_manager import VectorDBManager
 from llm_backend.utils.logger import logger
-from llm_backend.vectorstore.config import SNAPSHOT_DIR, VECTOR_SIZE
+from llm_backend.vectorstore.config import (
+    SNAPSHOT_DIR,
+    VECTOR_SIZE,
+    DEFAULT_COLLECTION_NAME,
+)
+
 
 def _extend_auto_initialize():
-    def auto_initialize(self, base_folder: str = "./data", snapshot_dir: str = SNAPSHOT_DIR):
+    def auto_initialize(
+        self, base_folder: str = "./data", snapshot_dir: str = SNAPSHOT_DIR
+    ):
         from llm_backend.server.vector_server.manager.snapshot_manager import (
-            list_snapshots, restore_snapshot, create_snapshot
+            list_snapshots,
+            restore_snapshot,
+            create_snapshot,
         )
+
         try:
             os.makedirs(snapshot_dir, exist_ok=True)
             snapshots = sorted(list_snapshots(), key=os.path.getmtime, reverse=True)
@@ -22,7 +32,7 @@ def _extend_auto_initialize():
             logger.warning("[AutoInit] No snapshot found — initializing new collection")
 
             if not hasattr(self, "default_collection") or not self.default_collection:
-                self.default_collection = "notion.marketing"
+                self.default_collection = DEFAULT_COLLECTION_NAME
             self.create_collection(self.default_collection, vector_size=VECTOR_SIZE)
 
             data_path = os.path.join(base_folder, self.default_collection)
@@ -31,7 +41,9 @@ def _extend_auto_initialize():
                 self.upsert_folder(data_path, self.default_collection)
                 logger.info("[AutoInit] Folder upload complete")
             else:
-                logger.warning(f"[AutoInit] No data folder at {data_path}, skipping upsert")
+                logger.warning(
+                    f"[AutoInit] No data folder at {data_path}, skipping upsert"
+                )
 
             logger.info("[AutoInit] Fitting BM25 model...")
             self.fit_bm25_from_json_folder(base_folder)
@@ -42,13 +54,18 @@ def _extend_auto_initialize():
         except Exception as e:
             logger.error(f"[AutoInit] Initialization failed: {e}")
             raise
+
     setattr(VectorDBManager, "auto_initialize", auto_initialize)
+
 
 _extend_auto_initialize()
 
-def run_server_auto_initialize(default_collection="notion.marketing",
-                               base_folder="./data",
-                               snapshot_dir=SNAPSHOT_DIR):
+
+def run_server_auto_initialize(
+    default_collection=DEFAULT_COLLECTION_NAME,
+    base_folder="./data",
+    snapshot_dir=SNAPSHOT_DIR,
+):
     """
     서버 부팅 시 1회만 호출: 스냅샷 복원 또는 초기화 + BM25 + 스냅샷 생성
     """

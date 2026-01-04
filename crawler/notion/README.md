@@ -4,7 +4,7 @@ Notion에서 가져온 게시글 데이터를 구조화하여 저장하고 활�
 
 ---
 
-## 🚀 실행 방법
+## [INFO] 실행 방법
 
 ```bash
 python main.py

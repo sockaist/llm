@@ -1,6 +1,7 @@
 import hashlib
 from llm_backend.utils.logger import logger
 
+
 class ABTestFramework:
     """
     Phase 8.1: A/B Testing Framework.
@@ -30,4 +31,6 @@ class ABTestFramework:
         In production, this would send data to Prometheus or a DB.
         """
         status = "Success" if success else "Failure"
-        logger.info(f"[ABTest] Metirc: Group={group}, Action={action_type}, Status={status}")
+        logger.info(
+            f"[ABTest] Metirc: Group={group}, Action={action_type}, Status={status}"
+        )

@@ -1,14 +1,18 @@
 from qdrant_client import QdrantClient
 import os
 import json
-from qdrant_client.models import Distance, VectorParams, SparseVectorParams, SparseIndexParams
+from qdrant_client.models import (
+    Distance,
+    VectorParams,
+    SparseVectorParams,
+    SparseIndexParams,
+)
 from llm_backend.utils.logger import logger
 from llm_backend.utils.debug import trace
 from llm_backend.vectorstore.vector_db_manager import VectorDBManager
 from llm_backend.utils.id_helper import make_doc_hash_id_from_json
 from llm_backend.vectorstore.vector_db_helper import create_doc_upsert
-from llm_backend.vectorstore.config import FORMATS
-
+from llm_backend.vectorstore.config import FORMATS, DEFAULT_COLLECTION_NAME
 
 
 def auto_recreate_collections(client: QdrantClient):
@@ -24,7 +28,7 @@ def auto_recreate_collections(client: QdrantClient):
         "splade": SparseVectorParams(index=SparseIndexParams(on_disk=False)),
     }
 
-    for col_name in ["notion.notice", "notion.marketing"]:
+    for col_name in ["notion.notice", DEFAULT_COLLECTION_NAME]:
         recreate = False
         try:
             trace(f"Checking schema for {col_name}")
@@ -32,11 +36,19 @@ def auto_recreate_collections(client: QdrantClient):
             getattr(info.config.params, "vectors", None)
             sparse_vecs = getattr(info.config.params, "sparse_vectors", None)
 
-            if not sparse_vecs or "sparse" not in sparse_vecs or "splade" not in sparse_vecs:
-                logger.warning(f"[Schema Mismatch] '{col_name}' missing sparse vectors → will recreate")
+            if (
+                not sparse_vecs
+                or "sparse" not in sparse_vecs
+                or "splade" not in sparse_vecs
+            ):
+                logger.warning(
+                    f"[Schema Mismatch] '{col_name}' missing sparse vectors → will recreate"
+                )
                 recreate = True
         except Exception as e:
-            logger.warning(f"[Missing Collection] '{col_name}' not found → will recreate ({e})")
+            logger.warning(
+                f"[Missing Collection] '{col_name}' not found → will recreate ({e})"
+            )
             recreate = True
 
         if recreate:
@@ -44,9 +56,13 @@ def auto_recreate_collections(client: QdrantClient):
                 client.delete_collection(col_name)
                 logger.info(f"[Delete] Removed old collection '{col_name}'")
             except Exception:
-                logger.warning(f"Failed to delete collection '{col_name}', may not exist")
+                logger.warning(
+                    f"Failed to delete collection '{col_name}', may not exist"
+                )
 
-            logger.info(f"[Recreate] Creating new collection '{col_name}' with full schema...")
+            logger.info(
+                f"[Recreate] Creating new collection '{col_name}' with full schema..."
+            )
             client.recreate_collection(
                 collection_name=col_name,
                 vectors_config=target_schema,
@@ -60,7 +76,7 @@ def init_recreate_collections(client: QdrantClient):
     """
     명시적으로 dense/sparse/splade 컬렉션을 모두 새로 만든다.
     """
-    for col_name in ["notion.notice", "notion.marketing"]:
+    for col_name in ["notion.notice", DEFAULT_COLLECTION_NAME]:
         logger.info(f"Recreating collection: {col_name}")
         client.recreate_collection(
             collection_name=col_name,
@@ -72,7 +88,6 @@ def init_recreate_collections(client: QdrantClient):
                 "splade": SparseVectorParams(index=SparseIndexParams(on_disk=False)),
             },
         )
-
 
 
 def init_upsertall(client, base_path: str):
@@ -93,7 +108,9 @@ def init_upsertall(client, base_path: str):
             logger.warning(f"[InitUpsertAll] Folder not found: {folder_path}")
             continue
 
-        logger.info(f"[InitUpsertAll] Processing folder → {folder_path} → collection: {col_name}")
+        logger.info(
+            f"[InitUpsertAll] Processing folder → {folder_path} → collection: {col_name}"
+        )
         files = [f for f in os.listdir(folder_path) if f.endswith(".json")]
 
         success, fail = 0, 0

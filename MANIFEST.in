@@ -1,0 +1,9 @@
+include vectordb.yaml
+include config/*.yaml
+include docs/ko/*.md
+include docs/en/*.md
+include docs/README.md
+include README.md
+recursive-include vectordb/cli *.py
+recursive-include vectordb/client *.py
+recursive-include vectordb/core *.py

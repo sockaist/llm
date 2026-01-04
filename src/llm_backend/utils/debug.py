@@ -40,6 +40,7 @@ def trace_in(func):
         @trace_in
         def foo(): ...
     """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         if APP_MODE == "dev":
@@ -52,6 +53,7 @@ def trace_in(func):
             end = time.perf_counter()
             if APP_MODE == "dev":
                 trace(f"Exiting {func.__name__} (elapsed: {end - start:.4f}s)")
+
     return wrapper
 
 

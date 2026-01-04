@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from llm_backend.utils.logger import logger
 from llm_backend.server.vector_server.core.resource_pool import (
-    get_pool_status, acquire_manager
+    get_pool_status,
+    acquire_manager,
 )
 from llm_backend.server.vector_server.core.session_manager import get_session_manager
 from llm_backend.server.vector_server.core.cache_manager import get_cache
@@ -20,7 +21,25 @@ async def health_check():
     FastAPI 서버 동작 여부 확인 (단순 ping).
     """
     logger.info("[Health] Health check endpoint called")
-    return {"status": "ok", "message": "Vector server is alive"}
+    return {"status": "ok", "message": "VortexDB server is alive"}
+
+
+@router.get("/jobs")
+async def jobs_status_detail(limit: int = Query(50, ge=1, le=100)):
+    """
+    작업 큐에 대한 상세 상태를 반환합니다.
+    (상태별 개수 + 최근 작업 상세 리스트)
+    """
+    try:
+        jobs_info = list_jobs(limit=limit)
+        return {
+            "status": "ok",
+            "counts": jobs_info.get("counts", {}),
+            "recent_jobs": jobs_info.get("jobs", []),
+        }
+    except Exception as e:
+        logger.error(f"[JobsStatus] Failed to retrieve jobs info: {e}")
+        return {"status": "error", "detail": str(e)}
 
 
 # ------------------------------------------------------------
@@ -45,7 +64,9 @@ async def system_status():
 
         # 캐시 상태 확인
         cache_backend = getattr(cache, "backend", lambda: "unknown")()
-        cache_size = len(getattr(cache, "_cache", {})) if cache_backend == "in-memory" else "N/A"
+        cache_size = (
+            len(getattr(cache, "_cache", {})) if cache_backend == "in-memory" else "N/A"
+        )
 
         # Qdrant ping (간단 연결 테스트)
         qdrant_ok = False
@@ -67,12 +88,10 @@ async def system_status():
                 "entries": cache_size,
             },
             "jobs": {
-                "total": len(jobs_info.get("jobs", [])),
-                "latest": jobs_info.get("jobs", [])[:3],  # 최근 3개만 표시
+                "counts": jobs_info.get("counts", {}),
+                "recent": jobs_info.get("jobs", []),
             },
-            "qdrant": {
-                "reachable": qdrant_ok
-            },
+            "qdrant": {"reachable": qdrant_ok},
         }
 
         logger.info("[Status] System status retrieved successfully")

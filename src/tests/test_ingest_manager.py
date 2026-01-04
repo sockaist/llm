@@ -46,7 +46,7 @@ class FakeClient:
 class FakeManager:
     def __init__(self):
         self.client = FakeClient()
-        self.dense_model = types.SimpleNamespace(encode=lambda text: [0.1, 0.2])
+        self.dense_model = types.SimpleNamespace(encode=lambda text, **kwargs: [0.1, 0.2])
 
 
 def test_upsert_document_validates_collection_and_content(monkeypatch):

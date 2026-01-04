@@ -39,7 +39,7 @@ dense_query_vec = dense_model.encode(query_text)
 bm25_vec = bm25_encode(query_text)
 splade_vec = splade_encode(query_text)
 
-# ✅ dict → SparseVector 변환
+# [OK] dict → SparseVector 변환
 if isinstance(bm25_vec, dict):
     bm25_vec = SparseVector(
         indices=list(bm25_vec.keys()),
@@ -107,7 +107,7 @@ def query_unique_docs(client, collection_name, query, using, top_k=10, step=50, 
 
 
 # -------------------------------
-# ✅ 새로 추가: 평균 점수 기반 문서 단위 dedup
+# [OK] 새로 추가: 평균 점수 기반 문서 단위 dedup
 # -------------------------------
 def deduplicate_and_average(results, top_k=10):
     doc_scores = {}
@@ -135,7 +135,7 @@ def deduplicate_and_average(results, top_k=10):
 
 
 # -------------------------------
-# ✅ 검색 실행 (자동 보충 포함)
+# [OK] 검색 실행 (자동 보충 포함)
 # -------------------------------
 dense_results = query_unique_docs(client, "notion.marketing", dense_query_vec, "dense", top_k=10)
 sparse_results = query_unique_docs(client, "notion.marketing", bm25_vec, "sparse", top_k=10)
@@ -146,7 +146,7 @@ print_results(sparse_results, "sparse")
 print_results(splade_results, "splade")
 
 # -------------------------------
-# ✅ 최종 리랭킹 (문서 단위 평균 점수)
+# [OK] 최종 리랭킹 (문서 단위 평균 점수)
 # -------------------------------
 print("\n=== FINAL RERANKED RESULTS (AVERAGE-POOLED & DEDUPLICATED) ===")
 
@@ -195,7 +195,7 @@ for doc in final_docs:
         point = hits[0]
         text = point.payload.get("contents") or point.payload.get("content") or ""
         title = point.payload.get("title") or doc.get("title", "(no title)")
-        date = point.payload.get("date") or point.payload.get("start")  # ✅ 날짜 필드 가져오기
+        date = point.payload.get("date") or point.payload.get("start")  # [OK] 날짜 필드 가져오기
         candidate_texts.append({
             "id": doc_id,
             "text": text,
@@ -213,7 +213,7 @@ for i, doc in enumerate(reranked_final, 1):
     title = doc.get("title", "(no title)")
     print(f"{i:02d}. ID={doc['id']}, Score={doc['score']:.4f}, Title={title}")
 
-# --- ✅ Cross-Encoder 이후 날짜 기반 보정 ---
+# --- [OK] Cross-Encoder 이후 날짜 기반 보정 ---
 # 날짜 구간: 2025-10-01 ~ 2025-10-03
 boosted_cross = apply_date_window_boost(
     reranked_final,

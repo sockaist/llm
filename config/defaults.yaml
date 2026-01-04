@@ -1,0 +1,31 @@
+app:
+  name: VectorDB
+  version: 2.0.0
+  env: development
+
+server:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+  cors_origins: ["*"]
+
+vectordb:
+  engine: qdrant
+  host: localhost
+  port: 6333
+  api_key: ${QDRANT_API_KEY}
+  collection_prefix: "vdb"
+
+logging:
+  level: INFO
+  format: json
+  path: "logs/app.log"
+
+security:
+  tier: 1 # 0=dev, 1=prod, 2=high
+  auth_enabled: true
+  api_key: null # Master API Key for easy access
+  # Collection Settings
+  target_collection: "csweb"
+  # target_collection: "demo_collection"
+  jwt_secret: "change_me_in_production"

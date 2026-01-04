@@ -74,3 +74,11 @@ redis
 python-multipart
 # apscheduler (already used in scheduler.py)
 apscheduler
+python-dotenv
+sqlalchemy
+passlib[bcrypt]
+pyjwt
+argon2-cffi
+psutil
+kss
+prometheus-fastapi-instrumentator

@@ -7,9 +7,12 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from llm_backend.utils.logger import logger
 from llm_backend.server.vector_server.core.resource_pool import acquire_manager
 from llm_backend.server.vector_server.manager.snapshot_manager import (
-    create_snapshot, list_snapshots, delete_snapshot
+    create_snapshot,
+    list_snapshots,
+    delete_snapshot,
 )
 from llm_backend.server.vector_server.core.queue_manager import is_job_active
+from llm_backend.vectorstore.config import DEFAULT_COLLECTION_NAME
 
 # ============================================================
 # Scheduler 설정
@@ -18,11 +21,11 @@ from llm_backend.server.vector_server.core.queue_manager import is_job_active
 scheduler = BackgroundScheduler(timezone="Asia/Seoul")
 
 # 스냅샷/보존 기본 설정 (환경변수로 오버라이드 가능)
-SNAPSHOT_COLLECTION = os.getenv("SNAPSHOT_COLLECTION", "notion.marketing")
+SNAPSHOT_COLLECTION = os.getenv("SNAPSHOT_COLLECTION", DEFAULT_COLLECTION_NAME)
 SNAPSHOT_RETENTION_DAYS = int(os.getenv("SNAPSHOT_RETENTION_DAYS", "30"))
 
 # 주기 설정 (환경변수)
-BM25_INTERVAL_MIN = int(os.getenv("BM25_INTERVAL_MIN", "60"))      # 분 단위
+BM25_INTERVAL_MIN = int(os.getenv("BM25_INTERVAL_MIN", "60"))  # 분 단위
 SNAPSHOT_INTERVAL_H = int(os.getenv("SNAPSHOT_INTERVAL_H", "12"))  # 시간 단위
 BM25_BASE_PATH = os.getenv("BM25_BASE_PATH", "./data")
 
@@ -37,7 +40,9 @@ def retrain_bm25():
     """
     try:
         if is_job_active("bm25_retrain"):
-            logger.info("[Scheduler] Skip BM25 retrain: another bm25 job is queued/running")
+            logger.info(
+                "[Scheduler] Skip BM25 retrain: another bm25 job is queued/running"
+            )
             return
         with acquire_manager() as mgr:
             # 구현에 따라 init_bm25(force_retrain=True) 가 있으면 선호
@@ -61,7 +66,9 @@ def create_and_cleanup_snapshot():
         # 새로운 스냅샷 생성
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         snapshot_path = create_snapshot(SNAPSHOT_COLLECTION)
-        logger.info(f"[Scheduler] Snapshot created successfully at {timestamp} → {snapshot_path}")
+        logger.info(
+            f"[Scheduler] Snapshot created successfully at {timestamp} → {snapshot_path}"
+        )
 
         # 오래된 스냅샷 삭제
         all_snapshots = list_snapshots()
@@ -74,7 +81,9 @@ def create_and_cleanup_snapshot():
                     delete_snapshot(path)
                     logger.info(f"[Scheduler] Deleted old snapshot: {path}")
             except Exception as e:
-                logger.warning(f"[Scheduler] Failed to check or delete snapshot {path}: {e}")
+                logger.warning(
+                    f"[Scheduler] Failed to check or delete snapshot {path}: {e}"
+                )
 
     except Exception as e:
         logger.error(f"[Scheduler] Snapshot creation failed: {e}")
@@ -104,9 +113,11 @@ def start_scheduler():
                     minutes=BM25_INTERVAL_MIN,
                     id="bm25_retrain",
                     coalesce=True,  # 누락된 실행은 1회로 합침
-                    max_instances=1
+                    max_instances=1,
                 )
-                logger.info(f"[Scheduler] Job 'bm25_retrain' scheduled every {BM25_INTERVAL_MIN} min")
+                logger.info(
+                    f"[Scheduler] Job 'bm25_retrain' scheduled every {BM25_INTERVAL_MIN} min"
+                )
             else:
                 logger.info("[Scheduler] Job 'bm25_retrain' already exists")
 
@@ -118,9 +129,11 @@ def start_scheduler():
                     hours=SNAPSHOT_INTERVAL_H,
                     id="snapshot_cycle",
                     coalesce=True,
-                    max_instances=1
+                    max_instances=1,
                 )
-                logger.info(f"[Scheduler] Job 'snapshot_cycle' scheduled every {SNAPSHOT_INTERVAL_H} h")
+                logger.info(
+                    f"[Scheduler] Job 'snapshot_cycle' scheduled every {SNAPSHOT_INTERVAL_H} h"
+                )
             else:
                 logger.info("[Scheduler] Job 'snapshot_cycle' already exists")
 

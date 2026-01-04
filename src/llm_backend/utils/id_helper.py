@@ -30,14 +30,15 @@ def make_doc_hash_id_from_json(data: dict) -> str:
 # 임의로 생성된 UUID를 고정값으로 사용
 NAMESPACE_SOCKAIST = uuid.UUID("5fffda67-50f4-46b3-ad71-4bb25160ad55")
 
+
 def generate_point_id(db_id: str, chunk_index: int = 0) -> str:
     """
     db_id(해시)와 chunk_index를 결합하여 결정론적 UUID 생성.
-    
+
     Args:
         db_id (str): 문서의 고유 해시 ID
         chunk_index (int): 청크 인덱스 (기본값 0)
-        
+
     Returns:
         str: Qdrant Point ID (UUID 형식 문자열)
     """

@@ -38,7 +38,7 @@ class ChatBotService:
             if not openai_api_key:
                 raise ValueError("OPENAI_API_KEY 환경 변수가 설정되지 않았습니다.")
             
-            print("🚀 ChatBot 서비스 초기화 중...")
+            print("[INFO] ChatBot 서비스 초기화 중...")
             
             # 컴포넌트 초기화
             self.checker = OpenAIInputChecker(api_key=openai_api_key)
@@ -53,15 +53,15 @@ class ChatBotService:
             try:
                 self.normalizer.normalize_input(boot_input)
                 self.checker.check_input(boot_input)
-                print("✅ 시스템 워밍업 완료!")
+                print("[OK] 시스템 워밍업 완료!")
             except Exception as e:
-                print(f"⚠️ 워밍업 중 경고: {e}")
+                print(f"[WARN] 워밍업 중 경고: {e}")
             
             self.is_initialized = True
-            print("✅ ChatBot 서비스 초기화 완료!")
+            print("[OK] ChatBot 서비스 초기화 완료!")
             
         except Exception as e:
-            print(f"❌ ChatBot 서비스 초기화 실패: {e}")
+            print(f"[FAIL] ChatBot 서비스 초기화 실패: {e}")
             raise e
     
     def get_health_status(self) -> Dict[str, str]:
@@ -106,7 +106,7 @@ class ChatBotService:
                 normalized_query = self.normalizer.normalize_input(user_input)
                 print(f"📝 정규화된 질문: {normalized_query}")
             except Exception as e:
-                print(f"⚠️ 입력 정규화 중 오류: {e}")
+                print(f"[WARN] 입력 정규화 중 오류: {e}")
                 normalized_query = user_input
             
             # 2단계: 입력 유효성 검사 (주석 처리됨 - 필요시 활성화)
@@ -119,10 +119,10 @@ class ChatBotService:
             #             "error": "Invalid input"
             #         }
             # except Exception as e:
-            #     print(f"⚠️ 입력 검증 중 오류: {e}")
+            #     print(f"[WARN] 입력 검증 중 오류: {e}")
             
             # 3단계: 응답 생성
-            print("🔍 관련 정보를 검색하고 답변을 생성하는 중...")
+            print("[SEARCH] 관련 정보를 검색하고 답변을 생성하는 중...")
             
             try:
                 response = self.openai_chatbot.generate_response(
@@ -137,7 +137,7 @@ class ChatBotService:
                 }
                 
             except Exception as e:
-                print(f"❌ 답변 생성 중 오류: {e}")
+                print(f"[FAIL] 답변 생성 중 오류: {e}")
                 
                 # 대안: Vector DB 검색만 수행
                 try:
@@ -168,7 +168,7 @@ class ChatBotService:
                     }
                     
         except Exception as e:
-            print(f"❌ 메시지 처리 중 예상치 못한 오류: {e}")
+            print(f"[FAIL] 메시지 처리 중 예상치 못한 오류: {e}")
             return {
                 "success": False,
                 "response": f"메시지 처리 중 오류가 발생했습니다: {str(e)}",

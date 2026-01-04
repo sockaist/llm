@@ -48,13 +48,27 @@ def _to_float(val, default: float) -> float:
     except Exception:
         return default
 
+
 # Use environment variable or default to fine-tuned model if available, else BGE-M3 base
-VECTOR_MODEL_PATH = os.getenv("VECTOR_MODEL_PATH", "./bge-m3-finetuned-academic")
-if not os.path.exists(VECTOR_MODEL_PATH):
+# Use environment variable or default to fine-tuned model if available
+# If it's a local path that exists, use it.
+# If it looks like a HF Repo ID (contains '/'), accept it.
+# Otherwise fallback to base model.
+default_model = "./bge-m3-finetuned-academic"
+VECTOR_MODEL_PATH = os.getenv("VECTOR_MODEL_PATH", default_model)
+
+if not os.path.exists(VECTOR_MODEL_PATH) and "/" not in VECTOR_MODEL_PATH:
+    # If not local file and not a repo ID (simple heuristic), fallback
     VECTOR_MODEL_PATH = "BAAI/bge-m3"
 
 CONFIG_PATH = os.environ.get("VECTOR_CONFIG_PATH", "./config/vectorstore.yaml")
 _yaml_cfg = _load_yaml(CONFIG_PATH)
+
+# 기본 컬렉션 이름 (환경변수 → YAML → 기본값)
+DEFAULT_COLLECTION_NAME = os.environ.get(
+    "DEFAULT_COLLECTION_NAME",
+    _cfg_lookup(_yaml_cfg, "collection.default_name", "notion.marketing"),
+)
 
 # Qdrant 설정 (환경변수 → YAML → 기본값)
 QDRANT_URL = os.environ.get(
@@ -112,28 +126,64 @@ PIPELINE_CONFIG = {
     "use_sparse": True,
     "use_splade": True,
     "use_reranker": True,
-    "weights": {
-        "dense": 0.4,
-        "sparse": 0.1,
-        "splade": 0.5
-    },
-    "sparse_weight": 0.3, # Legacy fallback?
-    "limit": 10
+    "weights": {"dense": 0.4, "sparse": 0.1, "splade": 0.5},
+    "sparse_weight": 0.3,  # Legacy fallback?
+    "limit": 10,
 }
 
 # 컬렉션 형식 정의
 FORMATS = {
-    "portal.job": ["title","author","date","link","content","id"], 
-    "portal.startUp": ["title","author","date","link","content","id"],
-    "csweb.news": ["title","date","link","content","id"],
-    "csweb.calendar": ["title","date","link","content","location","id"],
-    "csweb.research": ["name","professor","field","web","email","phone","office","intro","etc","id"], 
-    "csweb.edu": ["title","link","content","id"], 
-    "csweb.ai": ["title","date","link","content","id"], 
-    "csweb.profs": ["name","field","major","degree","web","mail","phone","office","etc","id"], 
-    "csweb.admin": ["name","position","work","mail","phone","office","etc","id"],
-    "csweb.refer": ["name","web","etc","id"], 
-    "notion.marketing" : ["title","date","start","finish","contents","images","url","id"],
-    "notion.notice" : ["title","date","start","finish","contents","images","url","id"]
+    "portal.job": ["title", "author", "date", "link", "content", "id"],
+    "portal.startUp": ["title", "author", "date", "link", "content", "id"],
+    "csweb.news": ["title", "date", "link", "content", "id"],
+    "csweb.calendar": ["title", "date", "link", "content", "location", "id"],
+    "csweb.research": [
+        "name",
+        "professor",
+        "field",
+        "web",
+        "email",
+        "phone",
+        "office",
+        "intro",
+        "etc",
+        "id",
+    ],
+    "csweb.edu": ["title", "link", "content", "id"],
+    "csweb.ai": ["title", "date", "link", "content", "id"],
+    "csweb.profs": [
+        "name",
+        "field",
+        "major",
+        "degree",
+        "web",
+        "mail",
+        "phone",
+        "office",
+        "etc",
+        "id",
+    ],
+    "csweb.admin": ["name", "position", "work", "mail", "phone", "office", "etc", "id"],
+    "csweb.refer": ["name", "web", "etc", "id"],
+    "notion.marketing": [
+        "title",
+        "date",
+        "start",
+        "finish",
+        "contents",
+        "images",
+        "url",
+        "id",
+    ],
+    "notion.notice": [
+        "title",
+        "date",
+        "start",
+        "finish",
+        "contents",
+        "images",
+        "url",
+        "id",
+    ],
     # "drive" : ["date","link","content","id"] # for pdf, word files uploaded from drive
 }

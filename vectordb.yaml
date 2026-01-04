@@ -31,7 +31,7 @@ security:
     in_transit: true
   defense:
     injection_detection: true
-    anomaly_detection: false
+    anomaly_detection: true
 compliance:
   gdpr: partial
   hipaa: false

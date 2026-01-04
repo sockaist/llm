@@ -9,12 +9,12 @@ from config import FORMATS, QDRANT_URL, QDRANT_API_KEY
 manager = VectorDBManager(default_collection="notion.marketing")
 
 base_path = "../../../../data"
-print("✅ VectorDBManager initialized")
+print("[OK] VectorDBManager initialized")
 
 # 2️⃣ 특정 컬렉션만 생성
 target_cols = ["notion.marketing", "notion.notice"]
 
-print("\n🚀 STEP 1: 지정된 컬렉션만 생성 중...")
+print("\n[INFO] STEP 1: 지정된 컬렉션만 생성 중...")
 for col_name in target_cols:
     print(f" - Creating collection: {col_name}")
     manager.create_collection(
@@ -24,19 +24,19 @@ for col_name in target_cols:
         force=True
     )
 
-print("✅ 지정된 컬렉션만 생성 완료!\n")
+print("[OK] 지정된 컬렉션만 생성 완료!\n")
 
 # ----------------------------------------
 # 3️⃣ BM25 학습
 # ----------------------------------------
-print("🚀 STEP 2: BM25 모델 학습 중...")
+print("[INFO] STEP 2: BM25 모델 학습 중...")
 manager.fit_bm25_from_json_folder(base_path)
-print("✅ BM25 모델 학습 완료!\n")
+print("[OK] BM25 모델 학습 완료!\n")
 
 # ----------------------------------------
 # 4️⃣ 실제 데이터 업서트
 # ----------------------------------------
-print("🚀 STEP 3: 실제 데이터 업서트 중...")
+print("[INFO] STEP 3: 실제 데이터 업서트 중...")
 
 # 업서트할 컬렉션만 지정
 target_cols = ["notion.marketing", "notion.notice"]
@@ -49,14 +49,14 @@ for col_name in target_cols:
         print(f"📂 Upserting data from: {folder_path}")
         manager.upsert_folder(folder_path, col_name)
     else:
-        print(f"⚠️ Folder not found: {folder_path}")
+        print(f"[WARN] Folder not found: {folder_path}")
 
-print("✅ 지정된 컬렉션 데이터 업서트 완료!\n")
+print("[OK] 지정된 컬렉션 데이터 업서트 완료!\n")
 
 # ----------------------------------------
 # 5️⃣ 검색 테스트
 # ----------------------------------------
-print("🚀 STEP 4: 검색 파이프라인 테스트 중...")
+print("[INFO] STEP 4: 검색 파이프라인 테스트 중...")
 query = "최신 전산학부 홍보 요청 자료"
 
 results = manager.query(
@@ -72,4 +72,4 @@ results = manager.query(
 
 manager.log_results(results, title=f"FINAL RESULTS for '{query}'")
 
-print("\n✅ 전체 파이프라인 성공적으로 실행 완료!")
+print("\n[OK] 전체 파이프라인 성공적으로 실행 완료!")

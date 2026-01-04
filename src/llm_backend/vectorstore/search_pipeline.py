@@ -13,11 +13,13 @@ from typing import Any, Dict, List, Optional
 from qdrant_client import models
 
 from llm_backend.utils.logger import logger
-from llm_backend.vectorstore.rerank_service import rerank as rerank_service
-from llm_backend.vectorstore.reranker_module import (
-    deduplicate_and_average as dedup_avg_by_doc,
+from llm_backend.vectorstore.rerank_engine import rerank as rerank_service
+from llm_backend.vectorstore.fusion_engine import (
+    deduplicate_results as dedup_avg_by_doc,
     weighted_fuse,
     reciprocal_rank_fusion,
+    extract_temporal_intent,
+    apply_temporal_ranking,
 )
 from llm_backend.vectorstore.vector_db_helper import query_unique_docs as q_unique
 
@@ -26,7 +28,7 @@ def _augment_parent_context(manager, collections, results):
     """Phase 7 Helper: Attaches full parent text to each result item."""
     if not results:
         return results
-    
+
     db_ids = list(set(r["db_id"] for r in results if "db_id" in r))
     if not db_ids:
         return results
@@ -38,12 +40,16 @@ def _augment_parent_context(manager, collections, results):
                 collection_name=col,
                 scroll_filter=models.Filter(
                     must=[
-                        models.FieldCondition(key="db_id", match=models.MatchAny(any=db_ids)),
-                        models.FieldCondition(key="is_parent", match=models.MatchValue(value=True))
+                        models.FieldCondition(
+                            key="db_id", match=models.MatchAny(any=db_ids)
+                        ),
+                        models.FieldCondition(
+                            key="is_parent", match=models.MatchValue(value=True)
+                        ),
                     ]
                 ),
                 limit=len(db_ids),
-                with_payload=True
+                with_payload=True,
             )
             for p in parents:
                 parent_map[p.payload["db_id"]] = p.payload.get("full_text")
@@ -53,14 +59,16 @@ def _augment_parent_context(manager, collections, results):
     for res in results:
         if "db_id" in res:
             res["parent_context"] = parent_map.get(res["db_id"])
-    
+
     return results
 
 
-def build_access_filter(user_context: Optional[Dict[str, Any]]) -> Optional[models.Filter]:
+def build_access_filter(
+    user_context: Optional[Dict[str, Any]],
+) -> Optional[models.Filter]:
     """
     Phase 12: Build Qdrant Filter for Multi-Tenancy / RBAC.
-    
+
     Logic:
     1. If no user (Guest) -> Public Content (Level 1)
     2. If User -> Public (up to Level 2) + Own Private Data
@@ -68,27 +76,38 @@ def build_access_filter(user_context: Optional[Dict[str, Any]]) -> Optional[mode
     """
     if not user_context:
         # Defaults to Guest
-        user_context = {"role": "guest", "user_id": "anonymous"}
-        
-    role = user_context.get("role", "guest")
-    user_id = user_context.get("user_id")
+        user_context = {"user": {"role": "guest", "id": "anonymous"}}
+
+    user_info = user_context.get("user")
+    if user_info and isinstance(user_info, dict):
+        role = user_info.get("role", "guest")
+        user_id = user_info.get("id", "anonymous")
+    else:
+        role = user_context.get("role", "guest")
+        user_id = user_context.get("user_id") or user_context.get("id", "anonymous")
 
     if role == "admin":
-        # Admin: Public ONLY (All levels), Private Access Forbidden
+        # Admin: Access ALL Public data, but NOT private tenant data
         return models.Filter(
             must=[
-                models.FieldCondition(key="tenant_id", match=models.MatchValue(value="public"))
+                models.FieldCondition(
+                    key="tenant_id", match=models.MatchValue(value="public")
+                )
             ]
         )
 
     # Guest / Viewer constraints
     # Public condition: tenant_id="public" AND access_level <= 1 (Guest) or 2 (User)
     public_level_limit = 2 if role in ["user", "viewer", "editor"] else 1
-    
+
     public_filter = models.Filter(
         must=[
-            models.FieldCondition(key="tenant_id", match=models.MatchValue(value="public")),
-            models.FieldCondition(key="access_level", range=models.Range(lte=public_level_limit))
+            models.FieldCondition(
+                key="tenant_id", match=models.MatchValue(value="public")
+            ),
+            models.FieldCondition(
+                key="access_level", range=models.Range(lte=public_level_limit)
+            ),
         ]
     )
 
@@ -99,9 +118,13 @@ def build_access_filter(user_context: Optional[Dict[str, Any]]) -> Optional[mode
     return models.Filter(
         should=[
             public_filter,
-            models.FieldCondition(key="tenant_id", match=models.MatchValue(value=user_id))
+            models.FieldCondition(
+                key="tenant_id", match=models.MatchValue(value=user_id)
+            ),
         ]
     )
+
+
 def run_query_pipeline(
     manager,
     query_text: str,
@@ -128,67 +151,95 @@ def run_query_pipeline(
     merged: List[Dict[str, Any]] = []
     t0 = time.perf_counter()
 
-    # --- Phase 4: Temporal Intent Detection ---
-    from llm_backend.vectorstore.temporal_ranker import extract_temporal_intent, apply_temporal_ranking
     temporal_cfg = extract_temporal_intent(query_text)
     use_recency = cfg.get("use_recency", temporal_cfg["has_recent_intent"])
-    
+
     # Increase search depth if we want to rerank by time or filter by year
     expansion = cfg.get("recency_expansion", 3)
     if temporal_cfg["explicit_year"]:
-        expansion = max(expansion, 5) # More candidates if we are filtering
+        expansion = max(expansion, 5)  # More candidates if we are filtering
     search_k = top_k * expansion
 
     # --- Phase 7: Semantic Cache Lookup ---
     from llm_backend.server.vector_server.core.semantic_cache import SemanticCache
-    dense_vec = manager.dense_model.encode(query_text) # We need this for cache check
+
+    dense_vec = manager.dense_model.encode(
+        query_text, show_progress_bar=False
+    )  # We need this for cache check
     SemanticCache.init_cache(manager.client, vector_size=1024)
-    semantic_hit = SemanticCache.get(manager.client, dense_vec, query_text, user_context=user_context)
+    semantic_hit = SemanticCache.get(
+        manager.client, dense_vec, query_text, user_context=user_context
+    )
     if semantic_hit:
         return semantic_hit
 
     # --- Phase 3: Cache Lookup (Exact) ---
-    from llm_backend.server.vector_server.core.cache_manager import get_cache, make_query_cache_key, CacheManager
+    from llm_backend.server.vector_server.core.cache_manager import (
+        get_cache,
+        make_query_cache_key,
+        CacheManager,
+    )
+
     # Cache key now includes search_k, use_recency, explicit filters, AND USER CONTEXT
-    
-    user_key_suffix = f"|u:{user_context.get('user_id')}|r:{user_context.get('role')}"
+    u_info = user_context.get("user")
+    if u_info and isinstance(u_info, dict):
+        uid = u_info.get("id", "anonymous")
+        urole = u_info.get("role", "guest")
+    else:
+        uid = user_context.get("user_id") or user_context.get("id", "anonymous")
+        urole = user_context.get("role", "guest")
+    user_key_suffix = f"|u:{uid}|r:{urole}"
     # Append suffix to query text for unique key generation
     effective_query_key_text = query_text + user_key_suffix
-    
+
     # Extra meta for cache set? We just store results.
-    
+
     cache_key = make_query_cache_key(effective_query_key_text, collections, top_k)
     cached_results = get_cache().get(cache_key)
     if cached_results:
-        logger.info(f"[Pipeline] Cache Hit! Returning pre-computed results for '{query_text[:20]}...'")
+        logger.info(
+            f"[Pipeline] Cache Hit! Returning pre-computed results for '{query_text[:20]}...'"
+        )
         results = _augment_parent_context(manager, collections, cached_results)
-        
+
         # Update Semantic Cache
         if not semantic_hit:
-            SemanticCache.set(manager.client, dense_vec, results, query_text, user_context=user_context)
+            SemanticCache.set(
+                manager.client,
+                dense_vec,
+                results,
+                query_text,
+                user_context=user_context,
+            )
 
         return results
 
     # --- Phase 2: Query Reformulation ---
-    from llm_backend.server.vector_server.core.query_reformulation import reformulate_query
+    from llm_backend.server.vector_server.core.query_reformulation import (
+        reformulate_query,
+    )
+
     search_query = reformulate_query(query_text)
-    
+
     # --- Phase 2: Adaptive Fusion ---
     from llm_backend.vectorstore.adaptive_fusion import analyze_query_type
+
     analyze_query_type(query_text)
-    
+
     # --- Phase 5 & 6: AutoRAG-HP (Heuristic or Bandit) ---
     if cfg.get("use_bandit", True):
         from .bandit_tuner import BanditHPTuner
+
         # Persistence would usually be in a DB, here we mock it per-request or use a singleton
         tuner = BanditHPTuner(epsilon=cfg.get("epsilon", 0.1))
         hp = tuner.get_hp(query_text)
         logger.info(f"[AutoRAG-HP] Using Bandit Strategy: {hp['_strategy_used']}")
     else:
         from .hp_tuner import get_optimized_hp
+
         hp = get_optimized_hp(query_text, cfg)
         hp["_strategy_used"] = "heuristic_static"
-    
+
     w_dense = hp["dense_weight"]
     w_sparse = hp["sparse_weight"]
     w_splade = hp["splade_weight"]
@@ -202,18 +253,20 @@ def run_query_pipeline(
         logger.info(f"[Pipeline] Manual Alpha Override: {alpha}")
         w_dense = alpha
         w_sparse = 1.0 - alpha
-        w_splade = 0.0 # Disable splade/title noise if manual alpha strictly requested? Or scale them?
+        w_splade = 0.0  # Disable splade/title noise if manual alpha strictly requested? Or scale them?
         w_title = 0.0
         # Force Score Fusion to match the formula exactly
-        cfg["use_rrf"] = False 
+        cfg["use_rrf"] = False
         hp["_strategy_used"] = "manual_override"
 
     # --- Phase 7: Universal Metadata Routing ---
     from .metadata_router import MetadataRouter
+
     query_filters = MetadataRouter.extract_filters(query_text)
 
     # --- Phase 7: Graph-Lite Entity Extraction ---
     from .entity_booster import EntityBooster
+
     query_entities = EntityBooster.extract_entities(query_text)
 
     # --- Pre-encode Vectors ---
@@ -223,26 +276,37 @@ def run_query_pipeline(
     # Ideally, we should check checks if 'csweb.research' is in target_collections, but for now applying globally
     # for consistent space.
     if "bge-m3-finetuned" in str(manager.dense_model):  # Weak check, but practical
-         final_query = "Instruct: Find academic profile " + search_query
-    elif "finetuned" in str(manager.dense_model) or True: # Force instruction for now as we are using the fine-tuned model path
-         # Since we updated config.py to point to fine-tuned model, we should use the instruction.
-         # The fine-tuned model path is "./bge-m3-finetuned-academic"
-         final_query = "Instruct: Find academic profile " + search_query
+        final_query = "Instruct: Find academic profile " + search_query
+    elif (
+        "finetuned" in str(manager.dense_model) or True
+    ):  # Force instruction for now as we are using the fine-tuned model path
+        # Since we updated config.py to point to fine-tuned model, we should use the instruction.
+        # The fine-tuned model path is "./bge-m3-finetuned-academic"
+        final_query = "Instruct: Find academic profile " + search_query
 
-    dense_vec = manager.dense_model.encode(final_query) if cfg["use_dense"] else None
-    title_vec = dense_vec # Phase 5: Simple reuse of dense embedding if not specialized
-    
+    dense_vec = (
+        manager.dense_model.encode(final_query, show_progress_bar=False)
+        if cfg["use_dense"]
+        else None
+    )
+    title_vec = dense_vec  # Phase 5: Simple reuse of dense embedding if not specialized
+
     sparse_sv = None
     if cfg["use_sparse"]:
-        from llm_backend.vectorstore.sparse_helper import bm25_encode
+        from llm_backend.vectorstore.sparse_engine import bm25_encode
         from qdrant_client.models import SparseVector
+
         b_vec = bm25_encode(search_query)
-        sparse_sv = SparseVector(indices=list(b_vec.keys()), values=list(b_vec.values()))
-        
+        sparse_sv = SparseVector(
+            indices=[int(k) for k in b_vec.keys()],
+            values=[float(v) for v in b_vec.values()],
+        )
+
     splade_sv = None
     if cfg["use_splade"]:
-        from llm_backend.vectorstore.splade_module import splade_encode
+        from llm_backend.vectorstore.sparse_engine import splade_encode
         from qdrant_client.models import SparseVector
+
         s_vec = splade_encode(search_query)
         splade_sv = SparseVector(
             indices=[int(k) for k in s_vec.keys()],
@@ -260,10 +324,10 @@ def run_query_pipeline(
             return sec_filter
         if not sec_filter:
             return meta_filter
-        
+
         # Combine with MUST
         return models.Filter(
-            must=[meta_filter, sec_filter] # Nested filter support in Qdrant
+            must=[meta_filter, sec_filter]  # Nested filter support in Qdrant
         )
 
     final_filter = merge_filters(query_filters, access_filter)
@@ -272,34 +336,79 @@ def run_query_pipeline(
         try:
             d_res, s_res, sp_res, t_res = [], [], [], []
             if dense_vec is not None:
-                d_res = q_unique(manager.client, col, dense_vec, "dense", search_k, query_filter=final_filter)
-                t_res = q_unique(manager.client, col, title_vec, "title", search_k, query_filter=final_filter)
+                d_res = q_unique(
+                    manager.client,
+                    col,
+                    dense_vec,
+                    "dense",
+                    search_k,
+                    query_filter=final_filter,
+                )
+                t_res = q_unique(
+                    manager.client,
+                    col,
+                    title_vec,
+                    "title",
+                    search_k,
+                    query_filter=final_filter,
+                )
             if sparse_sv is not None:
-                s_res = q_unique(manager.client, col, sparse_sv, "sparse", search_k, query_filter=final_filter)
+                s_res = q_unique(
+                    manager.client,
+                    col,
+                    sparse_sv,
+                    "sparse",
+                    search_k,
+                    query_filter=final_filter,
+                )
             if splade_sv is not None:
-                sp_res = q_unique(manager.client, col, splade_sv, "splade", search_k, query_filter=final_filter)
+                sp_res = q_unique(
+                    manager.client,
+                    col,
+                    splade_sv,
+                    "splade",
+                    search_k,
+                    query_filter=final_filter,
+                )
 
             if cfg.get("use_rrf", True):
                 # RRF Fusion (Rank-based)
                 # Default k=60 is standard for RRF
                 fused = reciprocal_rank_fusion(
-                    d_res, s_res, sp_res, k=cfg.get("rrf_k", 60),
+                    d_res,
+                    s_res,
+                    sp_res,
+                    k=cfg.get("rrf_k", 60),
                     title_results=t_res,
-                    weights={"dense": w_dense, "sparse": w_sparse, "splade": w_splade, "title": w_title}
+                    weights={
+                        "dense": w_dense,
+                        "sparse": w_sparse,
+                        "splade": w_splade,
+                        "title": w_title,
+                    },
                 )
             else:
                 # Legacy Score-based Fusion
                 fused = weighted_fuse(
-                    d_res, s_res, sp_res,
-                    w_dense, w_sparse, w_splade,
-                    title_results=t_res, title_weight=w_title
+                    d_res,
+                    s_res,
+                    sp_res,
+                    w_dense,
+                    w_sparse,
+                    w_splade,
+                    title_results=t_res,
+                    title_weight=w_title,
                 )
 
             # Debug RRF inputs
             if cfg.get("use_rrf", False):
-                logger.info(f"[RRF Debug] {col}: dense={len(d_res)} sparse={len(s_res)} splade={len(sp_res)} title={len(t_res)}")
+                logger.info(
+                    f"[RRF Debug] {col}: dense={len(d_res)} sparse={len(s_res)} splade={len(sp_res)} title={len(t_res)}"
+                )
 
-            doclevel = dedup_avg_by_doc(fused, client=manager.client, col_name=col, top_k=search_k)
+            doclevel = dedup_avg_by_doc(
+                fused, client=manager.client, col_name=col, top_k=search_k
+            )
             for d in doclevel:
                 d["collection"] = col
             return doclevel
@@ -309,7 +418,7 @@ def run_query_pipeline(
 
     with ThreadPoolExecutor(max_workers=min(len(collections), 16)) as executor:
         results = list(executor.map(process_collection, collections))
-    
+
     for doclevel in results:
         for d in doclevel:
             d["id"] = d.get("db_id")
@@ -317,52 +426,99 @@ def run_query_pipeline(
 
     # --- Phase 10: Filter Fallback (Fix Zero-Result Bug) ---
     if not merged and query_filters:
-        logger.warning(f"[Pipeline] 0 results with filters {query_filters}. Triggering Fallback (No Filter).")
-        
+        logger.warning(
+            f"[Pipeline] 0 results with filters {query_filters}. Triggering Fallback (No Filter)."
+        )
+
         # Retry without filters
         def process_collection_nofilter(col):
             d_res, s_res, sp_res, t_res = [], [], [], []
             if dense_vec is not None:
-                d_res = q_unique(manager.client, col, dense_vec, "dense", search_k, query_filter=None)
-                t_res = q_unique(manager.client, col, title_vec, "title", search_k, query_filter=None)
+                d_res = q_unique(
+                    manager.client,
+                    col,
+                    dense_vec,
+                    "dense",
+                    search_k,
+                    query_filter=access_filter,
+                )
+                t_res = q_unique(
+                    manager.client,
+                    col,
+                    title_vec,
+                    "title",
+                    search_k,
+                    query_filter=access_filter,
+                )
             if sparse_sv is not None:
-                s_res = q_unique(manager.client, col, sparse_sv, "sparse", search_k, query_filter=None)
+                s_res = q_unique(
+                    manager.client,
+                    col,
+                    sparse_sv,
+                    "sparse",
+                    search_k,
+                    query_filter=access_filter,
+                )
             if splade_sv is not None:
-                sp_res = q_unique(manager.client, col, splade_sv, "splade", search_k, query_filter=None)
+                sp_res = q_unique(
+                    manager.client,
+                    col,
+                    splade_sv,
+                    "splade",
+                    search_k,
+                    query_filter=access_filter,
+                )
 
             if cfg.get("use_rrf", True):
                 fused = reciprocal_rank_fusion(
-                    d_res, s_res, sp_res, k=cfg.get("rrf_k", 60),
+                    d_res,
+                    s_res,
+                    sp_res,
+                    k=cfg.get("rrf_k", 60),
                     title_results=t_res,
-                    weights={"dense": w_dense, "sparse": w_sparse, "splade": w_splade, "title": w_title}
+                    weights={
+                        "dense": w_dense,
+                        "sparse": w_sparse,
+                        "splade": w_splade,
+                        "title": w_title,
+                    },
                 )
             else:
                 fused = weighted_fuse(
-                    d_res, s_res, sp_res,
-                    w_dense, w_sparse, w_splade,
-                    title_results=t_res, title_weight=w_title
+                    d_res,
+                    s_res,
+                    sp_res,
+                    w_dense,
+                    w_sparse,
+                    w_splade,
+                    title_results=t_res,
+                    title_weight=w_title,
                 )
-            
-            doclevel = dedup_avg_by_doc(fused, client=manager.client, col_name=col, top_k=search_k)
+
+            doclevel = dedup_avg_by_doc(
+                fused, client=manager.client, col_name=col, top_k=search_k
+            )
             for d in doclevel:
                 d["collection"] = col
             return doclevel
 
         with ThreadPoolExecutor(max_workers=min(len(collections), 16)) as executor:
-            fallback_results = list(executor.map(process_collection_nofilter, collections))
-        
+            fallback_results = list(
+                executor.map(process_collection_nofilter, collections)
+            )
+
         for doclevel in fallback_results:
             for d in doclevel:
                 d["id"] = d.get("db_id")
                 # Mark as fallback result
                 d["_fallback_triggered"] = True
             merged.extend(doclevel)
-        
+
         logger.info(f"[Fallback] Recovered {len(merged)} docs without filters.")
 
     time.perf_counter()
     merged.sort(key=lambda x: x["avg_score"], reverse=True)
-    
+
     # --- Phase 4: Python-side Hard Filtering ---
     if temporal_cfg["explicit_year"]:
         year_str = str(temporal_cfg["explicit_year"])
@@ -373,14 +529,18 @@ def run_query_pipeline(
                 filtered.append(d)
         if filtered:
             merged = filtered
-            logger.info(f"[Temporal] Hard-filtered {len(merged)} docs for year {year_str}")
-    
+            logger.info(
+                f"[Temporal] Hard-filtered {len(merged)} docs for year {year_str}"
+            )
+
     # --- Phase 4: Temporal Ranking ---
     if use_recency:
         alpha = cfg.get("temp_alpha", temporal_cfg["alpha"])
         half_life = cfg.get("half_life_days", temporal_cfg["half_life"])
-        merged = apply_temporal_ranking(merged, alpha=alpha, half_life_days=half_life, top_k=search_k)
-    
+        merged = apply_temporal_ranking(
+            merged, alpha=alpha, half_life_days=half_life, top_k=search_k
+        )
+
     merged = merged[:top_k]
     logger.debug(
         f"[Pipeline] merged unique docs={len(merged)} (search+fuse+temp {time.perf_counter() - t0:.3f}s)"
@@ -392,14 +552,22 @@ def run_query_pipeline(
         results = _decrypt_results(results, user_context)
         get_cache().set(cache_key, results, ttl=3600)
         if not semantic_hit:
-            SemanticCache.set(manager.client, dense_vec, results, query_text, user_context=user_context)
+            SemanticCache.set(
+                manager.client,
+                dense_vec,
+                results,
+                query_text,
+                user_context=user_context,
+            )
         return results
 
     if not merged:
         return []
 
     # --- Phase 3: Confidence Triage ---
-    if not use_recency and CacheManager.should_skip_rerank(merged, threshold=cfg.get("triage_threshold", 0.98)):
+    if not use_recency and CacheManager.should_skip_rerank(
+        merged, threshold=cfg.get("triage_threshold", 0.98)
+    ):
         # If confidence is high, just return fused results (with 'score' aliased)
         for d in merged:
             d["score"] = d.get("avg_score", 0.0)
@@ -407,7 +575,13 @@ def run_query_pipeline(
         results = _decrypt_results(results, user_context)
         get_cache().set(cache_key, results, ttl=3600)
         if not semantic_hit:
-            SemanticCache.set(manager.client, dense_vec, results, query_text, user_context=user_context)
+            SemanticCache.set(
+                manager.client,
+                dense_vec,
+                results,
+                query_text,
+                user_context=user_context,
+            )
         return results
 
     # --- Batch Payload Retrieval (No longer needed since payloads are in 'merged') ---
@@ -438,14 +612,22 @@ def run_query_pipeline(
         results = _augment_parent_context(manager, collections, merged)
         results = _decrypt_results(results, user_context)
         if not semantic_hit:
-            SemanticCache.set(manager.client, dense_vec, results, query_text, user_context=user_context)
+            SemanticCache.set(
+                manager.client,
+                dense_vec,
+                results,
+                query_text,
+                user_context=user_context,
+            )
         return results
 
     try:
         reranked, timing = rerank_service(
             query=query_text,
             docs=candidates,
-            model_name=cfg.get("cross_encoder_model", "BAAI/bge-reranker-v2-m3"), # Phase 10: Upgrade
+            model_name=cfg.get(
+                "cross_encoder_model", "BAAI/bge-reranker-v2-m3"
+            ),  # Phase 10: Upgrade
             top_k=top_k,
             device="cpu",
         )
@@ -463,7 +645,7 @@ def run_query_pipeline(
 
     final_results: List[Dict[str, Any]] = []
     alpha = cfg.get("temp_alpha", temporal_cfg["alpha"])
-    
+
     # Normalize reranker scores for combination (0-1 range)
     r_scores = [r.get("score", 0.0) for r in reranked]
     r_min, r_max = min(r_scores), max(r_scores)
@@ -472,10 +654,12 @@ def run_query_pipeline(
         meta = id2meta.get(r["id"], {})
         r_score_raw = r.get("score", 0.0)
         # Avoid division by zero
-        r_score_norm = (r_score_raw - r_min) / (r_max - r_min) if r_max != r_min else 0.5
-        
+        r_score_norm = (
+            (r_score_raw - r_min) / (r_max - r_min) if r_max != r_min else 0.5
+        )
+
         rec_score = meta.get("recency_score", 0.3)
-        
+
         # If recency is active, fuse semantic score (reranker) with temporal score
         if use_recency:
             final_score = alpha * r_score_norm + (1 - alpha) * rec_score
@@ -495,16 +679,16 @@ def run_query_pipeline(
                 "payload": meta.get("payload", {}),
                 "cosine_similarity": meta.get("cosine_similarity"),
                 "recency_score": rec_score,
-                "_strategy_used": hp.get("_strategy_used", "unknown")
+                "_strategy_used": hp.get("_strategy_used", "unknown"),
             }
         )
 
     final_results.sort(key=lambda x: x["score"], reverse=True)
     results = final_results[:top_k]
-    
+
     # --- Phase 7: Parent Context Augmentation ---
     results = _augment_parent_context(manager, collections, results)
-    
+
     # Decryption Step (Phase 13)
     results = _decrypt_results(results, user_context)
 
@@ -513,28 +697,40 @@ def run_query_pipeline(
 
     # --- Phase 3: Cache Save ---
     get_cache().set(cache_key, results, ttl=3600)
-    
+
     # --- Phase 7: Semantic Cache Set ---
     if not semantic_hit:
-        SemanticCache.set(manager.client, dense_vec, results, query_text, user_context=user_context)
+        SemanticCache.set(
+            manager.client, dense_vec, results, query_text, user_context=user_context
+        )
 
     logger.debug(
-        f"[Pipeline] rerank done load={timing.get('load_s',0):.3f}s rerank={timing.get('rerank_s',0):.3f}s"
+        f"[Pipeline] rerank done load={timing.get('load_s', 0):.3f}s rerank={timing.get('rerank_s', 0):.3f}s"
     )
     return results
 
 
-def _decrypt_results(results: List[Dict[str, Any]], user_context: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def _decrypt_results(
+    results: List[Dict[str, Any]], user_context: Optional[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
     """Decrypt content if the user owns the document."""
     if not results or not user_context:
         return results
-        
-    user_id = user_context.get("user_id")
+
+    user_info = user_context.get("user")
+    if user_info and isinstance(user_info, dict):
+        user_id = user_info.get("id")
+    else:
+        user_id = user_context.get("user_id") or user_context.get("id")
+
     if not user_id or user_id == "anonymous":
         return results
 
     try:
-        from llm_backend.security.encryption_manager import EncryptionManager
+        from llm_backend.server.vector_server.core.security.encryption_manager import (
+            EncryptionManager,
+        )
+
         encryptor = EncryptionManager.get_instance()
     except ImportError:
         logger.warning("[Decryption] EncryptionManager not found.")
@@ -542,7 +738,7 @@ def _decrypt_results(results: List[Dict[str, Any]], user_context: Optional[Dict[
 
     for r in results:
         payload = r.get("metadata", {}) or r.get("payload", {})
-        
+
         # Check if encrypted (flag in payload)
         if payload.get("content_encrypted"):
             # Check ownership
@@ -552,12 +748,14 @@ def _decrypt_results(results: List[Dict[str, Any]], user_context: Optional[Dict[
                     encrypted_text = payload.get("content", "")
                     if encrypted_text:
                         decrypted_text = encryptor.decrypt_text(user_id, encrypted_text)
-                        
+
                         # Update payload and main text field
                         payload["content"] = decrypted_text
-                        payload["content_encrypted"] = False # Mark as decrypted for this view
+                        payload["content_encrypted"] = (
+                            False  # Mark as decrypted for this view
+                        )
                         r["text"] = decrypted_text
-                        
+
                         # Apply updates to references
                         if "payload" in r:
                             r["payload"] = payload
@@ -569,4 +767,3 @@ def _decrypt_results(results: List[Dict[str, Any]], user_context: Optional[Dict[
                     payload["content"] = "[Decryption Failed]"
 
     return results
-

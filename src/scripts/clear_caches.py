@@ -5,15 +5,17 @@ from llm_backend.core.cache_manager import redis_client
 with acquire_manager() as mgr:
     try:
         mgr.client.delete_collection(SemanticCache.COLLECTION_NAME)
-        print(f"✅ Semantic Cache collection '{SemanticCache.COLLECTION_NAME}' deleted.")
+        print(
+            f"[OK] Semantic Cache collection '{SemanticCache.COLLECTION_NAME}' deleted."
+        )
     except Exception as e:
-        print(f"⚠️ Semantic Cache deletion failed: {e}")
+        print(f"[WARN] Semantic Cache deletion failed: {e}")
 
 if redis_client:
     try:
         redis_client.flushdb()
-        print("✅ Redis L2 cache flushed.")
+        print("[OK] Redis L2 cache flushed.")
     except Exception as e:
-        print(f"⚠️ Redis flush failed: {e}")
+        print(f"[WARN] Redis flush failed: {e}")
 else:
-    print("⚠️ Redis client not available.")
+    print("[WARN] Redis client not available.")

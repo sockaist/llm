@@ -1,14 +1,105 @@
 version: '3.8'
 
 services:
+  # 0. Init Permissions (Fixes SQLite DB access)
+  init-permissions:
+    image: alpine:latest
+    command: chown -R 999:999 /app/data
+    volumes:
+      - vortex_data:/app/data
+
+  # 1. API Server
+  vector-api:
+    build:
+      context: .
+      target: production
+    container_name: vortex_api
+    command: uvicorn llm_backend.server.vector_server.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+      - ./logs:/app/logs
+    environment:
+      - VECTORDB_ENV=production
+      - VECTOR_API_KEY=${VECTOR_API_KEY:?VECTOR_API_KEY is required}
+      - VECTOR_MODEL_PATH=${VECTOR_MODEL_PATH:-xistoh162108/bge-m3-kaist-v1}
+      - VECTORDB_HOST=0.0.0.0
+      - VECTORDB_PORT=8000
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - REDIS_URL=redis://redis:6379/0
+      - HF_HOME=/app/.vortex/cache/huggingface
+    depends_on:
+      init-permissions:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+      qdrant:
+        condition: service_started
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: always
+
+  # 2. Celery Worker (Background Tasks)
+  vector-worker:
+    build:
+      context: .
+      target: production
+    container_name: vortex_worker
+    command: celery -A llm_backend.server.vector_server.worker.celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+      - ./logs:/app/logs
+    environment:
+      - VECTORDB_ENV=production
+      - VECTOR_API_KEY=${VECTOR_API_KEY:?VECTOR_API_KEY is required}
+      - VECTOR_MODEL_PATH=${VECTOR_MODEL_PATH:-xistoh162108/bge-m3-kaist-v1}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - REDIS_URL=redis://redis:6379/0
+      - HF_HOME=/app/.vortex/cache/huggingface
+    depends_on:
+      init-permissions:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+      qdrant:
+        condition: service_started
+    restart: always
+
+  # 3. Redis (Cache & Broker)
   redis:
     image: redis:7-alpine
-    container_name: vector_redis
+    container_name: vortex_redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     restart: always
 
+  # 4. Qdrant (Vector DB)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: vortex_qdrant
+    ports:
+      - "6333:6333"
+    environment:
+      - QDRANT__SERVICE__API_KEY=${QDRANT_API_KEY}
+    volumes:
+      - ./qdrant_data:/qdrant/storage
+    restart: always
+
 volumes:
   redis_data:
+  vortex_data:

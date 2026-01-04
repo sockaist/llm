@@ -3,13 +3,17 @@ import pytest
 import random
 import string
 from llm_backend.server.vector_server.core.security.defense import defense_system
-from llm_backend.server.vector_server.core.security.access_control import AccessControlManager, Action, Role
+from llm_backend.server.vector_server.core.security.access_control import (
+    AccessControlManager,
+    Action,
+    Role,
+)
 
 # Initialize Manager
 access_manager = AccessControlManager()
 
+
 class TestSecurityFuzzing:
-    
     def test_fuzz_injection_detection(self):
         """
         Fuzz validator with random text (Manual Fuzzing).
@@ -17,8 +21,12 @@ class TestSecurityFuzzing:
         for _ in range(100):
             # Generate random string
             length = random.randint(1, 100)
-            query = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=length))
-            
+            query = "".join(
+                random.choices(
+                    string.ascii_letters + string.digits + string.punctuation, k=length
+                )
+            )
+
             # Inject SQL/Prompt keywords occasionally
             if random.random() < 0.2:
                 query += " UNION SELECT "
@@ -41,10 +49,10 @@ class TestSecurityFuzzing:
             vec_len = random.randint(1, 128)
             # Random floats
             vector = [random.uniform(-10.0, 10.0) for _ in range(vec_len)]
-            
+
             # Occasionally inject huge number
             if random.random() < 0.1:
-                idx = random.randint(0, vec_len-1)
+                idx = random.randint(0, vec_len - 1)
                 vector[idx] = 1e6
 
             try:
@@ -58,16 +66,30 @@ class TestSecurityFuzzing:
         """
         Fuzz Access Control.
         """
-        roles = [Role.ADMIN, Role.ENGINEER, Role.ANALYST, Role.VIEWER, "hacker", "unknown"]
-        actions = [Action.READ, Action.WRITE, Action.DELETE, Action.SEARCH, "execute_exploit", "drop_db"]
-        
+        roles = [
+            Role.ADMIN,
+            Role.ENGINEER,
+            Role.ANALYST,
+            Role.VIEWER,
+            "hacker",
+            "unknown",
+        ]
+        actions = [
+            Action.READ,
+            Action.WRITE,
+            Action.DELETE,
+            Action.SEARCH,
+            "execute_exploit",
+            "drop_db",
+        ]
+
         for _ in range(100):
             role = random.choice(roles)
             action = random.choice(actions)
-            
+
             ctx = {"user": {"role": role, "team": "TeamRandom"}}
             resource = {"team": "TeamRandom"}
-            
+
             try:
                 allowed, reason = access_manager.check_permission(ctx, resource, action)
                 if role == Role.ADMIN:

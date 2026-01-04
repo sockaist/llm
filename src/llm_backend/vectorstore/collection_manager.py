@@ -13,6 +13,7 @@ from .quantization_manager import (
     get_optimization_config,
 )
 
+
 def create_collection(
     manager,
     name: str,
@@ -41,7 +42,7 @@ def create_collection(
 
     vectors_cfg = {
         "dense": models.VectorParams(size=vector_size, distance=distance),
-        "title": models.VectorParams(size=vector_size, distance=distance)
+        "title": models.VectorParams(size=vector_size, distance=distance),
     }
     if extra_vectors:
         vectors_cfg.update(extra_vectors)
@@ -55,14 +56,24 @@ def create_collection(
             index=models.SparseIndexParams(on_disk=False)
         )
 
-    if manager.client.collection_exists(name):
+    # collection_exists may raise 404 on some client/server versions instead of returning False
+    exists = False
+    try:
+        manager.client.get_collection(name)
+        exists = True
+    except Exception:
+        exists = False
+
+    if exists:
         manager.client.delete_collection(name)
 
     manager.client.create_collection(
         collection_name=name,
         vectors_config=vectors_cfg,
         sparse_vectors_config=sparse_cfg if sparse_cfg else None,
-        quantization_config=get_scalar_quantization_config() if use_quantization else None,
+        quantization_config=get_scalar_quantization_config()
+        if use_quantization
+        else None,
         hnsw_config=get_hnsw_config(),
         optimizers_config=get_optimization_config(),
     )
@@ -77,7 +88,9 @@ def create_collection(
         )
         logger.info(f"[create_collection] Created 'db_id' payload index for '{name}'")
     except Exception as exc:  # noqa: BLE001
-        logger.warning(f"[create_collection] Failed to create payload index for '{name}': {exc}")
+        logger.warning(
+            f"[create_collection] Failed to create payload index for '{name}': {exc}"
+        )
 
 
 def delete_collection(manager, name: str) -> None:

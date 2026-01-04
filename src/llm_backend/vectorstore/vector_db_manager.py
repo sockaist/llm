@@ -2,7 +2,7 @@
 from __future__ import annotations
 import os
 import warnings
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Callable
 from qdrant_client import QdrantClient, models
 from qdrant_client.http.models import Distance
 from qdrant_client.models import (
@@ -15,13 +15,17 @@ from llm_backend.utils.debug import trace
 from llm_backend.utils.id_helper import make_hash_id_from_path
 
 
-
-
 # ---- External Modules ----
-from .config import QDRANT_URL, QDRANT_API_KEY, SNAPSHOT_DIR, VECTOR_SIZE
-from .embedding import model as dense_sbert_model
-from .sparse_helper import bm25_encode
-from .splade_module import splade_encode
+from .config import (
+    QDRANT_URL,
+    QDRANT_API_KEY,
+    SNAPSHOT_DIR,
+    VECTOR_SIZE,
+    DEFAULT_COLLECTION_NAME,
+)
+from .sparse_engine import bm25_encode, splade_encode
+from .sparse_engine import init_sparse_engine as sparse_init_service
+from .sparse_engine import fit_from_folder as sparse_fit_service
 from .vector_db_helper import query_unique_docs as qdrant_query_unique_docs
 from .search_pipeline import run_query_pipeline
 from .collection_manager import (
@@ -35,8 +39,6 @@ from .ingest_manager import (
     upsert_document as upsert_document_helper,
     upsert_folder as upsert_folder_helper,
 )
-from .bm25_service import fit_bm25_from_json_folder as bm25_fit_service
-from .bm25_service import init_bm25 as bm25_init_service
 from .snapshot_manager import (
     create_snapshot as create_snapshot_service,
     delete_snapshot as delete_snapshot_service,
@@ -45,6 +47,7 @@ from .snapshot_manager import (
 )
 
 warnings.filterwarnings("ignore", message="BertForMaskedLM has generative capabilities")
+
 
 def _norm_doc_key(x):
     """Normalize id to match Qdrant payload parent_id/id (remove dash, lowercase)."""
@@ -62,16 +65,27 @@ class VectorDBManager:
     - Create / Read / Update / Delete / Query
     """
 
-    def __init__(self, url: Optional[str] = None, api_key: Optional[str] = None,
-                 default_collection: Optional[str] = None,
-                 pipeline_config: Optional[Dict[str, Any]] = None):
+    def __init__(
+        self,
+        url: Optional[str] = None,
+        api_key: Optional[str] = None,
+        default_collection: Optional[str] = None,
+        pipeline_config: Optional[Dict[str, Any]] = None,
+    ):
         trace("Initializing VectorDBManager")
-        self.client = QdrantClient(url=url or QDRANT_URL, api_key=api_key or QDRANT_API_KEY)
-        self.default_collection = default_collection or "notion.marketing"
+        self.client = QdrantClient(
+            url=url or QDRANT_URL,
+            api_key=api_key or QDRANT_API_KEY,
+            prefer_grpc=False,
+            check_compatibility=False,
+            timeout=300,
+        )
+        self.default_collection = default_collection or DEFAULT_COLLECTION_NAME
 
         # 모델 핸들
-        self.embedding_models = {"dense": dense_sbert_model}
-        self.dense_model = dense_sbert_model
+        from .embedding import get_model
+
+        self._dense_model_getter = get_model
         self.bm25_encode = bm25_encode
         self.splade_encode = splade_encode
 
@@ -81,15 +95,19 @@ class VectorDBManager:
 
         # Load default config from settings
         from .config import PIPELINE_CONFIG
+
         self.pipeline_config = PIPELINE_CONFIG.copy()
 
         if pipeline_config:
             self.pipeline_config.update(pipeline_config)
-            
+
         logger.info(f"VectorDBManager initialized. Default={self.default_collection}")
 
-    # ------------ Create / Init ------------
+    @property
+    def dense_model(self):
+        return self._dense_model_getter()
 
+    # ------------ Create / Init ------------
 
     def list_collections_info(self) -> List[Dict[str, Any]]:
         """
@@ -107,7 +125,7 @@ class VectorDBManager:
                     count = count_resp.count
                 except Exception:
                     count = 0
-                
+
                 # 상세 정보 (Vector Size 등)
                 size = None
                 status = "unknown"
@@ -116,11 +134,11 @@ class VectorDBManager:
                     # Qdrant client 1.x structure: info.config.params.vectors
                     if info and info.config and info.config.params:
                         vecs = info.config.params.vectors
-                        
+
                         # 1. Single Vector
                         if hasattr(vecs, "size") and vecs.size is not None:
                             size = vecs.size
-                        
+
                         # 2. Named Vectors (e.g. 'dense', 'sparse'...)
                         # Check dict-like or object with attributes
                         else:
@@ -130,32 +148,40 @@ class VectorDBManager:
                                 dense_p = vecs.get("dense")
                             elif hasattr(vecs, "dense"):
                                 dense_p = vecs.dense
-                            
+
                             # If 'dense' found, get size
                             if dense_p and hasattr(dense_p, "size"):
                                 size = dense_p.size
-                    
+
                     if info:
                         status = str(info.status)
                 except Exception:
                     # logger.warning(f"Failed to get info for {name}: {e}")
                     pass
 
-                result.append({
-                    "name": name,
-                    "count": count,
-                    "vector_size": size,
-                    "status": str(status)
-                })
+                result.append(
+                    {
+                        "name": name,
+                        "count": count,
+                        "vector_size": size,
+                        "status": str(status),
+                    }
+                )
             return result
         except Exception as e:
             logger.error(f"[VectorManager] List collections failed: {e}")
             return []
 
-    def create_collection(self, name: str, vector_size: int,
-                        distance: str | Distance = "Cosine", force: bool = False,
-                        include_sparse: bool = True, include_splade: bool = True,
-                        use_quantization: bool = True):
+    def create_collection(
+        self,
+        name: str,
+        vector_size: int,
+        distance: str | Distance = "Cosine",
+        force: bool = False,
+        include_sparse: bool = True,
+        include_splade: bool = True,
+        use_quantization: bool = True,
+    ):
         trace(f"create_collection({name}, quant={use_quantization})")
         create_collection_helper(
             manager=self,
@@ -167,7 +193,7 @@ class VectorDBManager:
             include_splade=include_splade,
             use_quantization=use_quantization,
         )
-        
+
         # --- Multi-Tenancy Foundation ---
         # Create indexes for fast filtering by tenant and access level
         try:
@@ -175,12 +201,12 @@ class VectorDBManager:
             self.client.create_payload_index(
                 collection_name=name,
                 field_name="tenant_id",
-                field_schema=models.PayloadSchemaType.KEYWORD
+                field_schema=models.PayloadSchemaType.KEYWORD,
             )
             self.client.create_payload_index(
                 collection_name=name,
                 field_name="access_level",
-                field_schema=models.PayloadSchemaType.INTEGER
+                field_schema=models.PayloadSchemaType.INTEGER,
             )
         except Exception as e:
             logger.warning(f"[MultiTenancy] Failed to create indexes: {e}")
@@ -189,14 +215,18 @@ class VectorDBManager:
         trace("initialize_collections()")
         for name, spec in config.items():
             self.create_collection(
-                name, spec.get("vector_size", 768),
+                name,
+                spec.get("vector_size", 768),
                 spec.get("distance", "Cosine"),
-                spec.get("force", False)
+                spec.get("force", False),
             )
         logger.info(f"Initialized {len(config)} collections")
-        
+
         # ------------ Snapshot Management ------------
-    def create_snapshot(self, collection: Optional[str] = None, dest_dir: str = "./snapshots"):
+
+    def create_snapshot(
+        self, collection: Optional[str] = None, dest_dir: str = "./snapshots"
+    ):
         return create_snapshot_service(self, collection=collection, dest_dir=dest_dir)
 
     def list_snapshots(self, collection: Optional[str] = None):
@@ -208,21 +238,48 @@ class VectorDBManager:
     def delete_snapshot(self, collection: str, snapshot_name: str):
         return delete_snapshot_service(self, collection, snapshot_name)
 
-    # ------------ BM25 학습 ------------
+    # ------------ Sparse Engine 학습 및 초기화 ------------
     def fit_bm25_from_json_folder(self, base_path: str) -> int:
-        return bm25_fit_service(base_path)
+        return sparse_fit_service(base_path)
 
-        # ------------ BM25 (재)초기화 ------------
     def init_bm25(self, base_path: str = "./data", force_retrain: bool = False):
-        bm25_init_service(base_path=base_path, force_retrain=force_retrain)
-            
+        sparse_init_service(data_path=base_path, force_retrain=force_retrain)
+
     # ------------ Upsert ------------
     def make_doc_hash_id(self, path: str) -> str:
         return make_hash_id_from_path(path)
 
-    def upsert_folder(self, folder: str, collection: str, batch_size: int = 50):
+    def upsert_folder(
+        self,
+        folder: str,
+        collection: str,
+        batch_size: int = 50,
+        progress_callback: Optional[Callable[[float], None]] = None,
+    ):
         trace(f"upsert_folder({folder}, {collection}, batch_size={batch_size})")
-        upsert_folder_helper(self, folder, collection, batch_size=batch_size)
+        upsert_folder_helper(
+            self,
+            folder,
+            collection,
+            batch_size=batch_size,
+            progress_callback=progress_callback,
+        )
+
+    def upsert_documents(
+        self,
+        col: str,
+        documents: List[Dict[str, Any]],
+        progress_callback: Optional[Callable[[float], None]] = None,
+    ) -> int:
+        """
+        Batch upsert documents from memory.
+        """
+        from .ingest_manager import upsert_batch_documents
+
+        trace(f"upsert_documents({col}, count={len(documents)})")
+        return upsert_batch_documents(
+            self, col, documents, progress_callback=progress_callback
+        )
 
     def upsert_document(self, col: str, data: dict, doc_id: Optional[str] = None):
         """
@@ -235,16 +292,19 @@ class VectorDBManager:
         upsert_document_helper(self, col, data, doc_id)
 
     # ------------ Query ------------
-        # ------------------------------------------------------
+    # ------------------------------------------------------
     # SEARCH (Dense/Sparse/SPLADE 각각 수행)
     # ------------------------------------------------------
-    def _search_collection_unique(self, collection, query_text, top_k,
-                                  use_dense, use_sparse, use_splade):
+    def _search_collection_unique(
+        self, collection, query_text, top_k, use_dense, use_sparse, use_splade
+    ):
         trace(f"Searching unique docs from {collection}")
         dense_results, sparse_results, splade_results = [], [], []
 
         if use_dense:
-            dense_vec = self.embedding_models["dense"].encode(query_text)
+            dense_vec = self.embedding_models["dense"].encode(
+                query_text, show_progress_bar=False
+            )
             dense_results = qdrant_query_unique_docs(
                 self.client, collection, dense_vec, "dense", top_k
             )
@@ -269,13 +329,17 @@ class VectorDBManager:
             )
 
         return dense_results, sparse_results, splade_results
-        
-    def query(self, query_text: str, top_k: int = 10,
-           collections: Optional[List[str]] = None, 
-           user_context: Optional[Dict[str, Any]] = None,
-           **kwargs) -> List[Dict[str, Any]]:
+
+    def query(
+        self,
+        query_text: str,
+        top_k: int = 10,
+        collections: Optional[List[str]] = None,
+        user_context: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ) -> List[Dict[str, Any]]:
         """Run hybrid search via DualPathOrchestrator.
-        
+
         Phase 8: Enables split Primary/Recommendation logic and preserves original query.
         Phase 15: Accepts user_context for RBAC.
         """
@@ -284,6 +348,7 @@ class VectorDBManager:
         collections = collections or [self.default_collection]
 
         from .dual_path import DualPathOrchestrator
+
         # Phase 19: Support pipeline overrides (alpha, etc.)
         pipeline_overrides = kwargs.get("pipeline_overrides", {})
 
@@ -293,19 +358,23 @@ class VectorDBManager:
             top_k=top_k,
             collections=collections,
             user_context=user_context,
-            pipeline_overrides=pipeline_overrides
+            pipeline_overrides=pipeline_overrides,
         )
         return orchestration_res["results"]
 
-    def search_keyword(self, query_text: str, top_k: int = 10,
-                       collections: Optional[List[str]] = None,
-                       user_context: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+    def search_keyword(
+        self,
+        query_text: str,
+        top_k: int = 10,
+        collections: Optional[List[str]] = None,
+        user_context: Optional[Dict[str, Any]] = None,
+    ) -> List[Dict[str, Any]]:
         """
         Perform simple keyword search (BM25 only).
         Disables Dense and SPLADE vectors for this query.
         """
         trace(f"search_keyword('{query_text[:20]}...')")
-        
+
         # Create a temporary config overriding weights
         # We want only sparse (BM25)
         temp_cfg = self.pipeline_config.copy()
@@ -313,8 +382,8 @@ class VectorDBManager:
         temp_cfg["use_splade"] = False
         temp_cfg["use_sparse"] = True
         temp_cfg["sparse_weight"] = 1.0
-        
-        # Disable reranker for pure keyword speed/nature? 
+
+        # Disable reranker for pure keyword speed/nature?
         # Usually keyword search implies simple retrieval. Let's keep reranker optional or disable it.
         # User asked for "simple keyword search". Let's disable reranker to be specific.
         temp_cfg["use_reranker"] = False
@@ -327,12 +396,18 @@ class VectorDBManager:
             top_k=top_k,
             collections=collections,
             cfg=temp_cfg,
-            user_context=user_context
+            user_context=user_context,
         )
 
-        
         # ------------ Filter Search ------------
-    def filter_search(self, col: str, filters: Dict[str, Any], limit: int = 10, with_vectors: bool = False):
+
+    def filter_search(
+        self,
+        col: str,
+        filters: Dict[str, Any],
+        limit: int = 10,
+        with_vectors: bool = False,
+    ):
         """
         Qdrant Filter-based search (payload conditions only).
         Searches without vector calculation.
@@ -344,10 +419,15 @@ class VectorDBManager:
             with_vectors (bool): If True, include vectors.
         """
         trace(f"filter_search({col}, filters={filters})")
-        return filter_search_helper(self, col, filters, limit=limit, with_vectors=with_vectors)
-        
+        return filter_search_helper(
+            self, col, filters, limit=limit, with_vectors=with_vectors
+        )
+
         # ------------ Update (Payload Only) ------------
-    def update_payload(self, col: str, doc_id: str, new_payload: dict, merge: bool = True):
+
+    def update_payload(
+        self, col: str, doc_id: str, new_payload: dict, merge: bool = True
+    ):
         """
         Update document payload in Qdrant. No vector recalculation.
 
@@ -365,13 +445,17 @@ class VectorDBManager:
             )
 
             if not result:
-                logger.warning(f"[UpdatePayload] Document not found in {col}: id={doc_id}")
+                logger.warning(
+                    f"[UpdatePayload] Document not found in {col}: id={doc_id}"
+                )
                 return False
 
             return update_payload_helper(self, col, doc_id, new_payload, merge=merge)
 
         except Exception as exc:  # noqa: BLE001
-            logger.error(f"[UpdatePayload] Error updating payload for id={doc_id}: {exc}")
+            logger.error(
+                f"[UpdatePayload] Error updating payload for id={doc_id}: {exc}"
+            )
             return False
 
     def delete_document(self, col: str, db_id: str) -> bool:
@@ -394,33 +478,37 @@ class VectorDBManager:
             # 1. Try direct retrieval by ID (since we use deterministic IDs, db_id might match point_id logic)
             # Actually, our point_id is uuid5(NAMESPACE, db_id), so we can theoretically compute point_id if strictly needed.
             # But simpler to just query by Point ID if we knew it found it, OR use scroll filter by db_id payload.
-            
-            # Since we didn't expose point_id regeneration logic easily here, let's use Scroll by payload 'db_id' 
+
+            # Since we didn't expose point_id regeneration logic easily here, let's use Scroll by payload 'db_id'
             # OR 'id' matches.
-            
-            # BEST EFFORT: 
+
+            # BEST EFFORT:
             # Try to retrieve using the db_id as point_id (in case they passed the UUID)
             # If not found, use filter search on 'db_id' payload field.
-            
+
             # However, user likely passes the content-hash string 'db_id'.
-            
+
             hits, _ = self.client.scroll(
                 collection_name=col,
                 scroll_filter=models.Filter(
-                    must=[models.FieldCondition(key="db_id", match=models.MatchValue(value=db_id))]
+                    must=[
+                        models.FieldCondition(
+                            key="db_id", match=models.MatchValue(value=db_id)
+                        )
+                    ]
                 ),
                 limit=1,
                 with_payload=True,
-                with_vectors=False
+                with_vectors=False,
             )
-            
+
             if hits:
                 return {
-                    "id": hits[0].id, 
-                    "payload": hits[0].payload, 
-                    "score": getattr(hits[0], "score", None)
+                    "id": hits[0].id,
+                    "payload": hits[0].payload,
+                    "score": getattr(hits[0], "score", None),
                 }
-            
+
             logger.warning(f"[GetDocument] Not found: {db_id} in {col}")
             return None
 
@@ -440,38 +528,43 @@ class VectorDBManager:
         try:
             # Use MatchAny to fetch all matching documents in one query
             # Note: The result order is not guaranteed to match input order.
-            
+
             # Qdrant scroll has a limit. If len(db_ids) is large, we might need multiple scrolls or just set a large limit.
             # Assuming batch size is reasonable (<1000). safely using len(db_ids) + buffer.
-            
+
             limit = len(db_ids)
             hits, _ = self.client.scroll(
                 collection_name=col,
                 scroll_filter=models.Filter(
-                    must=[models.FieldCondition(key="db_id", match=models.MatchAny(any=db_ids))]
+                    must=[
+                        models.FieldCondition(
+                            key="db_id", match=models.MatchAny(any=db_ids)
+                        )
+                    ]
                 ),
                 limit=limit,
                 with_payload=True,
-                with_vectors=False
+                with_vectors=False,
             )
-            
+
             results = []
             for h in hits:
-                results.append({
-                    "id": h.id,
-                    "payload": h.payload,
-                    "score": getattr(h, "score", None)
-                })
-            
-            logger.info(f"[GetDocuments] Found {len(results)}/{len(db_ids)} docs in {col}")
+                results.append(
+                    {
+                        "id": h.id,
+                        "payload": h.payload,
+                        "score": getattr(h, "score", None),
+                    }
+                )
+
+            logger.info(
+                f"[GetDocuments] Found {len(results)}/{len(db_ids)} docs in {col}"
+            )
             return results
 
         except Exception as e:
             logger.error(f"[GetDocuments] Error retrieving batch: {e}")
             return []
-
-
-
 
     def delete_by_filter(self, col: str, field: str, value: Any) -> int:
         """
@@ -485,7 +578,7 @@ class VectorDBManager:
         """
         trace(f"delete_by_filter({col}, field={field}, value={value})")
         return delete_by_filter_helper(self, col, field, value)
-        
+
     def auto_initialize(self, base_folder="./data", snapshot_dir=SNAPSHOT_DIR):
         """
         서버 시작 시 VectorDB 상태를 자동 초기화:
@@ -499,18 +592,25 @@ class VectorDBManager:
         snapshots = sorted(
             [f for f in os.listdir(snapshot_dir) if f.endswith(".zip")],
             key=lambda x: os.path.getmtime(os.path.join(snapshot_dir, x)),
-            reverse=True
+            reverse=True,
         )
 
         if snapshots:
             latest = snapshots[0]
             logger.info(f"[Init] Found snapshot: {latest} - restoring...")
-            self.restore_snapshot(self.default_collection, os.path.join(snapshot_dir, latest))
+            self.restore_snapshot(
+                self.default_collection, os.path.join(snapshot_dir, latest)
+            )
         else:
-            logger.warning("[Init] No snapshot found - creating collection from local data")
+            logger.warning(
+                "[Init] No snapshot found - creating collection from local data"
+            )
             self.create_collection(self.default_collection, vector_size=VECTOR_SIZE)
             self.init_bm25(base_path=base_folder)
-            self.upsert_folder(os.path.join(base_folder, "notion/marketing"), self.default_collection)
+            self.upsert_folder(
+                os.path.join(base_folder, DEFAULT_COLLECTION_NAME.replace(".", "/")),
+                self.default_collection,
+            )
             self.create_snapshot(self.default_collection, snapshot_dir)
 
     # ------------ Logging ------------

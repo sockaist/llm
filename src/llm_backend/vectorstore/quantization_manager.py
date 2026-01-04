@@ -2,6 +2,7 @@
 
 from qdrant_client import models
 
+
 def get_scalar_quantization_config():
     """
     Returns Scalar Quantization (int8) configuration.
@@ -16,6 +17,7 @@ def get_scalar_quantization_config():
         )
     )
 
+
 def get_product_quantization_config(ratio: int = 4):
     """
     Returns Product Quantization configuration.
@@ -24,10 +26,13 @@ def get_product_quantization_config(ratio: int = 4):
     """
     return models.ProductQuantization(
         product=models.ProductQuantizationConfig(
-            compression=models.CompressionRatio.X4 if ratio == 4 else models.CompressionRatio.X8,
+            compression=models.CompressionRatio.X4
+            if ratio == 4
+            else models.CompressionRatio.X8,
             always_ram=True,
         )
     )
+
 
 def get_hnsw_config(m: int = 16, ef_construct: int = 100):
     """
@@ -42,11 +47,12 @@ def get_hnsw_config(m: int = 16, ef_construct: int = 100):
         on_disk=False,  # Keep in RAM for performance
     )
 
+
 def get_optimization_config():
     """
     Returns recommended optimizers config for production.
     """
     return models.OptimizersConfigDiff(
         indexing_threshold=5000,  # Start HNSW building earlier for small collections
-        memmap_threshold=20000,   # Use memmap after 20k points
+        memmap_threshold=20000,  # Use memmap after 20k points
     )

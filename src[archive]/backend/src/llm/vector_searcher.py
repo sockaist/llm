@@ -99,11 +99,11 @@ class VectorSearcher:
                     timeout=10
                 )
                 self.search_available = True
-                print("✅ Vector DB 연결 성공")
+                print("[OK] Vector DB 연결 성공")
             else:
-                print("⚠️ Vector DB 설정이 없어 검색 기능이 비활성화됩니다.")
+                print("[WARN] Vector DB 설정이 없어 검색 기능이 비활성화됩니다.")
         except Exception as e:
-            print(f"❌ Vector DB 연결 실패: {e}")
+            print(f"[FAIL] Vector DB 연결 실패: {e}")
             self.client = None
             self.search_available = False
     
@@ -119,7 +119,7 @@ class VectorSearcher:
             List[Dict[str, Any]]: 검색된 문서들의 리스트
         """
         if not self.search_available or not self.client or not search_doc:
-            print("⚠️ Vector DB 검색을 사용할 수 없습니다.")
+            print("[WARN] Vector DB 검색을 사용할 수 없습니다.")
             return []
         
         try:

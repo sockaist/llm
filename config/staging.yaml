@@ -1,0 +1,16 @@
+app:
+  env: staging
+
+server:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+  debug: false
+
+logging:
+  level: INFO
+  format: json
+
+security:
+  tier: 1
+  auth_enabled: true

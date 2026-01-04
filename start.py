@@ -27,7 +27,7 @@ def main():
 
     # 모듈 경로 문자열을 사용해 지연 임포트 및 CLI 실행을 단순화
     uvicorn.run(
-        "src.llm_backend.server.vector_server.main:app",
+        "llm_backend.server.vector_server.main:app",
         host=host,
         port=port,
         reload=reload,

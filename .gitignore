@@ -69,7 +69,9 @@ build/
 *.db
 
 # Qdrant
-qdrant_data/*
+qdrant_data/
+storage/
+*.sst
 !qdrant_data/aliases/
 !qdrant_data/raft_state.json
 
@@ -89,3 +91,7 @@ models/
 bge-m3-finetuned-academic/
 finetune_data.jsonl
 snapshots/
+.vortex/
+credentials
+vortex_security.db
+vortex_security.db-journal

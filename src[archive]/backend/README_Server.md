@@ -5,9 +5,9 @@ KAIST 전산학부 학생 지원을 위한 지능형 챗봇의 REST API 서버�
 ## 주요 기능
 
 - 🤖 OpenAI GPT 기반 자연어 처리
-- 🔍 Vector DB (Qdrant) 기반 정보 검색
+- [SEARCH] Vector DB (Qdrant) 기반 정보 검색
 - 📚 전산학부 특화 정보 제공
-- ⚡ FastAPI 기반 고성능 REST API
+- [ASYNC] FastAPI 기반 고성능 REST API
 - 🔄 실시간 질의응답
 
 ## 설치 및 실행
@@ -118,7 +118,7 @@ src/
 
 ### 1. OPENAI_API_KEY 오류
 ```
-❌ OPENAI_API_KEY 환경 변수가 설정되지 않았습니다.
+[FAIL] OPENAI_API_KEY 환경 변수가 설정되지 않았습니다.
 ```
 → `.env` 파일에 올바른 OpenAI API 키 설정
 

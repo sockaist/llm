@@ -1,0 +1,64 @@
+#!/bin/bash
+# VortexDB Unified CLI Wrapper
+
+COMMAND=$1
+shift
+
+case "$COMMAND" in
+    "ingest")
+        python3 scripts/ingest_data.py "$@"
+        ;;
+    "search")
+        python3 scripts/search_cli.py "$@"
+        ;;
+    "start")
+        echo "Starting VortexDB stack..."
+        docker-compose up -d
+        echo "Waiting for services..."
+        sleep 5
+        docker ps
+        ;;
+    "stop")
+        echo "Stopping VortexDB stack..."
+        docker-compose down
+        ;;
+    "restart")
+        echo "Restarting VortexDB stack..."
+        docker-compose restart
+        ;;
+    "status")
+        docker ps --filter name=vortex
+        ;;
+    "help"|"--help"|"-h")
+        echo "Usage: ./vortex <command> [options]"
+        echo ""
+        echo "Commands:"
+        echo "  start    Start the full stack (Docker)"
+        echo "  stop     Stop the full stack"
+        echo "  status   Check container status"
+        echo ""
+        echo "  ingest   Ingest data from file or directory"
+        echo "           (e.g., ./vortex ingest --path data --collection sockaist)"
+        echo ""
+        echo "  search   Interactive search shell"
+        echo "           (e.g., ./vortex search --collection sockaist)"
+        echo ""
+        echo "  snapshot Manage snapshots (create, list, restore)"
+        echo "           (e.g., ./vortex snapshot create csweb.ai)"
+        echo ""
+        echo "  logs     View real-time API logs"
+        echo "           (e.g., ./vortex logs)"
+        ;;
+    "snapshot")
+        python3 scripts/snapshot_cli.py "$@"
+        ;;
+    "logs")
+        echo "Tailing logs for vortex_api (Press Ctrl+C to exit)..."
+        docker logs -f vortex_api
+        ;;
+    *)
+        echo "Unknown command: $COMMAND"
+        echo "Run './vortex help' for usage."
+        exit 1
+        ;;
+esac

@@ -1,0 +1,16 @@
+app:
+  env: development
+
+server:
+  host: 127.0.0.1
+  port: 8000
+  workers: 1
+  debug: true
+
+logging:
+  level: DEBUG
+  format: console
+
+security:
+  tier: 0
+  auth_enabled: true

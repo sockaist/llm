@@ -16,6 +16,7 @@ except ImportError:
 # Cache Manager (Redis → fallback to in-memory)
 # ============================================================
 
+
 class CacheManager:
     """
     Redis가 사용 가능하면 Redis를, 불가능하면 in-memory cache를 사용하는 캐시 매니저.
@@ -46,9 +47,13 @@ class CacheManager:
             except Exception as e:
                 self._use_redis = False
                 self.client = None
-                logger.warning(f"[Cache] Redis unavailable → Using in-memory fallback: {e}")
+                logger.warning(
+                    f"[Cache] Redis unavailable → Using in-memory fallback: {e}"
+                )
         else:
-            logger.warning("[Cache] redis-py not installed → fallback to in-memory cache")
+            logger.warning(
+                "[Cache] redis-py not installed → fallback to in-memory cache"
+            )
 
     # --------------------------------------------------------
     def set(self, key: str, value: Any, ttl: Optional[int] = None):
@@ -123,7 +128,7 @@ class CacheManager:
         """
         if not docs:
             return False
-        
+
         top_score = docs[0].get("avg_score", 0.0)
         # Assuming avg_score can be > 1.0 (RRF/Fusion), we might need to calibrate.
         # But if the logic assumes 0-1, we check.

@@ -10,9 +10,11 @@ from llm_backend.utils.logger import logger
 
 
 @lru_cache(maxsize=2)
-def get_cross_encoder(model_name: str = "Dongjin-kr/ko-reranker") -> Tuple[object, object]:
-	"""모델 이름에 따라 토크나이저와 모델을 1회만 로드한다."""
+def get_cross_encoder(
+    model_name: str = "Dongjin-kr/ko-reranker",
+) -> Tuple[object, object]:
+    """모델 이름에 따라 토크나이저와 모델을 1회만 로드한다."""
 
-	tokenizer, model = load_cross_encoder(model_name)
-	logger.info(f"[Reranker] Loaded cross-encoder '{model_name}' (cached)")
-	return tokenizer, model
+    tokenizer, model = load_cross_encoder(model_name)
+    logger.info(f"[Reranker] Loaded cross-encoder '{model_name}' (cached)")
+    return tokenizer, model

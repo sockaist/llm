@@ -10,15 +10,20 @@ from llm_backend.utils.logger import logger
 from llm_backend.server.vector_server.core.resource_pool import acquire_manager
 from llm_backend.vectorstore.config import SNAPSHOT_DIR
 
+
 def _ensure_snapshot_dir():
     os.makedirs(SNAPSHOT_DIR, exist_ok=True)
+
 
 def _is_under_snapshot_dir(path: str) -> bool:
     base = Path(SNAPSHOT_DIR).resolve()
     target = Path(path).resolve()
     return str(target).startswith(str(base))
 
-def _manual_download_snapshot(client: QdrantClient, collection_name: str, snapshot_name: str, out_path: str):
+
+def _manual_download_snapshot(
+    client: QdrantClient, collection_name: str, snapshot_name: str, out_path: str
+):
     """
     Manually download snapshot via REST API when client helper is missing.
     """
@@ -31,14 +36,16 @@ def _manual_download_snapshot(client: QdrantClient, collection_name: str, snapsh
     headers = {}
     if api_key:
         headers["api-key"] = api_key
-        
+
     logger.info(f"[Snapshot] Downloading manually from {url}")
-    
+
     with requests.get(url, headers=headers, stream=True) as r:
         r.raise_for_status()
-        with open(out_path, 'wb') as f:
+        with open(out_path, "wb") as f:
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
+
+
 def _manual_upload_snapshot(client: QdrantClient, collection_name: str, file_path: str):
     """
     Manually upload and restore snapshot via REST API.
@@ -50,18 +57,27 @@ def _manual_upload_snapshot(client: QdrantClient, collection_name: str, file_pat
     headers = {}
     if api_key:
         headers["api-key"] = api_key
-        
+
     logger.info(f"[Snapshot] Uploading and restoring from {file_path}")
     try:
         with open(file_path, "rb") as f:
             files = {"snapshot": (os.path.basename(file_path), f)}
-            # priority param might be needed? Default usually works.
-            resp = requests.post(url, headers=headers, files=files, params={"priority": "snapshot"})
+            # Removed invalid 'priority' param causing 400 Bad Request
+            resp = requests.post(url, headers=headers, files=files)
             resp.raise_for_status()
             logger.info(f"[Snapshot] Upload/Restore response: {resp.text}")
+
+    except requests.exceptions.HTTPError as e:
+        logger.error(f"[Snapshot] Upload failed: {e}")
+        if e.response is not None:
+            logger.error(f"[Snapshot] Server Response: {e.response.text}")
+        # Critical: Do not crash server on snapshot failure. Log and continue.
+        # raise
     except Exception as e:
         logger.error(f"[Snapshot] Upload failed: {e}")
-        raise
+        # raise
+
+
 def create_snapshot(collection_name: str, path: Optional[str] = None) -> str:
     try:
         _ensure_snapshot_dir()
@@ -97,12 +113,14 @@ def create_snapshot(collection_name: str, path: Optional[str] = None) -> str:
                     client.download_snapshot(
                         collection_name=collection_name,
                         snapshot_name=snap_name,
-                        out=out_path
+                        out=out_path,
                     )
                 else:
                     raise AttributeError("download_snapshot missing")
             except (AttributeError, TypeError):
-                logger.warning("[Snapshot] client.download_snapshot missing or failed. Trying manual download.")
+                logger.warning(
+                    "[Snapshot] client.download_snapshot missing or failed. Trying manual download."
+                )
                 _manual_download_snapshot(client, collection_name, snap_name, out_path)
 
         logger.info(f"[Snapshot] Downloaded: {out_path}")
@@ -111,6 +129,7 @@ def create_snapshot(collection_name: str, path: Optional[str] = None) -> str:
     except Exception as e:
         logger.error(f"[Snapshot] Create failed: {e}")
         raise
+
 
 def restore_snapshot(path: str):
     try:
@@ -133,13 +152,19 @@ def restore_snapshot(path: str):
         logger.error(f"[Snapshot] Restore failed: {e}")
         raise
 
+
 def list_snapshots() -> list[str]:
     _ensure_snapshot_dir()
     return sorted(
-        [os.path.join(SNAPSHOT_DIR, f) for f in os.listdir(SNAPSHOT_DIR) if f.endswith(".snapshot")],
+        [
+            os.path.join(SNAPSHOT_DIR, f)
+            for f in os.listdir(SNAPSHOT_DIR)
+            if f.endswith(".snapshot")
+        ],
         key=os.path.getmtime,
         reverse=True,
     )
+
 
 def delete_snapshot(path: str) -> bool:
     try:

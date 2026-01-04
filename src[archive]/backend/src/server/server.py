@@ -23,14 +23,14 @@ async def lifespan(app: FastAPI):
     FastAPI 라이프사이클 관리
     서버 시작시 ChatBot 서비스 초기화
     """
-    logger.info("🚀 서버 시작 - ChatBot 서비스 초기화 중...")
+    logger.info("[INFO] 서버 시작 - ChatBot 서비스 초기화 중...")
     try:
         # ChatBot 서비스 초기화 (전역 인스턴스 생성)
         service = get_chatbot_service()
-        logger.info("✅ ChatBot 서비스 초기화 완료!")
+        logger.info("[OK] ChatBot 서비스 초기화 완료!")
         yield
     except Exception as e:
-        logger.error(f"❌ 서버 시작 실패: {e}")
+        logger.error(f"[FAIL] 서버 시작 실패: {e}")
         raise e
     finally:
         logger.info("🛑 서버 종료")

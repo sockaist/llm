@@ -6,7 +6,10 @@ from queue import Queue
 from contextlib import contextmanager
 from typing import Optional
 from llm_backend.utils.logger import logger
-from llm_backend.vectorstore.vector_db_manager import VectorDBManager  # 실제 구현 import
+from llm_backend.vectorstore.vector_db_manager import (
+    VectorDBManager,
+)  # 실제 구현 import
+
 
 # =========================
 # 환경 변수
@@ -17,9 +20,11 @@ def _pool_size_env() -> int:
     except Exception:
         return 3
 
+
 def _strict_env() -> bool:
     # 호출 시점에 재평가(동적 변경 반영)
     return os.getenv("POOL_STRICT", "0") == "1"
+
 
 def _acquire_timeout_env() -> float:
     try:
@@ -43,24 +48,32 @@ class ResourcePool:
             if self.initialized:
                 logger.info("[ResourcePool] Already initialized.")
                 return
-            logger.info(f"[ResourcePool] Initializing {self.pool_size} VectorDBManager instances...")
+            logger.info(
+                f"[ResourcePool] Initializing {self.pool_size} VectorDBManager instances..."
+            )
             for i in range(self.pool_size):
                 try:
                     mgr = VectorDBManager()
                     self.pool.put(mgr)
-                    logger.info(f"[ResourcePool] Manager #{i+1} initialized")
+                    logger.info(f"[ResourcePool] Manager #{i + 1} initialized")
                 except Exception as e:
-                    logger.error(f"[ResourcePool] Failed to initialize manager #{i+1}: {e}")
+                    logger.error(
+                        f"[ResourcePool] Failed to initialize manager #{i + 1}: {e}"
+                    )
             self.initialized = True
             logger.info("[ResourcePool] Initialization complete")
 
-    def acquire(self, block: bool = True, timeout: Optional[float] = None) -> Optional[VectorDBManager]:
+    def acquire(
+        self, block: bool = True, timeout: Optional[float] = None
+    ) -> Optional[VectorDBManager]:
         try:
             mgr = self.pool.get(block=block, timeout=timeout)
             logger.debug("[ResourcePool] Acquired VectorDBManager instance")
             return mgr
         except Exception:
-            logger.warning("[ResourcePool] No available VectorDBManager (pool exhausted)")
+            logger.warning(
+                "[ResourcePool] No available VectorDBManager (pool exhausted)"
+            )
             return None
 
     def release(self, mgr: VectorDBManager):
@@ -77,7 +90,7 @@ class ResourcePool:
             "pool_size": self.pool_size,
             "available": self.pool.qsize(),
             "in_use": self.pool_size - self.pool.qsize(),
-            "initialized": self.initialized
+            "initialized": self.initialized,
         }
 
 
@@ -86,6 +99,7 @@ class ResourcePool:
 # =========================
 _global_pool: Optional[ResourcePool] = None
 _pool_lock = threading.Lock()
+
 
 def init_vector_pool(size: int = None):
     """
@@ -102,10 +116,12 @@ def init_vector_pool(size: int = None):
         else:
             logger.info("[ResourcePool] Global pool already exists.")
 
+
 def get_pool_status() -> dict:
     if _global_pool is None:
         return {"initialized": False, "message": "Resource pool not initialized"}
     return _global_pool.status()
+
 
 def release_all():
     """
@@ -141,6 +157,7 @@ def acquire_manager(timeout: Optional[float] = None):
         - POOL_STRICT=0 → 임시 인스턴스 생성하여 처리(풀에는 반환하지 않음)
     - 정상 획득 시: 컨텍스트 종료 시 풀에 반환
     """
+
     def _cleanup(temp_mgr: VectorDBManager):
         try:
             if hasattr(temp_mgr, "client") and hasattr(temp_mgr.client, "close"):
@@ -150,7 +167,9 @@ def acquire_manager(timeout: Optional[float] = None):
 
     # 1) 풀이 아직 없으면 임시 인스턴스로 대응
     if _global_pool is None:
-        logger.warning("[ResourcePool] Pool not initialized. Creating temporary manager (STRICT=N/A).")
+        logger.warning(
+            "[ResourcePool] Pool not initialized. Creating temporary manager (STRICT=N/A)."
+        )
         mgr = VectorDBManager()
         try:
             yield mgr
@@ -165,9 +184,13 @@ def acquire_manager(timeout: Optional[float] = None):
     if mgr is None:
         strict = _strict_env()
         if strict:
-            logger.error("[ResourcePool] Exhausted and POOL_STRICT=1 → raising RuntimeError")
+            logger.error(
+                "[ResourcePool] Exhausted and POOL_STRICT=1 → raising RuntimeError"
+            )
             raise RuntimeError("Resource pool exhausted")
-        logger.warning("[ResourcePool] No available manager — creating temporary instance (STRICT=0).")
+        logger.warning(
+            "[ResourcePool] No available manager — creating temporary instance (STRICT=0)."
+        )
         temp_mgr = VectorDBManager()
         try:
             yield temp_mgr
