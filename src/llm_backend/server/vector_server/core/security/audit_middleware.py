@@ -32,7 +32,7 @@ class AuditMiddleware(BaseHTTPMiddleware):
                 if not any(x in request.url.path for x in ["/health", "/metrics", "/logs"]):
                     status = "success" if response.status_code < 400 else "failure"
                     audit(
-                        msg=f"HTTP {request.method} {request.url.path} finished in {process_time:.3f}s",
+                        msg=f"Request Performance: {process_time:.3f}s",
                         user_id=user_id,
                         resource=request.url.path,
                         action=request.method,

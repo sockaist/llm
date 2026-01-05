@@ -17,6 +17,7 @@ from llm_backend.server.vector_server.models.response_models import (
     RetrieveResponse,
 )
 from llm_backend.server.vector_server.core.cache_manager import bump_collection_epoch
+from llm_backend.server.vector_server.core.queue_manager import enqueue_job
 
 # Import Security Modules
 from llm_backend.server.vector_server.core.security.access_control import Action, Role
@@ -67,32 +68,44 @@ async def upsert_batch(
                     raise_api_error(ErrorCode.INVALID_REQUEST, f"Security Error: {reason}")
                 doc["tenant_id"] = user_id
 
-        with acquire_manager() as mgr:
-            count = await asyncio.to_thread(
-                mgr.upsert_documents, req.collection, req.documents
-            )
-
-        bump_collection_epoch(req.collection)
-
-        await audit_logger.log_event(
-            "data_upsert_batch",
-            {"user": user_id, "collection": req.collection, "count": count},
+        # Async Job Queueing
+        job_id = enqueue_job(
+            "upsert_batch_docs",
+            {"collection": req.collection, "documents": req.documents},
         )
 
-        return CRUDResponse(
-            status="success", collection=req.collection, filename=f"batch_{count}"
+        await audit_logger.log_event(
+            "data_upsert_batch_queued",
+            {"user": user_id, "collection": req.collection, "job_id": job_id},
+        )
+
+        # We return a dict that matches keys expected by client or existing model?
+        # CRUDResponse doesn't have job_id. We can return JSON.
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            content={
+                "status": "queued",
+                "job_id": job_id,
+                "collection": req.collection,
+                "message": f"Batch upsert queued with {len(req.documents)} documents",
+            }
         )
     except Exception:
         raise
 
 
-@router.post("/upsert", response_model=CRUDResponse)
-async def upsert_document(
+@router.post("/upsert", response_model=CRUDResponse, summary="Single File Upload (Sync)")
+async def upsert_single_document(
     request: Request,
     collection: str = Form(...),
     file: UploadFile = File(...),
     user_context: dict = Depends(get_user_context_v2),
 ):
+    """
+    Upload a SINGLE JSON file containing a dict object.
+    Synchronously processes the file.
+    Reject lists/arrays (use /batch/ingest for that).
+    """
     try:
         # 1. Access Control Check
         access_manager = request.state.access_manager
@@ -112,13 +125,25 @@ async def upsert_document(
             )
             raise_api_error(ErrorCode.ACCESS_DENIED, f"Access Denied: {reason}")
 
+        # Enforce Ownership Logic Prep
+        user_role = user_context.get("user", {}).get("role")
+        user_id = user_context.get("user", {}).get("id")
+
         contents = await file.read()
         try:
             data = json.loads(contents.decode("utf-8"))
         except json.JSONDecodeError:
             raise_api_error(ErrorCode.INVALID_FORMAT, "Invalid JSON file")
 
-        # 1.5. Metadata Schema Validation (Prevent Privilege Escalation) (API18 Task)
+        # 1.5 Strict Dict Only (No Batch in File for /upsert)
+        if isinstance(data, list):
+            raise_api_error(
+                ErrorCode.INVALID_REQUEST, 
+                "Batch/List input not supported in /crud/upsert. Use /crud/upsert_batch or /batch/upsert for lists."
+            )
+
+        # --- Single Document Processing ---
+        # Metadata Schema Validation (Prevent Privilege Escalation) (API18 Task)
         is_valid, reason = MetadataValidator.validate_input(data)
         if not is_valid:
             await audit_logger.log_event(
@@ -151,9 +176,6 @@ async def upsert_document(
                     raise_api_error(ErrorCode.ANOMALY_DETECTED, f"Security Error: {reason}")
 
         # Enforce Ownership for non-admins (Logic retained from V1 but through context)
-        user_role = user_context.get("user", {}).get("role")
-        user_id = user_context.get("user", {}).get("id")
-
         if user_role != Role.ADMIN:
             data["tenant_id"] = user_id
 

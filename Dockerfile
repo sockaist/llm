@@ -4,7 +4,7 @@
 # ===========================================
 # Stage 1: Builder
 # ===========================================
-FROM python:3.10-slim AS builder
+FROM python:3.11-slim AS builder
 
 WORKDIR /build
 
@@ -12,6 +12,7 @@ WORKDIR /build
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
+    git \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,13 +23,14 @@ RUN pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.lock.txt
 # ===========================================
 # Stage 2: Production
 # ===========================================
-FROM python:3.10-slim AS production
+FROM python:3.11-slim AS production
 
 # Set environment
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app/src:/app \
-    VECTORDB_ENV=production
+    VECTORDB_ENV=production \
+    APP_MODE=production
 
 WORKDIR /app
 
@@ -48,6 +50,10 @@ RUN pip install --no-cache-dir --no-index /wheels/* \
 
 # Copy source code
 COPY --chown=vortex:vortex . .
+
+# Pre-download models to bake them into the image
+# This increases image size but allows faster startup/offline usage
+RUN python3 scripts/download_models.py
 
 # Create required directories
 RUN mkdir -p logs && chown -R vortex:vortex /app

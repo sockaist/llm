@@ -139,6 +139,7 @@ def restore_snapshot(path: str):
             raise FileNotFoundError(f"Snapshot not found: {path}")
 
         filename = os.path.basename(path)
+        # Handle both .snapshot and .zip (or others)
         collection_name = filename.split("_")[0]
 
         with acquire_manager() as mgr:
@@ -159,7 +160,7 @@ def list_snapshots() -> list[str]:
         [
             os.path.join(SNAPSHOT_DIR, f)
             for f in os.listdir(SNAPSHOT_DIR)
-            if f.endswith(".snapshot")
+            if f.endswith(".snapshot") or f.endswith(".zip")
         ],
         key=os.path.getmtime,
         reverse=True,

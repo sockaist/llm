@@ -40,7 +40,7 @@ from llm_backend.utils.logger import logger
 from llm_backend.vectorstore.config import DEFAULT_COLLECTION_NAME
 
 router = APIRouter(
-    prefix="/admin", tags=["Admin"], dependencies=[Depends(verify_api_key)]
+    prefix="/admin", tags=["Admin"]
 )
 
 # -----------------------------
@@ -214,8 +214,12 @@ async def list_snapshot_api(x_admin_secret: Optional[str] = Header(None)):
 
 # Body 전용: 복원
 @router.post("/snapshot/restore", response_model=SnapshotResponse)
-async def restore_snapshot_api(req: SnapshotPathRequest):
+async def restore_snapshot_api(
+    req: SnapshotPathRequest,
+    x_admin_secret: Optional[str] = Header(None)
+):
     try:
+        _check_admin_secret(x_admin_secret)
         restore_snapshot(req.path)
         return SnapshotResponse(status="restored", path=req.path)
     except Exception as e:
@@ -225,8 +229,12 @@ async def restore_snapshot_api(req: SnapshotPathRequest):
 
 # Body 전용: 삭제 (권장)
 @router.post("/snapshot/delete", response_model=SnapshotResponse)
-async def delete_snapshot_api(req: SnapshotDeleteRequest):
+async def delete_snapshot_api(
+    req: SnapshotDeleteRequest,
+    x_admin_secret: Optional[str] = Header(None)
+):
     try:
+        _check_admin_secret(x_admin_secret)
         success = delete_snapshot(req.path)
         if not success:
             raise HTTPException(
@@ -253,8 +261,9 @@ async def delete_snapshot_api(req: SnapshotDeleteRequest):
 # Cache
 # -----------------------------
 @router.post("/cache/clear", response_model=SnapshotResponse)
-async def clear_cache_api():
+async def clear_cache_api(x_admin_secret: Optional[str] = Header(None)):
     try:
+        _check_admin_secret(x_admin_secret)
         cache = get_cache()
         cache.clear()
         logger.info("[Admin] Cache cleared successfully")
@@ -268,25 +277,39 @@ async def clear_cache_api():
 # BM25 retrain & Jobs
 # -----------------------------
 @router.post("/bm25/retrain", response_model=BatchResponse)
-async def retrain_bm25_api(req: BM25RetrainRequest = BM25RetrainRequest()):
-    # 동일한 중복/쿨다운 정책 적용
-    if os.getenv("ALLOW_BM25_BATCH", "1") != "1":
-        raise HTTPException(
-            status_code=403, detail="BM25 batch trigger is disabled by config"
-        )
-    if is_job_active("bm25_retrain"):
-        return BatchResponse(
-            status="skipped", message="A BM25 job is already queued or running"
-        )
-    job_id = enqueue_job("bm25_retrain", {"base_path": req.base_path})
-    return BatchResponse(status="queued", job_id=job_id, type="bm25_retrain")
+async def retrain_bm25_api(
+    req: BM25RetrainRequest = BM25RetrainRequest(),
+    x_admin_secret: Optional[str] = Header(None)
+):
+    try:
+        _check_admin_secret(x_admin_secret)
+        # 동일한 중복/쿨다운 정책 적용
+        if os.getenv("ALLOW_BM25_BATCH", "1") != "1":
+            raise HTTPException(
+                status_code=403, detail="BM25 batch trigger is disabled by config"
+            )
+        if is_job_active("bm25_retrain"):
+            return BatchResponse(
+                status="skipped", message="A BM25 job is already queued or running"
+            )
+        job_id = enqueue_job("bm25_retrain", {"base_path": req.base_path})
+        return BatchResponse(status="queued", job_id=job_id, type="bm25_retrain")
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[Admin:/bm25/retrain] Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get(
     "/jobs/list", response_model=BatchResponse, response_model_exclude_none=True
 )
-async def list_admin_jobs(limit: int = 10):
+async def list_admin_jobs(
+    limit: int = 10,
+    x_admin_secret: Optional[str] = Header(None)
+):
     try:
+        _check_admin_secret(x_admin_secret)
         jobs = list_jobs(limit)
         return BatchResponse(status="success", jobs=jobs.get("jobs", []))
     except Exception as e:
@@ -295,42 +318,41 @@ async def list_admin_jobs(limit: int = 10):
 
 
 @router.post("/jobs/trigger/bm25", response_model=BatchResponse)
-async def trigger_bm25_job():
+async def trigger_bm25_job(x_admin_secret: Optional[str] = Header(None)):
     """
     BM25 재학습 작업을 백그라운드 큐에 등록합니다.
-    정책:
-      - ALLOW_BM25_BATCH != "1" 이면 금지 (스케줄러만 운영)
-      - 활성 작업(queued/running)이 있으면 스킵
-      - 쿨다운(기본 30분) 내면 스킵
     """
-    # 1) 배치 트리거 전역 비활성화 옵션
-    if os.getenv("ALLOW_BM25_BATCH", "1") != "1":
-        raise HTTPException(
-            status_code=403, detail="BM25 batch trigger is disabled by config"
-        )
-
-    # 2) 활성 작업 중복 방지
-    if is_job_active("bm25_retrain"):
-        return BatchResponse(
-            status="skipped", message="A BM25 job is already queued or running"
-        )
-
-    # 3) 쿨다운(분)
-    cooldown_min = int(os.getenv("BM25_COOLDOWN_MIN", "30"))
-    ts = last_completed_at("bm25_retrain")
-    if ts is not None:
-        elapsed_min = int((time.time() - ts) / 60)
-        if elapsed_min < cooldown_min:
-            return BatchResponse(
-                status="skipped",
-                message=f"Last BM25 retrain finished {elapsed_min}m ago; cooldown={cooldown_min}m",
+    try:
+        _check_admin_secret(x_admin_secret)
+        # 1) 배치 트리거 전역 비활성화 옵션
+        if os.getenv("ALLOW_BM25_BATCH", "1") != "1":
+            raise HTTPException(
+                status_code=403, detail="BM25 batch trigger is disabled by config"
             )
 
-    # 4) 큐 등록
-    try:
+        # 2) 활성 작업 중복 방지
+        if is_job_active("bm25_retrain"):
+            return BatchResponse(
+                status="skipped", message="A BM25 job is already queued or running"
+            )
+
+        # 3) 쿨다운(분)
+        cooldown_min = int(os.getenv("BM25_COOLDOWN_MIN", "30"))
+        ts = last_completed_at("bm25_retrain")
+        if ts is not None:
+            elapsed_min = int((time.time() - ts) / 60)
+            if elapsed_min < cooldown_min:
+                return BatchResponse(
+                    status="skipped",
+                    message=f"Last BM25 retrain finished {elapsed_min}m ago; cooldown={cooldown_min}m",
+                )
+
+        # 4) 큐 등록
         job_id = enqueue_job("bm25_retrain", {"base_path": "./data"})
         logger.info(f"[Admin] BM25 retrain job enqueued: {job_id[:8]}")
         return BatchResponse(status="queued", job_id=job_id, type="bm25_retrain")
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"[Admin:/jobs/trigger/bm25] Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))

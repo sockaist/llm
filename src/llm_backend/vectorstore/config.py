@@ -67,7 +67,7 @@ _yaml_cfg = _load_yaml(CONFIG_PATH)
 # 기본 컬렉션 이름 (환경변수 → YAML → 기본값)
 DEFAULT_COLLECTION_NAME = os.environ.get(
     "DEFAULT_COLLECTION_NAME",
-    _cfg_lookup(_yaml_cfg, "collection.default_name", "notion.marketing"),
+    _cfg_lookup(_yaml_cfg, "collection.default_name", "main"),
 )
 
 # Qdrant 설정 (환경변수 → YAML → 기본값)
@@ -113,6 +113,13 @@ SPLADE_TOP_K = _to_int(
     os.environ.get("SPLADE_TOP_K", None)
     or _cfg_lookup(_yaml_cfg, "splade.top_k", 2000),
     2000,
+)
+
+# 캐시 설정
+SEMANTIC_CACHE_THRESHOLD = _to_float(
+    os.environ.get("SEMANTIC_CACHE_THRESHOLD", None)
+    or _cfg_lookup(_yaml_cfg, "cache.semantic_threshold", 0.95),
+    0.95,
 )
 
 # 벡터 설정
@@ -165,16 +172,7 @@ FORMATS = {
     ],
     "csweb.admin": ["name", "position", "work", "mail", "phone", "office", "etc", "id"],
     "csweb.refer": ["name", "web", "etc", "id"],
-    "notion.marketing": [
-        "title",
-        "date",
-        "start",
-        "finish",
-        "contents",
-        "images",
-        "url",
-        "id",
-    ],
+
     "notion.notice": [
         "title",
         "date",

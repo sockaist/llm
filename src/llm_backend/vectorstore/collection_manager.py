@@ -64,8 +64,11 @@ def create_collection(
     except Exception:
         exists = False
 
-    if exists:
+    if exists and force:
         manager.client.delete_collection(name)
+    elif exists and not force:
+        logger.info(f"Collection '{name}' already exists. Skipping recreation.")
+        return
 
     manager.client.create_collection(
         collection_name=name,

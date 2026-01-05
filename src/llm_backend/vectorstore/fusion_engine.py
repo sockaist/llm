@@ -154,7 +154,15 @@ def deduplicate_results(
             payload = getattr(r, "payload", {}) or {}
             score = getattr(r, "score", 0.0)
 
-        raw_id = payload.get("db_id") or payload.get("parent_id") or payload.get("id") or pid
+        # Prefer parent mapping for deduplication (link > parent_id > db_id)
+        # However, as per user requirement, db_id is the primary identifier.
+        raw_id = (
+            payload.get("parent_id") 
+            or payload.get("db_id") 
+            or payload.get("id") 
+            or payload.get("link") 
+            or pid
+        )
         if raw_id is None: continue
         uid = str(raw_id)
 
@@ -162,19 +170,22 @@ def deduplicate_results(
         if uid not in doc_payloads:
             doc_payloads[uid] = payload
 
-    averaged = []
+    max_results = []
     for uid, scores in doc_scores.items():
         payload = doc_payloads[uid]
-        averaged.append({
+        max_score = max(scores)
+        max_results.append({
             "db_id": uid,
-            "avg_score": sum(scores) / len(scores),
+            "score": max_score,
+            "max_score": max_score,
+            "avg_score": sum(scores) / len(scores), # Keep for legacy/debug
             "title": payload.get("title"),
             "text": payload.get("text") or payload.get("content") or "",
             "payload": payload,
         })
 
-    averaged.sort(key=lambda x: x["avg_score"], reverse=True)
-    return averaged[:top_k]
+    max_results.sort(key=lambda x: x["score"], reverse=True)
+    return max_results[:top_k]
 
 
 # ==========================================================

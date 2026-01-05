@@ -22,7 +22,7 @@ instrumentator = Instrumentator(
     should_group_status_codes=False,
     should_ignore_untemplated=True,
     should_instrument_requests_inprogress=True,
-    excluded_handlers=["/metrics", "/health"],
+    excluded_handlers=[],
 )
 
 

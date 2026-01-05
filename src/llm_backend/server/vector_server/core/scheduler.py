@@ -11,7 +11,7 @@ from llm_backend.server.vector_server.manager.snapshot_manager import (
     list_snapshots,
     delete_snapshot,
 )
-from llm_backend.server.vector_server.core.queue_manager import is_job_active
+from llm_backend.server.vector_server.core.queue_manager import is_job_active, collect_metrics
 from llm_backend.vectorstore.config import DEFAULT_COLLECTION_NAME
 
 # ============================================================
@@ -136,6 +136,21 @@ def start_scheduler():
                 )
             else:
                 logger.info("[Scheduler] Job 'snapshot_cycle' already exists")
+
+            # 메트릭 수집 주기 설정 (초 단위, 30초)
+            if scheduler.get_job("job_metrics_collection") is None:
+                from llm_backend.server.vector_server.core.queue_manager import collect_advanced_metrics
+                scheduler.add_job(
+                    lambda: (collect_metrics(), collect_advanced_metrics()),
+                    "interval",
+                    seconds=30,
+                    id="job_metrics_collection",
+                    coalesce=True,
+                    max_instances=1,
+                )
+                logger.info("[Scheduler] Job 'job_metrics_collection' scheduled every 30s")
+            else:
+                logger.info("[Scheduler] Job 'job_metrics_collection' already exists")
 
             scheduler.start()
             logger.info("[Scheduler] APScheduler started successfully")

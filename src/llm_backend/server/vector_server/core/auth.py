@@ -5,7 +5,7 @@ import hmac
 from fastapi import Header, HTTPException, status, Request
 from llm_backend.utils.logger import logger
 
-logger.critical("!!! AUTH MODULE LOADED FROM DISK !!!")
+# logger.info("!!! AUTH MODULE LOADED FROM DISK !!!")
 
 # ============================================================
 # API Key 기반 인증 (보안 강화 버전)

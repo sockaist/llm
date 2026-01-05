@@ -8,6 +8,7 @@ from typing import List, Dict, Any, Optional
 from qdrant_client import models
 import hashlib
 from llm_backend.utils.logger import logger
+from llm_backend.vectorstore.config import SEMANTIC_CACHE_THRESHOLD
 
 CACHE_COLLECTION = "semantic_cache"
 
@@ -38,7 +39,7 @@ class SemanticCache:
         client,
         query_vector: List[float],
         query_text: str,
-        threshold: float = 0.95,
+        threshold: float = SEMANTIC_CACHE_THRESHOLD,
         user_context: Optional[Dict[str, Any]] = None,
     ) -> Optional[List[Dict[str, Any]]]:
         """

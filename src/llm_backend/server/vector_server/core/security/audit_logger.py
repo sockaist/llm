@@ -129,8 +129,11 @@ class ProductionAuditLogger:
             return
 
         if event_type in TIER1_EVENTS:
+            logger.warning(f"[AUDIT:CRITICAL] {event_type} | {event_data}")
             self._log_tier1_sync(log_entry)
         else:
+            # Echo to standard logger for visibility (Tier 2 can be INFO)
+            logger.info(f"[AUDIT] {event_type} | {event_data}")
             try:
                 self.log_queue.put_nowait(log_entry)
             except asyncio.QueueFull:

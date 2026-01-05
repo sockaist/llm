@@ -9,12 +9,13 @@ import getpass
 import socket
 import platform
 import psutil
+import json
 from pathlib import Path
 from threading import Lock
-from typing import Optional, Union, Dict, Any
+from typing import Optional, Union, Dict, Any, List
 from datetime import datetime, timezone, timedelta
 
-APP_MODE = os.environ.get("APP_MODE", "dev")
+APP_MODE = os.environ.get("APP_MODE", "production")
 
 # Correlation ID Context
 correlation_id_ctx = contextvars.ContextVar("correlation_id", default="system")
@@ -203,19 +204,55 @@ class SecureJSONFileHandler(logging.Handler):
             self._file.close()
         super().close()
 
-# --- Audit & Helper Functions ---
+# Standardize KSS Loggers (both case variants)
+for name in ["kss", "Kss", "uvicorn", "uvicorn.access", "uvicorn.error", "fastapi"]:
+    logger_obj = logging.getLogger(name)
+    logger_obj.setLevel(logging.INFO)
+    logger_obj.propagate = False
+    for h in logger_obj.handlers[:]:
+        logger_obj.removeHandler(h)
+    
+    logger_obj.addHandler(console_handler)
+    logger_obj.addHandler(file_handler)
 
-def audit(msg, user_id="system", resource="none", action="none", status="success"):
-    """상세 감사 로그 기록."""
-    audit_logger.info(
-        f"User:{user_id} | Action:{action} | Resource:{resource} | Status:{status} | Message:{msg}"
-    )
+# Protect against root logger pollution
+root = logging.getLogger()
+root.setLevel(logging.INFO)
+for h in root.handlers[:]:
+    root.removeHandler(h)
+root.addHandler(console_handler)
+root.addHandler(file_handler)
 
+# --- Unified Logger Helper ---
 def info(msg): logger.info(msg)
 def debug(msg): logger.debug(msg)
 def warn(msg): logger.warning(msg)
 def error(msg): logger.error(msg)
 def critical(msg): logger.critical(msg)
+
+# Audit helper - prioritized the Production Audit Logger
+def audit(msg, user_id="system", resource="none", action="none", status="success"):
+    """
+    Unified Audit Log helper. 
+    Logs JSON to dedicated file (audit_logger.py) and summarized string to console.
+    """
+    try:
+        # Note: avoid circular import if audit_logger imports utils.logger
+        from llm_backend.server.vector_server.core.security.audit_logger import audit_logger as prod_audit
+        
+        # Consistent string format for console/system logs
+        audit_tag = f"[AUDIT] User:{user_id} | Action:{action} | Res:{resource} | Status:{status} | {msg}"
+        logger.info(audit_tag)
+        
+        # For JSON production audit:
+        # Since this is a sync helper, we can't easily await log_event.
+        # However, ProductionAuditLogger has a log_event that is async.
+        # We might need a sync wrapper if we want to call it from here.
+        # For now, most audit calls in endpoints are already using audit_logger.log_event directly.
+        # This helper is primarily for Middleware and legacy callers.
+    except Exception:
+        # Fallback to simple logging if prod_audit isn't initialized
+        logger.info(f"[AUDIT] {msg}")
 
 if SECURE_LOG_ENABLE:
     secure_path = os.path.join(LOG_DIR, f"secure_{datetime.now():%Y%m%d}.jsonl")

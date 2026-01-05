@@ -11,6 +11,18 @@ from llm_backend.utils.logger import logger
 
 # Celery Import (Lazy or Top-level)
 from llm_backend.server.vector_server.worker.tasks import process_job_task
+from prometheus_client import Gauge
+
+# --- Prometheus Metrics ---
+JOB_QUEUE_GAUGE = Gauge("vortex_job_queue_count", "Number of jobs in queue")
+JOB_ACTIVE_GAUGE = Gauge("vortex_job_active_count", "Number of active jobs")
+JOB_FAILED_GAUGE = Gauge("vortex_job_failed_count", "Number of failed jobs")
+JOB_COMPLETED_GAUGE = Gauge("vortex_job_completed_count", "Number of completed jobs")
+
+# --- Advanced Monitoring Metrics ---
+LAST_SNAPSHOT_GAUGE = Gauge("vortex_last_snapshot_timestamp", "Timestamp of the last successful snapshot")
+LAST_BM25_GAUGE = Gauge("vortex_last_bm25_training_timestamp", "Timestamp of the last successful BM25 training")
+USER_COUNT_GAUGE = Gauge("vortex_user_count_total", "Total number of users by role", ["role"])
 
 # --- DB 설정 ---
 DB_PATH = os.getenv("JOBS_DB_PATH", "./.vortex/db/jobs.db")
@@ -165,3 +177,57 @@ def list_jobs(limit: int = 20) -> Dict[str, Any]:
         )
         rows = [dict(r) for r in cursor.fetchall()]
         return {"counts": counts, "jobs": rows}
+
+def collect_metrics():
+    """Update Prometheus metrics from DB stats."""
+    try:
+        with _get_connection() as conn:
+            # Get counts by status
+            for status, gauge in [
+                ("queued", JOB_QUEUE_GAUGE),
+                ("running", JOB_ACTIVE_GAUGE),
+                ("failed", JOB_FAILED_GAUGE),
+                ("completed", JOB_COMPLETED_GAUGE)
+            ]:
+                c = conn.execute(
+                    "SELECT COUNT(*) FROM jobs WHERE status = ?", (status,)
+                ).fetchone()[0]
+                gauge.set(c)
+    except Exception as e:
+        logger.error(f"[Metrics] Failed to collect job metrics: {e}")
+
+def collect_advanced_metrics():
+    """Update advanced metrics (timestamps, user counts)."""
+    try:
+        with _get_connection() as conn:
+            # 1) Latest Snapshot
+            cursor = conn.execute(
+                "SELECT updated_at FROM jobs WHERE (type = 'create_snapshot' OR type = 'snapshot_cycle') AND status = 'completed' ORDER BY updated_at DESC LIMIT 1"
+            )
+            row = cursor.fetchone()
+            if row:
+                LAST_SNAPSHOT_GAUGE.set(row["updated_at"])
+
+            # 2) Latest BM25
+            cursor = conn.execute(
+                "SELECT updated_at FROM jobs WHERE type = 'bm25_retrain' AND status = 'completed' ORDER BY updated_at DESC LIMIT 1"
+            )
+            row = cursor.fetchone()
+            if row:
+                LAST_BM25_GAUGE.set(row["updated_at"])
+
+        # 3) User Counts
+        from vectordb.core.security.db import UserManager
+        manager = UserManager()
+        users = manager.list_users()
+        
+        counts = {}
+        for user in users:
+            role = user.role
+            counts[role] = counts.get(role, 0) + 1
+        
+        for role, count in counts.items():
+            USER_COUNT_GAUGE.labels(role=role).set(count)
+
+    except Exception as e:
+        logger.error(f"[Metrics] Failed to collect advanced metrics: {e}")

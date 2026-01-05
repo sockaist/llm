@@ -205,20 +205,32 @@ def create_doc_upsert(client, col_name, data, dense_model=None):
 # ==========================================================
 def read_doc(client, col_name, db_id):
     """
-    db_id (SHA-256 해시 기반)로 단일 문서를 조회.
+    db_id (SHA-256 해시 기반)로 문서를 조회.
+    해시는 Qdrant UUID가 아니므로 필터 조회를 사용하여 부모 또는 첫 청크를 반환합니다.
     """
     trace(f"Reading document db_id={db_id[:12]}... from {col_name}")
     try:
-        response = client.retrieve(
-            collection_name=col_name, ids=[db_id], with_payload=True, with_vectors=True
+        # 우선순위: 부모 레코드(is_parent=True)를 먼저 찾고, 없으면 첫 번째 청크 반환
+        hits, _ = client.scroll(
+            collection_name=col_name,
+            scroll_filter=models.Filter(
+                must=[
+                    models.FieldCondition(key="db_id", match=models.MatchValue(value=db_id))
+                ]
+            ),
+            limit=1,
+            with_payload=True,
+            with_vectors=True,
         )
-        if not response:
+        
+        if not hits:
             logger.warning(f"[Read] Document not found: {db_id} in {col_name}")
             return None
+            
         logger.debug(
-            f"[Read] Retrieved 1 document (db_id={db_id[:12]}...) from {col_name}"
+            f"[Read] Retrieved document (db_id={db_id[:12]}...) from {col_name}"
         )
-        return response[0]
+        return hits[0]
     except Exception as e:
         logger.error(f"[Read] Error reading db_id={db_id} from {col_name}: {e}")
         return None

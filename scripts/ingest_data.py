@@ -125,7 +125,7 @@ async def main():
     parser = argparse.ArgumentParser(description="Ingest data into VectorDB")
     parser.add_argument("--path", required=True, help="Path to file or directory of data")
     parser.add_argument("--collection", required=True, help="Target collection name (Tenant ID in VectorDB)")
-    parser.add_argument("--batch-size", type=int, default=10, help="Batch size for ingestion")
+    parser.add_argument("--batch-size", type=int, default=100, help="Batch size for ingestion")
     parser.add_argument("--api-url", default="http://localhost:8000", help="VectorDB API URL")
     parser.add_argument("--api-key", help="Vector API Key (optional if in env)")
 

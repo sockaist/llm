@@ -4,6 +4,7 @@ import sys
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request, Depends
+from fastapi.middleware.cors import CORSMiddleware
 
 from llm_backend.server.vector_server.api import (
     endpoints_query,
@@ -71,7 +72,7 @@ async def lifespan(app: FastAPI):
     scheduler.start_scheduler()
 
     logger.info("[Startup] Vector Server Ready")
-    logger.info("Swagger UI available at: http://127.0.0.1:8001/docs")
+    logger.info("[Startup] Swagger UI available at: http://127.0.0.1:8001/docs")
 
     yield
 
@@ -135,11 +136,18 @@ app = FastAPI(
 )
 
 # Add Middleware (Last added runs FIRST)
-# Order: SecurityMiddleware (outer) -> AuditMiddleware (inner)
+# Order: CORSMiddleware (outermost) -> SecurityMiddleware -> AuditMiddleware (innermost)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For production, restrict this to specific domains if possible
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.add_middleware(AuditMiddleware)
 app.add_middleware(SecurityMiddleware, access_manager=access_manager, config=config)
 
-logger.info("Security middleware initialized")
+logger.info("[Security] middleware initialized")
 
 
 # -----------------------------
@@ -182,6 +190,53 @@ app.include_router(endpoints_admin.router)
 app.include_router(endpoints_feedback.router)
 app.include_router(endpoints_dictionary.router)
 app.include_router(endpoints_logs.router)
+
+# -----------------------------
+# Swagger UI Security Configuration
+# -----------------------------
+from fastapi.openapi.utils import get_openapi
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    
+    openapi_schema = get_openapi(
+        title="Vector Server",
+        version="2.0",
+        description="Vector Database & Search Engine API",
+        routes=app.routes,
+    )
+    
+    # Add Security Schemes
+    if "components" not in openapi_schema:
+        openapi_schema["components"] = {}
+        
+    openapi_schema["components"]["securitySchemes"] = {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "x-api-key",
+            "description": "Enter your admin API Key"
+        },
+        "BearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "description": "Enter JWT token (for users)"
+        }
+    }
+    
+    # Apply Global Security (Optional: Applies to all endpoints by default)
+    # This makes the lock icon closed by default if key/token is present
+    openapi_schema["security"] = [
+        {"ApiKeyAuth": []},
+        {"BearerAuth": []}
+    ]
+    
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
 
 # Enable Prometheus Metrics
 instrumentator.instrument(app).expose(app)

@@ -30,6 +30,10 @@ class SecurityMiddleware(BaseHTTPMiddleware):
         Intercepts every HTTP request, performs authentication,
         and injects user context into request.state.
         """
+        # 0. Bypass for CORS preflight (OPTIONS)
+        if request.method == "OPTIONS":
+            return await call_next(request)
+
         # 1. Check for master API key in header (Service Auth)
         x_api_key = request.headers.get("x-api-key")
         master_key = os.getenv("VECTOR_API_KEY")

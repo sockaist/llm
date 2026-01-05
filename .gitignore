@@ -70,6 +70,7 @@ build/
 
 # Qdrant
 qdrant_data/
+qdrant_data_corrupt*/
 storage/
 *.sst
 !qdrant_data/aliases/
@@ -79,7 +80,10 @@ storage/
 logs/
 *.log
 
-# AI/ML Models & Artifacts
+# Data & AI/ML Models
+data/
+*.snapshot
+*.zip
 *.safetensors
 *.pth
 *.pt

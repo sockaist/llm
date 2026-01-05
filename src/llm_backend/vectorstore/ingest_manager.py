@@ -69,6 +69,9 @@ def upsert_batch_documents(
                 if not isinstance(content, str) or not content.strip():
                     continue
 
+                # Document-level ID (before chunking)
+                doc_db_id = make_doc_hash_id_from_json(d)
+                
                 chunks = chunker.split_text(content)
                 for i, chunk_text in enumerate(chunks):
                     chunk_doc = d.copy()
@@ -78,10 +81,10 @@ def upsert_batch_documents(
                             "chunk_index": i,
                             "total_chunks": len(chunks),
                             "is_chunk": True,
+                            "db_id": doc_db_id,
+                            "parent_id": d.get("id") or doc_db_id,
                         }
                     )
-                    if "id" in d:
-                        chunk_doc["parent_id"] = d["id"]
                     texts.append(chunk_text)
                     valid_docs.append(chunk_doc)
 
@@ -110,8 +113,9 @@ def upsert_batch_documents(
             # Create Points
             points = []
             for i, doc in enumerate(valid_docs):
-                db_id = make_doc_hash_id_from_json(doc)
-                point_id = generate_point_id(db_id)
+                db_id = doc.get("db_id")
+                # Point ID must be unique across chunks, but deterministic per chunk
+                point_id = generate_point_id(db_id, chunk_index=doc.get("chunk_index", 0))
 
                 b_vec = bm25_vecs_list[i]
                 bm25_sv = models.SparseVector(
@@ -131,7 +135,7 @@ def upsert_batch_documents(
                         payload={
                             **doc,
                             "id": doc.get("id", db_id),
-                            "parent_id": doc.get("id", db_id),
+                            "parent_id": doc.get("parent_id", db_id),
                             "db_id": db_id,
                             "tenant_id": doc.get("tenant_id", "public"),
                             "access_level": doc.get("access_level", 1),
@@ -169,14 +173,20 @@ def upsert_folder(
         logger.warning(f"Folder not found: {folder}")
         return
 
-    files = [f for f in os.listdir(folder) if f.endswith(".json")]
+    # Recursive File Finding
+    files = []
+    for root, _, filenames in os.walk(folder):
+        for filename in filenames:
+            if filename.endswith(".json") or filename.endswith(".jsonl"):
+                files.append(os.path.join(root, filename))
+
     total = len(files)
     if total == 0:
-        logger.warning(f"No JSON files found in {folder}")
+        logger.warning(f"No JSON/JSONL files found in {folder} (recursively)")
         return
 
     logger.info(
-        f"Upserting {total} JSON files into '{collection}' (Batch Size: {batch_size})"
+        f"Upserting {total} files from {folder} into '{collection}' (Batch Size: {batch_size})"
     )
 
     batch_data = []
@@ -184,20 +194,35 @@ def upsert_folder(
     fail_count = 0
 
     # Process files
-    for idx, f in enumerate(files, 1):
+    for idx, file_path in enumerate(files, 1):
         try:
-            file_path = os.path.join(folder, f)
+            current_file_docs = []
+            
             with open(file_path, "r", encoding="utf-8") as fp:
-                data = json.load(fp)
-                if isinstance(data, list):
-                    batch_data.extend(data)
+                # Handle JSONL
+                if file_path.endswith(".jsonl"):
+                    for line in fp:
+                        if line.strip():
+                            current_file_docs.append(json.loads(line))
+                # Handle JSON
                 else:
-                    batch_data.append(data)
+                    data = json.load(fp)
+                    if isinstance(data, list):
+                        current_file_docs.extend(data)
+                    else:
+                        current_file_docs.append(data)
 
-            if len(batch_data) >= batch_size:
-                succeeded = upsert_batch_documents(manager, collection, batch_data)
+            # Add to batch
+            batch_data.extend(current_file_docs)
+
+            # Flush if batch is full
+            while len(batch_data) >= batch_size:
+                # Slice logic to respect exact batch size if needed
+                chunk = batch_data[:batch_size]
+                batch_data = batch_data[batch_size:]
+                
+                succeeded = upsert_batch_documents(manager, collection, chunk)
                 success_count += succeeded
-                batch_data = []
 
                 if progress_callback:
                     progress = (idx / total) * 100
@@ -205,7 +230,7 @@ def upsert_folder(
 
         except Exception as exc:
             fail_count += 1
-            logger.error(f"[Upsert Fail] File read error {f}: {exc}")
+            logger.error(f"[Upsert Fail] File read error {file_path}: {exc}")
 
     # Final Flush
     if batch_data:
@@ -352,17 +377,17 @@ def update_payload(
 def delete_document(manager, col: str, db_id: str) -> bool:
     trace(f"delete_document({col}, db_id={db_id[:12]}...)")
     try:
-        # CRITICAL FIX: The point is stored under a deterministic UUID derived from db_id.
-        # We must use the same UUID to delete it.
-        # db_id is the string hash, point_id is the UUID.
-        point_id = generate_point_id(db_id)
-
+        # Use Filter to delete ALL chunks and potential parent sharing this db_id
         manager.client.delete(
             collection_name=col,
-            points_selector=models.PointIdsList(points=[point_id]),
+            points_selector=models.Filter(
+                must=[
+                    models.FieldCondition(key="db_id", match=models.MatchValue(value=db_id))
+                ]
+            ),
         )
         logger.info(
-            f"[Delete] Deleted db_id={db_id[:12]}...(UUID={point_id}) from '{col}'"
+            f"[Delete] Deleted document (including all chunks) with db_id={db_id[:12]}... from '{col}'"
         )
         return True
     except Exception as exc:  # noqa: BLE001

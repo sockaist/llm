@@ -517,7 +517,7 @@ def run_query_pipeline(
         logger.info(f"[Fallback] Recovered {len(merged)} docs without filters.")
 
     time.perf_counter()
-    merged.sort(key=lambda x: x["avg_score"], reverse=True)
+    merged.sort(key=lambda x: x.get("score"), reverse=True)
 
     # --- Phase 4: Python-side Hard Filtering ---
     if temporal_cfg["explicit_year"]:
@@ -570,7 +570,7 @@ def run_query_pipeline(
     ):
         # If confidence is high, just return fused results (with 'score' aliased)
         for d in merged:
-            d["score"] = d.get("avg_score", 0.0)
+            d["score"] = d.get("score", 0.0)
         results = _augment_parent_context(manager, collections, merged)
         results = _decrypt_results(results, user_context)
         get_cache().set(cache_key, results, ttl=3600)
@@ -674,7 +674,8 @@ def run_query_pipeline(
                 "text": r.get("text"),
                 "score": float(final_score),
                 "rerank_score": float(r_score_raw),
-                "avg_score": meta.get("avg_score", 0.0),
+                "max_score": meta.get("max_score", 0.0),
+                "avg_score": meta.get("avg_score", 0.0), # Optional debug
                 "collection": meta.get("collection", manager.default_collection),
                 "payload": meta.get("payload", {}),
                 "cosine_similarity": meta.get("cosine_similarity"),

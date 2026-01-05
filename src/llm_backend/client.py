@@ -48,9 +48,9 @@ class VectorDBClient:
         }
         # wait param not currently used in API payload but kept for SDK consistency
         
-        # Endpoint: /batch/upsert_batch (Async Job Queue)
+        # Endpoint: /batch/ingest (Async Job Queue)
         async with httpx.AsyncClient(base_url=self.base_url, headers=self.headers, timeout=30.0) as client:
-            resp = await client.post("/batch/upsert_batch", json=payload)
+            resp = await client.post("/batch/ingest", json=payload)
             resp.raise_for_status()
             return resp.json() # Returns { "status": "queued", "job_id": "...", ... }
 

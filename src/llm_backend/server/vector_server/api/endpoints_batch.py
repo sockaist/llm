@@ -7,7 +7,6 @@ from llm_backend.server.vector_server.core.queue_manager import (
     list_jobs,
 )
 from llm_backend.server.vector_server.models.request_models import (
-    BatchUpsertRequest,
     AsyncBatchUpsertRequest,
     AsyncCreateCollectionRequest,
 )
@@ -25,44 +24,10 @@ logger.info("!!! ENDPOINTS_BATCH MODULE LOADED FROM DISK !!!")
 router = APIRouter(prefix="/batch", tags=["Batch Jobs"])
 
 
-@router.post("/upsert", response_model=BatchResponse)
-async def batch_upsert(
-    req: BatchUpsertRequest,
-    request: Request,
-    user_context: dict = Depends(get_user_context_v2),
-):
-    try:
-        logger.info(
-            f"!!! ENDPOINT HIT [batch_upsert]: user_context={user_context} !!!"
-        )
-        # Access Control
-        access_manager = request.state.access_manager
-        allowed, reason = access_manager.check_permission(
-            user_context, {"collection": req.collection}, Action.WRITE
-        )
-        if not allowed:
-            raise HTTPException(status_code=403, detail=f"Access Denied: {reason}")
-
-        job_id = enqueue_job(
-            job_type="batch_upsert",
-            payload={"folder": req.folder, "collection": req.collection},
-        )
-        logger.info(
-            f"[Batch:/upsert] Job queued (id={job_id[:8]}) for {req.collection}"
-        )
-        return BatchResponse(
-            status="queued",
-            job_id=job_id,
-            message=f"Batch upsert for '{req.collection}' queued successfully",
-        )
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"[Batch:/upsert] Error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/upsert_batch", response_model=BatchResponse)
+
+@router.post("/ingest", response_model=BatchResponse, summary="Batch Ingest Documents (Async)")
 async def upsert_batch_docs(
     req: AsyncBatchUpsertRequest,
     request: Request,
@@ -70,6 +35,7 @@ async def upsert_batch_docs(
 ):
     """
     Queue a specific list of documents for asynchronous insertion.
+    Use this for bulk data ingestion from client-side scripts.
     """
     try:
         logger.info(
@@ -78,7 +44,7 @@ async def upsert_batch_docs(
 
         # Access Control
         if not hasattr(request.state, "access_manager"):
-            logger.critical("!!! ACCESS MANAGER MISSING IN STATE !!!")
+            logger.error("!!! ACCESS MANAGER MISSING IN STATE !!!")
             raise HTTPException(500, "Access Manager missing")
 
         access_manager = request.state.access_manager

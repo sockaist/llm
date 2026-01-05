@@ -34,9 +34,15 @@ class JSONProcessor:
             if found_content:
                 normalized["content"] = found_content
             else:
-                # Last resort: Flatten values? Or just fail?
-                # For now, let's keep it empty and let the ingest manager skip it if strictly required.
-                pass
+                # Fallback: Serialize the entire document to string
+                # This ensures custom JSONs without explicit 'content' key are still indexed.
+                # We exclude system keys if possible, but dumping everything is safest.
+                try:
+                    import json
+                    # Sort keys for deterministic content
+                    normalized["content"] = json.dumps(doc, ensure_ascii=False, sort_keys=True)
+                except Exception:
+                    pass
 
         # 2. Extract Title
         if "title" not in normalized:
