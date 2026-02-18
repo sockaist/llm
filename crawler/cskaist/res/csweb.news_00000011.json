@@ -1,0 +1,8 @@
+{
+  "title": "KAIST 박진아 교수팀, ICCV 2025 BISCUIT 워크숍서 BEST 논문 수상",
+  "date": "2025-10-31 00:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11622&page=1&skey=subject&svalue=&menu=83",
+  "content": "의료 영상 생성형 AI, 생물학적 신뢰성의 한계를 체계적으로 분석\n향후 의료 AI 신뢰성 평가의 새로운 기준 제시\nKAIST 전산학부 안수현 박사과정\n(지도교수: 박진아) 연구팀이\n의료 영상 생성형 인공지능(AI)의 생물학적 신뢰성(Biological Trustworthiness)\n을 평가하는 새로운 연구를 발표했다.\n해당 논문은 컴퓨터 비전 분야 최고 권위 학회인\nICCV 2025의 BISCUIT 워크숍\n(Biomedical Image and Signal Computing for Unbiasedness, Interpretability, and Trustworthiness)에서\nBest Paper\n로 선정됐다.\n의료 영상 AI, '보기 좋은 그림'만으로는 충분하지 않다\n최근 확산 모델(Diffusion)과 생성적 적대 신경망(GAN) 기반 AI가 뇌 MRI 영상을 사실적으로 합성하며 주목받고 있다. 그러나 지금까지 연구는 시각적 품질에 집중해왔을 뿐,\n질병이나 성별 등 생물학적으로 중요한 변이를 정확히 반영하는지\n에 대한 검증은 부족했다.\n생물학적 신뢰성의 정량적 평가\n연구팀은 실제 뇌 MRI 데이터를 활용해 성별 및 알츠하이머병에 따른 해부학적 변이를 정량화하고, 두 가지 대표적 생성 모델(BrLP, BrainSynth)의 재현성을 비교 분석했다. 그 결과, 두 모델 모두 시각적 품질은 우수했지만\n생물학적 신뢰성에서는 한계를 드러냈다\n.\n예컨대, 해마 위축(hippocampus atrophy)이나 성별 구조 차이(sex dimorphism)를 제대로 반영하지 못한 사례가 보고됐다. 연구팀은 기존의 FID와 같은 시각적 품질 지표로는 이러한 문제를 포착할 수 없다고 강조했다.\n왜곡 원인 분석 및 해결 방향 제시\n생성형 AI가 생물학적 변이를 왜곡하는 원인은 다음과 같이 분석됐다:\n데이터 단계:\n성별·연령 등 인구 집단의 불균형이 학습 편향 유발\n전처리 단계:\n강한 정규화가 실제 형태 차이를 약화\n모델 단계:\nVQ-GAN 및 BrLP의 구조적 한계로 세밀한 정보 손실\n이에 따라 연구팀은 의료용 생성형 AI의 신뢰성을 높이기 위해\n데이터 편향 보정과 생물학적 제약 기반 조건 부여·평가 체계 구축\n이 필요하다고 밝혔다.\n의의와 향후 전망\n이번 연구는\n생성형 AI가 시각적 품질뿐 아니라 생물학적 정보까지 정밀하게 재현해야 한다\n는 점을 처음으로 실증적으로 입증했다.\n향후 이 연구는 의료 AI 신뢰성 평가 프레임워크로 확장돼, 질병 연구, 데이터 증강, AI 공정성 평가 등 다양한 의료 AI 분야에 기여할 전망이다.\n논문 정보\n제목:\nAre Medical Image Generative AIs Biologically Trustworthy?\n저자:\nSuhyun Ahn, Wonjung Park, Jinah Park\n학회:\nICCV 2025, 1st Workshop on BISCUIT\n후원:\n과학기술정보통신부·IITP / WISET 젠더혁신연구센터",
+  "tag": "csweb.news",
+  "id": 17
+}

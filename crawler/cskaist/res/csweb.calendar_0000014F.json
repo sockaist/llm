@@ -1,0 +1,9 @@
+{
+  "title": "[KAIST SoC Colloquium] 11／10 (Mon) 4：00 pm, Junghoon Kim (UNIST)",
+  "date": "2025-11-10 16:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=11634&page=1&skey=&svalue=&menu=86",
+  "content": "Speaker: Junghoon Kim (김정훈) Title: Discovering Cohesive Subgraphs: From Traditional Algorithms to Quantum Approaches Location: E3-1, 1501 (Offline) Language: English Abstract: Graphs are a powerful tool for analyzing complex relationships between entities and can effectively model various large-scale networks such as social networks, the internet, and financial transaction networks. This talk will introduce key concepts including cohesive subgraph discovery, graph decomposition, and query-based community search. It will also discuss efficient algorithms and dynamic update techniques for large-scale graph processing. Finally, the presentation will briefly explore the potential of identifying subgraphs using quantum algorithms. Bio: Junghoon Kim is an Assistant Professor in the Department of Computer Science and Engineering at UNIST, South Korea. He received his Ph.D. in Computer Science from Nanyang Technological University in 2022. His research interests include data mining, data management, and social network analysis, with a particular focus on scalable algorithms for subgraph discovery in real-world networks.",
+  "location": " E3-1 1501 (Offline)",
+  "tag": "csweb.calendar",
+  "id": 335
+}

@@ -1,0 +1,8 @@
+{
+  "title": "사진 2∼3장만으로 고품질 3D 복원… KAIST, 새로운 영상 처리 기술 ＇SHARE＇ 개발",
+  "date": "2025-11-10 00:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11646&page=1&skey=subject&svalue=&menu=83",
+  "content": "(왼쪽부터) 연구에 참여한 KAIST 이주민 박사과정생, 김우재 박사과정생, 김태연 석사과정생, 나영주 박사과정생, 한규범 박사과정생, 윤성의 교수\nICIP 2025에서 최고 학생논문상 수상… 별도 장비 없이 정밀한 3D 시뮬레이션 실현\n전산학부 윤성의 교수팀, 공간 정보 자율 추론 기반 3D 복원 기술로 산업 활용 기대\nKAIST 전산학부 윤성의 교수 연구팀이 정밀한 카메라 위치 정보 없이도 일반 영상만으로 고품질 3D 장면을 복원할 수 있는 기술 ‘SHARE(Shape-Ray Estimation)’를 개발했다.\n기존 3D 시뮬레이션은 라이다(LiDAR), 특수 장비, 수천 장의 사진, 정밀한 카메라 위치 정보가 필요했지만, 이 기술은 단 2~3장의 일반 사진만으로 현실 환경을 정밀한 3D 공간으로 복원할 수 있다. 사물의 형태와 카메라의 시선 방향을 동시에 추정해 별도 보정 없이도 빠르고 정확한 3D 모델 생성을 실현한다.\nSHARE는 2025년 국제 이미지 처리 학회(IEEE ICIP 2025)에서 발표돼, 전 세계 643편 중 단 1편에게만 수여되는 ‘최고 학생논문상(Best Student Paper Award)’을 수상했다. 이번 연구에는 나영주 박사과정, 김태연 석사과정 학생이 공동 제1저자로 참여했다.\n이번 성과는 과학기술정보통신부 SW스타랩 사업의 지원을 받아 수행됐다.\n논문:\narXiv 링크\nICIP 공식 수상 소식:\nLinkedIn 링크\n관련기사\nhttps://www.veritas-a.com/news/articleView.html?idxno=580899\nhttps://v.daum.net/v/20251106104438057\nhttps://www.dongascience.com/news.php?idx=74941",
+  "tag": "csweb.news",
+  "id": 13
+}

@@ -22,7 +22,6 @@ def init_recreate_collections(client):
             }
         )
 
- 
 def init_upsertall(client, path):
     # path 아래 있는 모든 폴더의 json 파일을 DB에 업로드
     

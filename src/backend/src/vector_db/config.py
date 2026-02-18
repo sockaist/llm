@@ -29,8 +29,8 @@ FORMATS = {
     "csweb.ai": ["title","date","link","content","id"], 
     "csweb.profs": ["name","field","major","degree","web","mail","phone","office","etc","id"], 
     "csweb.admin": ["name","position","work","mail","phone","office","etc","id"],
-    "csweb.refer": ["name","web","etc","id"], 
-    "notion.marketing" : ["title","date","start","finish","contents","images","url","id"],
-    "notion.notice" : ["title","date","start","finish","contents","images","url","id"]
-    # "drive" : ["date","link","content","id"] # for pdf, word files uploaded from drive
+    "csweb.refer": ["name","web","etc","id"],
+    "notion.marketing" : ["title","date","start","finish","content","images","url","id"],
+    "notion.notice" : ["title","date","start","finish","content","images","url","id"],
+    "drive" : ["date","link","content","id"] # for pdf, word files uploaded from drive
 }

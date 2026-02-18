@@ -1,0 +1,8 @@
+{
+  "title": "KAIST 전산학부 나영주·김태연, ICIP 2025 최우수 학생논문상 수상",
+  "date": "2025-09-29 00:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11583&page=1&skey=subject&svalue=&menu=83",
+  "content": "정밀한 카메라 위치 없이도 3D 복원 가능하게 한 'SHARE' 기술로 세계적 주목\n전 세계 643편 중 단 1편만 선정된 최고의 학생논문…윤성의 교수 연구실 성과\n지난 9월 22일 KAIST 전산학부 윤성의 교수 연구실 소속인 박사과정 나영주, 석사과정 김태연 학생이 세계적 이미지 처리 학회인 IEEE 국제 이미지 처리 학회(ICIP 2025)에서 최우수 학생논문상(Best Student Paper Award)을 수상했다.\n이 상은 올해 채택된 643편 중 단 한 편에게만 주어지는 영예로, 수상률은 0.16％에 불과하다.\n수상 논문 “Pose-free 3D Gaussian Splatting via Shape-Ray Estimation”은 복잡한 사전 정보 없이 일반 영상만으로 고품질 3D 장면을 복원하는 새로운 기술인 SHARE(Shape-Ray Estimation)을 제안한다.\n기존 기술들이 정밀한 카메라 위치 정보(포즈)에 의존했던 한계를 넘어, SHARE는 영상만으로 장면 구조와 카메라 방향을 동시에 추정함으로써 정확한 3D 복원을 실현했다.\n특히 이 기술은 별도의 최적화 과정 없이도 빠르고 정밀한 복원이 가능해, 실제 응용에서도 효율성과 범용성이 높다는 평가를 받았다.\n다양한 실제 환경 데이터셋에서도 기존 방식 대비 뛰어난 성능을 입증했다.\n이번 연구는 윤성의 교수 연구실에서 진행됐으며, 이주민, 한규범, 김우재 연구원이 공동 저자로 참여했다.\n논문 보기:\nhttps://arxiv.org/abs/2505.22978\n수상 정보:\nhttps://www.linkedin.com/posts/ieeeicip_congratulations-to-the-icip-2025-best-activity-7374146976449335297-6hXz",
+  "tag": "csweb.news",
+  "id": 24
+}

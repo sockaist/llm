@@ -1,0 +1,8 @@
+{
+  "title": "스마트홈이 마음 읽는다… KAIST, IoT로 정신건강 예측하는 기술 개발",
+  "date": "2025-10-22 00:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11601&page=1&skey=subject&svalue=&menu=83",
+  "content": "스마트홈이 마음 읽는다… KAIST, IoT로 정신건강 예측하는 기술 개발\n집안 센서만으로 스트레스·우울 변화 감지\nAI 기반 원격 정신건강 관리로 확장 기대\n왼쪽부터 이번 연구를 수행한 이찬희 KAIST 전산학부 박사과정생, 이의진 전산학부 교수, 이현수 전산학부 교수, 고영지 전산학부 박사과정생\n이의진 KAIST 전산학부 교수 연구팀이 사물인터넷(IoT) 센서를 활용해 사람의 정신건강 상태를 정밀하게 분석할 수 있는 기술을 개발했다. 별도 기기를 착용하지 않아도 집 안에 설치된 센서를 통해 스트레스, 우울, 불안 같은 정신 상태를 추적할 수 있는 점이 핵심이다.\n연구팀은 청년 1인 가구 20세대를 대상으로 실제 가정 내 실증 실험을 진행했다. 4주간의 데이터를 분석한 결과, 수면 매트, 냉장고, 조명, 온도 센서 등 일상적인 기기에서 수집된 정보가 사용자의 정신건강 변화와 높은 상관관계를 보이는 것으로 나타났다. 스트레스가 심할수록 냉장고 문을 자주 여닫거나 수면 시간이 줄어드는 등 행동 패턴에 뚜렷한 변화가 나타났다.\n기존 스마트폰이나 웨어러블 기기 기반의 분석보다 정확도가 높다는 점에서, 향후 정신건강 관리 시스템에 큰 전환점을 가져올 수 있는 연구로 평가된다. 특히 가정 내에서 무의식적으로 발생하는 행동을 통해 사용자 스스로 자신의 상태를 파악하고, 필요시 집안 환경을 조정할 수 있다는 점에서 실용성이 크다.\n이 교수는 이번 기술을 기반으로 인공지능(AI)을 접목해 개인 맞춤형 정신건강 코칭과 원격 의료 시스템으로 확장해 나갈 계획이라고 밝혔다.\n이번 연구는 국제 저널 ‘ACM IMWUT’ 2025년 9월호에 게재됐으며, 과학기술정보통신부와 LG전자-KAIST 디지털 헬스케어 연구센터의 지원을 받아 수행됐다.\nKAIST 전산학부는 삶의 질을 높이는 기술 개발을 이어가고 있다.\n[기사 보기]\nhttps://www.chosun.com/economy/science/2025/10/21/G7B5DAJRQFEZLHPBVKZ7ITWPOE/\nhttps://www.mk.co.kr/news/it/11446938\n[논문 정보]\n“Harnessing Home IoT for Self‑tracking Emotional Wellbeing: Behavioral Patterns, Self‑Reflection, and Privacy Concerns” (Vol. 9, Issue 3, Article 96)\nPDF 원문:\nhttps://ic.kaist.ac.kr/publications/papers/koh2025harnessing.pdf",
+  "tag": "csweb.news",
+  "id": 20
+}

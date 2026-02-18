@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
 import os
@@ -45,7 +47,13 @@ def get_urls(url, save_path, tag):
         time.sleep(0.1)
         driver.execute_script("document.body.style.zoom='100%'")
         time.sleep(0.1)
-
+    
+    # 디렉토리가 없으면 생성
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    
+    if not os.path.exists(save_path):
+        with open(save_path, "w", encoding='utf-8') as f:
+            json.dump([], f, ensure_ascii=False, indent=2)
     with open(save_path, "r", encoding='utf-8') as f:
         save_data = json.load(f)
 
@@ -57,17 +65,16 @@ def get_urls(url, save_path, tag):
     # urls = []
 
     driver.get(url)
-    time.sleep(5)
+    time.sleep(20)
 
     scroll_bottom()  # 스크롤을 맨 아래로 내리기
-    time.sleep(1)
+    time.sleep(5)
 
     # 글 개수 확인
     childs = get_posts()
     last_index = int(childs[-1].get_attribute('data-index')) # 마지막 글의 data-index 확인 -> 개수 확인
 
     print("last index : ", last_index)
-
 
     # url 크롤링
     for i in range(last_index, -1, -1):
@@ -163,7 +170,7 @@ def clean_filename(filename):
     
     return cleaned_name
 
-def get_data(page_url):
+def get_data(page_url,type="notice"):
     driver.get(page_url)
     time.sleep(5)
 
@@ -176,8 +183,12 @@ def get_data(page_url):
     date_element = driver.find_elements(By.CSS_SELECTOR, "#notion-app > div > div:nth-child(1) > div > div:nth-child(1) > main > div > div > div.whenContentEditable > div > div.layout-content.layout-content-with-divider > div > div")[0]
     date = date_element.text
     date = date.split("\n")
-    start = date[1]
-    finish = date[3]
+    if type == "notice":
+        start = date[1] 
+        finish = date[3]
+    else:
+        start = date[5]
+        finish = date[7]
     data["start"] = start
     data["finish"] = finish
 
@@ -246,7 +257,7 @@ if __name__ == "__main__":
         
         print(f"Processing {title}")
         # print(f"URL: {url}")
-        data = get_data(url)
+        data = get_data(url,"notice")
 
         # 저장
         with open(file_name, "w", encoding='utf-8') as f:
@@ -268,7 +279,7 @@ if __name__ == "__main__":
         
         print(f"Processing {title}...")
         print(f"URL: {url}")
-        data = get_data(url)
+        data = get_data(url,"marketing")
 
         # 저장
         with open(file_name, "w", encoding='utf-8') as f:

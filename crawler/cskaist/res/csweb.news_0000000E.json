@@ -1,0 +1,8 @@
+{
+  "title": "KAIST, 보안 취약한 C 언어를 안전한 러스트로 자동 변환하는 핵심 기술 개발",
+  "date": "2025-11-10 00:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=news&bbs_sn=11645&page=1&skey=subject&svalue=&menu=83",
+  "content": "< (왼쪽부터)류석영 교수, 홍재민 연수연구원 >\n전산학부 류석영 교수 연구팀, CACM 11월호 표지 논문 선정\nKAIST 전산학부 류석영 교수 연구팀이 C 언어를 보다 안전한 러스트(Rust) 언어로 자동 변환하는 원천 기술을 개발해, 세계 최고 권위 학술지 CACM(Communications of the ACM) 11월호 표지 논문으로 선정됐다.\n이번 논문은 구조적으로 보안 취약점이 많은 C 언어를 자동으로 러스트로 변환하는 기술을 종합적으로 다뤘으며, 대규모 언어모델(LLM) 방식이 아닌 수학적으로 정확성을 증명할 수 있는 접근법을 통해 국제 학계로부터 주목받고 있다.\n류 교수 연구팀은 이와 관련한 자동 변환 기술을 2023~2024년 동안 ICSE, PLDI, ASE 등 세계적 소프트웨어 공학 및 프로그래밍 언어 분야 학회에 발표해왔다. 특히 뮤텍스(Mutex), 출력 파라미터(Output Parameter), 유니언(Union) 변환 등 핵심 기능별 자동화 기술을 세계 최초로 구현해냈다.\n또한, 2025년 ASE 학회에는 ▲C→러스트 자동 변환 ▲양자 프로그램 검증 기술 ▲웹어셈블리 자동 테스트 생성 기술(WEST, 수상작) ▲웹어셈블리 코드 자동 단순화 기술 등 총 4편의 논문이 채택돼 발표를 앞두고 있다.\n이번 논문의 제1저자인 홍재민 박사(KAIST 정보전자연구소)는 “우리가 개발한 기술은 LLM에 의존하지 않고 프로그래밍 언어 이론을 기반으로 수학적으로 정확성을 보장할 수 있다”고 밝혔다. 홍 박사는 2026년 3월 UNIST 컴퓨터공학과 조교수로 부임할 예정이다.\n이번 연구는 한국연구재단, 정보통신기획평가원(IITP), 삼성전자의 지원을 받아 수행됐다.\n논문 보기:\nAutomatically Translating C to Rust\n관련기사 보기\nhttps://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=54190\nhttps://m.boannews.com/html/detail.html?idx=140232&tab_type=1",
+  "tag": "csweb.news",
+  "id": 14
+}

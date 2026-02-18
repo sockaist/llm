@@ -1,0 +1,9 @@
+{
+  "title": "[KAIST SoC Colloquium] 11／24 (Mon) 4：00 pm, Shane McIntosh (University of Waterloo)",
+  "date": "2025-11-24 16:00:00",
+  "link": "https://cs.kaist.ac.kr/board/view?bbs_id=events&bbs_sn=11656&page=1&skey=&svalue=&menu=86",
+  "content": "Speaker: Shane McIntosh Title: On the Scope of the Software Build Automation Location: E3-1, 1501 (Offline) Language: English Abstract: Continuous Integration and Delivery (CI/CD) pipelines process change sets that modify system behaviour by (1) invoking build and test routines, providing timely feedback to team members about whether changes integrate cleanly; (2) updating deployment environments with new system behaviour; and (3) exposing new system behaviour to samples of a user population while monitoring and responding to changes in operational metrics. CI/CD pipelines are composed of software artifacts, and as such, are prone to imperfections, such as noise (e.g., misleading signals from CI/CD) and waste (e.g., invocations of the pipeline that do not provide value). In this talk, I will present research that characterizes and mitigates noise and waste in CI/CD pipelines, and present avenues for future work. Bio: Shane McIntosh received the Ph.D. degree from Queen's University, for which he was awarded the Governor General's Academic Gold Medal. He is an Associate Professor and the Ross & Muriel Cheriton Faculty Fellow at the University of Waterloo. He leads the Software Repository Excavation and Build Engineering Labs (Software REBELs). Prior to this, he was the Canada Research Chair in software build automation and an Assistant Professor with McGill University. In his research, he uses empirical methods to study software build systems, devops pipelines, and software quality.",
+  "location": " E3-1 1501 (Offline)",
+  "tag": "csweb.calendar",
+  "id": 338
+}
