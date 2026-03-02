@@ -55,12 +55,13 @@ def crawl_all():
     for i in ["seminarroom", "lectureroom", "meeting", "multipurpose", "welfarefacility"] :
         tmp = crawl_seminar_rooms(i)
         data += tmp
+    return data
 
 from csweb_save import save_items
 def crawler_room():
     data = crawl_all()
     save_items(data, res_dir="res")
-    print(f"{len(data)} items stored in res for csweb.ai for csweb.refer/")
+    print(f"{len(data)} items stored in res for csweb.refer/")
 
 if __name__ == "__main__":
     crawler_room()

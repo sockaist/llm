@@ -1,49 +1,47 @@
-# 챗봇 프로젝트
+# 챗봇 프로젝트 (llm)
 
 ## 소개
-이 프로젝트는 Google Gemini API를 활용한 챗봇 시스템입니다.
+이 프로젝트는 **OpenAI + PostgreSQL(pgvector)** 기반의 KAIST 전산학부 챗봇 백엔드와 데이터 파이프라인을 포함합니다.
 
-## 설치 방법
+## 요구사항
+- Python 3.10 이상
+- uv
+- PostgreSQL (+ `pgvector` extension)
 
-### 필수 요구사항
-- Python 3.9 이상
-- pip 또는 conda
-
-### 가상 환경 설정
-
-#### Conda 사용 시
+## 설치
 ```bash
-conda env create -f environment.yml
-conda activate socchatbot_env
+cd llm
+uv sync
 ```
 
-#### Pip 사용 시
-```bash
-python -m venv venv
-source venv/bin/activate  # macOS, Linux
-# venv\Scripts\activate  # Windows
-pip install -r requirements.txt
+## 환경 변수
+`.env` 파일에 아래 값을 설정하세요.
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+# 둘 중 하나 사용 (POSTGRES_DSN 우선)
+POSTGRES_DSN=host=localhost port=5432 dbname=postgres user=your_user password=your_password
+DATABASE_URL=postgresql://your_user:your_password@localhost:5432/your_db
+# 선택: 기본값 text-embedding-3-small
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 ```
 
-### 환경 변수 설정
-`.env.example` 파일을 복사하여 `.env` 파일을 만들고 필요한 환경 변수를 설정합니다:
-```bash
-cp .env.example .env
-```
-그런 다음 `.env` 파일을 편집하여 `GOOGLE_API_KEY` 등을 설정합니다.
+## 실행
 
-## 실행 방법
-프로젝트 루트 디렉토리에서 다음 명령어를 실행합니다:
+### API 서버 시작
 ```bash
-python start.py
+uv run python src/backend/run_server.py
 ```
 
-## 프로젝트 구조
-- `src/backend/`: 백엔드 코드
-  - `src/llm/`: LLM 관련 코드
-  - `src/utils/`: 유틸리티 모듈
-- `src/frontend/`: 프론트엔드 코드
-- `src/crawler/`: 크롤러 코드
-- `src/parser/`: 파서 코드
-- `data/`: 데이터 파일
-- `qdrant_data/`: Qdrant 벡터 데이터베이스 파일
+API 문서: `http://localhost:8000/docs`
+
+## 현재 프로젝트 구조 (핵심)
+- `src/backend/server/`: FastAPI 서버
+- `src/backend/llm/`: 입력검증/정규화, 답변 생성, 검색 연동
+- `src/backend/vector_db/`: pgvector 적재/검색
+- `crawler/`: csweb/notion/portal 크롤러
+- `data/`: 크롤링/정규화 데이터
+- `DB/`: 별도 관계형/KG 스키마 및 시드 SQL
+
+## 참고
+csweb 크롤러에서 공지 본문이 이미지뿐인 경우 파싱 경고가 발생할 수 있습니다.
