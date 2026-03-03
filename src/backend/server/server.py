@@ -99,9 +99,30 @@ async def api_info():
             "GET /": "루트 엔드포인트",
             "GET /health": "서비스 헬스체크",
             "GET /info": "API 정보 조회",
+            "GET /ontology": "온톨로지 계층 조회",
             "POST /chat": "채팅 응답 생성",
         },
     }
+
+
+@app.get("/ontology", response_model=Dict[str, Any])
+async def ontology(service: ChatBotService = Depends(get_chatbot_service)):
+    """
+    온톨로지 계층 조회 엔드포인트
+    """
+    try:
+        return service.get_ontology_tree()
+    except FileNotFoundError as e:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(e),
+        )
+    except Exception as e:
+        logger.error(f"온톨로지 조회 실패: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"온톨로지 조회 중 오류 발생: {str(e)}",
+        )
 
 
 @app.post("/chat", response_model=ChatResponse)

@@ -5,6 +5,7 @@ ChatBot 서비스 클래스
 
 from __future__ import annotations
 
+import json
 import os
 import re
 from pathlib import Path
@@ -425,6 +426,124 @@ class ChatBotService:
                 lines.append(f"snippet: {snippet}")
             lines.append("-" * 50)
         return "\n".join(lines).strip()
+
+    @staticmethod
+    def _to_non_negative_int(value: Any, default: int = 0) -> int:
+        try:
+            parsed = int(value)
+        except (TypeError, ValueError):
+            return max(0, default)
+        return max(0, parsed)
+
+    @staticmethod
+    def _normalize_entity_id(value: Any) -> str:
+        return " ".join(str(value or "").split()).strip()
+
+    @staticmethod
+    def _normalize_parent_id(value: Any) -> Optional[str]:
+        text = " ".join(str(value or "").split()).strip()
+        if not text:
+            return None
+        lowered = text.lower()
+        if lowered in {"none", "null"}:
+            return None
+        return text
+
+    def get_ontology_tree(self) -> Dict[str, Any]:
+        data_root = (self.project_root / "data").resolve()
+        if not data_root.exists():
+            raise FileNotFoundError(f"data 폴더가 없습니다: {data_root}")
+
+        entity_json_paths = sorted(data_root.rglob("entity.json"))
+        if not entity_json_paths:
+            raise FileNotFoundError("entity.json이 없습니다. rebuild.sh를 먼저 실행하세요.")
+
+        nodes_by_id: Dict[str, Dict[str, Any]] = {}
+        for entity_json_path in entity_json_paths:
+            try:
+                payload = json.loads(entity_json_path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            if not isinstance(payload, dict):
+                continue
+
+            entity_id = self._normalize_entity_id(payload.get("entity_id"))
+            if not entity_id:
+                continue
+
+            relative_path = " ".join(str(payload.get("relative_path", "")).split()).strip()
+            if not relative_path:
+                try:
+                    relative_path = entity_json_path.parent.relative_to(data_root).as_posix()
+                except ValueError:
+                    relative_path = "."
+                if relative_path == ".":
+                    relative_path = "."
+
+            node = {
+                "entity_id": entity_id,
+                "name": " ".join(str(payload.get("name", entity_json_path.parent.name)).split()).strip(),
+                "relative_path": relative_path,
+                "description": str(payload.get("description", "")).strip(),
+                "doc_count": self._to_non_negative_int(payload.get("doc_count"), default=0),
+                "parent_entity_id": self._normalize_parent_id(payload.get("parent_entity_id")),
+                "children": [],
+            }
+            nodes_by_id[entity_id] = node
+
+        if not nodes_by_id:
+            raise FileNotFoundError("유효한 entity.json을 찾지 못했습니다. rebuild.sh를 먼저 실행하세요.")
+
+        for node in nodes_by_id.values():
+            parent_id = node.get("parent_entity_id")
+            if parent_id and parent_id in nodes_by_id:
+                nodes_by_id[parent_id]["children"].append(node)
+
+        def sort_node_children(node: Dict[str, Any]) -> None:
+            node["children"].sort(
+                key=lambda child: (
+                    str(child.get("relative_path", "")),
+                    str(child.get("name", "")),
+                )
+            )
+            for child in node["children"]:
+                sort_node_children(child)
+
+        for node in nodes_by_id.values():
+            if node["children"]:
+                sort_node_children(node)
+
+        roots = [
+            node
+            for node in nodes_by_id.values()
+            if not node.get("parent_entity_id") or node.get("parent_entity_id") not in nodes_by_id
+        ]
+        roots.sort(key=lambda node: (str(node.get("relative_path", "")), str(node.get("name", ""))))
+
+        root_node = None
+        for node in roots:
+            if str(node.get("relative_path", "")) == ".":
+                root_node = node
+                break
+
+        if root_node is None and roots:
+            root_node = {
+                "entity_id": "virtual_root",
+                "name": "data",
+                "relative_path": ".",
+                "description": "",
+                "doc_count": 0,
+                "parent_entity_id": None,
+                "children": roots,
+            }
+
+        return {
+            "success": True,
+            "generated_at_kst": datetime.now(ZoneInfo("Asia/Seoul")).isoformat(),
+            "entity_count": len(nodes_by_id),
+            "root": root_node,
+            "top_level_entities": roots if root_node is None or root_node.get("entity_id") == "virtual_root" else root_node.get("children", []),
+        }
 
     def process_message(self, user_input: str, use_vector_search: bool = True) -> Dict[str, Any]:
         if not self.is_initialized:
