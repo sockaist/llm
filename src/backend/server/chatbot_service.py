@@ -21,6 +21,7 @@ from ..llm import (
     VectorSearcher,
     OpenAIChatBot,
 )
+from ..llm.web_fallback_search import WebFallbackSearcher
 from ..llm.hierarchical_node_search import (
     HierarchicalNodeSearchOrchestrator,
     HierarchicalSearchResult,
@@ -42,6 +43,9 @@ class ChatBotService:
         self.openai_chatbot = None
         self.date_filter_extractor = None
         self.hierarchical_search_orchestrator = None
+        self.web_fallback_searcher = None
+        self.web_search_fallback_enabled = False
+        self.web_search_fallback_max_results = 5
 
         self.hierarchy_max_depth = 4
         # 0이면 자식 노드 확장 수 제한 없음(unlimited)
@@ -121,6 +125,14 @@ class ChatBotService:
             if not openai_api_key:
                 raise ValueError("OPENAI_API_KEY 환경 변수가 설정되지 않았습니다.")
 
+            self.web_search_fallback_enabled = (
+                os.getenv("WEB_SEARCH_FALLBACK_ENABLED", "1") == "1"
+            )
+            self.web_search_fallback_max_results = max(
+                1,
+                min(int(os.getenv("WEB_SEARCH_FALLBACK_MAX_RESULTS", "5")), 10),
+            )
+
             print("🚀 ChatBot 서비스 초기화 중...")
 
             self.checker = OpenAIInputChecker(api_key=openai_api_key)
@@ -148,6 +160,13 @@ class ChatBotService:
                 max_root_nodes=self.hierarchy_max_root_nodes,
                 debug=self.debug_hierarchy_search,
             )
+
+            if self.web_search_fallback_enabled:
+                self.web_fallback_searcher = WebFallbackSearcher(
+                    timeout_sec=max(4, int(os.getenv("WEB_SEARCH_TIMEOUT_SEC", "8"))),
+                    region=os.getenv("WEB_SEARCH_REGION", "kr-kr"),
+                    debug=self.debug_hierarchy_search,
+                )
 
             print("🔄 시스템 워밍업 중...")
             boot_input = "이 메세지는 백엔드 서버 부팅 시 llm의 부팅 및 JSON 파싱을 위해 사용됩니다. 해당 메세지를 무시하세요."
@@ -364,6 +383,49 @@ class ChatBotService:
             max_total_chars=self.hierarchy_final_context_max_chars,
         )
 
+    def _fallback_web_context(
+        self,
+        query: str,
+        keywords: List[str],
+    ) -> str:
+        if not self.web_search_fallback_enabled or self.web_fallback_searcher is None:
+            return ""
+
+        merged_keywords = self._dedupe_keep_order(keywords, max_items=4)
+        search_query = query
+        if merged_keywords:
+            search_query = f"{query} {' '.join(merged_keywords)}".strip()
+
+        kaist_scoped_query = f"{search_query} site:kaist.ac.kr".strip()
+        web_results = self.web_fallback_searcher.search(
+            kaist_scoped_query,
+            max_results=self.web_search_fallback_max_results,
+        )
+        if not web_results:
+            web_results = self.web_fallback_searcher.search(
+                search_query,
+                max_results=self.web_search_fallback_max_results,
+            )
+        if not web_results:
+            return ""
+
+        lines: List[str] = []
+        lines.append("=== 외부 웹 검색 결과(내부 문서 부재로 fallback) ===")
+        lines.append("아래 정보는 외부 웹에서 수집된 참고 자료이며, 최신성/정확성을 교차 확인해야 합니다.")
+        for idx, item in enumerate(web_results, start=1):
+            title = str(item.get("title", "")).strip()
+            url = str(item.get("url", "")).strip()
+            snippet = str(item.get("snippet", "")).strip()
+            lines.append(f"[웹 문서 {idx}]")
+            if title:
+                lines.append(f"title: {title}")
+            if url:
+                lines.append(f"link: {url}")
+            if snippet:
+                lines.append(f"snippet: {snippet}")
+            lines.append("-" * 50)
+        return "\n".join(lines).strip()
+
     def process_message(self, user_input: str, use_vector_search: bool = True) -> Dict[str, Any]:
         if not self.is_initialized:
             return {
@@ -499,6 +561,28 @@ class ChatBotService:
                 )
 
             if use_vector_search and not vector_context.strip():
+                web_context = self._fallback_web_context(
+                    normalized_query,
+                    planner_seed_keywords,
+                )
+                if web_context:
+                    current_kst_date = datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y-%m-%d")
+                    response = self.openai_chatbot.generate_response(
+                        user_query=user_input,
+                        use_vector_search=False,
+                        start_date=start_date,
+                        end_date=end_date,
+                        search_keywords=effective_keywords,
+                        sql_context=None,
+                        vector_context=web_context,
+                        current_date_text=current_kst_date,
+                    )
+                    return {
+                        "success": True,
+                        "response": response,
+                        "message": "외부 웹 검색 fallback 응답",
+                    }
+
                 return {
                     "success": True,
                     "response": (
